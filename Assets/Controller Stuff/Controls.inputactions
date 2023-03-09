@@ -2,7 +2,7 @@
     "name": "Controls",
     "maps": [
         {
-            "name": "MazeControls",
+            "name": "FishControls",
             "id": "c756280e-f599-423f-9746-14603da2a0cb",
             "actions": [
                 {
