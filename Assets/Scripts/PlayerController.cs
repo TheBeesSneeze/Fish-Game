@@ -3,8 +3,7 @@
 // Author :            Toby Schamberger
 // Creation Date :     whenever we made it in class lol
 //
-// Brief Description : This was written in class and untouched in the maze
-// assignment :D
+// Brief Description : This code is to be shared between Gorp and Globbington!
 *****************************************************************************/
 
 using System.Collections;
@@ -19,7 +18,7 @@ public class PlayerController : MonoBehaviour
     public InputAction Move;
     public InputAction Jump;
 
-    public  bool        ReadMove;
+    public bool ReadMove;
     private Rigidbody2D myRb;
     public  float       Speed;
 
@@ -44,16 +43,14 @@ public class PlayerController : MonoBehaviour
     private void Move_canceled(InputAction.CallbackContext obj)
     {
         ReadMove = false;
-        myRb.velocity = Vector3.zero;
+        myRb.velocity = Vector3.zero; //Replace this line and add the slidey function :D
     }
 
     // THE FORBIDDEN FUNCTION! HUZZAH
     void Update()
     {
         if(ReadMove)
-        {
-            myRb.velocity = Move.ReadValue<Vector2>() * Speed;
-        }
+        myRb.velocity = Move.ReadValue<Vector2>() * Speed;
     }
 
     private void OnDisable()
