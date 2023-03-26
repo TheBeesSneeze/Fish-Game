@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4003394764065096539}
   - component: {fileID: 4003394764065096538}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Fish Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 4003394764503227499}
   - component: {fileID: 4003394764503227498}
   - component: {fileID: 4003394764503227497}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Gorp
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -323,7 +323,7 @@ MonoBehaviour:
   - {x: 0.96, y: -0.96, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 28172
+  m_InstanceId: -1260
 --- !u!50 &4003394764503227498
 Rigidbody2D:
   serializedVersion: 4

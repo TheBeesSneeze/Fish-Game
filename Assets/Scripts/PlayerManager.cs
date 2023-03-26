@@ -26,7 +26,6 @@ public class PlayerManager : MonoBehaviour
 
         while (players.Length<2)
         {
-            Debug.Log("d");
             players = GameObject.FindGameObjectsWithTag("Player");
 
             if(players.Length==1)
@@ -36,7 +35,7 @@ public class PlayerManager : MonoBehaviour
                 pim.playerPrefab = Player2;
             }
 
-            yield return new WaitForSeconds(0.25f);
+            yield return new WaitForSeconds(0.05f);
         }
             
         //change the world my final message goodbye
