@@ -1,3 +1,20 @@
+/*******************************************************************************
+// File Name :         EnemyDetection.cs
+// Author(s) :         Toby Schamberger
+// Creation Date :     3/23/2023
+//
+// Brief Description : Causes the enemy to begin pursuing the player if certain
+// conditions are met.
+// The enemy is constantly checking if either player is visible. If Gorp's light
+// is visible. Which player is closer. Etc.
+//
+// TODO: 
+// * make the enemy work with globbington! It's only in gorp mode currently!
+//
+// It is currently undecided if the enemies following behavior will be in this
+// script! Probably not! HOPEFULLY not! If the game is finalized and you can read this comment uh you shouldn't be doing that. this comment should be gone.
+*****************************************************************************/
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,25 +25,28 @@ public class EnemyDetection : MonoBehaviour
     [Header("Settings")]
     public float SightDistance = 8f;
     public LayerMask LM;
+    public InputAction ToggleLight;
 
     [Header("Debug")]
     public bool DarkVision = false;
-    public bool InsideLight;
-    private bool currentlyPursuing = false;
-    public float Speed = 1f; 
+    public float Speed = 1f;
 
-    public GameObject currentTarget;
+    [Header("Dynamic Variables")]
+    public  bool InsideLight;
+    public  GameObject CurrentTarget;
 
-    public InputAction ToggleLight;
-
-    private GameObject gop;
+    //Rest of variables are private jargain 
+    private GameObject gorp;
     private GameObject globbington;
     private Rigidbody2D rb;
 
-    // Start is called before the first frame update
+    /// <summary>
+    /// Finds Gorp and Globbington and starts searching for them
+    /// </summary>
     void Start()
     {
-        gop = GameObject.Find("Gorp");
+        gorp = GameObject.Find("Gorp");
+        globbington = GameObject.Find("Gorp");
         rb = GetComponent<Rigidbody2D>();
         StartCoroutine(SearchForPlayer());
     }
@@ -36,58 +56,81 @@ public class EnemyDetection : MonoBehaviour
     /// </summary>
     public IEnumerator SearchForPlayer()
     {
+        // This while loop only runs while Gorp and Globbington don't exist at the beginning at the game.
+        // Essentially keeping the enemy in purgatory.
+        // Gorp will only be null at the very beginning, so I don't want the code to be constantly checking if gorp is null in the for loop.
+        // Even if this is weird code.
+        // This is the fifth comment I've written about two lines of code
+        while (gorp == null)
+        {
+            yield return new WaitForSeconds(1.00f);
+        }
+
+        //The main event!
         for (; ; )
         {
             // Get the origin and direction of the raycast
             Vector3 origin = gameObject.transform.position;
-            Vector3 direction = gop.transform.position - origin;
+            Vector3 direction = gorp.transform.position - origin;
 
             // Cast the raycast and get the hit information
             var hit = Physics2D.Raycast(origin, direction, SightDistance, LM);
-            if (hit)
+
+            if(hit)
             {
-                Debug.DrawLine(origin, gop.transform.position, Color.green, 0.5f);
-
-                string hitName = hit.collider.gameObject.name;
-
-                if (hitName.Equals("Gorp"))
+                if(hit.collider.gameObject.tag.Equals("Player"))
                 {
-                    currentlyPursuing = true;
-                    currentTarget = hit.collider.gameObject;
-                    StartCoroutine(PursueTarget());
-                }
+                    Debug.DrawLine(origin, gorp.transform.position, Color.green, 0.5f);
 
-                else if (hitName.Equals("Globbington"))
-                {
-                    currentlyPursuing = true;
-                    currentTarget = hit.collider.gameObject;
-                    StartCoroutine(PursueTarget());
-                }
+                    string hitName = hit.collider.gameObject.name;
 
+                    //Only searching for new target when it doesnt already have one
+                    if (CurrentTarget == null)
+                    {
+                        if (hitName.Equals("Gorp"))
+                        {
+                            CurrentTarget = hit.collider.gameObject;
+                            StartCoroutine(PursueTarget());
+                        }
+
+                        else if (hitName.Equals("Globbington"))
+                        {
+                            CurrentTarget = hit.collider.gameObject;
+                            StartCoroutine(PursueTarget());
+                        }
+                    }
+                }
                 else
                 {
-                    currentlyPursuing = false;
+                    CurrentTarget = null;
                 }
-
             }
+            else
+            {
+                //Having this line repeated feels wrong but i cant really see any other way to do it?
+                CurrentTarget = null;
+            }
+
             yield return new WaitForSeconds(0.15f);
         }
     }
 
+    /// <summary>
+    /// Moves the enemy towards the enemies currently selected target.
+    /// ends when the currentTarget is lost.
+    /// </summary>
     public IEnumerator PursueTarget()
     {
         
-        while(currentlyPursuing)
+        while(CurrentTarget!=null)
         {
-            Debug.Log("die");
-            Vector2 AAA = Vector2.MoveTowards(transform.position, gop.transform.position, Speed);
-            Vector2 BAA = AAA - (Vector2)transform.position;
-            rb.velocity = BAA;
-            Debug.Log(BAA);
+            Vector2 positionDifference = Vector2.MoveTowards(transform.position, gorp.transform.position, Speed);
+            Vector2 movementVelocity = positionDifference - (Vector2)transform.position;
+            rb.velocity = movementVelocity;
 
             yield return new WaitForSeconds(0.1f);
         }
-        currentTarget = null;
+
         rb.velocity = Vector2.zero;
     }
 }

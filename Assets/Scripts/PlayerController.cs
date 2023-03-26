@@ -18,9 +18,10 @@ public class PlayerController : MonoBehaviour
     public InputAction Move;
     public InputAction Jump;
 
-    public bool ReadMove;
+    public  bool ReadMove;
+    public  float Speed;
     private Rigidbody2D myRb;
-    public  float       Speed;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -30,11 +31,11 @@ public class PlayerController : MonoBehaviour
         Move = MyPlayerInput.actions.FindAction("Move");
         Jump = MyPlayerInput.actions.FindAction("Jump");
 
+        //I believe this is adding the functions to the buttons...
         Move.started += Move_started;
         Move.canceled += Move_canceled;
     }
 
-    // Update is called once per frame
     private void Move_started(InputAction.CallbackContext obj)
     {
         ReadMove = true;
@@ -46,7 +47,9 @@ public class PlayerController : MonoBehaviour
         myRb.velocity = Vector3.zero; //Replace this line and add the slidey function :D
     }
 
-    // THE FORBIDDEN FUNCTION! HUZZAH
+    /// <summary>
+    /// THE FORBIDDEN FUNCTION! HUZZAH
+    /// </summary>
     void Update()
     {
         if(ReadMove)
