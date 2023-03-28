@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8678797230129077086}
   - component: {fileID: 8678797230129077087}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Fish Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 8678797230697677935}
   - component: {fileID: 8678797230697677934}
   - component: {fileID: 8678797230697677932}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Gorp
   m_TagString: Player
   m_Icon: {fileID: 0}
