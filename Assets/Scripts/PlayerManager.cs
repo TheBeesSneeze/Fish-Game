@@ -26,7 +26,6 @@ public class PlayerManager : MonoBehaviour
 
         while (players.Length<2)
         {
-            Debug.Log("d");
             players = GameObject.FindGameObjectsWithTag("Player");
 
             if(players.Length==1)

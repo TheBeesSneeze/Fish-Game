@@ -251,6 +251,7 @@ GameObject:
   m_Component:
   - component: {fileID: 62785020}
   - component: {fileID: 62785019}
+  - component: {fileID: 62785024}
   - component: {fileID: 62785021}
   - component: {fileID: 62785022}
   - component: {fileID: 62785023}
@@ -344,7 +345,7 @@ MonoBehaviour:
   SightDistance: 8
   LM:
     serializedVersion: 2
-    m_Bits: 192
+    m_Bits: 1728
   ToggleLight:
     m_Name: Toggle Light
     m_Type: 0
@@ -395,6 +396,23 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &62785024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 62785018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d26583894c5073045b211a3e613bc149, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Weight: 0
+  DefaultHealth: 3
+  Health: 0
+  NightVision: 0
+  Speed: 0
 --- !u!1 &200652411
 GameObject:
   m_ObjectHideFlags: 0
@@ -701,7 +719,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!43 &675518733
+--- !u!43 &663273553
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -908,8 +926,8 @@ MonoBehaviour:
   - {x: 0.5, y: 0.5, z: 0}
   - {x: 0.5, y: -0.5, z: 0}
   m_ShapePathHash: 0
-  m_Mesh: {fileID: 1827874366}
-  m_InstanceId: 46198
+  m_Mesh: {fileID: 663273553}
+  m_InstanceId: 47206
 --- !u!212 &718149863
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1207,7 +1225,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!43 &1827874366
+--- !u!43 &1891337140
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1525,8 +1543,8 @@ MonoBehaviour:
   - {x: 0.5, y: 0.5, z: 0}
   - {x: 0.5, y: -0.5, z: 0}
   m_ShapePathHash: 0
-  m_Mesh: {fileID: 675518733}
-  m_InstanceId: 46236
+  m_Mesh: {fileID: 1891337140}
+  m_InstanceId: 47244
 --- !u!212 &1979170921
 SpriteRenderer:
   m_ObjectHideFlags: 0
