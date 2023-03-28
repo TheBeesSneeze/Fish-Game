@@ -251,6 +251,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47ba3e2595c2b9249bac3df3e067715b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Weight: 0
+  DefaultHealth: 3
+  Health: 3
+  insideLight: 0
+  Speed: 10
   MyPlayerInput: {fileID: 4302747830044685625}
   Move:
     m_Name: Move
@@ -271,7 +276,6 @@ MonoBehaviour:
     m_SingletonActionBindings: []
     m_Flags: 0
   ReadMove: 0
-  Speed: 10
 --- !u!114 &4302747830044685625
 MonoBehaviour:
   m_ObjectHideFlags: 0

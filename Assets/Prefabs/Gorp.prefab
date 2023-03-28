@@ -336,7 +336,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Weight: 0
   DefaultHealth: 2
-  Health: 0
+  Health: 3
   insideLight: 0
   Speed: 10
   MyPlayerInput: {fileID: 8678797230697677920}

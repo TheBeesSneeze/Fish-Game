@@ -30,6 +30,7 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
+<<<<<<< Updated upstream
                     "initialStateCheck": true
                 },
                 {
@@ -58,6 +59,27 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+=======
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Increase Light",
+                    "type": "Button",
+                    "id": "cdd1f583-2ddc-43aa-aabb-bbae065890a4",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Decrease Light",
+                    "type": "Button",
+                    "id": "1aea1d99-c02e-4143-b7f3-7538a5d012ee",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+>>>>>>> Stashed changes
                 }
             ],
             "bindings": [
@@ -184,6 +206,7 @@
                 },
                 {
                     "name": "",
+<<<<<<< Updated upstream
                     "id": "77f678f3-f5ab-4134-8141-3ea56ce89b2b",
                     "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
@@ -240,10 +263,14 @@
                 {
                     "name": "",
                     "id": "8ef398c9-0c12-4edf-8f8d-cf67b0b06fd6",
+=======
+                    "id": "d3a3ca6c-b7a6-4a85-bca5-ea3e0917d1cf",
+>>>>>>> Stashed changes
                     "path": "<Keyboard>/2",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
+<<<<<<< Updated upstream
                     "action": "Decrease Light",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -269,6 +296,22 @@
                     "action": "Toggle Light",
                     "isComposite": false,
                     "isPartOfComposite": false
+=======
+                    "action": "Increase Light",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3c78bc63-e3b9-4025-a894-ec03e38b58b7",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Decrease Light",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+>>>>>>> Stashed changes
                 }
             ]
         },
