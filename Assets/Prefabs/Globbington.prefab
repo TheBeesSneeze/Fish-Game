@@ -99,11 +99,7 @@ GameObject:
   - component: {fileID: 5051481756267194680}
   - component: {fileID: 4302747830044685624}
   - component: {fileID: 4302747830044685625}
-<<<<<<< HEAD
-  m_Layer: 7
-=======
   m_Layer: 10
->>>>>>> Sky
   m_Name: Globbington
   m_TagString: Player
   m_Icon: {fileID: 0}
