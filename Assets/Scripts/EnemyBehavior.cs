@@ -27,6 +27,7 @@ public class EnemyBehavior : CharacterBehavior
     // Start is called before the first frame update
     void Start()
     {
+        Health = DefaultHealth;
         enemyDetection = gameObject.GetComponent<EnemyDetection>();
         gorp        = GameObject.Find("Gorp");
         globbington = GameObject.Find("Globbington");
@@ -38,5 +39,14 @@ public class EnemyBehavior : CharacterBehavior
     public override void Die()
     {
         Destroy(this.gameObject);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        string tag = collision.gameObject.tag;
+        if(tag.Equals("Attack"))
+        {
+            TakeDamage(1, true,collision.gameObject.transform.position);
+        }
     }
 }

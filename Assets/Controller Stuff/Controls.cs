@@ -37,49 +37,49 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Dash"",
-                    ""type"": ""Value"",
-                    ""id"": ""93a520f9-0059-4750-8119-3bd4e4ca1a9b"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
-                },
-                {
-                    ""name"": ""Pause"",
-                    ""type"": ""Value"",
-                    ""id"": ""45b0cccd-6158-48be-8167-28539ae61ee7"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
-                },
-                {
-                    ""name"": ""Toggle Light"",
-                    ""type"": ""Value"",
+                    ""name"": ""ToggleLight"",
+                    ""type"": ""Button"",
                     ""id"": ""6bd67fdc-43fd-4c34-bee3-09560897e39b"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": true
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Dash"",
+                    ""type"": ""Button"",
+                    ""id"": ""93a520f9-0059-4750-8119-3bd4e4ca1a9b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""45b0cccd-6158-48be-8167-28539ae61ee7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 },
                 {
                     ""name"": ""Increase Light"",
-                    ""type"": ""Value"",
-                    ""id"": ""97ddbf57-4486-4002-8823-0df53a7ca063"",
+                    ""type"": ""Button"",
+                    ""id"": ""0a5cf21b-07a5-417b-aeab-33bad092da95"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": true
+                    ""initialStateCheck"": false
                 },
                 {
                     ""name"": ""Decrease Light"",
-                    ""type"": ""Value"",
-                    ""id"": ""306c11b9-3793-492d-aa8e-a6438baf0d90"",
+                    ""type"": ""Button"",
+                    ""id"": ""6c467be1-d805-4fbe-adfc-47e59c864750"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": true
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -151,6 +151,28 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""9df0e515-db6b-49f2-baa9-68e370e02b3e"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ToggleLight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""22ad23e6-0c2f-487a-902d-2c001950305c"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ToggleLight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""a5e86912-e52b-485b-ab3b-58b767af9d1b"",
                     ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
@@ -206,7 +228,18 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""77f678f3-f5ab-4134-8141-3ea56ce89b2b"",
+                    ""id"": ""bf4c96b7-baad-4b54-96b3-375670308647"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Increase Light"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8175eeee-bcdf-4b67-8804-91507cb0ca71"",
                     ""path"": ""<Gamepad>/rightTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -217,7 +250,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""67ff8f47-473d-4b66-9497-dbf101f07034"",
+                    ""id"": ""72723c50-0e32-4656-8b85-761e4298d782"",
                     ""path"": ""<Gamepad>/rightShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -228,18 +261,18 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""2a7a53bb-762d-4d27-a900-8864abf61aa9"",
+                    ""id"": ""373c9126-0717-4de9-8d39-029a35773ec4"",
                     ""path"": ""<Keyboard>/1"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Increase Light"",
+                    ""action"": ""Decrease Light"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""167c09d3-0011-4e31-84e9-adc15df0e909"",
+                    ""id"": ""4e2bbc1a-03b7-4de7-ac50-bf662eca6e01"",
                     ""path"": ""<Gamepad>/leftTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -250,45 +283,12 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""de58a508-0d38-4b78-8ccd-b9b4b61d9a29"",
+                    ""id"": ""f89edfd8-faa9-45a7-9edb-9d398e0c3ac2"",
                     ""path"": ""<Gamepad>/leftShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Decrease Light"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""8ef398c9-0c12-4edf-8f8d-cf67b0b06fd6"",
-                    ""path"": ""<Keyboard>/2"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Decrease Light"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""9df0e515-db6b-49f2-baa9-68e370e02b3e"",
-                    ""path"": ""<Keyboard>/e"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Toggle Light"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""22ad23e6-0c2f-487a-902d-2c001950305c"",
-                    ""path"": ""<Gamepad>/buttonWest"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Toggle Light"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -416,6 +416,17 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""action"": ""Strike"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e384d241-f8ff-432d-abad-30addc58c07c"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Strike"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -425,9 +436,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         // FishControls
         m_FishControls = asset.FindActionMap("FishControls", throwIfNotFound: true);
         m_FishControls_Move = m_FishControls.FindAction("Move", throwIfNotFound: true);
+        m_FishControls_ToggleLight = m_FishControls.FindAction("ToggleLight", throwIfNotFound: true);
         m_FishControls_Dash = m_FishControls.FindAction("Dash", throwIfNotFound: true);
         m_FishControls_Pause = m_FishControls.FindAction("Pause", throwIfNotFound: true);
-        m_FishControls_ToggleLight = m_FishControls.FindAction("Toggle Light", throwIfNotFound: true);
         m_FishControls_IncreaseLight = m_FishControls.FindAction("Increase Light", throwIfNotFound: true);
         m_FishControls_DecreaseLight = m_FishControls.FindAction("Decrease Light", throwIfNotFound: true);
         // OctopusControls
@@ -494,9 +505,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_FishControls;
     private IFishControlsActions m_FishControlsActionsCallbackInterface;
     private readonly InputAction m_FishControls_Move;
+    private readonly InputAction m_FishControls_ToggleLight;
     private readonly InputAction m_FishControls_Dash;
     private readonly InputAction m_FishControls_Pause;
-    private readonly InputAction m_FishControls_ToggleLight;
     private readonly InputAction m_FishControls_IncreaseLight;
     private readonly InputAction m_FishControls_DecreaseLight;
     public struct FishControlsActions
@@ -504,9 +515,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         private @Controls m_Wrapper;
         public FishControlsActions(@Controls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_FishControls_Move;
+        public InputAction @ToggleLight => m_Wrapper.m_FishControls_ToggleLight;
         public InputAction @Dash => m_Wrapper.m_FishControls_Dash;
         public InputAction @Pause => m_Wrapper.m_FishControls_Pause;
-        public InputAction @ToggleLight => m_Wrapper.m_FishControls_ToggleLight;
         public InputAction @IncreaseLight => m_Wrapper.m_FishControls_IncreaseLight;
         public InputAction @DecreaseLight => m_Wrapper.m_FishControls_DecreaseLight;
         public InputActionMap Get() { return m_Wrapper.m_FishControls; }
@@ -521,15 +532,15 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Move.started -= m_Wrapper.m_FishControlsActionsCallbackInterface.OnMove;
                 @Move.performed -= m_Wrapper.m_FishControlsActionsCallbackInterface.OnMove;
                 @Move.canceled -= m_Wrapper.m_FishControlsActionsCallbackInterface.OnMove;
+                @ToggleLight.started -= m_Wrapper.m_FishControlsActionsCallbackInterface.OnToggleLight;
+                @ToggleLight.performed -= m_Wrapper.m_FishControlsActionsCallbackInterface.OnToggleLight;
+                @ToggleLight.canceled -= m_Wrapper.m_FishControlsActionsCallbackInterface.OnToggleLight;
                 @Dash.started -= m_Wrapper.m_FishControlsActionsCallbackInterface.OnDash;
                 @Dash.performed -= m_Wrapper.m_FishControlsActionsCallbackInterface.OnDash;
                 @Dash.canceled -= m_Wrapper.m_FishControlsActionsCallbackInterface.OnDash;
                 @Pause.started -= m_Wrapper.m_FishControlsActionsCallbackInterface.OnPause;
                 @Pause.performed -= m_Wrapper.m_FishControlsActionsCallbackInterface.OnPause;
                 @Pause.canceled -= m_Wrapper.m_FishControlsActionsCallbackInterface.OnPause;
-                @ToggleLight.started -= m_Wrapper.m_FishControlsActionsCallbackInterface.OnToggleLight;
-                @ToggleLight.performed -= m_Wrapper.m_FishControlsActionsCallbackInterface.OnToggleLight;
-                @ToggleLight.canceled -= m_Wrapper.m_FishControlsActionsCallbackInterface.OnToggleLight;
                 @IncreaseLight.started -= m_Wrapper.m_FishControlsActionsCallbackInterface.OnIncreaseLight;
                 @IncreaseLight.performed -= m_Wrapper.m_FishControlsActionsCallbackInterface.OnIncreaseLight;
                 @IncreaseLight.canceled -= m_Wrapper.m_FishControlsActionsCallbackInterface.OnIncreaseLight;
@@ -543,15 +554,15 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Move.started += instance.OnMove;
                 @Move.performed += instance.OnMove;
                 @Move.canceled += instance.OnMove;
+                @ToggleLight.started += instance.OnToggleLight;
+                @ToggleLight.performed += instance.OnToggleLight;
+                @ToggleLight.canceled += instance.OnToggleLight;
                 @Dash.started += instance.OnDash;
                 @Dash.performed += instance.OnDash;
                 @Dash.canceled += instance.OnDash;
                 @Pause.started += instance.OnPause;
                 @Pause.performed += instance.OnPause;
                 @Pause.canceled += instance.OnPause;
-                @ToggleLight.started += instance.OnToggleLight;
-                @ToggleLight.performed += instance.OnToggleLight;
-                @ToggleLight.canceled += instance.OnToggleLight;
                 @IncreaseLight.started += instance.OnIncreaseLight;
                 @IncreaseLight.performed += instance.OnIncreaseLight;
                 @IncreaseLight.canceled += instance.OnIncreaseLight;
@@ -606,9 +617,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     public interface IFishControlsActions
     {
         void OnMove(InputAction.CallbackContext context);
+        void OnToggleLight(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
-        void OnToggleLight(InputAction.CallbackContext context);
         void OnIncreaseLight(InputAction.CallbackContext context);
         void OnDecreaseLight(InputAction.CallbackContext context);
     }

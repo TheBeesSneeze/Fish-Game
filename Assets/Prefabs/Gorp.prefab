@@ -214,7 +214,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Weight: 0
-  DefaultHealth: 2
+  DefaultHealth: 3
   Health: 0
   insideLight: 0
   Speed: 10
