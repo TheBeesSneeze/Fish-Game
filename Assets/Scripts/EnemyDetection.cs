@@ -51,7 +51,7 @@ public class EnemyDetection : MonoBehaviour
     void Start()
     {
         gorp = GameObject.Find("Gorp");
-        globbington = GameObject.Find("Gorp");
+        globbington = GameObject.Find("Globbington");
         rb = GetComponent<Rigidbody2D>();
         StartCoroutine(SearchForPlayer());
     }
@@ -66,8 +66,12 @@ public class EnemyDetection : MonoBehaviour
         // Gorp will only be null at the very beginning, so I don't want the code to be constantly checking if gorp is null in the for loop.
         // Even if this is weird code.
         // This is the fifth comment I've written about two lines of code
-        while (gorp == null)
+        while (gorp == null /*|| globbington == null*/)
         {
+            Debug.Log("gorp seraching");
+            gorp        = GameObject.Find("Gorp");
+            globbington = GameObject.Find("Globbington");
+
             yield return new WaitForSeconds(1.00f);
         }
 

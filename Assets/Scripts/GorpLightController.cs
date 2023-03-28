@@ -46,6 +46,9 @@ public class GorpLightController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //didnt know where else to put this line:
+        this.gameObject.name = "Gorp";
+
         //fishLight = this.gameObject.transform.GetChild(0).GetComponent<Light2D>(); //Weird syntax but I think its more legible?
         LightRadius = FishLight.pointLightOuterRadius;
 
