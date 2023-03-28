@@ -6,7 +6,6 @@ TagManager:
   tags:
   - Enemy
   - Wall
-  - Attack
   layers:
   - Default
   - TransparentFX
@@ -17,8 +16,8 @@ TagManager:
   - Walls
   - Player
   - Enemy
-  - Gorp
-  - Globbington
+  - 
+  - 
   - 
   - 
   - 
