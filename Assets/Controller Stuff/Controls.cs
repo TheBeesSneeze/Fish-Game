@@ -52,7 +52,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
-<<<<<<< Updated upstream
                     ""initialStateCheck"": true
                 },
                 {
@@ -81,27 +80,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
-=======
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Increase Light"",
-                    ""type"": ""Button"",
-                    ""id"": ""cdd1f583-2ddc-43aa-aabb-bbae065890a4"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Decrease Light"",
-                    ""type"": ""Button"",
-                    ""id"": ""1aea1d99-c02e-4143-b7f3-7538a5d012ee"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
->>>>>>> Stashed changes
                 }
             ],
             ""bindings"": [
@@ -228,7 +206,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-<<<<<<< Updated upstream
                     ""id"": ""77f678f3-f5ab-4134-8141-3ea56ce89b2b"",
                     ""path"": ""<Gamepad>/rightTrigger"",
                     ""interactions"": """",
@@ -285,14 +262,10 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""8ef398c9-0c12-4edf-8f8d-cf67b0b06fd6"",
-=======
-                    ""id"": ""d3a3ca6c-b7a6-4a85-bca5-ea3e0917d1cf"",
->>>>>>> Stashed changes
                     ""path"": ""<Keyboard>/2"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-<<<<<<< Updated upstream
                     ""action"": ""Decrease Light"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -318,22 +291,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""action"": ""Toggle Light"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-=======
-                    ""action"": ""Increase Light"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""3c78bc63-e3b9-4025-a894-ec03e38b58b7"",
-                    ""path"": ""<Keyboard>/1"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Decrease Light"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
->>>>>>> Stashed changes
                 }
             ]
         },
@@ -470,10 +427,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         m_FishControls_Move = m_FishControls.FindAction("Move", throwIfNotFound: true);
         m_FishControls_Dash = m_FishControls.FindAction("Dash", throwIfNotFound: true);
         m_FishControls_Pause = m_FishControls.FindAction("Pause", throwIfNotFound: true);
-<<<<<<< Updated upstream
         m_FishControls_ToggleLight = m_FishControls.FindAction("Toggle Light", throwIfNotFound: true);
-=======
->>>>>>> Stashed changes
         m_FishControls_IncreaseLight = m_FishControls.FindAction("Increase Light", throwIfNotFound: true);
         m_FishControls_DecreaseLight = m_FishControls.FindAction("Decrease Light", throwIfNotFound: true);
         // OctopusControls
@@ -542,10 +496,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private readonly InputAction m_FishControls_Move;
     private readonly InputAction m_FishControls_Dash;
     private readonly InputAction m_FishControls_Pause;
-<<<<<<< Updated upstream
     private readonly InputAction m_FishControls_ToggleLight;
-=======
->>>>>>> Stashed changes
     private readonly InputAction m_FishControls_IncreaseLight;
     private readonly InputAction m_FishControls_DecreaseLight;
     public struct FishControlsActions
@@ -555,10 +506,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         public InputAction @Move => m_Wrapper.m_FishControls_Move;
         public InputAction @Dash => m_Wrapper.m_FishControls_Dash;
         public InputAction @Pause => m_Wrapper.m_FishControls_Pause;
-<<<<<<< Updated upstream
         public InputAction @ToggleLight => m_Wrapper.m_FishControls_ToggleLight;
-=======
->>>>>>> Stashed changes
         public InputAction @IncreaseLight => m_Wrapper.m_FishControls_IncreaseLight;
         public InputAction @DecreaseLight => m_Wrapper.m_FishControls_DecreaseLight;
         public InputActionMap Get() { return m_Wrapper.m_FishControls; }
@@ -579,12 +527,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Pause.started -= m_Wrapper.m_FishControlsActionsCallbackInterface.OnPause;
                 @Pause.performed -= m_Wrapper.m_FishControlsActionsCallbackInterface.OnPause;
                 @Pause.canceled -= m_Wrapper.m_FishControlsActionsCallbackInterface.OnPause;
-<<<<<<< Updated upstream
                 @ToggleLight.started -= m_Wrapper.m_FishControlsActionsCallbackInterface.OnToggleLight;
                 @ToggleLight.performed -= m_Wrapper.m_FishControlsActionsCallbackInterface.OnToggleLight;
                 @ToggleLight.canceled -= m_Wrapper.m_FishControlsActionsCallbackInterface.OnToggleLight;
-=======
->>>>>>> Stashed changes
                 @IncreaseLight.started -= m_Wrapper.m_FishControlsActionsCallbackInterface.OnIncreaseLight;
                 @IncreaseLight.performed -= m_Wrapper.m_FishControlsActionsCallbackInterface.OnIncreaseLight;
                 @IncreaseLight.canceled -= m_Wrapper.m_FishControlsActionsCallbackInterface.OnIncreaseLight;
@@ -604,12 +549,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Pause.started += instance.OnPause;
                 @Pause.performed += instance.OnPause;
                 @Pause.canceled += instance.OnPause;
-<<<<<<< Updated upstream
                 @ToggleLight.started += instance.OnToggleLight;
                 @ToggleLight.performed += instance.OnToggleLight;
                 @ToggleLight.canceled += instance.OnToggleLight;
-=======
->>>>>>> Stashed changes
                 @IncreaseLight.started += instance.OnIncreaseLight;
                 @IncreaseLight.performed += instance.OnIncreaseLight;
                 @IncreaseLight.canceled += instance.OnIncreaseLight;
@@ -666,10 +608,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
-<<<<<<< Updated upstream
         void OnToggleLight(InputAction.CallbackContext context);
-=======
->>>>>>> Stashed changes
         void OnIncreaseLight(InputAction.CallbackContext context);
         void OnDecreaseLight(InputAction.CallbackContext context);
     }

@@ -39,11 +39,11 @@ public class PlayerManager : MonoBehaviour
     {
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
 
-        while (players.Length < 2)
+        while (players.Length<2)
         {
             players = GameObject.FindGameObjectsWithTag("Player");
 
-            if (players.Length == 1)
+            if(players.Length==1)
             {
                 //Runs when 2 players
                 PlayerInputManager pim = GetComponent<PlayerInputManager>();
@@ -52,7 +52,7 @@ public class PlayerManager : MonoBehaviour
 
             yield return new WaitForSeconds(0.05f);
         }
-
+            
         //change the world my final message goodbye
         Destroy(this.gameObject);
     }
