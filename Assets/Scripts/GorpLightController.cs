@@ -75,6 +75,24 @@ public class GorpLightController : MonoBehaviour
         FishLight.pointLightInnerRadius = LightRadius/2;
     }
 
+    /// <summary>
+    /// Adds/subtracts LightIncrement to LightRadius, depending on 
+    /// Applies changes to Gorp's light
+    /// </summary>
+    public IEnumerator AdjustLight(float increment)
+    {
+        Debug.Log("adjusting...");
+        while (currentlyIncrementing)
+        {
+            LightRadius = Mathf.Clamp(LightRadius + increment, MinLight, MaxLight);
+            UpdateLight();
+
+            yield return new WaitForSeconds(LightIncrementDelay);
+        }
+    }
+
+    
+
     private void IncreaseLight_started(InputAction.CallbackContext obj)
     {
         currentlyIncrementing = true;
@@ -95,21 +113,5 @@ public class GorpLightController : MonoBehaviour
     private void DecreaseLight_canceled(InputAction.CallbackContext obj)
     {
         currentlyIncrementing = false;
-    }
-
-    /// <summary>
-    /// Adds/subtracts LightIncrement to LightRadius, depending on 
-    /// Applies changes to Gorp's light
-    /// </summary>
-    public IEnumerator AdjustLight(float increment)
-    {
-        Debug.Log("adjusting...");
-        while(currentlyIncrementing)
-        {
-            LightRadius = Mathf.Clamp(LightRadius + increment, MinLight, MaxLight);
-            UpdateLight();
-
-            yield return new WaitForSeconds(LightIncrementDelay);
-        }
     }
 }

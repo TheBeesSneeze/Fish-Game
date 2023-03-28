@@ -13,12 +13,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyBehavior : MonoBehaviour
+public class EnemyBehavior : CharacterBehavior
 {
     [Header("Enemy Attributes")]
     public bool NightVision;
-    public bool Weight; // Weight determines distance knocked back. 0 = no knockback. 10 = across the room
-    public float MaxHealth;
     public float Speed; //if speed = 0, enemy wont move at all
 
     [Header("Unity Jargain")]
@@ -26,21 +24,19 @@ public class EnemyBehavior : MonoBehaviour
     private GameObject gorp;
     private GameObject globbington;
 
-    [Header("Debug (don't touch in editor)")]
-    public float Health;
-
     // Start is called before the first frame update
     void Start()
     {
-        Health = MaxHealth;
         enemyDetection = gameObject.GetComponent<EnemyDetection>();
         gorp        = GameObject.Find("Gorp");
         globbington = GameObject.Find("Globbington");
     }
 
-    // Update is called once per frame
-    void Update()
+    /// <summary>
+    /// Kills the enemy!
+    /// </summary>
+    public override void Die()
     {
-        
+        Destroy(this.gameObject);
     }
 }

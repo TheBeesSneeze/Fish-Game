@@ -11,21 +11,28 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : CharacterBehavior
 {
+    [Header("Debug")]
+    public bool insideLight;
+    public float Speed;
+
+    [Header("Controller stuff:")]
+
     public PlayerInput MyPlayerInput;
 
     public InputAction Move;
     public InputAction Jump;
 
     public  bool ReadMove;
-    public  float Speed;
+    
     private Rigidbody2D myRb;
     
 
     // Start is called before the first frame update
     void Start()
     {
+        Health = DefaultHealth;
         myRb = GetComponent<Rigidbody2D>();
         MyPlayerInput.actions.Enable();
         Move = MyPlayerInput.actions.FindAction("Move");
@@ -36,24 +43,34 @@ public class PlayerController : MonoBehaviour
         Move.canceled += Move_canceled;
     }
 
+    private IEnumerator MovePlayer()
+    {
+        while (ReadMove)
+        {
+            myRb.velocity = Move.ReadValue<Vector2>() * Speed;
+            yield return null;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        string tag = collision.gameObject.tag;
+        if (tag.Equals("Enemy"))
+        {
+            TakeDamage(1, true, collision.transform.position);
+        }
+    }
+
     private void Move_started(InputAction.CallbackContext obj)
     {
         ReadMove = true;
+        StartCoroutine(MovePlayer());
     }
 
     private void Move_canceled(InputAction.CallbackContext obj)
     {
         ReadMove = false;
         myRb.velocity = Vector3.zero; //Replace this line and add the slidey function :D
-    }
-
-    /// <summary>
-    /// THE FORBIDDEN FUNCTION! HUZZAH
-    /// </summary>
-    void Update()
-    {
-        if(ReadMove)
-        myRb.velocity = Move.ReadValue<Vector2>() * Speed;
     }
 
     private void OnDisable()

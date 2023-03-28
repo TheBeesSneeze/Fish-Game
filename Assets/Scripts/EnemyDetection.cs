@@ -65,10 +65,9 @@ public class EnemyDetection : MonoBehaviour
         // Essentially keeping the enemy in purgatory.
         // Gorp will only be null at the very beginning, so I don't want the code to be constantly checking if gorp is null in the for loop.
         // Even if this is weird code.
-        // This is the fifth comment I've written about two lines of code
-        while (gorp == null /*|| globbington == null*/)
+        // This is the fifth comment I've written about like 4 lines of code
+        while (gorp == null && globbington == null)
         {
-            Debug.Log("gorp seraching");
             gorp        = GameObject.Find("Gorp");
             globbington = GameObject.Find("Globbington");
 
@@ -102,10 +101,10 @@ public class EnemyDetection : MonoBehaviour
                             StartCoroutine(PursueTarget());
                         }
 
-                        else if (hitName.Equals("Globbington"))
+                        else if (hitName.Equals("Globbington") && globbington.GetComponent<PlayerController>().insideLight)
                         {
                             CurrentTarget = hit.collider.gameObject;
-                            StartCoroutine(PursueTarget());
+                            StartCoroutine(PursueTarget() );
                         }
                     }
                 }
