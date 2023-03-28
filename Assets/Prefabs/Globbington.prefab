@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4302747830044685629}
   - component: {fileID: 4302747830044685624}
   - component: {fileID: 4302747830044685625}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Globbington
   m_TagString: Player
   m_Icon: {fileID: 0}
