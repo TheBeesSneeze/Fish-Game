@@ -24,21 +24,41 @@ public class EnemyBehavior : CharacterBehavior
     private GameObject gorp;
     private GameObject globbington;
 
-    // Start is called before the first frame update
+    /// <summary>
+    /// Initializes variables for enemy respwning and finds unity components.
+    /// </summary>
     void Start()
     {
+        //Stats
         Health = DefaultHealth;
+        DefaultPosition = this.gameObject.transform.position;
+
+        //Unity moment
         enemyDetection = gameObject.GetComponent<EnemyDetection>();
         gorp        = GameObject.Find("Gorp");
         globbington = GameObject.Find("Globbington");
     }
 
     /// <summary>
-    /// Kills the enemy!
+    /// Kills the enemy! (Actually just SetActive(false)
     /// </summary>
     public override void Die()
     {
-        Destroy(this.gameObject);
+        this.gameObject.SetActive(false);
+    }
+
+    /// <summary>
+    /// Basically resets the enemy. It's like how it was at the start of the scene!
+    /// </summary>
+    public override void Respawn()
+    {
+        this.gameObject.SetActive(true);
+        Health = DefaultHealth;
+        this.transform.position = DefaultPosition;
+
+        //Enemy exclusive code:
+        enemyDetection.CurrentTarget = null;
+        this.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

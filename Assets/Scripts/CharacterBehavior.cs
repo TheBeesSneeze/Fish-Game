@@ -19,6 +19,7 @@ public class CharacterBehavior : MonoBehaviour
 
     [Header("Debug (don't touch in editor)")]
     public int Health;
+    public Vector3 DefaultPosition;
 
     /// <summary>
     /// Sets Health to the Default
@@ -26,6 +27,7 @@ public class CharacterBehavior : MonoBehaviour
     void Start()
     {
         Health = DefaultHealth;
+        DefaultPosition = this.transform.position;
     }
 
     /// <summary>
@@ -63,5 +65,12 @@ public class CharacterBehavior : MonoBehaviour
     public virtual void Die()
     {
         Debug.Log(this.gameObject.name + " has died! if youre reading this text! you will soon! override this function!");
+    }
+
+    public virtual void Respawn()
+    {
+        this.gameObject.SetActive(true);
+        Health = DefaultHealth;
+        this.transform.position = DefaultPosition;
     }
 }
