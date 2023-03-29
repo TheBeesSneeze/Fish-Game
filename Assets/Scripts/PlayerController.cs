@@ -8,6 +8,7 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -29,10 +30,13 @@ public class PlayerController : CharacterBehavior
     private Rigidbody2D myRb;
     
 
-    // Start is called before the first frame update
+    /// <summary>
+    /// Sets health and binds controls
+    /// </summary>
     void Start()
     {
         Health = DefaultHealth;
+
         myRb = GetComponent<Rigidbody2D>();
         MyPlayerInput.actions.Enable();
         Move = MyPlayerInput.actions.FindAction("Move");
@@ -42,13 +46,53 @@ public class PlayerController : CharacterBehavior
         Move.started += Move_started;
         Move.canceled += Move_canceled;
     }
-
+    
+    /// <summary>
+    /// Moves the player when ReadMove is true
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator MovePlayer()
     {
         while (ReadMove)
         {
             myRb.velocity = Move.ReadValue<Vector2>() * Speed;
             yield return null;
+        }
+    }
+
+    /// <summary>
+    /// When the player dies, the scene is reset.
+    /// </summary>
+    public override void Die()
+    {
+        ResetScene();
+    }
+
+    /// <summary>
+    /// When player dies, set both players to their starting positions.
+    /// Also sends enemies to their start.
+    /// </summary>
+    public void ResetScene()
+    {
+        //Resets players:
+        PlayerController gorp        = GameObject.Find("Gorp")       .GetComponent<PlayerController>();
+        PlayerController globbington = GameObject.Find("Globbington").GetComponent<PlayerController>();
+
+        gorp.Respawn();
+        globbington.Respawn();
+        /*
+        gorp       .transform.position = gorp       .DefaultPosition;
+        globbington.transform.position = globbington.DefaultPosition;
+
+        gorp.Health        = gorp       .DefaultHealth;
+        globbington.Health = globbington.DefaultHealth;
+        */
+
+        //Reset enemies:
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach(GameObject enemy in enemies) 
+        { 
+            enemy.GetComponent<EnemyBehavior>().Respawn();
         }
     }
 

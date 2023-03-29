@@ -86,11 +86,11 @@ public class EnemyDetection : MonoBehaviour
 
             if(hit)
             {
+
                 if(hit.collider.gameObject.tag.Equals("Player"))
                 {
-                    Debug.DrawLine(origin, gorp.transform.position, Color.green, 0.5f);
-
                     string hitName = hit.collider.gameObject.name;
+                    Debug.DrawLine(origin, gorp.transform.position, Color.green, 0.5f);
 
                     //Only searching for new target when it doesnt already have one
                     if (CurrentTarget == null)
@@ -109,15 +109,12 @@ public class EnemyDetection : MonoBehaviour
                     }
                 }
                 else
-                {
                     CurrentTarget = null;
-                }
+
             }
             else
-            {
                 //Having this line repeated feels wrong but i cant really see any other way to do it?
                 CurrentTarget = null;
-            }
 
             yield return new WaitForSeconds(0.15f);
         }
