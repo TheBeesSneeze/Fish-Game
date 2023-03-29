@@ -80,13 +80,6 @@ public class PlayerController : CharacterBehavior
 
         gorp.Respawn();
         globbington.Respawn();
-        /*
-        gorp       .transform.position = gorp       .DefaultPosition;
-        globbington.transform.position = globbington.DefaultPosition;
-
-        gorp.Health        = gorp       .DefaultHealth;
-        globbington.Health = globbington.DefaultHealth;
-        */
 
         //Reset enemies:
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
