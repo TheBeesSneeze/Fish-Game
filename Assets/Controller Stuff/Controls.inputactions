@@ -15,7 +15,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "ToggleLight",
+                    "name": "Toggle Light",
                     "type": "Button",
                     "id": "6bd67fdc-43fd-4c34-bee3-09560897e39b",
                     "expectedControlType": "Button",
@@ -134,7 +134,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "ToggleLight",
+                    "action": "Toggle Light",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -145,7 +145,29 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "ToggleLight",
+                    "action": "Toggle Light",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4b682ab9-c441-45ca-bfe1-df2d86ab1b37",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Toggle Light",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8fa5276f-79bd-4248-8b26-778efc9e3cf3",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Toggle Light",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

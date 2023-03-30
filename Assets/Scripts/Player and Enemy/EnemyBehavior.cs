@@ -66,12 +66,14 @@ public class EnemyBehavior : CharacterBehavior
         string tag = collision.gameObject.tag;
         if(tag.Equals("Attack"))
         {
-            TakeDamage(1,collision.gameObject.transform.position);
+            TakeDamage(1, collision.gameObject.transform.position);
         }
         else if (tag.Equals("Light"))
         {
             InsideLight = true;
-            enemyDetection.InsideLight = true;
+
+            if(enemyDetection!=null)
+                enemyDetection.InsideLight = true;
         }
     }
 

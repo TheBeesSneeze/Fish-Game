@@ -89,7 +89,7 @@ public class PlayerController : CharacterBehavior
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    public void OnCollisionEnter2D(Collision2D collision)
     {
         string tag = collision.gameObject.tag;
         if (tag.Equals("Enemy"))

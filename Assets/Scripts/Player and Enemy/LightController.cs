@@ -15,7 +15,7 @@ using UnityEngine.Rendering.Universal;
 public class LightController : MonoBehaviour
 {
     [Header("Light settings:")]
-    public bool LightEnabled = true;
+    public bool LightEnabled;
     public float LightRadius;
 
     [Header("Light Sources")]
@@ -26,11 +26,31 @@ public class LightController : MonoBehaviour
     void Start()
     {
         LightRadius = LightSource.pointLightOuterRadius;
+        LightEnabled = (LightRadius >= 0);
         UpdateLightRadius();
     }
 
+    /// <summary>
+    /// Updates the Light2D radius
+    /// </summary>
     public virtual void UpdateLightRadius()
     {
-        LightTrigger.radius = LightRadius;
+        //Clap on!
+        if (LightEnabled)
+        {
+            LightSource.pointLightInnerRadius = LightRadius / 2;
+            LightSource.pointLightOuterRadius = LightRadius;
+
+            LightTrigger.radius = LightRadius;
+        }
+        //Clap off!
+        else
+        {
+            LightSource.pointLightInnerRadius = 0;
+            LightSource.pointLightOuterRadius = 0;
+
+            LightTrigger.radius = 0;
+        }
+        //The clapper!
     }
 }

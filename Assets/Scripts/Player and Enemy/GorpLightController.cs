@@ -32,7 +32,7 @@ public class GorpLightController : LightController
     [Header("Input")]
     public PlayerInput MyPlayerInput;
 
-    public InputAction ToggleLight;
+    public InputAction ToggleLightAction;
     public InputAction IncreaseLight;
     public InputAction DecreaseLight;
 
@@ -49,28 +49,18 @@ public class GorpLightController : LightController
         LightRadius = LightSource.pointLightOuterRadius;
 
         MyPlayerInput.actions.Enable();
-        ToggleLight = MyPlayerInput.actions.FindAction("Toggle Light");
+        ToggleLightAction = MyPlayerInput.actions.FindAction("Toggle Light");
         IncreaseLight = MyPlayerInput.actions.FindAction("Increase Light");
         DecreaseLight = MyPlayerInput.actions.FindAction("Decrease Light");
 
         //All the input functions!!!
+        ToggleLightAction.started += ToggleLight;
+
         IncreaseLight.started += IncreaseLight_started;
         IncreaseLight.canceled += IncreaseLight_canceled;
 
         DecreaseLight.started += DecreaseLight_started;
         DecreaseLight.canceled += DecreaseLight_canceled;
-    }
-
-    /// <summary>
-    /// Updates the Light2D's values to match the values in this script
-    /// (Renders it in game)
-    /// </summary>
-    public override void UpdateLightRadius()
-    {
-        base.UpdateLightRadius();
-
-        LightSource.pointLightOuterRadius = LightRadius;
-        LightSource.pointLightInnerRadius = LightRadius/2;
     }
 
     /// <summary>
@@ -82,11 +72,20 @@ public class GorpLightController : LightController
         Debug.Log("adjusting...");
         while (currentlyIncrementing)
         {
-            LightRadius = Mathf.Clamp(LightRadius + increment, MinLight, MaxLight);
-            UpdateLightRadius();
+            if(LightEnabled) //not part of while loop so player can turn on light while holding button and it will work
+            {
+                LightRadius = Mathf.Clamp(LightRadius + increment, MinLight, MaxLight);
+                UpdateLightRadius();
+            }
 
             yield return new WaitForSeconds(LightIncrementDelay);
         }
+    }
+
+    private void ToggleLight(InputAction.CallbackContext obj)
+    {
+        LightEnabled = !LightEnabled;
+        UpdateLightRadius();
     }
 
     private void IncreaseLight_started(InputAction.CallbackContext obj)

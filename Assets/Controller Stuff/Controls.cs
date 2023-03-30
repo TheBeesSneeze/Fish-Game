@@ -37,7 +37,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""ToggleLight"",
+                    ""name"": ""Toggle Light"",
                     ""type"": ""Button"",
                     ""id"": ""6bd67fdc-43fd-4c34-bee3-09560897e39b"",
                     ""expectedControlType"": ""Button"",
@@ -156,7 +156,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""ToggleLight"",
+                    ""action"": ""Toggle Light"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -167,7 +167,29 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""ToggleLight"",
+                    ""action"": ""Toggle Light"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4b682ab9-c441-45ca-bfe1-df2d86ab1b37"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Toggle Light"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8fa5276f-79bd-4248-8b26-778efc9e3cf3"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Toggle Light"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -436,7 +458,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         // FishControls
         m_FishControls = asset.FindActionMap("FishControls", throwIfNotFound: true);
         m_FishControls_Move = m_FishControls.FindAction("Move", throwIfNotFound: true);
-        m_FishControls_ToggleLight = m_FishControls.FindAction("ToggleLight", throwIfNotFound: true);
+        m_FishControls_ToggleLight = m_FishControls.FindAction("Toggle Light", throwIfNotFound: true);
         m_FishControls_Dash = m_FishControls.FindAction("Dash", throwIfNotFound: true);
         m_FishControls_Pause = m_FishControls.FindAction("Pause", throwIfNotFound: true);
         m_FishControls_IncreaseLight = m_FishControls.FindAction("Increase Light", throwIfNotFound: true);

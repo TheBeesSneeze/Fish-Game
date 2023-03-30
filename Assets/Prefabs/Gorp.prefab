@@ -331,11 +331,11 @@ MonoBehaviour:
   MinLight: 1
   MaxLight: 15
   MyPlayerInput: {fileID: 8678797230697677920}
-  ToggleLight:
+  ToggleLightAction:
     m_Name: Toggle Light
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: c0623627-b400-4161-8c58-49625d40785b
+    m_Id: 6074a4c9-c79d-45f7-a241-214684ff88bc
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
