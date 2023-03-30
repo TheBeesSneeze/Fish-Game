@@ -1,5 +1,37 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &534324436956228504
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7118317646495259653}
+  m_Layer: 10
+  m_Name: RotatePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7118317646495259653
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 534324436956228504}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2363225843875086191}
+  m_Father: {fileID: 4302747830044685630}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2576840555498414060
 GameObject:
   m_ObjectHideFlags: 0
@@ -25,14 +57,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2576840555498414060}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 1.3, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 1.3, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1.6507, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4302747830044685630}
+  m_Father: {fileID: 7118317646495259653}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!212 &7022219382361996911
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -124,7 +156,6 @@ GameObject:
   - component: {fileID: 4302747830044685628}
   - component: {fileID: 4302747830044685629}
   - component: {fileID: 5051481756267194680}
-  - component: {fileID: 4302747830044685624}
   - component: {fileID: 4302747830044685625}
   m_Layer: 10
   m_Name: Globbington
@@ -145,7 +176,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2363225843875086191}
+  - {fileID: 7118317646495259653}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -250,8 +281,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c949fa671513e914e9b82702ec377124, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Sword: {fileID: 2576840555498414060}
+  TakeKnockback: 0
+  DefaultHealth: 3
+  Health: 0
+  DefaultPosition: {x: 0, y: 0, z: 0}
+  InsideLight: 0
+  insideLight: 0
+  Speed: 5
   MyPlayerInput: {fileID: 4302747830044685625}
+  Move:
+    m_Name: Move
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 83ea90a5-5730-4217-819a-865620727531
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  Jump:
+    m_Name: Jump
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 4b4d445f-e041-4b91-b3b4-21906d9c6aa8
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  ReadMove: 0
+  AttackLength: 0.16
+  Sword: {fileID: 2576840555498414060}
   Strike:
     m_Name: Strike
     m_Type: 0
@@ -261,46 +319,7 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
-  AttackLength: 0.16
---- !u!114 &4302747830044685624
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4302747830044685618}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47ba3e2595c2b9249bac3df3e067715b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TakeKnockback: 1
-  DefaultHealth: 3
-  Health: 0
-  DefaultPosition: {x: 0, y: 0, z: 0}
-  InsideLight: 0
-  insideLight: 0
-  Speed: 10
-  MyPlayerInput: {fileID: 4302747830044685625}
-  Move:
-    m_Name: Move
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: f7321e7e-3d50-40a6-884c-bc701f4f1a9a
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  Jump:
-    m_Name: Jump
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 1584c705-a615-443d-8a40-dce25e4e2e80
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  ReadMove: 0
+  RotatePoint: {fileID: 7118317646495259653}
 --- !u!114 &4302747830044685625
 MonoBehaviour:
   m_ObjectHideFlags: 0

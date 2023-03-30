@@ -33,7 +33,7 @@ public class PlayerController : CharacterBehavior
     /// <summary>
     /// Sets health and binds controls
     /// </summary>
-    void Start()
+    public virtual void Start()
     {
         Health = DefaultHealth;
 
@@ -51,7 +51,7 @@ public class PlayerController : CharacterBehavior
     /// Moves the player when ReadMove is true
     /// </summary>
     /// <returns></returns>
-    private IEnumerator MovePlayer()
+    public virtual IEnumerator MovePlayer()
     {
         while (ReadMove)
         {
