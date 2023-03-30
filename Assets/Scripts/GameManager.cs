@@ -11,7 +11,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    
+    public RoomScript CurrentRoom;
     void Start()
     {
         
