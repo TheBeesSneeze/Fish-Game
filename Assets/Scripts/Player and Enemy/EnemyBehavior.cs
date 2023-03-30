@@ -61,12 +61,19 @@ public class EnemyBehavior : CharacterBehavior
         this.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public override void OnTriggerEnter2D(Collider2D collision)
     {
         string tag = collision.gameObject.tag;
         if(tag.Equals("Attack"))
         {
-            TakeDamage(1, true,collision.gameObject.transform.position);
+            TakeDamage(1,collision.gameObject.transform.position);
+        }
+        else if (tag.Equals("Light"))
+        {
+            InsideLight = true;
+            enemyDetection.InsideLight = true;
         }
     }
+
+    //TO DO THE OPPOSITE OF ABOVE
 }

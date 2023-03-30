@@ -14,12 +14,13 @@ using UnityEngine;
 public class CharacterBehavior : MonoBehaviour
 {
     [Header("Attributes")]
-    public bool Weight; // Weight determines distance knocked back. 0 = no knockback. 10 = across the room
+    public bool TakeKnockback; // Weight determines distance knocked back. 0 = no knockback. 10 = across the room
     public int DefaultHealth;
 
     [Header("Debug (don't touch in editor)")]
     public int Health;
     public Vector3 DefaultPosition;
+    public bool InsideLight;
 
     /// <summary>
     /// Sets Health to the Default
@@ -37,15 +38,24 @@ public class CharacterBehavior : MonoBehaviour
     /// <param name="damage">Amt of damage taken</param>
     /// <param name="takeKnockback">Whether the enemy moves away from damageSourcePosition</param>
     /// <param name="damageSourcePosition">Ideally the players transform</param>
-    public virtual void TakeDamage(int damage, bool takeKnockback, Vector3 damageSourcePosition)
+    public virtual void TakeDamage(int damage, Vector3 damageSourcePosition)
     {
         Health -= damage;
 
         if(Health <= 0) 
             Die();
 
-        else if(takeKnockback)
+        else if(TakeKnockback)
             KnockBack(this.gameObject, damageSourcePosition);
+    }
+
+    public virtual void OnTriggerEnter2D(Collider2D collision)
+    {
+        string tag = collision.gameObject.tag;
+        if (tag.Equals("Light"))
+        {
+            InsideLight = true;
+        }
     }
 
     /// <summary>
