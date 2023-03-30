@@ -56,4 +56,6 @@ public class PlayerManager : MonoBehaviour
         //change the world my final message goodbye
         Destroy(this.gameObject);
     }
+
+    
 }

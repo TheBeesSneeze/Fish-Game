@@ -89,12 +89,12 @@ public class PlayerController : CharacterBehavior
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    public void OnCollisionEnter2D(Collision2D collision)
     {
         string tag = collision.gameObject.tag;
         if (tag.Equals("Enemy"))
         {
-            TakeDamage(1, true, collision.transform.position);
+            TakeDamage(1, collision.transform.position);
         }
     }
 
