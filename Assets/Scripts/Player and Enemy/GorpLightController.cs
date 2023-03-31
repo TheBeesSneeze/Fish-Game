@@ -24,6 +24,7 @@ public class GorpLightController : LightController
     [Header("Settings")]
     public float LightIncrement = 0.1f;
     public float LightIncrementDelay = 0.1f;
+    public float ToggleLightTime = 0.5f;
 
     // Min/Max Light are the radius of Gorp's silly light
     public float MinLight = 1f;
@@ -38,12 +39,16 @@ public class GorpLightController : LightController
 
     //A mysetrious, much more sinister, fourth thing
     private bool currentlyIncrementing;
+    private PlayerController playerController;
 
     // Start is called before the first frame update
     void Start()
     {
         //didnt know where else to put this line:
         this.gameObject.name = "Gorp";
+        playerController = GetComponent<PlayerController>();
+        if (LightEnabled)
+            playerController.LayersOfLight=1;
 
         //fishLight = this.gameObject.transform.GetChild(0).GetComponent<Light2D>(); //Weird syntax but I think its more legible?
         LightRadius = LightSource.pointLightOuterRadius;
@@ -63,6 +68,20 @@ public class GorpLightController : LightController
         DecreaseLight.canceled += DecreaseLight_canceled;
     }
 
+    private void ToggleLight(InputAction.CallbackContext obj)
+    {
+        LightEnabled = !LightEnabled;
+
+        //Because this wont work the way it's supposed to for some FUCKING reason
+        if( LightEnabled ) 
+            playerController.LayersOfLight++;
+     
+        else
+            playerController.LayersOfLight--;
+
+        UpdateLightRadius(ToggleLightTime);
+    }
+
     /// <summary>
     /// Adds/subtracts LightIncrement to LightRadius, depending on 
     /// Applies changes to Gorp's light
@@ -75,17 +94,11 @@ public class GorpLightController : LightController
             if(LightEnabled) //not part of while loop so player can turn on light while holding button and it will work
             {
                 LightRadius = Mathf.Clamp(LightRadius + increment, MinLight, MaxLight);
-                UpdateLightRadius();
+                UpdateLightRadius((float)LightIncrementDelay);
             }
 
-            yield return new WaitForSeconds(LightIncrementDelay);
+            yield return new WaitForSeconds((float)LightIncrementDelay);
         }
-    }
-
-    private void ToggleLight(InputAction.CallbackContext obj)
-    {
-        LightEnabled = !LightEnabled;
-        UpdateLightRadius();
     }
 
     private void IncreaseLight_started(InputAction.CallbackContext obj)

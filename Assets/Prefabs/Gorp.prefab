@@ -109,7 +109,7 @@ MonoBehaviour:
   m_ApplyToSortingLayers: 00000000
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
-  m_LightOrder: -1
+  m_LightOrder: 1
   m_OverlapOperation: 1
   m_NormalMapDistance: 15
   m_NormalMapQuality: 1
@@ -285,26 +285,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TakeKnockback: 1
   DefaultHealth: 3
+  Speed: 10
   Health: 0
   DefaultPosition: {x: 0, y: 0, z: 0}
-  InsideLight: 0
-  insideLight: 0
-  Speed: 10
+  LayersOfLight: 0
   MyPlayerInput: {fileID: 8678797230697677920}
   Move:
     m_Name: Move
     m_Type: 0
     m_ExpectedControlType: 
     m_Id: 88e974cd-f081-419c-bbec-5efa4615bf8e
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  Jump:
-    m_Name: Jump
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: c95fe69d-0301-42b5-b0a0-16ab4aef47a5
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
@@ -326,8 +316,10 @@ MonoBehaviour:
   LightRadius: 0
   LightTrigger: {fileID: 2261076304649148020}
   LightSource: {fileID: 5168131707846391277}
+  TransitionFrames: 20
   LightIncrement: 0.2
   LightIncrementDelay: 0.1
+  ToggleLightTime: 0.2
   MinLight: 1
   MaxLight: 15
   MyPlayerInput: {fileID: 8678797230697677920}
