@@ -16,11 +16,12 @@ public class CharacterBehavior : MonoBehaviour
     [Header("Attributes")]
     public bool TakeKnockback; // Weight determines distance knocked back. 0 = no knockback. 10 = across the room
     public int DefaultHealth;
+    public float Speed;
 
     [Header("Debug (don't touch in editor)")]
     public int Health;
     public Vector3 DefaultPosition;
-    public bool InsideLight;
+    public int LayersOfLight;
 
     /// <summary>
     /// Sets Health to the Default
@@ -52,9 +53,19 @@ public class CharacterBehavior : MonoBehaviour
     public virtual void OnTriggerEnter2D(Collider2D collision)
     {
         string tag = collision.gameObject.tag;
+        
         if (tag.Equals("Light"))
         {
-            InsideLight = true;
+            LayersOfLight++;
+        }
+    }
+
+    public virtual void OnTriggerExit2D(Collider2D collision)
+    {
+        string tag = collision.gameObject.tag;
+        if (tag.Equals("Light"))
+        {
+            LayersOfLight--;
         }
     }
 

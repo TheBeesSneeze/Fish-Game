@@ -187,11 +187,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TakeKnockback: 1
   DefaultHealth: 3
+  Speed: 0
   Health: 0
   DefaultPosition: {x: 0, y: 0, z: 0}
-  InsideLight: 0
+  LayersOfLight: 0
   NightVision: 0
-  Speed: 0
 --- !u!114 &2945670061033812786
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -204,19 +204,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4e2d28f380edc744b71fd387544d615, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SightDistance: 8
+  SightDistance: 15
   LM:
     serializedVersion: 2
     m_Bits: 1728
-  ToggleLight:
-    m_Name: Toggle Light
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: bf66cd9e-0b7d-454f-a86f-d983633f7f32
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
   DarkVision: 0
   Speed: 1.5
   InsideLight: 0

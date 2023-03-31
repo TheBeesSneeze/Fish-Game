@@ -12,7 +12,6 @@ public class PlayerManager : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine("PlayerCountCheck");
         StartCoroutine(PlayerCountCheck());
     }
 

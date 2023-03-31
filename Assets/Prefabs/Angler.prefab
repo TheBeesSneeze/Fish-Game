@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 8424242786050448917}
   - component: {fileID: 8424242786050448918}
   - component: {fileID: 8424242786050448916}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Angler Light
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -193,9 +193,9 @@ GameObject:
   - component: {fileID: 8424242787238129982}
   - component: {fileID: 8424242787238129983}
   - component: {fileID: 1330445948128464973}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Angler
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -298,11 +298,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TakeKnockback: 0
   DefaultHealth: 3
+  Speed: 0
   Health: 0
   DefaultPosition: {x: 0, y: 0, z: 0}
-  InsideLight: 1
+  LayersOfLight: 0
   NightVision: 0
-  Speed: 0
 --- !u!58 &1330445948128464973
 CircleCollider2D:
   m_ObjectHideFlags: 0
