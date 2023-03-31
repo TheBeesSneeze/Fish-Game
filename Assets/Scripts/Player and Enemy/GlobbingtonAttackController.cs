@@ -17,7 +17,7 @@ public class GlobbingtonAttackController : PlayerController
     public float AttackLength;
 
     [Header("Unity Stuff")]
-    public GameObject Sword;
+    public Collider2D Sword;
     public InputAction Strike;
     public Transform RotatePoint;
     private Rigidbody2D myRB;
@@ -43,8 +43,9 @@ public class GlobbingtonAttackController : PlayerController
     /// <param name="obj"></param>
     private void Strike_started(InputAction.CallbackContext obj)
     {
-        Sword.SetActive(true);
+        Sword.enabled = true;
         Invoke("StopAttack", AttackLength);
+        Debug.Log("Swing");
     }
 
     /// <summary>
@@ -52,7 +53,7 @@ public class GlobbingtonAttackController : PlayerController
     /// </summary>
     private void StopAttack()
     {
-        Sword.SetActive(false);
+        Sword.enabled = false;
     }
 
     /// <summary>

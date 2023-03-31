@@ -49,7 +49,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2363225843875086191
 Transform:
   m_ObjectHideFlags: 0
@@ -124,7 +124,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2576840555498414060}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -287,7 +287,7 @@ MonoBehaviour:
   DefaultPosition: {x: 0, y: 0, z: 0}
   InsideLight: 0
   insideLight: 0
-  Speed: 5
+  Speed: 10
   MyPlayerInput: {fileID: 4302747830044685625}
   Move:
     m_Name: Move
@@ -309,7 +309,7 @@ MonoBehaviour:
     m_Flags: 0
   ReadMove: 0
   AttackLength: 0.16
-  Sword: {fileID: 2576840555498414060}
+  Sword: {fileID: 1137317766113117558}
   Strike:
     m_Name: Strike
     m_Type: 0
