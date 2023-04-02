@@ -17,7 +17,6 @@ public class EnemyBehavior : CharacterBehavior
 {
     [Header("Enemy Attributes")]
     public bool NightVision;
-    public float Speed; //if speed = 0, enemy wont move at all
 
     [Header("Unity Jargain")]
     private EnemyDetection enemyDetection;
@@ -70,12 +69,32 @@ public class EnemyBehavior : CharacterBehavior
         }
         else if (tag.Equals("Light"))
         {
-            InsideLight = true;
+            LayersOfLight++;
 
             if(enemyDetection!=null)
                 enemyDetection.InsideLight = true;
         }
     }
 
-    //TO DO THE OPPOSITE OF ABOVE
+    public override void OnTriggerExit2D(Collider2D collision)
+    {
+        string tag = collision.gameObject.tag;
+        if (tag.Equals("Light"))
+        {
+            LayersOfLight--;
+
+            if (enemyDetection != null)
+            {
+                enemyDetection.InsideLight = false;
+
+                if (enemyDetection.CurrentTarget != null) //so many if statements that have to be separate
+                {
+                    if (enemyDetection.CurrentTarget.GetComponent<CharacterBehavior>().LayersOfLight <= 0)
+                        enemyDetection.CurrentTarget = null;
+                }  
+                    
+            }
+                
+        }
+    }
 }

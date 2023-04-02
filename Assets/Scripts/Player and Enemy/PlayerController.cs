@@ -14,21 +14,17 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : CharacterBehavior
 {
-    [Header("Debug")]
-    public bool insideLight;
-    public float Speed;
 
     [Header("Controller stuff:")]
 
     public PlayerInput MyPlayerInput;
 
     public InputAction Move;
-    public InputAction Jump;
 
     public  bool ReadMove;
     
     private Rigidbody2D myRb;
-    
+
 
     /// <summary>
     /// Sets health and binds controls
@@ -40,7 +36,6 @@ public class PlayerController : CharacterBehavior
         myRb = GetComponent<Rigidbody2D>();
         MyPlayerInput.actions.Enable();
         Move = MyPlayerInput.actions.FindAction("Move");
-        Jump = MyPlayerInput.actions.FindAction("Jump");
 
         //I believe this is adding the functions to the buttons...
         Move.started += Move_started;
@@ -75,11 +70,16 @@ public class PlayerController : CharacterBehavior
     public void ResetScene()
     {
         //Resets players:
-        PlayerController gorp        = GameObject.Find("Gorp")       .GetComponent<PlayerController>();
-        PlayerController globbington = GameObject.Find("Globbington").GetComponent<PlayerController>();
+        PlayerController gorp = GameObject.Find("Gorp")       .GetComponent<PlayerController>();
+
+        PlayerController globbington = null;
+        try { globbington = GameObject.Find("Globbington").GetComponent<PlayerController>(); }
+        catch { Debug.Log("no globbington!"); }
 
         gorp.Respawn();
-        globbington.Respawn();
+
+        if(globbington!=null) 
+            globbington.Respawn();
 
         //Reset enemies:
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");

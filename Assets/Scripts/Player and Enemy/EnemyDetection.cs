@@ -30,15 +30,15 @@ public class EnemyDetection : MonoBehaviour
     [Header("Settings")]
     public float SightDistance = 8f;
     public LayerMask LM;
-    public InputAction ToggleLight;
+    public bool DarkVision = false;
 
     [Header("Debug")]
-    public bool DarkVision = false;
     public float Speed = 1f;
 
     [Header("Dynamic Variables")]
     public  bool InsideLight;
     public  GameObject CurrentTarget;
+    private PlayerController targetController;
 
     //Rest of variables are private jargain 
     private GameObject gorp;
@@ -84,10 +84,10 @@ public class EnemyDetection : MonoBehaviour
             // Cast the raycast and get the hit information
             var hit = Physics2D.Raycast(origin, direction, SightDistance, LM);
 
-            if(hit)
+            //Searching for a victim!
+            if (hit)
             {
-
-                if(hit.collider.gameObject.tag.Equals("Player"))
+                if (hit.collider.gameObject.tag.Equals("Player"))
                 {
                     string hitName = hit.collider.gameObject.name;
                     Debug.DrawLine(origin, gorp.transform.position, Color.green, 0.5f);
@@ -95,26 +95,43 @@ public class EnemyDetection : MonoBehaviour
                     //Only searching for new target when it doesnt already have one
                     if (CurrentTarget == null)
                     {
-                        if (hitName.Equals("Gorp") && GorpVisibleCheck())
+                        PlayerController tempTargetController = hit.collider.GetComponent<PlayerController>();
+
+                        if (tempTargetController.LayersOfLight > 0)
                         {
+                            targetController = hit.collider.GetComponent<PlayerController>();
                             CurrentTarget = hit.collider.gameObject;
                             StartCoroutine(PursueTarget());
                         }
 
-                        else if (hitName.Equals("Globbington") && globbington.GetComponent<PlayerController>().insideLight)
+                        /*
+                        if (hitName.Equals("Gorp") && GorpVisibleCheck())
                         {
                             CurrentTarget = hit.collider.gameObject;
-                            StartCoroutine(PursueTarget() );
+                            //StartCoroutine(PursueTarget());
                         }
+
+                        else //if (hitName.Equals("Globbington"))
+                        {
+                            CurrentTarget = hit.collider.gameObject;
+                            
+                        }
+                        */
+                        
                     }
                 }
                 else
+                {
                     CurrentTarget = null;
-
+                    targetController = null;
+                }
             }
             else
+            {
                 //Having this line repeated feels wrong but i cant really see any other way to do it?
                 CurrentTarget = null;
+                targetController = null;
+            }
 
             yield return new WaitForSeconds(0.15f);
         }
@@ -126,15 +143,22 @@ public class EnemyDetection : MonoBehaviour
     /// </summary>
     public IEnumerator PursueTarget()
     {
-        
         while(CurrentTarget!=null)
         {
-            Vector2 positionDifference = Vector2.MoveTowards(transform.position, gorp.transform.position, Speed);
-            Vector2 movementVelocity = positionDifference - (Vector2)transform.position;
-            rb.velocity = movementVelocity;
-
+            if(targetController.LayersOfLight > 0)
+            {
+                Vector2 positionDifference = Vector2.MoveTowards(transform.position, gorp.transform.position, Speed);
+                Vector2 movementVelocity = positionDifference - (Vector2)transform.position;
+                rb.velocity = movementVelocity;
+            }
+            else
+            {
+                targetController = null;
+                CurrentTarget = null;
+            }
             yield return new WaitForSeconds(0.1f);
         }
+        
 
         rb.velocity = Vector2.zero;
     }
