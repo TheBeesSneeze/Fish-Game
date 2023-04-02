@@ -36,7 +36,6 @@ public class EnemyDetection : MonoBehaviour
     public float Speed = 1f;
 
     [Header("Dynamic Variables")]
-    public  bool InsideLight;
     public  GameObject CurrentTarget;
     private PlayerController targetController;
 
@@ -161,31 +160,5 @@ public class EnemyDetection : MonoBehaviour
         
 
         rb.velocity = Vector2.zero;
-    }
-
-    /// <summary>
-    /// Essentially checking if Gorp has his light on, and whether or not the enemy is within its sightlines.
-    /// All that logic is ignored if enemy is currently inside of light
-    /// Gorp should already be within sight range so that doesn't have to be checked.
-    /// </summary>
-    /// <returns>If gorp can be seen</returns>
-    public bool GorpVisibleCheck()
-    {
-        GorpLightController GLC = gorp.GetComponent<GorpLightController>();
-        float gorpRadius = GLC.LightRadius;
-
-        if (InsideLight)
-            return true;
-
-        //returns false if gorp has light off
-        if (!GLC.LightEnabled)
-            return false;
-
-        float distanceFromGorp = Vector2.Distance(this.transform.position, gorp.transform.position);
-        if (distanceFromGorp > gorpRadius)
-            return false;
-        else
-            return true;
-
     }
 }

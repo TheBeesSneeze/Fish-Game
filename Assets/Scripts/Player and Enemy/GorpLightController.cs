@@ -39,6 +39,9 @@ public class GorpLightController : LightController
 
     //A mysetrious, much more sinister, fourth thing
     private bool currentlyIncrementing;
+    private float secretIncrement;
+    private Coroutine incrementCoroutine;
+    private Coroutine decrementCoroutine; // i added a lot of unneccessary variables for a simple problem that was already working okay. but i want this game to be good man -Toby
     private PlayerController playerController;
 
     // Start is called before the first frame update
@@ -86,40 +89,55 @@ public class GorpLightController : LightController
     /// Adds/subtracts LightIncrement to LightRadius, depending on 
     /// Applies changes to Gorp's light
     /// </summary>
-    public IEnumerator AdjustLight(float increment)
+    public IEnumerator AdjustLight()
     {
         Debug.Log("adjusting...");
         while (currentlyIncrementing)
         {
             if(LightEnabled) //not part of while loop so player can turn on light while holding button and it will work
             {
-                LightRadius = Mathf.Clamp(LightRadius + increment, MinLight, MaxLight);
-                UpdateLightRadius((float)LightIncrementDelay);
+                LightRadius = Mathf.Clamp(LightRadius + secretIncrement, MinLight, MaxLight);
+                UpdateLightRadius(LightIncrementDelay);
             }
 
-            yield return new WaitForSeconds((float)LightIncrementDelay);
+            yield return new WaitForSeconds(LightIncrementDelay);
         }
     }
 
     private void IncreaseLight_started(InputAction.CallbackContext obj)
     {
         currentlyIncrementing = true;
-        StartCoroutine(AdjustLight(LightIncrement));
+        secretIncrement = LightIncrement;
+
+        if(incrementCoroutine!=null)
+            StopCoroutine(incrementCoroutine);
+        incrementCoroutine = StartCoroutine(AdjustLight());
     }
 
     private void DecreaseLight_started(InputAction.CallbackContext obj)
     {
         currentlyIncrementing = true;
-        StartCoroutine(AdjustLight(-LightIncrement));
+        secretIncrement = -LightIncrement;
+
+        if (incrementCoroutine != null)
+            StopCoroutine(incrementCoroutine);
+
+        decrementCoroutine = StartCoroutine(AdjustLight());
     }
 
     private void IncreaseLight_canceled(InputAction.CallbackContext obj)
     {
+        if (incrementCoroutine != null)
+            StopCoroutine(incrementCoroutine);
+
         currentlyIncrementing = false;
     }
 
     private void DecreaseLight_canceled(InputAction.CallbackContext obj)
     {
+        if (decrementCoroutine != null)
+            StopCoroutine(decrementCoroutine);
+
         currentlyIncrementing = false;
     }
 }

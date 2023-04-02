@@ -14,9 +14,9 @@ using UnityEngine;
 public class CharacterBehavior : MonoBehaviour
 {
     [Header("Attributes")]
-    public bool TakeKnockback; // Weight determines distance knocked back. 0 = no knockback. 10 = across the room
     public int DefaultHealth;
     public float Speed;
+    public float Weight;// Weight determines distance knocked back. 0 = no knockback. 10 = across the room. less than 0 is funny.
 
     [Header("Debug (don't touch in editor)")]
     public int Health;
@@ -45,8 +45,7 @@ public class CharacterBehavior : MonoBehaviour
 
         if(Health <= 0) 
             Die();
-
-        else if(TakeKnockback)
+        else
             KnockBack(this.gameObject, damageSourcePosition);
     }
 
@@ -63,6 +62,7 @@ public class CharacterBehavior : MonoBehaviour
     public virtual void OnTriggerExit2D(Collider2D collision)
     {
         string tag = collision.gameObject.tag;
+
         if (tag.Equals("Light"))
         {
             LayersOfLight--;
@@ -76,8 +76,18 @@ public class CharacterBehavior : MonoBehaviour
     /// <param name="damageSourcePosition"></param>
     public virtual void KnockBack(GameObject target, Vector3 damageSourcePosition)
     {
-        Vector3 positionDifference = damageSourcePosition - this.gameObject.transform.position;
-        this.transform.position -= positionDifference;
+        Rigidbody2D myRB = this.GetComponent<Rigidbody2D>();
+
+        if(myRB != null && Weight!=0)
+        {
+            Vector3 positionDifference = damageSourcePosition - this.gameObject.transform.position;
+
+            myRB.velocity -= ((Vector2)positionDifference*Weight);
+            //code that snaps the character back
+            //this.transform.position -= positionDifference;
+        }
+
+
     }
 
     /// <summary>

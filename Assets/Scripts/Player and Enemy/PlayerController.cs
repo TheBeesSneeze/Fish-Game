@@ -107,7 +107,8 @@ public class PlayerController : CharacterBehavior
     private void Move_canceled(InputAction.CallbackContext obj)
     {
         ReadMove = false;
-        myRb.velocity = Vector3.zero; //Replace this line and add the slidey function :D
+        //myRb.velocity = Vector3.zero; 
+        //Slidey-ness can be configured in linear drag of the rigidbody2d
     }
 
     private void OnDisable()
