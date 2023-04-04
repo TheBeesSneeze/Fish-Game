@@ -71,12 +71,6 @@ public class GorpController : PlayerController
         DecreaseLight.canceled += DecreaseLight_canceled;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void ToggleLight(InputAction.CallbackContext obj)
     {
         lightController.LightEnabled = !lightController.LightEnabled;
@@ -97,7 +91,6 @@ public class GorpController : PlayerController
 
     private void ReleaseToggle(InputAction.CallbackContext obj)
     {
-
         if (Rumble)
             MyGamepad.SetMotorSpeeds(0f,0f);
     }
