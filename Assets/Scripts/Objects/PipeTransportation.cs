@@ -21,8 +21,8 @@ public class PipeTransportation : MonoBehaviour
     public Vector2 OutputPosition;
     public Vector2 Brazil;
     public float TransportationSpeed;
-    GameObject globbington;
     private GlobbingtonAttackController globbingtonController;
+    GameObject globbington;
 
     public void Start()
     {
@@ -43,12 +43,12 @@ public class PipeTransportation : MonoBehaviour
 
             globbington = collision.gameObject;
 
-            globbington.GetComponent<GlobbingtonAttackController>();
+            globbingtonController=globbington.GetComponent<GlobbingtonAttackController>();
 
-            if (globbingtonController.Rumble)
+            if (globbingtonController.Rumble && globbingtonController.MyGamepad != null)
             {
 
-                globbingtonController.MyGamepad.SetMotorSpeeds(.50f, .50f);
+                globbingtonController.MyGamepad.SetMotorSpeeds(0.30f, 0.30f);
 
             }
 
