@@ -1,60 +1,59 @@
 /*******************************************************************************
-// File Name :         GorpLightController.cs
+// File Name :         GorpController.cs
 // Author(s) :         Toby Schamberger
-// Creation Date :     3/23/2023
+// Creation Date :     4/3/2023
 //
-// Brief Description : Manages player input that controls Gorp's light.
-// Allows for tight control over light strength, as well as the ability to
-// toggle the light completely. 
-// Turning down the light all the way won't toggle it.
-// TODO: Toggle
+// Brief Description : this code was written to optimize like 2 lines of code 
+// and let me tell you it was worth it.
 *****************************************************************************/
 
-using JetBrains.Annotations;
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Rendering.Universal;
 
-public class GorpLightController : LightController
+public class GorpController : PlayerController
 {
-    [Header("Settings")]
-    public float LightIncrement = 0.1f;
-    public float LightIncrementDelay = 0.1f;
-    public float ToggleLightTime = 0.5f;
-
-    // Min/Max Light are the radius of Gorp's silly light
-    public float MinLight = 1f;
-    public float MaxLight = 10f;
-
     [Header("Input")]
-    public PlayerInput MyPlayerInput;
-
     public InputAction ToggleLightAction;
     public InputAction IncreaseLight;
     public InputAction DecreaseLight;
 
-    //A mysetrious, much more sinister, fourth thing
+    [Header("Settings")]
+    public float FlashChargeTime = 1.0f;
+
+    public float LightIncrement = 0.1f;
+    public float LightIncrementDelay = 0.1f;
+    public float ToggleLightTime = 0.5f;
+
+    public float MinLight = 1f;
+    public float MaxLight = 10f;
+
+    // Min/Max Light are the radius of Gorp's silly light
+    [Header("Debug")]
+    private bool togglingLight;
+
+    //A mysetrious, much more sinister, second thing
     private bool currentlyIncrementing;
     private float secretIncrement;
     private Coroutine incrementCoroutine;
     private Coroutine decrementCoroutine; // i added a lot of unneccessary variables for a simple problem that was already working okay. but i want this game to be good man -Toby
-    private PlayerController playerController;
+    private LightController lightController;
 
     // Start is called before the first frame update
-    void Start()
+    public override void Start()
     {
+        base.Start();
         //didnt know where else to put this line:
         this.gameObject.name = "Gorp";
-        playerController = GetComponent<PlayerController>();
-        if (LightEnabled)
-            playerController.LayersOfLight=1;
+
+        lightController = GetComponent<LightController>();
+
+        if (lightController.LightEnabled)
+            LayersOfLight = 1;
 
         //fishLight = this.gameObject.transform.GetChild(0).GetComponent<Light2D>(); //Weird syntax but I think its more legible?
-        LightRadius = LightSource.pointLightOuterRadius;
+        lightController.LightRadius = lightController.LightSource.pointLightOuterRadius;
 
         MyPlayerInput.actions.Enable();
         ToggleLightAction = MyPlayerInput.actions.FindAction("Toggle Light");
@@ -63,6 +62,7 @@ public class GorpLightController : LightController
 
         //All the input functions!!!
         ToggleLightAction.started += ToggleLight;
+        ToggleLightAction.canceled += ReleaseToggle;
 
         IncreaseLight.started += IncreaseLight_started;
         IncreaseLight.canceled += IncreaseLight_canceled;
@@ -71,18 +71,40 @@ public class GorpLightController : LightController
         DecreaseLight.canceled += DecreaseLight_canceled;
     }
 
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
     private void ToggleLight(InputAction.CallbackContext obj)
     {
-        LightEnabled = !LightEnabled;
+        lightController.LightEnabled = !lightController.LightEnabled;
 
         //Because this wont work the way it's supposed to for some FUCKING reason
-        if( LightEnabled ) 
-            playerController.LayersOfLight++;
-     
-        else
-            playerController.LayersOfLight--;
+        if (lightController.LightEnabled)
+            LayersOfLight++;
 
-        UpdateLightRadius(ToggleLightTime);
+        else
+            LayersOfLight--;
+
+        Invoke("AttemptFlash", FlashChargeTime);
+        lightController.UpdateLightRadius(ToggleLightTime);
+
+        if(Rumble)
+            MyGamepad.SetMotorSpeeds(0.20f, 0.25f);
+    }
+
+    private void ReleaseToggle(InputAction.CallbackContext obj)
+    {
+
+        if (Rumble)
+            MyGamepad.SetMotorSpeeds(0f,0f);
+    }
+
+    private void AttemptFlash() //theres an easy joke here
+    {
+
     }
 
     /// <summary>
@@ -92,12 +114,13 @@ public class GorpLightController : LightController
     public IEnumerator AdjustLight()
     {
         Debug.Log("adjusting...");
+
         while (currentlyIncrementing)
         {
-            if(LightEnabled) //not part of while loop so player can turn on light while holding button and it will work
+            if (lightController.LightEnabled) //not part of while loop so player can turn on light while holding button and it will work
             {
-                LightRadius = Mathf.Clamp(LightRadius + secretIncrement, MinLight, MaxLight);
-                UpdateLightRadius(LightIncrementDelay);
+                lightController.LightRadius = Mathf.Clamp(lightController.LightRadius + secretIncrement, MinLight, MaxLight);
+                lightController.UpdateLightRadius(LightIncrementDelay);
             }
 
             yield return new WaitForSeconds(LightIncrementDelay);
@@ -109,9 +132,12 @@ public class GorpLightController : LightController
         currentlyIncrementing = true;
         secretIncrement = LightIncrement;
 
-        if(incrementCoroutine!=null)
+        if (incrementCoroutine != null)
             StopCoroutine(incrementCoroutine);
         incrementCoroutine = StartCoroutine(AdjustLight());
+
+        if (Rumble)
+            MyGamepad.SetMotorSpeeds(0.1f, 0.15f);
     }
 
     private void DecreaseLight_started(InputAction.CallbackContext obj)
@@ -123,6 +149,9 @@ public class GorpLightController : LightController
             StopCoroutine(incrementCoroutine);
 
         decrementCoroutine = StartCoroutine(AdjustLight());
+
+        if (Rumble)
+            MyGamepad.SetMotorSpeeds(0.1f, 0.15f);
     }
 
     private void IncreaseLight_canceled(InputAction.CallbackContext obj)
@@ -131,6 +160,9 @@ public class GorpLightController : LightController
             StopCoroutine(incrementCoroutine);
 
         currentlyIncrementing = false;
+
+        if (Rumble)
+            MyGamepad.SetMotorSpeeds(0f, 0f);
     }
 
     private void DecreaseLight_canceled(InputAction.CallbackContext obj)
@@ -139,5 +171,8 @@ public class GorpLightController : LightController
             StopCoroutine(decrementCoroutine);
 
         currentlyIncrementing = false;
+
+        if (Rumble)
+            MyGamepad.SetMotorSpeeds(0f, 0f);
     }
 }

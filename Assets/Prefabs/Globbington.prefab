@@ -260,6 +260,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c949fa671513e914e9b82702ec377124, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Rumble: 1
   DefaultHealth: 3
   Speed: 5
   Weight: 5
@@ -277,8 +278,10 @@ MonoBehaviour:
     m_SingletonActionBindings: []
     m_Flags: 0
   ReadMove: 0
+  PlayerNumber: 2
   AttackLength: 0.16
   Sword: {fileID: 2576840555498414060}
+  RotatePoint: {fileID: 7118317646495259653}
   Strike:
     m_Name: Strike
     m_Type: 0
@@ -288,7 +291,6 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
-  RotatePoint: {fileID: 7118317646495259653}
 --- !u!50 &4302747830044685629
 Rigidbody2D:
   serializedVersion: 4
