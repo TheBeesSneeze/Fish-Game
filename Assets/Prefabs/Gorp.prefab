@@ -190,8 +190,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8678797230697677933}
   - component: {fileID: 8678797230697677922}
-  - component: {fileID: 8678797230697677923}
-  - component: {fileID: 8678797230697677929}
+  - component: {fileID: 928911768817381657}
+  - component: {fileID: 9159770001612027804}
   - component: {fileID: 8678797230697677920}
   - component: {fileID: 8678797230697677935}
   - component: {fileID: 8678797230697677934}
@@ -271,7 +271,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8678797230697677923
+--- !u!114 &928911768817381657
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -280,54 +280,34 @@ MonoBehaviour:
   m_GameObject: {fileID: 8678797230697677921}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47ba3e2595c2b9249bac3df3e067715b, type: 3}
+  m_Script: {fileID: 11500000, guid: b9a93f36c75542f459d2606feb1ca299, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TakeKnockback: 1
   DefaultHealth: 3
   Speed: 10
+  Weight: 7
   Health: 0
   DefaultPosition: {x: 0, y: 0, z: 0}
   LayersOfLight: 0
+  PlayerNumber: 1
+  Rumble: 1
+  HasControllerPriority: 1
   MyPlayerInput: {fileID: 8678797230697677920}
   Move:
     m_Name: Move
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 88e974cd-f081-419c-bbec-5efa4615bf8e
+    m_Id: fb244ba3-f941-498e-b443-4064fa8645b6
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
   ReadMove: 0
---- !u!114 &8678797230697677929
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8678797230697677921}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d810870b9b4db154594dd2fee98d44be, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LightEnabled: 1
-  LightRadius: 0
-  LightTrigger: {fileID: 2261076304649148020}
-  LightSource: {fileID: 5168131707846391277}
-  TransitionFrames: 20
-  LightIncrement: 0.2
-  LightIncrementDelay: 0.1
-  ToggleLightTime: 0.2
-  MinLight: 1
-  MaxLight: 15
-  MyPlayerInput: {fileID: 8678797230697677920}
   ToggleLightAction:
     m_Name: Toggle Light
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 6074a4c9-c79d-45f7-a241-214684ff88bc
+    m_Id: e42f7737-5184-4bfc-854b-18c4f20ea9e7
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
@@ -336,7 +316,7 @@ MonoBehaviour:
     m_Name: Increase Light
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 87a9cc55-e716-4686-af8f-fba61016950c
+    m_Id: 5b6e9670-20b3-41dc-a90c-2c8828b377f0
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
@@ -345,11 +325,34 @@ MonoBehaviour:
     m_Name: Decrease Light
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 5c0e80aa-16a7-4e22-98e9-25d207e8ca17
+    m_Id: cc197f13-9d47-4298-a426-359270e272d5
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
+  FlashChargeTime: 1
+  LightIncrement: 0.71
+  LightIncrementDelay: 0.07
+  ToggleLightTime: 0.2
+  MinLight: 1
+  MaxLight: 10
+--- !u!114 &9159770001612027804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8678797230697677921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7c7dff7cd608d644bfe45d3d93c73bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LightEnabled: 1
+  LightRadius: 10
+  LightTrigger: {fileID: 2261076304649148020}
+  LightSource: {fileID: 5168131707846391277}
+  TransitionFrames: 20
 --- !u!114 &8678797230697677920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -393,7 +396,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 2.8952918
-  m_LinearDrag: 1
+  m_LinearDrag: 3.5
   m_AngularDrag: 1
   m_GravityScale: 0
   m_Material: {fileID: 0}
