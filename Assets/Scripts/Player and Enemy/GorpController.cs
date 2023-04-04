@@ -96,7 +96,6 @@ public class GorpController : PlayerController
 
     private void ReleaseToggle(InputAction.CallbackContext obj)
     {
-
         if (Rumble)
             MyGamepad.SetMotorSpeeds(0f,0f);
     }
