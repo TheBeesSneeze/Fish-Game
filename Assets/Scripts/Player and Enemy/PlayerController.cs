@@ -50,9 +50,8 @@ public class PlayerController : CharacterBehavior
         Move.started += Move_started;
         Move.canceled += Move_canceled;
 
-        MyGamepad = AssignController();
-        if(MyGamepad == null)
-            Rumble = false;
+        MyGamepad = MyPlayerInput.GetDevice<Gamepad>();
+        if (MyGamepad == null) Rumble = false;
     }
     
     /// <summary>
@@ -122,19 +121,5 @@ public class PlayerController : CharacterBehavior
         ReadMove = false;
         //myRb.velocity = Vector3.zero; 
         //Slidey-ness can be configured in linear drag of the rigidbody2d
-    }
-
-    /// <summary>
-    /// Counts how many controllers there are vs players to see which player gets which.
-    /// </summary>
-    private Gamepad AssignController()
-    {
-        if (Gamepad.all.Count == 1)
-            return Gamepad.all[0];
-
-        if (Gamepad.all.Count == 2)
-            return Gamepad.all[PlayerNumber - 1];
-        
-        return null;
     }
 }

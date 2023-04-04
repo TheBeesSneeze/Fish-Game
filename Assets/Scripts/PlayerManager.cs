@@ -69,7 +69,7 @@ public class PlayerManager : MonoBehaviour
             yield return new WaitForSeconds(0.2f);
         }
 
-        AssignController();
+        //AssignController();
 
         //change the world my final message goodbye
         Destroy(this.gameObject);
@@ -104,8 +104,10 @@ public class PlayerManager : MonoBehaviour
 
         else
         {
-            gorp.MyGamepad = Gamepad.all[1];
-            globbington.MyGamepad = Gamepad.all[1];
+
+            gorp.MyGamepad        = Gamepad.all[gorp       .MyPlayerInput.playerIndex];
+            globbington.MyGamepad = Gamepad.all[globbington.MyPlayerInput.playerIndex];
+
         }
         
     }
