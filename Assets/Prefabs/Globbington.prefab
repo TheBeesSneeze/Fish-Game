@@ -260,13 +260,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c949fa671513e914e9b82702ec377124, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Rumble: 1
   DefaultHealth: 3
-  Speed: 5
+  Speed: 8
   Weight: 5
   Health: 0
   DefaultPosition: {x: 0, y: 0, z: 0}
   LayersOfLight: 0
+  PlayerNumber: 2
+  Rumble: 1
   MyPlayerInput: {fileID: 4302747830044685625}
   Move:
     m_Name: Move
@@ -278,7 +279,6 @@ MonoBehaviour:
     m_SingletonActionBindings: []
     m_Flags: 0
   ReadMove: 0
-  PlayerNumber: 2
   AttackLength: 0.16
   Sword: {fileID: 2576840555498414060}
   RotatePoint: {fileID: 7118317646495259653}
