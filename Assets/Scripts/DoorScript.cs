@@ -9,12 +9,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoorScript : MonoBehaviour
+public class DoorBehavior : MonoBehaviour
 {
 
     GameObject gorp;
     GameObject globbington;
-    public RoomScript RoomScriptInstance;
+
+    public RoomBehavior RoomBehaviorInstance;
 
     /// <summary>
     /// Detects when either player comes in contact with the door, waits, and 
@@ -43,7 +44,7 @@ public class DoorScript : MonoBehaviour
         gorp.SetActive(false);
         globbington.SetActive(false);
 
-        RoomScriptInstance.Invoke("NextRoom", 1f);
+        RoomBehaviorInstance.Invoke("EnterRoom", 1f);
     }
 
 }
