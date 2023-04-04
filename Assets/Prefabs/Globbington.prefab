@@ -49,7 +49,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2363225843875086191
 Transform:
   m_ObjectHideFlags: 0
@@ -124,7 +124,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2576840555498414060}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -154,8 +154,8 @@ GameObject:
   - component: {fileID: 4302747830044685630}
   - component: {fileID: 4302747830044685631}
   - component: {fileID: 4302747830044685628}
-  - component: {fileID: 5051481756267194680}
   - component: {fileID: 4302747830044685629}
+  - component: {fileID: 5051481756267194680}
   - component: {fileID: 4302747830044685625}
   m_Layer: 10
   m_Name: Globbington
@@ -248,6 +248,8 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+<<<<<<< Updated upstream
+=======
 --- !u!114 &5051481756267194680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -261,11 +263,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DefaultHealth: 3
-  Speed: 8
+  DefaultSpeed: 5
   Weight: 5
   Health: 0
   DefaultPosition: {x: 0, y: 0, z: 0}
   LayersOfLight: 0
+  Speed: 5
   PlayerNumber: 2
   Rumble: 1
   MyPlayerInput: {fileID: 4302747830044685625}
@@ -291,6 +294,7 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
+>>>>>>> Stashed changes
 --- !u!50 &4302747830044685629
 Rigidbody2D:
   serializedVersion: 4
@@ -304,7 +308,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 2.5
+  m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -312,6 +316,57 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &5051481756267194680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4302747830044685618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c949fa671513e914e9b82702ec377124, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TakeKnockback: 0
+  DefaultHealth: 3
+  Health: 0
+  DefaultPosition: {x: 0, y: 0, z: 0}
+  InsideLight: 0
+  insideLight: 0
+  Speed: 10
+  MyPlayerInput: {fileID: 4302747830044685625}
+  Move:
+    m_Name: Move
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 83ea90a5-5730-4217-819a-865620727531
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  Jump:
+    m_Name: Jump
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 4b4d445f-e041-4b91-b3b4-21906d9c6aa8
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  ReadMove: 0
+  AttackLength: 0.16
+  Sword: {fileID: 1137317766113117558}
+  Strike:
+    m_Name: Strike
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: e28a9be1-9154-452f-b6fb-3ca28dafeca1
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  RotatePoint: {fileID: 7118317646495259653}
 --- !u!114 &4302747830044685625
 MonoBehaviour:
   m_ObjectHideFlags: 0
