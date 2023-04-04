@@ -248,6 +248,53 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+<<<<<<< Updated upstream
+=======
+--- !u!114 &5051481756267194680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4302747830044685618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c949fa671513e914e9b82702ec377124, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DefaultHealth: 3
+  DefaultSpeed: 5
+  Weight: 5
+  Health: 0
+  DefaultPosition: {x: 0, y: 0, z: 0}
+  LayersOfLight: 0
+  Speed: 5
+  PlayerNumber: 2
+  Rumble: 1
+  MyPlayerInput: {fileID: 4302747830044685625}
+  Move:
+    m_Name: Move
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 83ea90a5-5730-4217-819a-865620727531
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  ReadMove: 0
+  AttackLength: 0.16
+  Sword: {fileID: 2576840555498414060}
+  RotatePoint: {fileID: 7118317646495259653}
+  Strike:
+    m_Name: Strike
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: e28a9be1-9154-452f-b6fb-3ca28dafeca1
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+>>>>>>> Stashed changes
 --- !u!50 &4302747830044685629
 Rigidbody2D:
   serializedVersion: 4

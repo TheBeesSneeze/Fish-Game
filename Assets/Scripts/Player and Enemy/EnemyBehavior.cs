@@ -22,6 +22,8 @@ public class EnemyBehavior : CharacterBehavior
     private EnemyDetection enemyDetection;
     private GameObject gorp;
     private GameObject globbington;
+    private Collider2D enemyCollider;
+    public float StunLength;
 
     /// <summary>
     /// Initializes variables for enemy respwning and finds unity components.
@@ -36,6 +38,7 @@ public class EnemyBehavior : CharacterBehavior
         enemyDetection = gameObject.GetComponent<EnemyDetection>();
         gorp        = GameObject.Find("Gorp");
         globbington = GameObject.Find("Globbington");
+        enemyCollider = this.GetComponent<Collider2D>();
     }
 
     /// <summary>
@@ -60,6 +63,19 @@ public class EnemyBehavior : CharacterBehavior
         this.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
     }
 
+    private void BeStunned()
+    {
+        Speed = 0f;
+        enemyCollider.enabled = false;
+        Invoke("BeUnStunned", StunLength);
+    }
+
+    private void BeUnStunned()
+    {
+        Speed = DefaultSpeed;
+        enemyCollider.enabled = true;
+    }
+
     public override void OnTriggerEnter2D(Collider2D collision)
     {
         string tag = collision.gameObject.tag;
@@ -73,6 +89,10 @@ public class EnemyBehavior : CharacterBehavior
 
             if(enemyDetection!=null)
                 enemyDetection.InsideLight = true;
+        }
+        else if (tag.Equals("Flash"))
+        {
+            BeStunned();
         }
     }
 
