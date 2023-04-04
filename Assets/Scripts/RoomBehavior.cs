@@ -1,26 +1,31 @@
 /*******************************************************************************
 // File Name :         RoomScript.cs
-// Author(s) :         Jay Embry
+// Author(s) :         Jay Embry, Toby Schamberger
 // Creation Date :     3/30/2023
 //
-// Brief Description : Code that keeps track of enemies and doors
+// Brief Description : Code that keeps track of enemies and default positions 
+// of players and the camera.
 *****************************************************************************/
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RoomScript : MonoBehaviour
+public class RoomBehavior : MonoBehaviour
 {
-    public List<GameObject> Enemies = new List<GameObject>();
+    [Header("Settings")]
+    public Vector3 CameraPosition;
     public Vector3 GorpDefaultPosition;
     public Vector3 GlobbingtonDefaultPosition;
-    GameObject gorp;
-    GameObject globbington;
+
+    [Header("Unity")]
+    public List<GameObject> Enemies = new List<GameObject>();
+    private GameObject gorp;
+    private GameObject globbington;
 
     /// <summary>
     /// Spawns in Gorp and Globbington; respawns enemies from the inspector
     /// </summary>
-    public void NextRoom()
+    public void EnterRoom()
     {
 
         gorp = GameObject.Find("Gorp");
