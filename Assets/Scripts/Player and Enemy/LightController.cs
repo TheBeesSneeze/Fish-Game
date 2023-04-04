@@ -27,6 +27,7 @@ public class LightController : MonoBehaviour
     [Header("Settings")]
     public float TransitionFrames = 20;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -49,7 +50,7 @@ public class LightController : MonoBehaviour
         //Clap on!
         if (LightEnabled)
         {
-            if(startfromZero)
+            if (startfromZero)
                 StartCoroutine(LightLerp(0, LightRadius, seconds));
             //regular mode
             else

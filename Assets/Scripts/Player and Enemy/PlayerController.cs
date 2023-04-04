@@ -11,11 +11,16 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Utilities;
 
 public class PlayerController : CharacterBehavior
 {
+    public int PlayerNumber;
 
     [Header("Controller stuff:")]
+
+    public bool Rumble;
+    public Gamepad MyGamepad;
 
     public PlayerInput MyPlayerInput;
 
@@ -24,6 +29,10 @@ public class PlayerController : CharacterBehavior
     public  bool ReadMove;
     
     private Rigidbody2D myRb;
+
+    //public int PlayerNumber;
+
+    //public Gamepad playerGamepad;
 
 
     /// <summary>
@@ -40,6 +49,9 @@ public class PlayerController : CharacterBehavior
         //I believe this is adding the functions to the buttons...
         Move.started += Move_started;
         Move.canceled += Move_canceled;
+
+        MyGamepad = MyPlayerInput.GetDevice<Gamepad>();
+        if (MyGamepad == null) Rumble = false;
     }
     
     /// <summary>
@@ -70,7 +82,7 @@ public class PlayerController : CharacterBehavior
     public void ResetScene()
     {
         //Resets players:
-        PlayerController gorp = GameObject.Find("Gorp")       .GetComponent<PlayerController>();
+        PlayerController gorp = GameObject.Find("Gorp")   .GetComponent<PlayerController>();
 
         PlayerController globbington = null;
         try { globbington = GameObject.Find("Globbington").GetComponent<PlayerController>(); }
@@ -107,12 +119,7 @@ public class PlayerController : CharacterBehavior
     private void Move_canceled(InputAction.CallbackContext obj)
     {
         ReadMove = false;
-        myRb.velocity = Vector3.zero; //Replace this line and add the slidey function :D
-    }
-
-    private void OnDisable()
-    {
-        Move.started -= Move_started;
-        Move.canceled -= Move_canceled;
+        //myRb.velocity = Vector3.zero; 
+        //Slidey-ness can be configured in linear drag of the rigidbody2d
     }
 }

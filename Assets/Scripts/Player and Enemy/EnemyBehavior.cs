@@ -54,12 +54,14 @@ public class EnemyBehavior : CharacterBehavior
     /// </summary>
     public override void Respawn()
     {
-        this.gameObject.SetActive(true);
-        Health = DefaultHealth;
-        this.transform.position = DefaultPosition;
+        base.Respawn();
 
         //Enemy exclusive code:
-        enemyDetection.CurrentTarget = null;
+        if (enemyDetection != null)
+        {
+            enemyDetection.CurrentTarget = null;
+        }
+
         this.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
     }
 
@@ -86,9 +88,6 @@ public class EnemyBehavior : CharacterBehavior
         else if (tag.Equals("Light"))
         {
             LayersOfLight++;
-
-            if(enemyDetection!=null)
-                enemyDetection.InsideLight = true;
         }
         else if (tag.Equals("Flash"))
         {
@@ -105,8 +104,6 @@ public class EnemyBehavior : CharacterBehavior
 
             if (enemyDetection != null)
             {
-                enemyDetection.InsideLight = false;
-
                 if (enemyDetection.CurrentTarget != null) //so many if statements that have to be separate
                 {
                     if (enemyDetection.CurrentTarget.GetComponent<CharacterBehavior>().LayersOfLight <= 0)

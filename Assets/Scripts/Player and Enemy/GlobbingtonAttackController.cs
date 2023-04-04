@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.DualShock;
 /*******************************************************************************
 // File Name :         GlobbingtonAttackController.cs
 // Author(s) :         Sky Beal
@@ -17,10 +18,12 @@ public class GlobbingtonAttackController : PlayerController
     public float AttackLength;
 
     [Header("Unity Stuff")]
-    public Collider2D Sword;
-    public InputAction Strike;
+    public GameObject Sword;
     public Transform RotatePoint;
     private Rigidbody2D myRB;
+
+    [Header("Controls")]
+    public InputAction Strike;
 
     /// <summary>
     /// steals start from playercontoller and adapts it for globbington
@@ -43,9 +46,17 @@ public class GlobbingtonAttackController : PlayerController
     /// <param name="obj"></param>
     private void Strike_started(InputAction.CallbackContext obj)
     {
-        Sword.enabled = true;
+        Sword.SetActive(true);
+
+
+        if (Rumble)
+        {
+            //InputDevice a = MyPlayerInput.devices[0];
+            MyGamepad.SetMotorSpeeds(0.15f, 0.25f);
+        }
+        
+
         Invoke("StopAttack", AttackLength);
-        Debug.Log("Swing");
     }
 
     /// <summary>
@@ -53,7 +64,12 @@ public class GlobbingtonAttackController : PlayerController
     /// </summary>
     private void StopAttack()
     {
-        Sword.enabled = false;
+        
+        if (Rumble)
+            MyGamepad.SetMotorSpeeds(0, 0);
+        
+
+        Sword.SetActive(false);
     }
 
     /// <summary>

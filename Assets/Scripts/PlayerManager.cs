@@ -13,6 +13,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -22,6 +23,14 @@ using static UnityEditor.PlayerSettings;
 public class PlayerManager : MonoBehaviour
 {
     public GameObject Player2;
+
+    public ControllerPriority controllerPriority = ControllerPriority.Player2;
+    public enum ControllerPriority
+    {
+        Player1,
+        Player2,
+        Neither
+    }
 
     /// <summary>
     /// Starts the playerCountCheck() coroutine, which runs every 0.05 seconds
@@ -52,10 +61,54 @@ public class PlayerManager : MonoBehaviour
 
             yield return new WaitForSeconds(0.05f);
         }
-            
+
+        //waiiiiitttttttt
+        while(players.Length<2)
+        {
+            players = GameObject.FindGameObjectsWithTag("Player");
+            yield return new WaitForSeconds(0.2f);
+        }
+
+        //AssignController();
+
         //change the world my final message goodbye
         Destroy(this.gameObject);
     }
 
-    
+    /// <summary>
+    /// If theres only one controller, it is assigned to the second player.
+    /// </summary>
+    private void AssignController()
+    {
+        PlayerController gorp = GameObject.Find("Gorp").GetComponent<PlayerController>();
+        PlayerController globbington = GameObject.Find("Globbington").GetComponent<PlayerController>();
+
+        if (Gamepad.all.Count < 2)
+        {
+            switch(controllerPriority)
+            {
+                case ControllerPriority.Player1:
+                    gorp.MyGamepad = Gamepad.all[0];
+                    globbington.MyGamepad = null;
+                    break;
+                case ControllerPriority.Player2:
+                    gorp.MyGamepad = null;
+                    globbington.MyGamepad = Gamepad.all[0];
+                    break;
+                case ControllerPriority.Neither:
+                    gorp.MyGamepad = null;
+                    globbington.MyGamepad = null;
+                    break;
+            }
+        }
+
+        else
+        {
+
+            gorp.MyGamepad        = Gamepad.all[gorp       .MyPlayerInput.playerIndex];
+            globbington.MyGamepad = Gamepad.all[globbington.MyPlayerInput.playerIndex];
+
+        }
+        
+    }
 }
