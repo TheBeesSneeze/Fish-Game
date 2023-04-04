@@ -18,9 +18,14 @@ public class PipeTransportation : MonoBehaviour
     /// Public variables allow us to edit coordinates for each pipe
     /// </summary>
     public Vector2 OutputPosition;
+    public Vector2 Brazil;
     public float TransportationSpeed;
-    GameObject globbington;
 
+    GameObject globbington;
+    /// <summary>
+    /// Detects when Globbington interacts with pipe
+    /// </summary>
+    /// <param name="collision"></param>
     public void OnCollisionEnter2D(Collision2D collision)
     {
         
@@ -28,15 +33,27 @@ public class PipeTransportation : MonoBehaviour
         {
 
             globbington = collision.gameObject;
-            globbington.SetActive(false);
-            Invoke("Transportation", TransportationSpeed);
+            Invoke("Wait", TransportationSpeed);
 
         }
     }
+    /// <summary>
+    /// Gives the illusion of Globbington going offscreen
+    /// </summary>
+    public void Wait()
+    {
 
+        globbington.transform.position = Brazil;
+        Invoke("Transportation", TransportationSpeed);
+
+    }
+    /// <summary>
+    /// Drops Globbington off at proper location
+    /// </summary>
     public void Transportation()
     {
-        globbington.SetActive(true);
+
         globbington.transform.position = OutputPosition;
+
     }
 }
