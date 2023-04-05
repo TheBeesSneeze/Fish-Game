@@ -14,20 +14,24 @@ using UnityEngine;
 public class CharacterBehavior : MonoBehaviour
 {
     [Header("Attributes")]
+    public bool TakeKnockback; // Weight determines distance knocked back. 0 = no knockback. 10 = across the room
     public int DefaultHealth;
-    public float Speed;
+
+    public float DefaultSpeed;
     public float Weight;// Weight determines distance knocked back. 0 = no knockback. 10 = across the room. less than 0 is funny.
 
     [Header("Debug (don't touch in editor)")]
+    public int LayersOfLight;
     public int Health;
     public Vector3 DefaultPosition;
-    public int LayersOfLight;
+    public float Speed;
 
     /// <summary>
     /// Sets Health to the Default
     /// </summary>
     void Start()
     {
+        Speed = DefaultSpeed;
         Health = DefaultHealth;
         DefaultPosition = this.transform.position;
     }
@@ -45,7 +49,8 @@ public class CharacterBehavior : MonoBehaviour
 
         if(Health <= 0) 
             Die();
-        else
+
+        else if(TakeKnockback)
             KnockBack(this.gameObject, damageSourcePosition);
     }
 
@@ -62,7 +67,6 @@ public class CharacterBehavior : MonoBehaviour
     public virtual void OnTriggerExit2D(Collider2D collision)
     {
         string tag = collision.gameObject.tag;
-
         if (tag.Equals("Light"))
         {
             LayersOfLight--;
@@ -76,18 +80,8 @@ public class CharacterBehavior : MonoBehaviour
     /// <param name="damageSourcePosition"></param>
     public virtual void KnockBack(GameObject target, Vector3 damageSourcePosition)
     {
-        Rigidbody2D myRB = this.GetComponent<Rigidbody2D>();
-
-        if(myRB != null && Weight!=0)
-        {
-            Vector3 positionDifference = damageSourcePosition - this.gameObject.transform.position;
-
-            myRB.velocity -= ((Vector2)positionDifference*Weight);
-            //code that snaps the character back
-            //this.transform.position -= positionDifference;
-        }
-
-
+        Vector3 positionDifference = damageSourcePosition - this.gameObject.transform.position;
+        this.transform.position -= positionDifference;
     }
 
     /// <summary>

@@ -18,7 +18,7 @@ public class GlobbingtonAttackController : PlayerController
     public float AttackLength;
 
     [Header("Unity Stuff")]
-    public GameObject Sword;
+    public Collider2D Sword;
     public Transform RotatePoint;
     private Rigidbody2D myRB;
 
@@ -46,7 +46,7 @@ public class GlobbingtonAttackController : PlayerController
     /// <param name="obj"></param>
     private void Strike_started(InputAction.CallbackContext obj)
     {
-        Sword.SetActive(true);
+        Sword.enabled = true;
 
 
         if (Rumble)
@@ -69,7 +69,7 @@ public class GlobbingtonAttackController : PlayerController
             MyGamepad.SetMotorSpeeds(0, 0);
         
 
-        Sword.SetActive(false);
+        Sword.enabled = false;
     }
 
     /// <summary>
