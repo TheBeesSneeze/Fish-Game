@@ -9,6 +9,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class RoomBehavior : MonoBehaviour
 {
@@ -19,30 +20,16 @@ public class RoomBehavior : MonoBehaviour
     [Header("Unity")]
     public List<GameObject> Enemies = new List<GameObject>();
     public GameManager GameMaster; //DND REFERENCE!??!?!?!?!?!?!?!
-    private PlayerController gorpBehavior;
-    private PlayerController globbingtonBehavior;
 
     /// <summary>
     /// Spawns in Gorp and Globbington; respawns enemies from the inspector
     /// </summary>
     public void EnterRoom()
     {
+        GameMaster.CurrentRoom = this;
+        StartCoroutine(GameMaster.SlideCamera());
 
-        gorpBehavior        = GameObject.Find("Gorp"       ).GetComponent<PlayerController>();
-        globbingtonBehavior = GameObject.Find("Globbington").GetComponent<PlayerController>();
-
-        //gorp.transform.position = PlayerStartPosition.position;
-        //globbington.transform.position = PlayerStartPosition.position;
-
-        gorpBehavior       .DefaultPosition = PlayerStartPosition.position;
-        globbingtonBehavior.DefaultPosition = PlayerStartPosition.position;
-
-
-        GameObject.Find("Gorp"       ).SetActive(true);
-        GameObject.Find("globbington").SetActive(true);
-
-        RespawnAll();
-
+        Invoke("RespawnAll", GameMaster.CameraLerpSeconds+0.1f);
     }
 
     /// <summary>
@@ -50,12 +37,17 @@ public class RoomBehavior : MonoBehaviour
     /// </summary>
     public void RespawnAll()
     {
-        gorpBehavior       .Respawn();
-        globbingtonBehavior.Respawn();
-
-        for (int i = 0; i <  Enemies.Count; i++)
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        foreach (GameObject player in players)
         {
-            EnemyBehavior enemyBehaviorInstance = Enemies[i].GetComponent<EnemyBehavior>();
+            PlayerController playerController = player.GetComponent<PlayerController>();
+            playerController.DefaultPosition = PlayerStartPosition.position;
+            player.transform.position = PlayerStartPosition.position;
+        }
+
+        foreach (GameObject enemy in Enemies)
+        {
+            EnemyBehavior enemyBehaviorInstance = enemy.GetComponent<EnemyBehavior>();
             enemyBehaviorInstance.Respawn();
         }
 

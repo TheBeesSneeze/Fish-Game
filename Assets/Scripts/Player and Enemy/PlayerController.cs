@@ -17,18 +17,18 @@ public class PlayerController : CharacterBehavior
 {
     public int PlayerNumber;
 
+    private Rigidbody2D myRb;
+    public GameManager gameManager;
+
     [Header("Controller stuff:")]
 
     public bool Rumble;
     public Gamepad MyGamepad;
 
     public PlayerInput MyPlayerInput;
-
     public InputAction Move;
 
     public  bool ReadMove;
-    
-    private Rigidbody2D myRb;
 
     //public int PlayerNumber;
 

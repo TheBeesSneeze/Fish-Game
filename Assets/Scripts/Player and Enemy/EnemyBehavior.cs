@@ -19,6 +19,7 @@ public class EnemyBehavior : CharacterBehavior
     public bool NightVision;
 
     [Header("Unity Jargain")]
+    public bool DespawnOnStart = true;
     private EnemyDetection enemyDetection;
     private GameObject gorp;
     private GameObject globbington;
@@ -36,6 +37,8 @@ public class EnemyBehavior : CharacterBehavior
         enemyDetection = gameObject.GetComponent<EnemyDetection>();
         gorp        = GameObject.Find("Gorp");
         globbington = GameObject.Find("Globbington");
+
+        this.gameObject.SetActive(!DespawnOnStart);
     }
 
     /// <summary>
