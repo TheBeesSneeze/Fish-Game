@@ -371,11 +371,11 @@ GameObject:
   - component: {fileID: 8678797230697677933}
   - component: {fileID: 8678797230697677922}
   - component: {fileID: 8678797230697677923}
-  - component: {fileID: 8678797230697677929}
   - component: {fileID: 8678797230697677920}
   - component: {fileID: 8678797230697677935}
   - component: {fileID: 8678797230697677934}
   - component: {fileID: 8678797230697677932}
+  - component: {fileID: 3379789499676563392}
   m_Layer: 9
   m_Name: Gorp
   m_TagString: Player
@@ -466,12 +466,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TakeKnockback: 1
   DefaultHealth: 3
-<<<<<<< Updated upstream
-  Speed: 10
-  Health: 0
-  DefaultPosition: {x: 0, y: 0, z: 0}
-  LayersOfLight: 0
-=======
   DefaultSpeed: 10
   Weight: 7
   Health: 0
@@ -480,7 +474,6 @@ MonoBehaviour:
   Speed: 10
   PlayerNumber: 1
   Rumble: 1
->>>>>>> Stashed changes
   MyPlayerInput: {fileID: 8678797230697677920}
   Move:
     m_Name: Move
@@ -492,84 +485,6 @@ MonoBehaviour:
     m_SingletonActionBindings: []
     m_Flags: 0
   ReadMove: 0
---- !u!114 &8678797230697677929
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8678797230697677921}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d810870b9b4db154594dd2fee98d44be, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LightEnabled: 1
-  LightRadius: 0
-  LightTrigger: {fileID: 2261076304649148020}
-  LightSource: {fileID: 5168131707846391277}
-  TransitionFrames: 20
-  LightIncrement: 0.2
-  LightIncrementDelay: 0.1
-  ToggleLightTime: 0.2
-  MinLight: 1
-  MaxLight: 15
-  MyPlayerInput: {fileID: 8678797230697677920}
-  ToggleLightAction:
-    m_Name: Toggle Light
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 6074a4c9-c79d-45f7-a241-214684ff88bc
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  IncreaseLight:
-    m_Name: Increase Light
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 87a9cc55-e716-4686-af8f-fba61016950c
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  DecreaseLight:
-    m_Name: Decrease Light
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 5c0e80aa-16a7-4e22-98e9-25d207e8ca17
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-<<<<<<< Updated upstream
-=======
-  FlashChargeTime: 1
-  LightIncrement: 0.71
-  LightIncrementDelay: 0.07
-  ToggleLightTime: 0.2
-  MinLight: 1
-  MaxLight: 10
-  FlashLength: 0.4
-  FlashTrigger: {fileID: 4950820922443560528}
---- !u!114 &9159770001612027804
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8678797230697677921}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a7c7dff7cd608d644bfe45d3d93c73bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LightEnabled: 1
-  LightRadius: 10
-  LightTrigger: {fileID: 2261076304649148020}
-  LightSource: {fileID: 5168131707846391277}
-  TransitionFrames: 20
->>>>>>> Stashed changes
 --- !u!114 &8678797230697677920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -664,3 +579,71 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.96
+--- !u!114 &3379789499676563392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8678797230697677921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9a93f36c75542f459d2606feb1ca299, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TakeKnockback: 0
+  DefaultHealth: 0
+  DefaultSpeed: 0
+  Weight: 0
+  Health: 0
+  DefaultPosition: {x: 0, y: 0, z: 0}
+  LayersOfLight: 0
+  Speed: 0
+  PlayerNumber: 0
+  Rumble: 0
+  MyPlayerInput: {fileID: 0}
+  Move:
+    m_Name: Move
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 8fc61d40-3cd0-4a10-bc10-709e3a148503
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  ReadMove: 0
+  ToggleLightAction:
+    m_Name: Toggle Light
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: f8bf6849-d147-4b06-b9cc-f527067a5020
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  IncreaseLight:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 9682979a-76e2-4275-a6af-10d992e63adf
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  DecreaseLight:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 6096f5d3-266f-4a77-8a9c-de5dfcdb9235
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  FlashChargeTime: 1
+  LightIncrement: 0.1
+  LightIncrementDelay: 0.1
+  ToggleLightTime: 0.5
+  MinLight: 1
+  MaxLight: 10
+  FlashLength: 5
+  FlashTrigger: {fileID: 0}

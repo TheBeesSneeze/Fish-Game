@@ -16,12 +16,9 @@ public class CharacterBehavior : MonoBehaviour
     [Header("Attributes")]
     public bool TakeKnockback; // Weight determines distance knocked back. 0 = no knockback. 10 = across the room
     public int DefaultHealth;
-<<<<<<< Updated upstream
-    public float Speed;
-=======
+
     public float DefaultSpeed;
     public float Weight;// Weight determines distance knocked back. 0 = no knockback. 10 = across the room. less than 0 is funny.
->>>>>>> Stashed changes
 
     [Header("Debug (don't touch in editor)")]
     public int Health;
