@@ -43,6 +43,8 @@ public class PlayerController : CharacterBehavior
         Health = DefaultHealth;
 
         myRb = GetComponent<Rigidbody2D>();
+        myRb.angularDrag = Weight; // felt silly. might delete later
+
         MyPlayerInput.actions.Enable();
         Move = MyPlayerInput.actions.FindAction("Move");
 
@@ -52,6 +54,8 @@ public class PlayerController : CharacterBehavior
 
         MyGamepad = MyPlayerInput.GetDevice<Gamepad>();
         if (MyGamepad == null) Rumble = false;
+
+        
     }
     
     /// <summary>
