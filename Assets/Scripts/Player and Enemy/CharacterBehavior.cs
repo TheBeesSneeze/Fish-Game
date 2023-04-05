@@ -21,9 +21,9 @@ public class CharacterBehavior : MonoBehaviour
     public float Weight;// Weight determines distance knocked back. 0 = no knockback. 10 = across the room. less than 0 is funny.
 
     [Header("Debug (don't touch in editor)")]
+    public int LayersOfLight;
     public int Health;
     public Vector3 DefaultPosition;
-    public int LayersOfLight;
     public float Speed;
 
     /// <summary>
