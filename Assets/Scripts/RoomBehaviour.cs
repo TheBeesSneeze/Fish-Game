@@ -1,5 +1,5 @@
 /*******************************************************************************
-// File Name :         RoomScript.cs
+// File Name :         RoomBehavior.cs
 // Author(s) :         Jay Embry, Toby Schamberger
 // Creation Date :     3/30/2023
 //
@@ -11,7 +11,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class RoomBehavior : MonoBehaviour
+public class RoomBehaviour : MonoBehaviour
 {
     [Header("Settings")]
     public Transform CameraPosition;
@@ -26,16 +26,19 @@ public class RoomBehavior : MonoBehaviour
     /// </summary>
     public void EnterRoom()
     {
+        GameMaster.LastRoom = GameMaster.CurrentRoom;
         GameMaster.CurrentRoom = this;
         StartCoroutine(GameMaster.SlideCamera());
 
-        Invoke("RespawnAll", GameMaster.CameraLerpSeconds+0.1f);
+        RespawnEnemies();
+        //Players will respawn after these messages!
+        Invoke("RespawnPlayers", GameMaster.CameraLerpSeconds+0.1f); 
     }
 
     /// <summary>
     /// Goes through public list and resets enemies
     /// </summary>
-    public void RespawnAll()
+    public void RespawnPlayers()
     {
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
         foreach (GameObject player in players)
@@ -45,12 +48,26 @@ public class RoomBehavior : MonoBehaviour
             player.transform.position = PlayerStartPosition.position;
         }
 
+        if(GameMaster.LastRoom != null)
+            GameMaster.LastRoom.DespawnEnemies();
+    }
+
+
+    public void RespawnEnemies()
+    {
         foreach (GameObject enemy in Enemies)
         {
             EnemyBehavior enemyBehaviorInstance = enemy.GetComponent<EnemyBehavior>();
             enemyBehaviorInstance.Respawn();
         }
+    }
 
+    public void DespawnEnemies()
+    {
+        foreach (GameObject enemy in Enemies)
+        {
+            enemy.SetActive(false);
+        }
     }
 
 }

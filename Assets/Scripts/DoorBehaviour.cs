@@ -1,5 +1,5 @@
 /*******************************************************************************
-// File Name :         DoorScript.cs
+// File Name :         DoorBehavior.cs
 // Author(s) :         Jay Embry, Toby Schamberger
 // Creation Date :     3/30/2023
 //
@@ -9,13 +9,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoorBehavior : MonoBehaviour
+public class DoorBehaviour : MonoBehaviour
 {
     private GameManager gameMaster;
     private bool canEnter=true;
 
     [Header("The room this door leads too:")]
-    public RoomBehavior OutputRoom;
+    public RoomBehaviour OutputRoom;
 
     private void Start()
     {

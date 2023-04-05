@@ -27,11 +27,9 @@ public class EnemyBehavior : CharacterBehavior
     /// <summary>
     /// Initializes variables for enemy respwning and finds unity components.
     /// </summary>
-    void Start()
+    public override void Start()
     {
-        //Stats
-        Health = DefaultHealth;
-        DefaultPosition = this.gameObject.transform.position;
+        base.Start();
 
         //Unity moment
         enemyDetection = gameObject.GetComponent<EnemyDetection>();

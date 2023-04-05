@@ -21,7 +21,8 @@ public class GameManager : MonoBehaviour
 
     [Header("Unity Stuff")]
     private GameObject _camera;
-    public RoomBehavior CurrentRoom;
+    public RoomBehaviour CurrentRoom;
+    public RoomBehaviour LastRoom;
 
     private void Start()
     {
