@@ -496,13 +496,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TakeKnockback: 0
   DefaultHealth: 5
-  DefaultSpeed: 12
+  DefaultSpeed: 10
   Weight: 1.5
   LayersOfLight: 1
   Health: 0
   DefaultPosition: {x: 0, y: 0, z: 0}
   Speed: 5.93
   PlayerNumber: 0
+  gameManager: {fileID: 0}
   Rumble: 0
   MyPlayerInput: {fileID: 8678797230697677920}
   Move:

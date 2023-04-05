@@ -29,7 +29,7 @@ public class CharacterBehavior : MonoBehaviour
     /// <summary>
     /// Sets Health to the Default
     /// </summary>
-    void Start()
+    public virtual void Start()
     {
         Speed = DefaultSpeed;
         Health = DefaultHealth;

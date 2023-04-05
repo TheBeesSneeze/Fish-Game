@@ -1,5 +1,5 @@
 /*******************************************************************************
-// File Name :         RoomScript.cs
+// File Name :         RoomBehavior.cs
 // Author(s) :         Jay Embry, Toby Schamberger
 // Creation Date :     3/30/2023
 //
@@ -9,56 +9,65 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-public class RoomBehavior : MonoBehaviour
+public class RoomBehaviour : MonoBehaviour
 {
     [Header("Settings")]
-    public Vector3 CameraPosition;
-    public Vector3 GorpDefaultPosition;
-    public Vector3 GlobbingtonDefaultPosition;
+    public Transform CameraPosition;
+    public Transform PlayerStartPosition;
 
     [Header("Unity")]
     public List<GameObject> Enemies = new List<GameObject>();
-    private GameObject gorp;
-    private GameObject globbington;
+    public GameManager GameMaster; //DND REFERENCE!??!?!?!?!?!?!?!
 
     /// <summary>
     /// Spawns in Gorp and Globbington; respawns enemies from the inspector
     /// </summary>
     public void EnterRoom()
     {
+        GameMaster.LastRoom = GameMaster.CurrentRoom;
+        GameMaster.CurrentRoom = this;
+        StartCoroutine(GameMaster.SlideCamera());
 
-        gorp = GameObject.Find("Gorp");
-        globbington = GameObject.Find("Globbington");
-
-        gorp.transform.position = GorpDefaultPosition;
-        globbington.transform.position = GlobbingtonDefaultPosition;
-
-        gorp.GetComponent<PlayerController>().DefaultPosition = GorpDefaultPosition;
-        globbington.GetComponent<PlayerController>().DefaultPosition = GlobbingtonDefaultPosition;
-
-
-        gorp.SetActive(true);
-        globbington.SetActive(true);
-
-        RespawnAll();
-
+        RespawnEnemies();
+        //Players will respawn after these messages!
+        Invoke("RespawnPlayers", GameMaster.CameraLerpSeconds+0.1f); 
     }
 
     /// <summary>
     /// Goes through public list and resets enemies
     /// </summary>
-    public void RespawnAll()
+    public void RespawnPlayers()
     {
-
-        for(int i = 0; i <  Enemies.Count; i++)
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        foreach (GameObject player in players)
         {
-
-            EnemyBehavior enemyBehaviorInstance = Enemies[i].GetComponent<EnemyBehavior>();
-            enemyBehaviorInstance.Respawn();
-
+            PlayerController playerController = player.GetComponent<PlayerController>();
+            playerController.DefaultPosition = PlayerStartPosition.position;
+            player.transform.position = PlayerStartPosition.position;
         }
 
+        if(GameMaster.LastRoom != null)
+            GameMaster.LastRoom.DespawnEnemies();
+    }
+
+
+    public void RespawnEnemies()
+    {
+        foreach (GameObject enemy in Enemies)
+        {
+            EnemyBehavior enemyBehaviorInstance = enemy.GetComponent<EnemyBehavior>();
+            enemyBehaviorInstance.Respawn();
+        }
+    }
+
+    public void DespawnEnemies()
+    {
+        foreach (GameObject enemy in Enemies)
+        {
+            enemy.SetActive(false);
+        }
     }
 
 }

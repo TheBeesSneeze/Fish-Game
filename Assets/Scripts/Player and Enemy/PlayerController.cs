@@ -17,18 +17,18 @@ public class PlayerController : CharacterBehavior
 {
     public int PlayerNumber;
 
+    private Rigidbody2D myRb;
+    public GameManager gameManager;
+
     [Header("Controller stuff:")]
 
     public bool Rumble;
     public Gamepad MyGamepad;
 
     public PlayerInput MyPlayerInput;
-
     public InputAction Move;
 
     public  bool ReadMove;
-    
-    private Rigidbody2D myRb;
 
     //public int PlayerNumber;
 
@@ -38,12 +38,12 @@ public class PlayerController : CharacterBehavior
     /// <summary>
     /// Sets health and binds controls
     /// </summary>
-    public virtual void Start()
+    public override void Start()
     {
+        base.Start();
         Health = DefaultHealth;
 
         myRb = GetComponent<Rigidbody2D>();
-        myRb.angularDrag = Weight; // felt silly. might delete later
 
         MyPlayerInput.actions.Enable();
         Move = MyPlayerInput.actions.FindAction("Move");

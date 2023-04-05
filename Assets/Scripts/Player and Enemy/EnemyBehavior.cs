@@ -1,6 +1,6 @@
 /*******************************************************************************
 // File Name :         EnemyBehavior.cs
-// Author(s) :         Toby Schamberger, Sky Beal
+// Author(s) :         Toby Schamberger
 // Creation Date :     3/27/2023
 //
 // Brief Description : Basic code for enemy management. Specific enemy scripts
@@ -19,26 +19,24 @@ public class EnemyBehavior : CharacterBehavior
     public bool NightVision;
 
     [Header("Unity Jargain")]
+    public bool DespawnOnStart = true;
     private EnemyDetection enemyDetection;
     private GameObject gorp;
     private GameObject globbington;
-    private Collider2D enemyCollider;
-    public float StunLength;
 
     /// <summary>
     /// Initializes variables for enemy respwning and finds unity components.
     /// </summary>
-    void Start()
+    public override void Start()
     {
-        //Stats
-        Health = DefaultHealth;
-        DefaultPosition = this.gameObject.transform.position;
+        base.Start();
 
         //Unity moment
         enemyDetection = gameObject.GetComponent<EnemyDetection>();
         gorp        = GameObject.Find("Gorp");
         globbington = GameObject.Find("Globbington");
-        enemyCollider = this.GetComponent<Collider2D>();
+
+        this.gameObject.SetActive(!DespawnOnStart);
     }
 
     /// <summary>
@@ -65,19 +63,6 @@ public class EnemyBehavior : CharacterBehavior
         this.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
     }
 
-    private void BeStunned()
-    {
-        Speed = 0f;
-        enemyCollider.enabled = false;
-        Invoke("BeUnStunned", StunLength);
-    }
-
-    private void BeUnStunned()
-    {
-        Speed = DefaultSpeed;
-        enemyCollider.enabled = true;
-    }
-
     public override void OnTriggerEnter2D(Collider2D collision)
     {
         string tag = collision.gameObject.tag;
@@ -88,10 +73,6 @@ public class EnemyBehavior : CharacterBehavior
         else if (tag.Equals("Light"))
         {
             LayersOfLight++;
-        }
-        else if (tag.Equals("Flash"))
-        {
-            BeStunned();
         }
     }
 

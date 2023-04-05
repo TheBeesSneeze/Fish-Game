@@ -76,6 +76,22 @@ public class GorpController : PlayerController
         DecreaseLight.canceled += DecreaseLight_canceled;
     }
 
+    public IEnumerator AdjustLight()
+    {
+        Debug.Log("adjusting...");
+
+        while (currentlyIncrementing)
+        {
+            if (lightController.LightEnabled) //not part of while loop so player can turn on light while holding button and it will work
+            {
+                lightController.LightRadius = Mathf.Clamp(lightController.LightRadius + secretIncrement, MinLight, MaxLight);
+                lightController.UpdateLightRadius(LightIncrementDelay);
+            }
+
+            yield return new WaitForSeconds(LightIncrementDelay);
+        }
+    }
+
     private void ToggleLight(InputAction.CallbackContext obj)
     {
         lightController.LightEnabled = !lightController.LightEnabled;
@@ -128,21 +144,7 @@ public class GorpController : PlayerController
     /// Adds/subtracts LightIncrement to LightRadius, depending on 
     /// Applies changes to Gorp's light
     /// </summary>
-    public IEnumerator AdjustLight()
-    {
-        Debug.Log("adjusting...");
-
-        while (currentlyIncrementing)
-        {
-            if (lightController.LightEnabled) //not part of while loop so player can turn on light while holding button and it will work
-            {
-                lightController.LightRadius = Mathf.Clamp(lightController.LightRadius + secretIncrement, MinLight, MaxLight);
-                lightController.UpdateLightRadius(LightIncrementDelay);
-            }
-
-            yield return new WaitForSeconds(LightIncrementDelay);
-        }
-    }
+    
 
     private void IncreaseLight_started(InputAction.CallbackContext obj)
     {
