@@ -1,6 +1,6 @@
 /*******************************************************************************
 // File Name :         GorpController.cs
-// Author(s) :         Toby Schamberger
+// Author(s) :         Toby Schamberger, Sky Beal
 // Creation Date :     4/3/2023
 //
 // Brief Description : this code was written to optimize like 2 lines of code 
@@ -29,16 +29,19 @@ public class GorpController : PlayerController
     public float MinLight = 1f;
     public float MaxLight = 10f;
 
+    public float FlashLength = 5f;
+
     // Min/Max Light are the radius of Gorp's silly light
     [Header("Debug")]
     private bool togglingLight;
 
-    //A mysetrious, much more sinister, second thing
+    //A mysterious, much more sinister, fourth thing
     private bool currentlyIncrementing;
     private float secretIncrement;
     private Coroutine incrementCoroutine;
     private Coroutine decrementCoroutine; // i added a lot of unneccessary variables for a simple problem that was already working okay. but i want this game to be good man -Toby
     private LightController lightController;
+    public  GameObject FlashTrigger;
 
     // Start is called before the first frame update
     public override void Start()
@@ -64,17 +67,13 @@ public class GorpController : PlayerController
         ToggleLightAction.started += ToggleLight;
         ToggleLightAction.canceled += ReleaseToggle;
 
-        IncreaseLight.started += IncreaseLight_started;
-        IncreaseLight.canceled += IncreaseLight_canceled;
+        IncreaseLight.started += FishFlash;
+
+        //IncreaseLight.started += IncreaseLight_started;
+        //IncreaseLight.canceled += IncreaseLight_canceled;
 
         DecreaseLight.started += DecreaseLight_started;
         DecreaseLight.canceled += DecreaseLight_canceled;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     private void ToggleLight(InputAction.CallbackContext obj)
@@ -105,6 +104,24 @@ public class GorpController : PlayerController
     private void AttemptFlash() //theres an easy joke here
     {
 
+    }
+
+    private void FishFlash(InputAction.CallbackContext obj)
+    {
+        FlashTrigger.SetActive(true);
+
+        if (Rumble)
+        {
+            //InputDevice a = MyPlayerInput.devices[0];
+            MyGamepad.SetMotorSpeeds(0.20f, 0.30f);
+        }
+
+        Invoke("StopFlash", FlashLength);
+    }
+
+    private void StopFlash()
+    {
+        FlashTrigger.SetActive(false);
     }
 
     /// <summary>

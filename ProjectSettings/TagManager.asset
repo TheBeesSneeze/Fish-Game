@@ -8,6 +8,7 @@ TagManager:
   - Wall
   - Attack
   - Light
+  - Flash
   layers:
   - Default
   - TransparentFX

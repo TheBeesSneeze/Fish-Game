@@ -17,19 +17,10 @@ public class PipeTransportation : MonoBehaviour
     /// <summary>
     /// Public variables allow us to edit coordinates for each pipe
     /// </summary>
-    /// 
     public Vector2 OutputPosition;
     public float TransportationSpeed;
-    private GlobbingtonAttackController globbingtonController;
+
     GameObject globbington;
-
-    public void Start()
-    {
-
-        
-
-    }
-
     /// <summary>
     /// Detects when Globbington interacts with pipe
     /// </summary>
@@ -41,16 +32,6 @@ public class PipeTransportation : MonoBehaviour
         {
 
             globbington = collision.gameObject;
-
-            globbingtonController=globbington.GetComponent<GlobbingtonAttackController>();
-
-            if (globbingtonController.Rumble && globbingtonController.MyGamepad != null)
-            {
-
-                globbingtonController.MyGamepad.SetMotorSpeeds(0.30f, 0.30f);
-
-            }
-
             Invoke("Wait", TransportationSpeed);
 
         }
@@ -72,12 +53,6 @@ public class PipeTransportation : MonoBehaviour
     {
 
         globbington.transform.position = OutputPosition;
-        if (globbingtonController.Rumble)
-        {
-
-            globbingtonController.MyGamepad.SetMotorSpeeds(0f, 0f);
-
-        }
 
     }
 }
