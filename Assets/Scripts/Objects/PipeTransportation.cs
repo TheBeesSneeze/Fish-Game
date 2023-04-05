@@ -19,7 +19,6 @@ public class PipeTransportation : MonoBehaviour
     /// </summary>
     /// 
     public Vector2 OutputPosition;
-    public Vector2 Brazil;
     public float TransportationSpeed;
     private GlobbingtonAttackController globbingtonController;
     GameObject globbington;
@@ -62,7 +61,7 @@ public class PipeTransportation : MonoBehaviour
     public void Wait()
     {
 
-        globbington.transform.position = Brazil;
+        globbington.transform.position = new Vector2(100, 100);
         Invoke("Transportation", TransportationSpeed);
 
     }

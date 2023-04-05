@@ -29,6 +29,7 @@ public class CharacterBehavior : MonoBehaviour
     void Start()
     {
         Health = DefaultHealth;
+
         DefaultPosition = this.transform.position;
     }
 
