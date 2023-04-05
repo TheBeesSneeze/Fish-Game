@@ -11,10 +11,19 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    [Header("Settings")]
+    public float CameraLerpSamples;
+    public float CameraLerpSeconds;
+
+    [Header("Unity Stuff")]
     public RoomBehavior CurrentRoom;
-    void Start()
+
+    private Camera camera;
+    
+    public IEnumerator SlideCamera()
     {
-        
+
+        yield return new WaitForSeconds(CameraLerpSeconds);
     }
 
 }

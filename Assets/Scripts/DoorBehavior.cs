@@ -11,7 +11,6 @@ using UnityEngine;
 
 public class DoorBehavior : MonoBehaviour
 {
-
     GameObject gorp;
     GameObject globbington;
 
@@ -30,11 +29,14 @@ public class DoorBehavior : MonoBehaviour
 
             collision.gameObject.SetActive(false);
             Invoke("Kill", 1f);
-
+            RoomBehaviorInstance.Invoke("EnterRoom", 2f);
         }
 
     }
 
+    /// <summary>
+    /// Disables players
+    /// </summary>
     public void Kill()
     {
 
@@ -42,9 +44,7 @@ public class DoorBehavior : MonoBehaviour
         globbington = GameObject.Find("Globbington");
 
         gorp.SetActive(false);
-        globbington.SetActive(false);
-
-        RoomBehaviorInstance.Invoke("EnterRoom", 1f);
+        globbington.SetActive(false);       
     }
 
 }

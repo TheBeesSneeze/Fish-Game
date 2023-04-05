@@ -13,14 +13,14 @@ using UnityEngine;
 public class RoomBehavior : MonoBehaviour
 {
     [Header("Settings")]
-    public Vector3 CameraPosition;
-    public Vector3 GorpDefaultPosition;
-    public Vector3 GlobbingtonDefaultPosition;
+    public Transform CameraPosition;
+    public Transform PlayerStartPosition;
 
     [Header("Unity")]
     public List<GameObject> Enemies = new List<GameObject>();
-    private GameObject gorp;
-    private GameObject globbington;
+    public GameManager GameMaster; //DND REFERENCE!??!?!?!?!?!?!?!
+    private PlayerController gorpBehavior;
+    private PlayerController globbingtonBehavior;
 
     /// <summary>
     /// Spawns in Gorp and Globbington; respawns enemies from the inspector
@@ -28,18 +28,18 @@ public class RoomBehavior : MonoBehaviour
     public void EnterRoom()
     {
 
-        gorp = GameObject.Find("Gorp");
-        globbington = GameObject.Find("Globbington");
+        gorpBehavior        = GameObject.Find("Gorp"       ).GetComponent<PlayerController>();
+        globbingtonBehavior = GameObject.Find("Globbington").GetComponent<PlayerController>();
 
-        gorp.transform.position = GorpDefaultPosition;
-        globbington.transform.position = GlobbingtonDefaultPosition;
+        //gorp.transform.position = PlayerStartPosition.position;
+        //globbington.transform.position = PlayerStartPosition.position;
 
-        gorp.GetComponent<PlayerController>().DefaultPosition = GorpDefaultPosition;
-        globbington.GetComponent<PlayerController>().DefaultPosition = GlobbingtonDefaultPosition;
+        gorpBehavior       .DefaultPosition = PlayerStartPosition.position;
+        globbingtonBehavior.DefaultPosition = PlayerStartPosition.position;
 
 
-        gorp.SetActive(true);
-        globbington.SetActive(true);
+        GameObject.Find("Gorp"       ).SetActive(true);
+        GameObject.Find("globbington").SetActive(true);
 
         RespawnAll();
 
@@ -50,13 +50,13 @@ public class RoomBehavior : MonoBehaviour
     /// </summary>
     public void RespawnAll()
     {
+        gorpBehavior       .Respawn();
+        globbingtonBehavior.Respawn();
 
-        for(int i = 0; i <  Enemies.Count; i++)
+        for (int i = 0; i <  Enemies.Count; i++)
         {
-
             EnemyBehavior enemyBehaviorInstance = Enemies[i].GetComponent<EnemyBehavior>();
             enemyBehaviorInstance.Respawn();
-
         }
 
     }
