@@ -187,12 +187,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TakeKnockback: 1
   DefaultHealth: 3
-<<<<<<< Updated upstream
-  Speed: 0
-=======
+
   DefaultSpeed: 5
   Weight: 2
->>>>>>> Stashed changes
   Health: 0
   DefaultPosition: {x: 0, y: 0, z: 0}
   LayersOfLight: 0
