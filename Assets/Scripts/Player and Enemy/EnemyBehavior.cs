@@ -1,6 +1,6 @@
 /*******************************************************************************
 // File Name :         EnemyBehavior.cs
-// Author(s) :         Toby Schamberger
+// Author(s) :         Toby Schamberger, Sky Beal
 // Creation Date :     3/27/2023
 //
 // Brief Description : Basic code for enemy management. Specific enemy scripts
