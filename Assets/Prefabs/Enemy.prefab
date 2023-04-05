@@ -187,15 +187,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TakeKnockback: 1
   DefaultHealth: 3
-
-  DefaultSpeed: 5
-  Weight: 2
+  DefaultSpeed: 3
+  Weight: 3
   Health: 0
   DefaultPosition: {x: 0, y: 0, z: 0}
   LayersOfLight: 0
-  Speed: 0
+  Speed: 2.76
   NightVision: 0
-  StunLength: 7
+  StunLength: 0
 --- !u!114 &2945670061033812786
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -214,7 +213,6 @@ MonoBehaviour:
     m_Bits: 1728
   DarkVision: 0
   Speed: 1.5
-  InsideLight: 0
   CurrentTarget: {fileID: 0}
 --- !u!50 &2945670061033812785
 Rigidbody2D:

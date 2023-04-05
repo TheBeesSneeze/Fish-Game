@@ -283,11 +283,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TakeKnockback: 0
   DefaultHealth: 3
+  DefaultSpeed: 0
+  Weight: 1.75
   Health: 0
   DefaultPosition: {x: 0, y: 0, z: 0}
-  InsideLight: 0
-  insideLight: 0
+  LayersOfLight: 0
   Speed: 10
+  PlayerNumber: 0
+  Rumble: 0
   MyPlayerInput: {fileID: 4302747830044685625}
   Move:
     m_Name: Move
@@ -298,18 +301,10 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
-  Jump:
-    m_Name: Jump
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 4b4d445f-e041-4b91-b3b4-21906d9c6aa8
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
   ReadMove: 0
   AttackLength: 0.16
   Sword: {fileID: 1137317766113117558}
+  RotatePoint: {fileID: 7118317646495259653}
   Strike:
     m_Name: Strike
     m_Type: 0
@@ -319,7 +314,6 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
-  RotatePoint: {fileID: 7118317646495259653}
 --- !u!114 &4302747830044685625
 MonoBehaviour:
   m_ObjectHideFlags: 0
