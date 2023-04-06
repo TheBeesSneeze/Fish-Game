@@ -8,4 +8,5 @@ public class EnemyType : CharacterType
 {
     [Header("Enemy Exclusive")]
     public bool NightVision;
+    public bool StunnedByLight;
 }
