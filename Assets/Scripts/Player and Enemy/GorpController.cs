@@ -21,6 +21,7 @@ public class GorpController : PlayerController
 
     [Header("Settings")]
     public float FlashChargeTime = 1.0f;
+    public float FlashLength;
 
     public float LightIncrement = 0.1f;
     public float LightIncrementDelay = 0.1f;
@@ -29,7 +30,7 @@ public class GorpController : PlayerController
     public float MinLight = 1f;
     public float MaxLight = 10f;
 
-    public float FlashLength = 5f;
+    
 
     // Min/Max Light are the radius of Gorp's silly light
     [Header("Debug")]
@@ -92,7 +93,18 @@ public class GorpController : PlayerController
         }
     }
 
+    /// <summary>
+    /// Begins the players light switch journey!
+    /// </summary>
     private void ToggleLight(InputAction.CallbackContext obj)
+    {
+        
+
+        if(Rumble)
+            MyGamepad.SetMotorSpeeds(0.20f, 0.25f);
+    }
+
+    private void ReleaseToggle(InputAction.CallbackContext obj)
     {
         lightController.LightEnabled = !lightController.LightEnabled;
 
@@ -106,15 +118,8 @@ public class GorpController : PlayerController
         Invoke("AttemptFlash", FlashChargeTime);
         lightController.UpdateLightRadius(ToggleLightTime);
 
-        if(Rumble)
-            MyGamepad.SetMotorSpeeds(0.20f, 0.25f);
-    }
-
-    private void ReleaseToggle(InputAction.CallbackContext obj)
-    {
-
         if (Rumble)
-            MyGamepad.SetMotorSpeeds(0f,0f);
+            MyGamepad.SetMotorSpeeds(0f, 0f);
     }
 
     private void AttemptFlash() //theres an easy joke here

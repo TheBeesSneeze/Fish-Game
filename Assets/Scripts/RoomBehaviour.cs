@@ -17,8 +17,10 @@ public class RoomBehaviour : MonoBehaviour
     public Transform CameraPosition;
     public Transform PlayerStartPosition;
 
-    [Header("Unity")]
+    [Header("Drag Enemies into this list! Very important")]
     public List<GameObject> Enemies = new List<GameObject>();
+
+    [Header("You don't need to touch this:")]
     public GameManager GameMaster; //DND REFERENCE!??!?!?!?!?!?!?!
 
     /// <summary>

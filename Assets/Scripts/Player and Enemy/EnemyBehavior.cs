@@ -21,8 +21,10 @@ public class EnemyBehavior : CharacterBehavior
     [Header("Unity Jargain")]
     public bool DespawnOnStart = true;
     private EnemyDetection enemyDetection;
-    private GameObject gorp;
-    private GameObject globbington;
+
+    [Header("You don't need to touch this:")]
+    public GameObject gorp;
+    public GameObject globbington;
 
     /// <summary>
     /// Initializes variables for enemy respwning and finds unity components.
@@ -54,10 +56,16 @@ public class EnemyBehavior : CharacterBehavior
     {
         base.Respawn();
 
+        gorp = GameObject.Find("Gorp");
+        globbington = GameObject.Find("Globbington");
+
         //Enemy exclusive code:
         if (enemyDetection != null)
         {
             enemyDetection.CurrentTarget = null;
+            enemyDetection.Gorp = gorp;
+            enemyDetection.Globbington = globbington;
+            StartCoroutine(enemyDetection.SearchForPlayer());
         }
 
         this.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
