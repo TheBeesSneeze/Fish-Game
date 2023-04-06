@@ -15,28 +15,30 @@ using UnityEngine;
 
 public class EnemyBehavior : CharacterBehavior
 {
-    [Header("Enemy Attributes")]
-    public bool NightVision;
+    [Header("Attributes")]
+    public bool DespawnOnStart = true;
+    public EnemyType EnemyData;
+    private bool nightVision;
 
     [Header("Unity Jargain")]
-    public bool DespawnOnStart = true;
     private EnemyDetection enemyDetection;
 
     [Header("You don't need to touch this:")]
-    public GameObject gorp;
-    public GameObject globbington;
+    public GameObject Gorp;
+    public GameObject Globbington;
 
     /// <summary>
     /// Initializes variables for enemy respwning and finds unity components.
     /// </summary>
     public override void Start()
     {
-        base.Start();
+        SetAttributes();
+        DefaultPosition = this.transform.position;
 
         //Unity moment
         enemyDetection = gameObject.GetComponent<EnemyDetection>();
-        gorp        = GameObject.Find("Gorp");
-        globbington = GameObject.Find("Globbington");
+        Gorp        = GameObject.Find("Gorp");
+        Globbington = GameObject.Find("Globbington");
 
         this.gameObject.SetActive(!DespawnOnStart);
     }
@@ -55,16 +57,17 @@ public class EnemyBehavior : CharacterBehavior
     public override void Respawn()
     {
         base.Respawn();
+        SetAttributes();
 
-        gorp = GameObject.Find("Gorp");
-        globbington = GameObject.Find("Globbington");
+        Gorp = GameObject.Find("Gorp");
+        Globbington = GameObject.Find("Globbington");
 
         //Enemy exclusive code:
         if (enemyDetection != null)
         {
             enemyDetection.CurrentTarget = null;
-            enemyDetection.Gorp = gorp;
-            enemyDetection.Globbington = globbington;
+            enemyDetection.Gorp = Gorp;
+            enemyDetection.Globbington = Globbington;
             StartCoroutine(enemyDetection.SearchForPlayer());
         }
 
@@ -102,5 +105,14 @@ public class EnemyBehavior : CharacterBehavior
             }
                 
         }
+    }
+
+    /// <summary>
+    /// Sets variables to those in EnemyData
+    /// </summary>
+    public override void SetAttributes()
+    {
+        base.SetAttributes();
+        nightVision = EnemyData.NightVision;
     }
 }

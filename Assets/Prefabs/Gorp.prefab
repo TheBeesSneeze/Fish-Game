@@ -494,14 +494,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9a93f36c75542f459d2606feb1ca299, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TakeKnockback: 0
-  DefaultHealth: 5
-  DefaultSpeed: 10
-  Weight: 1.5
+  CharacterData: {fileID: 11400000, guid: 7a5fbf452c3d09b4590c3c0ffed95971, type: 2}
   LayersOfLight: 1
   Health: 0
-  DefaultPosition: {x: 0, y: 0, z: 0}
   Speed: 5.93
+  DefaultPosition: {x: 0, y: 0, z: 0}
   PlayerNumber: 0
   gameManager: {fileID: 0}
   Rumble: 0
@@ -544,12 +541,12 @@ MonoBehaviour:
     m_SingletonActionBindings: []
     m_Flags: 0
   FlashChargeTime: 1
+  FlashLength: 5
   LightIncrement: 0.1
   LightIncrementDelay: 0.1
   ToggleLightTime: 0.2
   MinLight: 1
   MaxLight: 10
-  FlashLength: 5
   FlashTrigger: {fileID: 4950820922443560528}
 --- !u!114 &5052205749001080560
 MonoBehaviour:

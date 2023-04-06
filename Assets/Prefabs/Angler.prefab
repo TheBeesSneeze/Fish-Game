@@ -284,6 +284,7 @@ MonoBehaviour:
   LightRadius: 0
   LightTrigger: {fileID: 8424242786050448918}
   LightSource: {fileID: 8424242786050448916}
+  TransitionFrames: 20
 --- !u!114 &8424242787238129983
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -296,13 +297,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70a7ff42c45998049ac5c742113953ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TakeKnockback: 0
-  DefaultHealth: 3
-  Speed: 0
-  Health: 0
-  DefaultPosition: {x: 0, y: 0, z: 0}
+  CharacterData: {fileID: 11400000, guid: f6faf0377237e1b4ea33341bd2fb2176, type: 2}
   LayersOfLight: 0
-  NightVision: 0
+  health: 0
+  Speed: 0
+  DefaultPosition: {x: 0, y: 0, z: 0}
+  DespawnOnStart: 1
+  EnemyData: {fileID: 11400000, guid: f6faf0377237e1b4ea33341bd2fb2176, type: 2}
+  Gorp: {fileID: 0}
+  Globbington: {fileID: 0}
 --- !u!58 &1330445948128464973
 CircleCollider2D:
   m_ObjectHideFlags: 0

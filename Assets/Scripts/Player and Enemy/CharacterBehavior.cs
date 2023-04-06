@@ -14,27 +14,27 @@ using UnityEngine;
 public class CharacterBehavior : MonoBehaviour
 {
     [Header("Attributes")]
-    public bool TakeKnockback; // Weight determines distance knocked back. 0 = no knockback. 10 = across the room
-    public int DefaultHealth;
-
-    public float DefaultSpeed;
-    public float Weight;// Weight determines distance knocked back. 0 = no knockback. 10 = across the room. less than 0 is funny.
+    public CharacterType CharacterData;
+    private bool takeKnockback=true; // Weight determines distance knocked back. 0 = no knockback. 10 = across the room
+    
+    private float weight;// Weight determines distance knocked back. 0 = no knockback. 10 = across the room. less than 0 is funny.
 
     [Header("Debug (don't touch in editor)")]
     public int LayersOfLight;
-    public int Health;
-    public Vector3 DefaultPosition;
+    public int health;
     public float Speed;
+    public Vector3 DefaultPosition;
 
     /// <summary>
     /// Sets Health to the Default
     /// </summary>
     public virtual void Start()
     {
-        Speed = DefaultSpeed;
-        Health = DefaultHealth;
+        SetAttributes();
         DefaultPosition = this.transform.position;
     }
+
+
 
     /// <summary>
     /// Decreases the enemies health
@@ -45,12 +45,12 @@ public class CharacterBehavior : MonoBehaviour
     /// <param name="damageSourcePosition">Ideally the players transform</param>
     public virtual void TakeDamage(int damage, Vector3 damageSourcePosition)
     {
-        Health -= damage;
+        health -= damage;
 
-        if(Health <= 0) 
+        if(health <= 0) 
             Die();
 
-        else if(TakeKnockback)
+        else if(takeKnockback)
             KnockBack(this.gameObject, damageSourcePosition);
     }
 
@@ -95,7 +95,18 @@ public class CharacterBehavior : MonoBehaviour
     public virtual void Respawn()
     {
         this.gameObject.SetActive(true);
-        Health = DefaultHealth;
         this.transform.position = DefaultPosition;
+        SetAttributes();
+    }
+
+    /// <summary>
+    /// Sets variables to those in EnemyData
+    /// </summary>
+    public virtual void SetAttributes()
+    {
+        health = CharacterData.Health;
+        Speed = CharacterData.Speed;
+        weight = CharacterData.Weight;
+        takeKnockback = CharacterData.TakeKnockback;
     }
 }

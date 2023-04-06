@@ -185,16 +185,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d26583894c5073045b211a3e613bc149, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TakeKnockback: 1
-  DefaultHealth: 3
-  DefaultSpeed: 3
-  Weight: 3
-  Health: 0
-  DefaultPosition: {x: 0, y: 0, z: 0}
+  CharacterData: {fileID: 11400000, guid: d05126ff53fcb994b91ba4424d03b09d, type: 2}
   LayersOfLight: 0
+  health: 0
   Speed: 2.76
-  NightVision: 0
-  StunLength: 0
+  DefaultPosition: {x: 0, y: 0, z: 0}
+  DespawnOnStart: 1
+  EnemyData: {fileID: 11400000, guid: d05126ff53fcb994b91ba4424d03b09d, type: 2}
+  Gorp: {fileID: 0}
+  Globbington: {fileID: 0}
 --- !u!114 &2945670061033812786
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -212,8 +211,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1728
   DarkVision: 0
-  Speed: 1.5
   CurrentTarget: {fileID: 0}
+  Gorp: {fileID: 0}
+  Globbington: {fileID: 0}
 --- !u!50 &2945670061033812785
 Rigidbody2D:
   serializedVersion: 4

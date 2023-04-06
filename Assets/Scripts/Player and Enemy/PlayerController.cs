@@ -41,9 +41,9 @@ public class PlayerController : CharacterBehavior
     public override void Start()
     {
         base.Start();
-        Health = DefaultHealth;
 
         myRb = GetComponent<Rigidbody2D>();
+        gameManager = GameObject.FindObjectOfType<GameManager>();
 
         MyPlayerInput.actions.Enable();
         Move = MyPlayerInput.actions.FindAction("Move");
