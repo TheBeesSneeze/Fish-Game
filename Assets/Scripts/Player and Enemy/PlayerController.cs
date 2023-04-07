@@ -18,7 +18,7 @@ public class PlayerController : CharacterBehavior
     public int PlayerNumber;
 
     private Rigidbody2D myRb;
-    public GameManager gameManager;
+    private GameManager gameManager;
 
     [Header("Controller stuff:")]
 

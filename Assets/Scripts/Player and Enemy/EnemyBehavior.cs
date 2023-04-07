@@ -19,6 +19,7 @@ public class EnemyBehavior : CharacterBehavior
     public bool DespawnOnStart = true;
     public EnemyType EnemyData;
     private bool nightVision;
+    private bool stunnedByLight;
 
     [Header("Unity Jargain")]
     private EnemyDetection enemyDetection;

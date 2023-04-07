@@ -104,9 +104,9 @@ public class CharacterBehavior : MonoBehaviour
     /// </summary>
     public virtual void SetAttributes()
     {
-        health = CharacterData.Health;
-        Speed = CharacterData.Speed;
-        weight = CharacterData.Weight;
+        health        = CharacterData.Health;
+        Speed         = CharacterData.Speed;
+        weight        = CharacterData.Weight;
         takeKnockback = CharacterData.TakeKnockback;
     }
 }
