@@ -12,8 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3117d9298812b284b91b01da03d2488f, type: 3}
   m_Name: Angler
   m_EditorClassIdentifier: 
-  Health: 0
+  Health: 3
   Speed: 0
-  Weight: 0
+  Weight: 10
   TakeKnockback: 0
+  SightDistance: 0
+  UnsightDistance: 0
   NightVision: 0
+  StunnedByFlash: 0
+  HurtByFlash: 0
+  StunDuration: 0
+  ImmuneToElectricity: 0

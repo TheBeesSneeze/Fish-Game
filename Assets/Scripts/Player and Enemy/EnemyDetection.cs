@@ -28,9 +28,10 @@ using UnityEngine.InputSystem;
 public class EnemyDetection : MonoBehaviour
 {
     [Header("Settings")]
-    public float SightDistance = 8f;
     public LayerMask LM;
-    public bool DarkVision = false;
+    private float sightDistance;
+    private float unsightDistance;
+    private bool darkVision;
 
     [Header("Dynamic Variables")]
     public  GameObject CurrentTarget;
@@ -41,6 +42,7 @@ public class EnemyDetection : MonoBehaviour
     public GameObject Globbington;
     private Rigidbody2D rb;
     private EnemyBehavior enemyBehavior;
+    private EnemyType enemyData;
 
     /// <summary>
     /// Finds Gorp and Globbington and starts searching for them
@@ -48,8 +50,13 @@ public class EnemyDetection : MonoBehaviour
     void Start()
     {
         enemyBehavior=GetComponent<EnemyBehavior>();
+        enemyData = enemyBehavior.EnemyData;
+        SetAttributes();
+
         rb = GetComponent<Rigidbody2D>();
         StartCoroutine(SearchForPlayer());
+
+        
     }
 
     /// <summary>
@@ -117,7 +124,7 @@ public class EnemyDetection : MonoBehaviour
         Vector3 direction = target.transform.position - origin;
 
         // Cast the raycast and get the hit information
-        var hit = Physics2D.Raycast(origin, direction, SightDistance, LM);
+        var hit = Physics2D.Raycast(origin, direction, sightDistance, LM);
 
         //Searching for a victim!
         if (hit)
@@ -130,7 +137,7 @@ public class EnemyDetection : MonoBehaviour
 
                 PlayerController tempTargetController = hit.collider.GetComponent<PlayerController>();
 
-                if (tempTargetController.LayersOfLight > 0)
+                if (tempTargetController.LayersOfLight > 0 || darkVision)
                 {
                     return true;
                 }
@@ -164,4 +171,17 @@ public class EnemyDetection : MonoBehaviour
 
         rb.velocity = Vector2.zero;
     }
+
+    /// <summary>
+    /// Copies data from enemyData!
+    /// </summary>
+    public void SetAttributes()
+    {
+        sightDistance = enemyData.SightDistance;
+        unsightDistance = enemyData.UnsightDistance;
+        darkVision = enemyData.NightVision;
+        
+        //TODO
+    }
 }
+
