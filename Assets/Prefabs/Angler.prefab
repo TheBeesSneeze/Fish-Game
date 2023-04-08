@@ -15,7 +15,7 @@ GameObject:
   m_Layer: 8
   m_Name: Angler Light
   m_TagString: Enemy
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3443629218296621865, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -196,7 +196,7 @@ GameObject:
   m_Layer: 8
   m_Name: Angler
   m_TagString: Enemy
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -282,6 +282,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LightEnabled: 1
   LightRadius: 0
+  InnerRadiusDivisionFactor: 2
   LightTrigger: {fileID: 8424242786050448918}
   LightSource: {fileID: 8424242786050448916}
   TransitionFrames: 20
@@ -297,10 +298,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70a7ff42c45998049ac5c742113953ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CharacterData: {fileID: 11400000, guid: f6faf0377237e1b4ea33341bd2fb2176, type: 2}
   LayersOfLight: 0
-  health: 0
+  Health: 0
   Speed: 0
+  TakeKnockback: 0
+  ImmuneToElectricity: 0
+  Weight: 0
   DefaultPosition: {x: 0, y: 0, z: 0}
   DespawnOnStart: 1
   EnemyData: {fileID: 11400000, guid: f6faf0377237e1b4ea33341bd2fb2176, type: 2}

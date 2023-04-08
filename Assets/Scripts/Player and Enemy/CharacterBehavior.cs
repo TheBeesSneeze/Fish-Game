@@ -38,17 +38,34 @@ public class CharacterBehavior : MonoBehaviour
     /// TODO: can't be done until globbingtons attack done.
     /// </summary>
     /// <param name="damage">Amt of damage taken</param>
-    /// <param name="takeKnockback">Whether the enemy moves away from damageSourcePosition</param>
     /// <param name="damageSourcePosition">Ideally the players transform</param>
-    public virtual void TakeDamage(int damage, Vector3 damageSourcePosition)
+    /// <returns>true if character died</returns>
+    public virtual bool TakeDamage(int damage, Vector3 damageSourcePosition)
+    {
+        if ( TakeDamage(damage) )
+            return true;
+
+        if(TakeKnockback)
+            KnockBack(this.gameObject, damageSourcePosition);
+
+        return false;
+    }
+
+    /// <summary>
+    /// Takes damage without any knockback
+    /// </summary>
+    /// <param name="damage">Amt of damage taken</param>
+    /// <returns>true if character died</returns>
+    public virtual bool TakeDamage(int damage)
     {
         Health -= damage;
 
-        if(Health <= 0) 
+        if (Health <= 0)
+        {
             Die();
-
-        else if(TakeKnockback)
-            KnockBack(this.gameObject, damageSourcePosition);
+            return true;
+        }
+        return false;
     }
 
     /// <summary>
@@ -85,6 +102,19 @@ public class CharacterBehavior : MonoBehaviour
         Debug.Log("Override this function!!!!");
     }
 
+    /// <summary>
+    /// if the character is not immune to electricity they will get stunned
+    /// TODO: that
+    /// </summary>
+    public virtual void GetElectrified()
+    {
+        if( ! ImmuneToElectricity ) 
+        {
+            //Stun
+            TakeDamage(1);
+        }
+    }
+
     public virtual void OnTriggerEnter2D(Collider2D collision)
     {
         string tag = collision.gameObject.tag;
@@ -96,6 +126,7 @@ public class CharacterBehavior : MonoBehaviour
         if (tag.Equals("Electricity") && !ImmuneToElectricity)
         {
             Debug.Log(collision.gameObject.name + " was zapped! idk how this code is gonna work yet tbh");
+            GetElectrified();
         }
     }
 

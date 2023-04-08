@@ -9,6 +9,7 @@ TagManager:
   - Attack
   - Light
   - Flash
+  - Electricity
   layers:
   - Default
   - TransparentFX
