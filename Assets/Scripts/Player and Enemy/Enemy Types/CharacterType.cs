@@ -18,7 +18,7 @@ public class CharacterType : ScriptableObject
     [Header("Settings")]
     public int Health;
     public float Speed;
-    public float Weight;
+    public float Weight; //TODO
 
     public bool TakeKnockback;
 }

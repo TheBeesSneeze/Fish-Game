@@ -18,7 +18,6 @@ public class EnemyBehavior : CharacterBehavior
     [Header("Attributes")]
     public bool DespawnOnStart = true;
     public EnemyType EnemyData;
-    private bool nightVision;
     private bool stunnedByLight;
 
     [Header("Unity Jargain")]
@@ -114,6 +113,6 @@ public class EnemyBehavior : CharacterBehavior
     public override void SetAttributes()
     {
         base.SetAttributes();
-        nightVision = EnemyData.NightVision;
+
     }
 }

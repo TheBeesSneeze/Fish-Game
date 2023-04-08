@@ -89,7 +89,7 @@ public class CharacterBehavior : MonoBehaviour
     /// </summary>
     public virtual void Die()
     {
-        Debug.Log(this.gameObject.name + " has died! if youre reading this text! you will soon! override this function!");
+        Debug.Log(this.gameObject.name + " has died! if youre reading this text, you will soon! override this function!");
     }
 
     public virtual void Respawn()
