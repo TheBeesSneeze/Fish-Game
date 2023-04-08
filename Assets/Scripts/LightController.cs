@@ -36,7 +36,7 @@ public class LightController : MonoBehaviour
         //just ironing things out...
         LightRadius = LightSource.pointLightOuterRadius;
         LightTrigger.radius = LightRadius;
-        LightEnabled = (LightRadius >= 0);
+        //LightEnabled = (LightRadius >= 0);
         UpdateLightRadius();
     }
 

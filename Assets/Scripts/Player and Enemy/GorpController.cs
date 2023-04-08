@@ -98,8 +98,6 @@ public class GorpController : PlayerController
     /// </summary>
     private void ToggleLight(InputAction.CallbackContext obj)
     {
-        
-
         if(Rumble)
             MyGamepad.SetMotorSpeeds(0.20f, 0.25f);
     }
@@ -130,6 +128,7 @@ public class GorpController : PlayerController
     private void FishFlash(InputAction.CallbackContext obj)
     {
         FlashTrigger.SetActive(true);
+        FlashTrigger.GetComponent<Collider2D>().enabled = true;
 
         if (Rumble)
         {

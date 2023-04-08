@@ -101,7 +101,7 @@ GameObject:
   m_Layer: 8
   m_Name: Enemy
   m_TagString: Enemy
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -185,10 +185,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d26583894c5073045b211a3e613bc149, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CharacterData: {fileID: 11400000, guid: d05126ff53fcb994b91ba4424d03b09d, type: 2}
   LayersOfLight: 0
-  health: 0
+  Health: 0
   Speed: 2.76
+  TakeKnockback: 0
+  ImmuneToElectricity: 0
+  Weight: 0
   DefaultPosition: {x: 0, y: 0, z: 0}
   DespawnOnStart: 1
   EnemyData: {fileID: 11400000, guid: d05126ff53fcb994b91ba4424d03b09d, type: 2}
@@ -206,11 +208,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4e2d28f380edc744b71fd387544d615, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SightDistance: 15
   LM:
     serializedVersion: 2
     m_Bits: 1728
-  DarkVision: 0
   CurrentTarget: {fileID: 0}
   Gorp: {fileID: 0}
   Globbington: {fileID: 0}

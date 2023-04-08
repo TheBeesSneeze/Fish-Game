@@ -23,6 +23,8 @@ public class JellyfishBehavior : EnemyBehavior
     public float MinDistanceLight;
     [Tooltip("How bright light will be at its brightest")]
     public float MaxLightRadius;
+    [Tooltip("How intense light will be at its intensest")]
+    public float MaxIntensity;
 
     [Header("Unity")]
     public GameObject PassiveElectricityTrigger;
@@ -60,10 +62,12 @@ public class JellyfishBehavior : EnemyBehavior
                 PassiveElectricityTrigger.SetActive(true);
                 ElectrifyingTrigger.SetActive(false);
                 break;
+
             case JellyfishState.Electrifying:
                 PassiveElectricityTrigger.SetActive(false);
-                ElectrifyingTrigger.SetActive(false);
+                ElectrifyingTrigger.SetActive(true);
                 break;
+
             case JellyfishState.Weakened:
                 PassiveElectricityTrigger.SetActive(false);
                 ElectrifyingTrigger.SetActive(false);
@@ -78,12 +82,15 @@ public class JellyfishBehavior : EnemyBehavior
             if (JellyState.Equals(JellyfishState.Passive))
             {
                 float closestPlayer = GetDistanceOfClosestTag(this.transform.position, "Player");
-                Debug.Log(closestPlayer);
 
                 if(closestPlayer < MinDistanceLight && closestPlayer!=-1)
                 {
+                    float p = (MinDistanceLight - closestPlayer) / MinDistanceLight;
+                    float radius = p * MaxLightRadius;
+
                     lightController.LightEnabled = true;
-                    lightController.LightRadius = ( (MinDistanceLight-closestPlayer) / MinDistanceLight) * MaxLightRadius;
+                    lightController.LightRadius = radius;
+                    lightController.LightSource.intensity = (p * MaxIntensity);
                     lightController.UpdateLightRadius(0.3f, false);
                     yield return new WaitForSeconds(0.35f);
                 }
@@ -107,17 +114,18 @@ public class JellyfishBehavior : EnemyBehavior
     /// It can only be damaged when weakened.
     /// Nothing happens during electrifying.
     /// </summary>
-    public virtual void OnCollisionEnter2D(Collision2D collision) //Collider2D collision)
+    public override void OnTriggerEnter2D(Collider2D collider) //Collider2D collision)
     {
-        string tag = collision.gameObject.tag;
+        string tag = collider.tag;
 
         // Start electric blast
         if( JellyState.Equals( JellyfishState.Passive ) )
         {
-            if(tag.Equals( "Flash" ) || tag.Equals("Player") ) //2nd part for debug
+            if(tag.Equals("Flash") || tag.Equals("Electricity")) //2nd part for debug
             {
+                Debug.Log("Electric avenue");
                 SetState(JellyfishState.Electrifying);
-                KnockBack(collision.gameObject, transform.position); // knocks the player back
+                KnockBack(collider.GetComponentInParent<GameObject>(), transform.position); // knocks the player back
             }
         }
     }

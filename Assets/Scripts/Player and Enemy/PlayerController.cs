@@ -93,6 +93,12 @@ public class PlayerController : CharacterBehavior
         ResetScene();
     }
 
+    public override void Respawn()
+    {
+        base.Respawn();
+        SetAttributes();
+    }
+
     /// <summary>
     /// When player dies, set both players to their starting positions.
     /// Also sends enemies to their start.
@@ -108,7 +114,7 @@ public class PlayerController : CharacterBehavior
 
         gorp.Respawn();
 
-        if(globbington!=null) 
+        if(globbington!=null)
             globbington.Respawn();
 
         //Reset enemies:
