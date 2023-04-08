@@ -78,7 +78,6 @@ public class JellyfishBehavior : EnemyBehavior
             if (JellyState.Equals(JellyfishState.Passive))
             {
                 float closestPlayer = GetDistanceOfClosestTag(this.transform.position, "Player");
-                Debug.Log(closestPlayer);
 
                 if(closestPlayer < MinDistanceLight && closestPlayer!=-1)
                 {
