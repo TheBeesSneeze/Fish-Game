@@ -261,8 +261,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 2
-  m_AngularDrag: 0.05
+  m_LinearDrag: 8
+  m_AngularDrag: 0
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -281,13 +281,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c949fa671513e914e9b82702ec377124, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CharacterData: {fileID: 11400000, guid: 7f175cdaa82c39e47abd86895c531c1c, type: 2}
   LayersOfLight: 0
   Health: 0
   Speed: 10
+  TakeKnockback: 0
+  ImmuneToElectricity: 0
+  Weight: 0
   DefaultPosition: {x: 0, y: 0, z: 0}
+  CharacterData: {fileID: 11400000, guid: 7f175cdaa82c39e47abd86895c531c1c, type: 2}
   PlayerNumber: 0
-  gameManager: {fileID: 0}
   Rumble: 0
   MyPlayerInput: {fileID: 4302747830044685625}
   Move:

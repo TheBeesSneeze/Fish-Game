@@ -25,4 +25,6 @@ public class CharacterType : ScriptableObject
     public float Weight; //TODO
     [Tooltip("If damage knocks character back")]
     public bool TakeKnockback;
+    [Tooltip("If the character takes damage from electricity")]
+    public bool ImmuneToElectricity; //TODO*
 }

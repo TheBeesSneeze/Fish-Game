@@ -21,8 +21,6 @@ public class EnemyType : CharacterType
     public bool  HurtByFlash        ; //TODO
     public float StunDuration       ; //TODO
 
-    public bool  ImmuneToElectricity; //TODO*
-
     [Header("Detection:")]
 
     public float SightDistance      ;

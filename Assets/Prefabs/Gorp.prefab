@@ -494,13 +494,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9a93f36c75542f459d2606feb1ca299, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CharacterData: {fileID: 11400000, guid: 7a5fbf452c3d09b4590c3c0ffed95971, type: 2}
   LayersOfLight: 1
   Health: 0
-  Speed: 5.93
+  Speed: 0
+  TakeKnockback: 0
+  ImmuneToElectricity: 0
+  Weight: 0
   DefaultPosition: {x: 0, y: 0, z: 0}
+  CharacterData: {fileID: 11400000, guid: 7a5fbf452c3d09b4590c3c0ffed95971, type: 2}
   PlayerNumber: 0
-  gameManager: {fileID: 0}
   Rumble: 0
   MyPlayerInput: {fileID: 8678797230697677920}
   Move:
@@ -562,6 +564,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LightEnabled: 0
   LightRadius: 5
+  InnerRadiusDivisionFactor: 2
   LightTrigger: {fileID: 964516673680466274}
   LightSource: {fileID: 5168131707846391277}
   TransitionFrames: 20
@@ -578,7 +581,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 1.43
+  m_LinearDrag: 7.5
   m_AngularDrag: 0
   m_GravityScale: 0
   m_Material: {fileID: 0}

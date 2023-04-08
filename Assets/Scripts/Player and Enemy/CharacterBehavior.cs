@@ -14,14 +14,13 @@ using UnityEngine;
 
 public class CharacterBehavior : MonoBehaviour
 {    
-    
-    
     [Header("Debug (don't touch in editor)")]
 
     public int LayersOfLight;
     public int Health;
     public float Speed;
-    public bool TakeKnockback; 
+    public bool TakeKnockback;
+    public bool ImmuneToElectricity;
     
     public float Weight; 
     public Vector3 DefaultPosition;
@@ -31,11 +30,8 @@ public class CharacterBehavior : MonoBehaviour
     /// </summary>
     public virtual void Start()
     {
-        SetAttributes();
         DefaultPosition = this.transform.position;
     }
-
-
 
     /// <summary>
     /// Decreases the enemies health
@@ -55,25 +51,6 @@ public class CharacterBehavior : MonoBehaviour
             KnockBack(this.gameObject, damageSourcePosition);
     }
 
-    public virtual void OnTriggerEnter2D(Collider2D collision)
-    {
-        string tag = collision.gameObject.tag;
-        
-        if (tag.Equals("Light"))
-        {
-            LayersOfLight++;
-        }
-    }
-
-    public virtual void OnTriggerExit2D(Collider2D collision)
-    {
-        string tag = collision.gameObject.tag;
-        if (tag.Equals("Light"))
-        {
-            LayersOfLight--;
-        }
-    }
-
     /// <summary>
     /// Knocks back target away from damageSourcePosition
     /// </summary>
@@ -81,8 +58,8 @@ public class CharacterBehavior : MonoBehaviour
     /// <param name="damageSourcePosition"></param>
     public virtual void KnockBack(GameObject target, Vector3 damageSourcePosition)
     {
-        Vector3 positionDifference = damageSourcePosition - this.gameObject.transform.position;
-        this.transform.position -= positionDifference;
+        Vector3 positionDifference = damageSourcePosition - target.transform.position;
+        target.transform.position -= positionDifference;
     }
 
     /// <summary>
@@ -106,5 +83,55 @@ public class CharacterBehavior : MonoBehaviour
     public virtual void SetAttributes()
     {
         Debug.Log("Override this function!!!!");
+    }
+
+    public virtual void OnTriggerEnter2D(Collider2D collision)
+    {
+        string tag = collision.gameObject.tag;
+
+        if (tag.Equals("Light"))
+        {
+            LayersOfLight++;
+        }
+        if (tag.Equals("Electricity") && !ImmuneToElectricity)
+        {
+            Debug.Log(collision.gameObject.name + " was zapped! idk how this code is gonna work yet tbh");
+        }
+    }
+
+    public virtual void OnTriggerExit2D(Collider2D collision)
+    {
+        string tag = collision.gameObject.tag;
+        if (tag.Equals("Light"))
+        {
+            LayersOfLight--;
+        }
+    }
+
+    /// <summary>
+    /// Compares the position of every gameobject with tag to point.
+    /// </summary>
+    /// <returns>closest distance</returns>
+    public float GetDistanceOfClosestTag(Vector2 Point, string Tag)
+    {
+        GameObject[] objs = GameObject.FindGameObjectsWithTag(Tag);
+
+        float min = -1;
+
+        if(objs.Length > 0) // yk, javascript wouldnt make me do this
+        {
+            min = Vector2.Distance(Point, objs[0].transform.position);
+
+            for (int i = 0; i < objs.Length; i++)
+            {
+                float dist = Vector2.Distance(Point, objs[i].transform.position);
+
+                if (min > dist)
+                    min = dist;
+            }
+        }
+        
+
+        return min;
     }
 }

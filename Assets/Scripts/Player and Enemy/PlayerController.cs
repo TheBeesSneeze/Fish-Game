@@ -42,6 +42,7 @@ public class PlayerController : CharacterBehavior
     public override void Start()
     {
         base.Start();
+        SetAttributes();
 
         myRb = GetComponent<Rigidbody2D>();
         gameManager = GameObject.FindObjectOfType<GameManager>();
@@ -60,7 +61,7 @@ public class PlayerController : CharacterBehavior
     }
 
     /// <summary>
-    /// Sets variables to those in EnemyData
+    /// Sets variables to those in CharacterData
     /// </summary>
     public virtual void SetAttributes()
     {
@@ -68,6 +69,7 @@ public class PlayerController : CharacterBehavior
         Speed = CharacterData.Speed;
         Weight = CharacterData.Weight;
         TakeKnockback = CharacterData.TakeKnockback;
+        ImmuneToElectricity = CharacterData.ImmuneToElectricity;
     }
 
     /// <summary>
@@ -123,6 +125,10 @@ public class PlayerController : CharacterBehavior
         if (tag.Equals("Enemy"))
         {
             TakeDamage(1, collision.transform.position);
+        }
+        if(tag.Equals("Player"))
+        {
+            KnockBack(this.gameObject, collision.transform.position);
         }
     }
 

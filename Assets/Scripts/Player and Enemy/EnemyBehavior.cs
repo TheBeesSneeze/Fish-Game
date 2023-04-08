@@ -117,6 +117,6 @@ public class EnemyBehavior : CharacterBehavior
         Speed = EnemyData.Speed;
         Weight = EnemyData.Weight;
         TakeKnockback = EnemyData.TakeKnockback;
-
+        ImmuneToElectricity = EnemyData.ImmuneToElectricity;
     }
 }
