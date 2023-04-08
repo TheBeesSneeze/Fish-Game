@@ -9,20 +9,21 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CharacterBehavior : MonoBehaviour
-{
-    [Header("Attributes")]
-    public CharacterType CharacterData;
-    private bool takeKnockback=true; // Weight determines distance knocked back. 0 = no knockback. 10 = across the room
+{    
     
-    private float weight;// Weight determines distance knocked back. 0 = no knockback. 10 = across the room. less than 0 is funny.
-
+    
     [Header("Debug (don't touch in editor)")]
+
     public int LayersOfLight;
-    public int health;
+    public int Health;
     public float Speed;
+    public bool TakeKnockback; 
+    
+    public float Weight; 
     public Vector3 DefaultPosition;
 
     /// <summary>
@@ -45,12 +46,12 @@ public class CharacterBehavior : MonoBehaviour
     /// <param name="damageSourcePosition">Ideally the players transform</param>
     public virtual void TakeDamage(int damage, Vector3 damageSourcePosition)
     {
-        health -= damage;
+        Health -= damage;
 
-        if(health <= 0) 
+        if(Health <= 0) 
             Die();
 
-        else if(takeKnockback)
+        else if(TakeKnockback)
             KnockBack(this.gameObject, damageSourcePosition);
     }
 
@@ -104,9 +105,6 @@ public class CharacterBehavior : MonoBehaviour
     /// </summary>
     public virtual void SetAttributes()
     {
-        health        = CharacterData.Health;
-        Speed         = CharacterData.Speed;
-        weight        = CharacterData.Weight;
-        takeKnockback = CharacterData.TakeKnockback;
+        Debug.Log("Override this function!!!!");
     }
 }

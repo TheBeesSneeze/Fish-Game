@@ -16,9 +16,13 @@ using UnityEngine;
 public class CharacterType : ScriptableObject
 {
     [Header("Settings")]
-    public int Health;
-    public float Speed;
-    public float Weight; //TODO
 
+    [Tooltip("How much health the character has by default")]
+    public int Health;
+    [Tooltip("Speed of character. 0 means no movement")]
+    public float Speed;
+    [Tooltip("Weight determines distance knocked back. 0 = no knockback. 10 = across the room.less than 0 is funny.")]
+    public float Weight; //TODO
+    [Tooltip("If damage knocks character back")]
     public bool TakeKnockback;
 }

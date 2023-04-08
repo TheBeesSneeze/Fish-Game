@@ -11,6 +11,7 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.U2D.Animation;
 using UnityEngine;
 
 public class EnemyBehavior : CharacterBehavior
@@ -112,7 +113,10 @@ public class EnemyBehavior : CharacterBehavior
     /// </summary>
     public override void SetAttributes()
     {
-        base.SetAttributes();
+        Health = EnemyData.Health;
+        Speed = EnemyData.Speed;
+        Weight = EnemyData.Weight;
+        TakeKnockback = EnemyData.TakeKnockback;
 
     }
 }

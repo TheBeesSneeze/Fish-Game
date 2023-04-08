@@ -15,6 +15,7 @@ using UnityEngine.InputSystem.Utilities;
 
 public class PlayerController : CharacterBehavior
 {
+    public CharacterType CharacterData;
     public int PlayerNumber;
 
     private Rigidbody2D myRb;
@@ -57,7 +58,18 @@ public class PlayerController : CharacterBehavior
 
         
     }
-    
+
+    /// <summary>
+    /// Sets variables to those in EnemyData
+    /// </summary>
+    public virtual void SetAttributes()
+    {
+        Health = CharacterData.Health;
+        Speed = CharacterData.Speed;
+        Weight = CharacterData.Weight;
+        TakeKnockback = CharacterData.TakeKnockback;
+    }
+
     /// <summary>
     /// Moves the player when ReadMove is true
     /// </summary>

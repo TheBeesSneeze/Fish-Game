@@ -14,7 +14,9 @@ using UnityEngine;
 
 public class EnemyType : CharacterType
 {
-    [Header("Enemy Exclusive")]
+    [Header("Enemy Exclusive:")]
+
+    public bool  RequiredToKill     ; //Not used in any EnemyScripts, is checked in RoomBehavior tho
     public bool  StunnedByFlash     ; //TODO
     public bool  HurtByFlash        ; //TODO
     public float StunDuration       ; //TODO
@@ -22,11 +24,12 @@ public class EnemyType : CharacterType
     public bool  ImmuneToElectricity; //TODO*
 
     [Header("Detection:")]
+
     public float SightDistance      ;
     public float UnsightDistance    ;
     public float PursueDelay        ;
     public bool  NightVision        ; 
 
-    public bool  RequiredToKill     ; //Not used in any EnemyScripts, is checked in RoomBehavior tho
+    
 
 }
