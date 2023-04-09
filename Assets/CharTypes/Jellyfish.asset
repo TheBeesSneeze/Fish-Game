@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3117d9298812b284b91b01da03d2488f, type: 3}
-  m_Name: Regular
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyData
-  Health: 3
-  Speed: 10
-  Weight: 1
-  TakeKnockback: 1
-  SightDistance: 8
-  UnsightDistance: 12
-  PursueDelay: 0.4
-  NightVision: 0
-  StunnedByFlash: 1
+  m_Name: Jellyfish
+  m_EditorClassIdentifier: 
+  Health: 0
+  Speed: 0
+  Weight: 0
+  TakeKnockback: 0
+  StunnedByFlash: 0
   HurtByFlash: 0
-  StunDuration: 2.5
+  StunDuration: 0
   ImmuneToElectricity: 0
-  RequiredToKill: 1
+  SightDistance: 0
+  UnsightDistance: 0
+  PursueDelay: 0
+  NightVision: 0
+  RequiredToKill: 0

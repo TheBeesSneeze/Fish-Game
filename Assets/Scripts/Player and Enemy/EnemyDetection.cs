@@ -29,9 +29,11 @@ public class EnemyDetection : MonoBehaviour
 {
     [Header("Settings")]
     public LayerMask LM;
+
     private float sightDistance;
     private float unsightDistance;
-    private bool darkVision;
+    private float pursueDelay;
+    private bool  darkVision;
 
     [Header("Dynamic Variables")]
     public  GameObject CurrentTarget;
@@ -149,13 +151,20 @@ public class EnemyDetection : MonoBehaviour
 
     /// <summary>
     /// Moves the enemy towards the enemies currently selected target.
-    /// ends when the currentTarget is lost.
+    /// ends when the currentTarget is lost. 
+    /// Target lost if obscured by light (ignored if darkVision) or if player too far.
     /// </summary>
     public IEnumerator PursueTarget()
     {
+        yield return new WaitForSeconds(pursueDelay);
+
         while(CurrentTarget!=null)
         {
-            if(targetController.LayersOfLight > 0)
+            float dist = Vector2.Distance(transform.position, CurrentTarget.transform.position);
+            bool  closeEnough = dist <= unsightDistance;
+            bool  canSee = targetController.LayersOfLight > 0 || darkVision;
+
+            if (canSee && closeEnough)
             {
                 Vector2 positionDifference = Vector2.MoveTowards(transform.position, CurrentTarget.transform.position, enemyBehavior.Speed);
                 Vector2 movementVelocity = positionDifference - (Vector2)transform.position;
@@ -177,9 +186,10 @@ public class EnemyDetection : MonoBehaviour
     /// </summary>
     public void SetAttributes()
     {
-        sightDistance = enemyData.SightDistance;
-        unsightDistance = enemyData.UnsightDistance;
-        darkVision = enemyData.NightVision;
+        sightDistance   = enemyData.SightDistance   ;
+        unsightDistance = enemyData.UnsightDistance ;
+        pursueDelay     = enemyData.PursueDelay     ;
+        darkVision      = enemyData.NightVision     ;
         
         //TODO
     }

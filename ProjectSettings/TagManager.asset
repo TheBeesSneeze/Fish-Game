@@ -9,7 +9,7 @@ TagManager:
   - Attack
   - Light
   - Flash
-  - GarthBox
+  - Electricity
   layers:
   - Default
   - TransparentFX
