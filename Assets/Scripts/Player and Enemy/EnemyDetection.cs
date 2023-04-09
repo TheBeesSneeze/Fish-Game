@@ -28,31 +28,37 @@ using UnityEngine.InputSystem;
 public class EnemyDetection : MonoBehaviour
 {
     [Header("Settings")]
-    public float SightDistance = 8f;
     public LayerMask LM;
-    public bool DarkVision = false;
 
-    [Header("Debug")]
-    public float Speed = 1f;
+    private float sightDistance;
+    private float unsightDistance;
+    private float pursueDelay;
+    private bool  darkVision;
 
     [Header("Dynamic Variables")]
     public  GameObject CurrentTarget;
     private PlayerController targetController;
 
-    //Rest of variables are private jargain 
-    private GameObject gorp;
-    private GameObject globbington;
+    [Header("You don't need to touch this:")]
+    public GameObject Gorp;
+    public GameObject Globbington;
     private Rigidbody2D rb;
+    private EnemyBehavior enemyBehavior;
+    private EnemyType enemyData;
 
     /// <summary>
     /// Finds Gorp and Globbington and starts searching for them
     /// </summary>
     void Start()
     {
-        gorp = GameObject.Find("Gorp");
-        globbington = GameObject.Find("Globbington");
+        enemyBehavior=GetComponent<EnemyBehavior>();
+        enemyData = enemyBehavior.EnemyData;
+        SetAttributes();
+
         rb = GetComponent<Rigidbody2D>();
         StartCoroutine(SearchForPlayer());
+
+        
     }
 
     /// <summary>
@@ -65,59 +71,35 @@ public class EnemyDetection : MonoBehaviour
         // Gorp will only be null at the very beginning, so I don't want the code to be constantly checking if gorp is null in the for loop.
         // Even if this is weird code.
         // This is the fifth comment I've written about like 4 lines of code
-        while (gorp == null && globbington == null)
+        while (Gorp == null)
         {
-            gorp        = GameObject.Find("Gorp");
-            globbington = GameObject.Find("Globbington");
+            Gorp        = GameObject.Find("Gorp");
+            Globbington = GameObject.Find("Globbington"); //this probably wont find globbington actually.
 
             yield return new WaitForSeconds(1.00f);
         }
+        Debug.Log("found nemo.");
 
         //The main event!
         for (; ; )
         {
             // Get the origin and direction of the raycast
-            Vector3 origin = gameObject.transform.position;
-            Vector3 direction = gorp.transform.position - origin;
+            bool gorpVisible = CheckForVisibility(Gorp);
+            bool globVisible = CheckForVisibility(Globbington);
 
-            // Cast the raycast and get the hit information
-            var hit = Physics2D.Raycast(origin, direction, SightDistance, LM);
-
-            //Searching for a victim!
-            if (hit)
+            if (CurrentTarget == null)
             {
-                if (hit.collider.gameObject.tag.Equals("Player"))
+                if (gorpVisible)
                 {
-                    string hitName = hit.collider.gameObject.name;
-                    Debug.DrawLine(origin, gorp.transform.position, Color.green, 0.5f);
-
-                    //Only searching for new target when it doesnt already have one
-                    if (CurrentTarget == null)
-                    {
-                        PlayerController tempTargetController = hit.collider.GetComponent<PlayerController>();
-
-                        if (tempTargetController.LayersOfLight > 0)
-                        {
-                            targetController = hit.collider.GetComponent<PlayerController>();
-                            CurrentTarget = hit.collider.gameObject;
-                            StartCoroutine(PursueTarget());
-                        }
-
-                        /*
-                        if (hitName.Equals("Gorp") && GorpVisibleCheck())
-                        {
-                            CurrentTarget = hit.collider.gameObject;
-                            //StartCoroutine(PursueTarget());
-                        }
-
-                        else //if (hitName.Equals("Globbington"))
-                        {
-                            CurrentTarget = hit.collider.gameObject;
-                            
-                        }
-                        */
-                        
-                    }
+                    CurrentTarget = Gorp;
+                    targetController = Gorp.GetComponent<PlayerController>();
+                    StartCoroutine(PursueTarget());
+                }
+                else if(globVisible)
+                {
+                    CurrentTarget = Globbington;
+                    targetController = Globbington.GetComponent<PlayerController>();
+                    StartCoroutine(PursueTarget());
                 }
                 else
                 {
@@ -125,28 +107,66 @@ public class EnemyDetection : MonoBehaviour
                     targetController = null;
                 }
             }
-            else
-            {
-                //Having this line repeated feels wrong but i cant really see any other way to do it?
-                CurrentTarget = null;
-                targetController = null;
-            }
 
             yield return new WaitForSeconds(0.15f);
         }
     }
 
     /// <summary>
+    /// Returns true/false if the gameobject is obstructed between enemy or not.
+    /// automatically checks if target is null
+    /// </summary>
+    /// <param name="target">Gameobject to pursue</param>
+    public bool CheckForVisibility(GameObject target)
+    {
+        if(target == null)
+            return false;
+
+        Vector3 origin = gameObject.transform.position;
+        Vector3 direction = target.transform.position - origin;
+
+        // Cast the raycast and get the hit information
+        var hit = Physics2D.Raycast(origin, direction, sightDistance, LM);
+
+        //Searching for a victim!
+        if (hit)
+        {
+            string hitName = hit.collider.gameObject.name;
+
+            if (hitName == target.name)
+            {
+                Debug.DrawLine(origin, target.transform.position, Color.green, 0.5f);
+
+                PlayerController tempTargetController = hit.collider.GetComponent<PlayerController>();
+
+                if (tempTargetController.LayersOfLight > 0 || darkVision)
+                {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    /// <summary>
     /// Moves the enemy towards the enemies currently selected target.
-    /// ends when the currentTarget is lost.
+    /// ends when the currentTarget is lost. 
+    /// Target lost if obscured by light (ignored if darkVision) or if player too far.
     /// </summary>
     public IEnumerator PursueTarget()
     {
+        yield return new WaitForSeconds(pursueDelay);
+
         while(CurrentTarget!=null)
         {
-            if(targetController.LayersOfLight > 0)
+            float dist = Vector2.Distance(transform.position, CurrentTarget.transform.position);
+            bool  closeEnough = dist <= unsightDistance;
+            bool  canSee = targetController.LayersOfLight > 0 || darkVision;
+
+            if (canSee && closeEnough)
             {
-                Vector2 positionDifference = Vector2.MoveTowards(transform.position, gorp.transform.position, Speed);
+                Vector2 positionDifference = Vector2.MoveTowards(transform.position, CurrentTarget.transform.position, enemyBehavior.Speed);
                 Vector2 movementVelocity = positionDifference - (Vector2)transform.position;
                 rb.velocity = movementVelocity;
             }
@@ -157,8 +177,21 @@ public class EnemyDetection : MonoBehaviour
             }
             yield return new WaitForSeconds(0.1f);
         }
-        
 
         rb.velocity = Vector2.zero;
     }
+
+    /// <summary>
+    /// Copies data from enemyData!
+    /// </summary>
+    public void SetAttributes()
+    {
+        sightDistance   = enemyData.SightDistance   ;
+        unsightDistance = enemyData.UnsightDistance ;
+        pursueDelay     = enemyData.PursueDelay     ;
+        darkVision      = enemyData.NightVision     ;
+        
+        //TODO
+    }
 }
+

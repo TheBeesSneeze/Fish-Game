@@ -11,30 +11,35 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.U2D.Animation;
 using UnityEngine;
 
 public class EnemyBehavior : CharacterBehavior
 {
-    [Header("Enemy Attributes")]
-    public bool NightVision;
+    [Header("Attributes")]
+    public bool DespawnOnStart = true;
+    public EnemyType EnemyData;
+    private bool stunnedByLight;
 
     [Header("Unity Jargain")]
-    public bool DespawnOnStart = true;
     private EnemyDetection enemyDetection;
-    private GameObject gorp;
-    private GameObject globbington;
+
+    [Header("You don't need to touch this:")]
+    public GameObject Gorp;
+    public GameObject Globbington;
 
     /// <summary>
     /// Initializes variables for enemy respwning and finds unity components.
     /// </summary>
     public override void Start()
     {
-        base.Start();
+        SetAttributes();
+        DefaultPosition = this.transform.position;
 
         //Unity moment
         enemyDetection = gameObject.GetComponent<EnemyDetection>();
-        gorp        = GameObject.Find("Gorp");
-        globbington = GameObject.Find("Globbington");
+        Gorp        = GameObject.Find("Gorp");
+        Globbington = GameObject.Find("Globbington");
 
         this.gameObject.SetActive(!DespawnOnStart);
     }
@@ -53,11 +58,18 @@ public class EnemyBehavior : CharacterBehavior
     public override void Respawn()
     {
         base.Respawn();
+        SetAttributes();
+
+        Gorp = GameObject.Find("Gorp");
+        Globbington = GameObject.Find("Globbington");
 
         //Enemy exclusive code:
         if (enemyDetection != null)
         {
             enemyDetection.CurrentTarget = null;
+            enemyDetection.Gorp = Gorp;
+            enemyDetection.Globbington = Globbington;
+            StartCoroutine(enemyDetection.SearchForPlayer());
         }
 
         this.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
@@ -94,5 +106,17 @@ public class EnemyBehavior : CharacterBehavior
             }
                 
         }
+    }
+
+    /// <summary>
+    /// Sets variables to those in EnemyData
+    /// </summary>
+    public override void SetAttributes()
+    {
+        Health = EnemyData.Health;
+        Speed = EnemyData.Speed;
+        Weight = EnemyData.Weight;
+        TakeKnockback = EnemyData.TakeKnockback;
+        ImmuneToElectricity = EnemyData.ImmuneToElectricity;
     }
 }

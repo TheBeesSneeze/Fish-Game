@@ -379,7 +379,7 @@ GameObject:
   m_Layer: 9
   m_Name: Gorp
   m_TagString: Player
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -494,16 +494,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9a93f36c75542f459d2606feb1ca299, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TakeKnockback: 0
-  DefaultHealth: 5
-  DefaultSpeed: 10
-  Weight: 1.5
   LayersOfLight: 1
   Health: 0
+  Speed: 0
+  TakeKnockback: 0
+  ImmuneToElectricity: 0
+  Weight: 0
   DefaultPosition: {x: 0, y: 0, z: 0}
-  Speed: 5.93
+  CharacterData: {fileID: 11400000, guid: 7a5fbf452c3d09b4590c3c0ffed95971, type: 2}
   PlayerNumber: 0
-  gameManager: {fileID: 0}
   Rumble: 0
   MyPlayerInput: {fileID: 8678797230697677920}
   Move:
@@ -544,12 +543,12 @@ MonoBehaviour:
     m_SingletonActionBindings: []
     m_Flags: 0
   FlashChargeTime: 1
+  FlashLength: 5
   LightIncrement: 0.1
   LightIncrementDelay: 0.1
   ToggleLightTime: 0.2
   MinLight: 1
   MaxLight: 10
-  FlashLength: 5
   FlashTrigger: {fileID: 4950820922443560528}
 --- !u!114 &5052205749001080560
 MonoBehaviour:
@@ -565,6 +564,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LightEnabled: 0
   LightRadius: 5
+  InnerRadiusDivisionFactor: 2
   LightTrigger: {fileID: 964516673680466274}
   LightSource: {fileID: 5168131707846391277}
   TransitionFrames: 20
@@ -581,7 +581,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 1.43
+  m_LinearDrag: 7.5
   m_AngularDrag: 0
   m_GravityScale: 0
   m_Material: {fileID: 0}

@@ -19,6 +19,8 @@ public class LightController : MonoBehaviour
     [Header("Light settings:")]
     public bool LightEnabled;
     public float LightRadius;
+    [Tooltip("Inner = Outer / [THIS NUMBER]")]
+    public float InnerRadiusDivisionFactor = 2;
 
     [Header("Light Sources")]
     public CircleCollider2D LightTrigger;
@@ -34,7 +36,7 @@ public class LightController : MonoBehaviour
         //just ironing things out...
         LightRadius = LightSource.pointLightOuterRadius;
         LightTrigger.radius = LightRadius;
-        LightEnabled = (LightRadius >= 0);
+        //LightEnabled = (LightRadius >= 0);
         UpdateLightRadius();
     }
 
@@ -102,7 +104,7 @@ public class LightController : MonoBehaviour
                 float t = i / TransitionFrames; //evil voice: the t stands for toby
                 float lerp = Mathf.Lerp(startRadius, endRadius, t);
 
-                LightSource.pointLightInnerRadius = lerp / 2;
+                LightSource.pointLightInnerRadius = lerp / InnerRadiusDivisionFactor;
                 LightSource.pointLightOuterRadius = lerp;
 
                 yield return new WaitForSeconds(seconds / TransitionFrames);
@@ -111,7 +113,7 @@ public class LightController : MonoBehaviour
         //because sometimes its instant!
         else
         {
-            LightSource.pointLightInnerRadius = endRadius/2;
+            LightSource.pointLightInnerRadius = endRadius/ InnerRadiusDivisionFactor;
             LightSource.pointLightOuterRadius = endRadius;
         }
     }
