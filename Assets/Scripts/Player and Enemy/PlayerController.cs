@@ -27,6 +27,7 @@ public class PlayerController : CharacterBehavior
 
     public PlayerInput MyPlayerInput;
     public InputAction Move;
+    public InputAction Select;
 
     public  bool ReadMove;
 
@@ -47,6 +48,7 @@ public class PlayerController : CharacterBehavior
 
         MyPlayerInput.actions.Enable();
         Move = MyPlayerInput.actions.FindAction("Move");
+        Select = MyPlayerInput.actions.FindAction("Select");
 
         //I believe this is adding the functions to the buttons...
         Move.started += Move_started;
