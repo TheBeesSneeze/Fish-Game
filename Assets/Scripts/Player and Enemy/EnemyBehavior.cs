@@ -11,6 +11,7 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.U2D.Animation;
 using UnityEngine;
 
 public class EnemyBehavior : CharacterBehavior
@@ -18,7 +19,6 @@ public class EnemyBehavior : CharacterBehavior
     [Header("Attributes")]
     public bool DespawnOnStart = true;
     public EnemyType EnemyData;
-    private bool nightVision;
     private bool stunnedByLight;
 
     [Header("Unity Jargain")]
@@ -113,7 +113,10 @@ public class EnemyBehavior : CharacterBehavior
     /// </summary>
     public override void SetAttributes()
     {
-        base.SetAttributes();
-        nightVision = EnemyData.NightVision;
+        Health = EnemyData.Health;
+        Speed = EnemyData.Speed;
+        Weight = EnemyData.Weight;
+        TakeKnockback = EnemyData.TakeKnockback;
+        ImmuneToElectricity = EnemyData.ImmuneToElectricity;
     }
 }

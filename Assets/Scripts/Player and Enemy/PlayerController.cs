@@ -15,6 +15,7 @@ using UnityEngine.InputSystem.Utilities;
 
 public class PlayerController : CharacterBehavior
 {
+    public CharacterType CharacterData;
     public int PlayerNumber;
 
     private Rigidbody2D myRb;
@@ -41,6 +42,7 @@ public class PlayerController : CharacterBehavior
     public override void Start()
     {
         base.Start();
+        SetAttributes();
 
         myRb = GetComponent<Rigidbody2D>();
         gameManager = GameObject.FindObjectOfType<GameManager>();
@@ -57,7 +59,19 @@ public class PlayerController : CharacterBehavior
 
         
     }
-    
+
+    /// <summary>
+    /// Sets variables to those in CharacterData
+    /// </summary>
+    public virtual void SetAttributes()
+    {
+        Health = CharacterData.Health;
+        Speed = CharacterData.Speed;
+        Weight = CharacterData.Weight;
+        TakeKnockback = CharacterData.TakeKnockback;
+        ImmuneToElectricity = CharacterData.ImmuneToElectricity;
+    }
+
     /// <summary>
     /// Moves the player when ReadMove is true
     /// </summary>
@@ -79,6 +93,12 @@ public class PlayerController : CharacterBehavior
         ResetScene();
     }
 
+    public override void Respawn()
+    {
+        base.Respawn();
+        SetAttributes();
+    }
+
     /// <summary>
     /// When player dies, set both players to their starting positions.
     /// Also sends enemies to their start.
@@ -94,7 +114,7 @@ public class PlayerController : CharacterBehavior
 
         gorp.Respawn();
 
-        if(globbington!=null) 
+        if(globbington!=null)
             globbington.Respawn();
 
         //Reset enemies:
@@ -111,6 +131,10 @@ public class PlayerController : CharacterBehavior
         if (tag.Equals("Enemy"))
         {
             TakeDamage(1, collision.transform.position);
+        }
+        if(tag.Equals("Player"))
+        {
+            KnockBack(this.gameObject, collision.transform.position);
         }
     }
 
