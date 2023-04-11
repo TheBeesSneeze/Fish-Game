@@ -1,6 +1,6 @@
 /*******************************************************************************
 // File Name :         PlayerController.cs
-// Author :            Toby Schamberger, Jay Embry
+// Author :            Toby Schamberger, Jay Embry, Sky Beal
 // Creation Date :     whenever we made it in class lol
 //
 // Brief Description : This code is to be shared between Gorp and Globbington!
@@ -24,13 +24,17 @@ public class PlayerController : CharacterBehavior
     [Header("Controller stuff:")]
 
     public bool Rumble;
+    public bool IgnoreMove;
     public Gamepad MyGamepad;
 
     public PlayerInput MyPlayerInput;
     public InputAction Move;
     public InputAction Dash;
+    public InputAction Select;
 
     public  bool ReadMove;
+
+    public float DashForce;
 
     //public float dashForce = 40;
 
@@ -53,6 +57,7 @@ public class PlayerController : CharacterBehavior
         MyPlayerInput.actions.Enable();
         Move = MyPlayerInput.actions.FindAction("Move");
         Dash = MyPlayerInput.actions.FindAction("Dash");
+        Select = MyPlayerInput.actions.FindAction("Select");
 
         //I believe this is adding the functions to the buttons...
         Move.started += Move_started;
@@ -64,6 +69,11 @@ public class PlayerController : CharacterBehavior
         if (MyGamepad == null) Rumble = false;
 
         
+    }
+
+    private void Dash_canceled(InputAction.CallbackContext obj)
+    {
+        throw new System.NotImplementedException();
     }
 
     /// <summary>
@@ -86,8 +96,15 @@ public class PlayerController : CharacterBehavior
     {
         while (ReadMove)
         {
-            myRb.velocity = Move.ReadValue<Vector2>() * Speed;
+            if(!IgnoreMove)
+            {
+
+                myRb.velocity = Move.ReadValue<Vector2>() * Speed;
+
+            }
+
             yield return null;
+
         }
     }
 
@@ -161,10 +178,30 @@ public class PlayerController : CharacterBehavior
     /// Dashes in the direction that the player is moving in. Yippee!!
     /// </summary>
     /// <param name="obj"></param>
-    private void DashInput(InputAction.CallbackContext obj)
+    public void DashInput(InputAction.CallbackContext obj)
     {
 
-        myRb.AddForce(Move.ReadValue<Vector3>() * 40, ForceMode2D.Impulse);
+        IgnoreMove = true;
+        myRb.AddForce(Move.ReadValue<Vector2>() * DashForce, ForceMode2D.Impulse);
+
+        StartCoroutine(DashRoutine());
+    }
+
+    public override void BeStunned()
+    {
+        base.BeStunned();
+        MyPlayerInput.actions.Disable();
+    }
+    public override void BeUnStunned()
+    {
+        base.BeUnStunned();
+        MyPlayerInput.actions.Enable();
+    }
+public IEnumerator DashRoutine()
+    {
+
+        yield return new WaitForSeconds(.2f);
+        IgnoreMove = false;
 
     }
 }

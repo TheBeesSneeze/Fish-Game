@@ -501,9 +501,11 @@ MonoBehaviour:
   ImmuneToElectricity: 0
   Weight: 0
   DefaultPosition: {x: 0, y: 0, z: 0}
+  StunLength: 0
   CharacterData: {fileID: 11400000, guid: 7a5fbf452c3d09b4590c3c0ffed95971, type: 2}
   PlayerNumber: 0
   Rumble: 0
+  IgnoreMove: 0
   MyPlayerInput: {fileID: 8678797230697677920}
   Move:
     m_Name: Move
@@ -523,7 +525,17 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
+  Select:
+    m_Name: Select
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 25aa2b24-0427-4703-8ad6-76b68da2c872
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
   ReadMove: 0
+  DashForce: 40
   ToggleLightAction:
     m_Name: Toggle Light
     m_Type: 0
