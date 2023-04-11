@@ -28,6 +28,7 @@ public class EnemyBehavior : CharacterBehavior
     [Header("You don't need to touch this:")]
     public GameObject Gorp;
     public GameObject Globbington;
+    private float lightDPS;
 
     /// <summary>
     /// Initializes variables for enemy respwning and finds unity components.
@@ -86,10 +87,18 @@ public class EnemyBehavior : CharacterBehavior
         else if (tag.Equals("Light"))
         {
             LayersOfLight++;
+
+            if (LayersOfLight == 1 && lightDPS != 0) //only on 1st LOL to avoid too many coroutines at once
+                StartCoroutine(TakeLightDamage());
+
         }
         if (tag.Equals("Flash"))
         {
-            BeStunned();
+            if(EnemyData.HurtByFlash)
+                TakeDamage(1,collision.transform.position);
+
+            if(EnemyData.StunnedByFlash)
+                BeStunned();
         }
     }
 
@@ -107,7 +116,6 @@ public class EnemyBehavior : CharacterBehavior
                     if (enemyDetection.CurrentTarget.GetComponent<CharacterBehavior>().LayersOfLight <= 0)
                         enemyDetection.CurrentTarget = null;
                 }  
-                    
             }
                 
         }
@@ -137,5 +145,19 @@ public class EnemyBehavior : CharacterBehavior
         TakeKnockback = EnemyData.TakeKnockback;
         ImmuneToElectricity = EnemyData.ImmuneToElectricity;
         StunLength = EnemyData.StunDuration;
+        lightDPS = EnemyData.LightDamagePerSec;
+    }
+
+    /// <summary>
+    /// Every half, enemy takes lightDamagePerSecond/2.
+    /// </summary>
+    /// <returns></returns>
+    public IEnumerator TakeLightDamage()
+    {
+        while(LayersOfLight > 0)
+        {
+            yield return new WaitForSeconds(0.5f);
+            TakeDamage(lightDamagePerSecond/2);
+        }
     }
 }

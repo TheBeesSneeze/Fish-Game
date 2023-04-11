@@ -72,6 +72,7 @@ public class PlayerController : CharacterBehavior
         Weight = CharacterData.Weight;
         TakeKnockback = CharacterData.TakeKnockback;
         ImmuneToElectricity = CharacterData.ImmuneToElectricity;
+        StunLength = CharacterData.StunDuration;
     }
 
     /// <summary>

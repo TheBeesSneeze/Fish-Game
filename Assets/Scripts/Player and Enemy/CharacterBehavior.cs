@@ -17,7 +17,7 @@ public class CharacterBehavior : MonoBehaviour
     [Header("Debug (don't touch in editor)")]
 
     public int LayersOfLight;
-    public int Health;
+    public float Health;
     public float Speed;
     public bool TakeKnockback;
     public bool ImmuneToElectricity;
@@ -43,7 +43,7 @@ public class CharacterBehavior : MonoBehaviour
     /// <param name="damage">Amt of damage taken</param>
     /// <param name="damageSourcePosition">Ideally the players transform</param>
     /// <returns>true if character died</returns>
-    public virtual bool TakeDamage(int damage, Vector3 damageSourcePosition)
+    public virtual bool TakeDamage(float damage, Vector3 damageSourcePosition)
     {
         if ( TakeDamage(damage) )
             return true;
@@ -59,7 +59,7 @@ public class CharacterBehavior : MonoBehaviour
     /// </summary>
     /// <param name="damage">Amt of damage taken</param>
     /// <returns>true if character died</returns>
-    public virtual bool TakeDamage(int damage)
+    public virtual bool TakeDamage(float damage)
     {
         Health -= damage;
 
@@ -102,7 +102,7 @@ public class CharacterBehavior : MonoBehaviour
     /// </summary>
     public virtual void SetAttributes()
     {
-        Debug.Log("Override this function!!!!");
+        Debug.Log("Override SetAttributes");
     }
 
     /// <summary>
