@@ -514,6 +514,15 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
+  Dash:
+    m_Name: Dash
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 2350cfac-d769-4384-8c28-7bfaefa3131b
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
   ReadMove: 0
   ToggleLightAction:
     m_Name: Toggle Light

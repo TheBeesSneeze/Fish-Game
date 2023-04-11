@@ -1,6 +1,6 @@
 /*******************************************************************************
 // File Name :         PlayerController.cs
-// Author :            Toby Schamberger
+// Author :            Toby Schamberger, Jay Embry
 // Creation Date :     whenever we made it in class lol
 //
 // Brief Description : This code is to be shared between Gorp and Globbington!
@@ -28,8 +28,11 @@ public class PlayerController : CharacterBehavior
 
     public PlayerInput MyPlayerInput;
     public InputAction Move;
+    public InputAction Dash;
 
     public  bool ReadMove;
+
+    //public float dashForce = 40;
 
     //public int PlayerNumber;
 
@@ -49,10 +52,13 @@ public class PlayerController : CharacterBehavior
 
         MyPlayerInput.actions.Enable();
         Move = MyPlayerInput.actions.FindAction("Move");
+        Dash = MyPlayerInput.actions.FindAction("Dash");
 
         //I believe this is adding the functions to the buttons...
         Move.started += Move_started;
         Move.canceled += Move_canceled;
+
+        Dash.started += DashInput;
 
         MyGamepad = MyPlayerInput.GetDevice<Gamepad>();
         if (MyGamepad == null) Rumble = false;
@@ -149,5 +155,16 @@ public class PlayerController : CharacterBehavior
         ReadMove = false;
         //myRb.velocity = Vector3.zero; 
         //Slidey-ness can be configured in linear drag of the rigidbody2d
+    }
+
+    /// <summary>
+    /// Dashes in the direction that the player is moving in. Yippee!!
+    /// </summary>
+    /// <param name="obj"></param>
+    private void DashInput(InputAction.CallbackContext obj)
+    {
+
+        myRb.AddForce(Move.ReadValue<Vector3>() * 40, ForceMode2D.Impulse);
+
     }
 }
