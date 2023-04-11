@@ -151,9 +151,10 @@ public class GorpController : PlayerController
         if ( togglingLight ) 
         {
             FishFlash();
-            StartCoroutine( SetRumble(0, 0, 0.1f) );
+            StartCoroutine( SetRumble(0, 0, 0.4f) );
             flashedSuccessfully = true;
             lightController.LightEnabled = false;
+            lightController.UpdateLightRadius(0.1f);
         }
     }
 
