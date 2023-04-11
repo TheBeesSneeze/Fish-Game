@@ -205,7 +205,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""a5e86912-e52b-485b-ab3b-58b767af9d1b"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""path"": ""<Gamepad>/rightStickPress"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -216,7 +216,18 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""1d630477-ddc7-4382-9e84-f988f8387341"",
-                    ""path"": ""<Keyboard>/space"",
+                    ""path"": ""<Keyboard>/z"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e3f8ddfc-df1a-4aeb-a72f-2f4a87f6d7a5"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -368,6 +379,15 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Dash"",
+                    ""type"": ""Button"",
+                    ""id"": ""458e6de7-76ff-4775-88a7-49caf603c672"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -480,6 +500,39 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""action"": ""Strike"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""03f39f37-ed37-4b77-bbbd-341ab678348c"",
+                    ""path"": ""<Gamepad>/rightStickPress"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a4731cda-924b-40b5-ab19-cfc45d24aa1f"",
+                    ""path"": ""<Keyboard>/z"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3c9a64fb-f6d0-4eab-b94a-8169f9d73675"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -499,6 +552,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         m_OctopusControls = asset.FindActionMap("OctopusControls", throwIfNotFound: true);
         m_OctopusControls_Move = m_OctopusControls.FindAction("Move", throwIfNotFound: true);
         m_OctopusControls_Strike = m_OctopusControls.FindAction("Strike", throwIfNotFound: true);
+        m_OctopusControls_Dash = m_OctopusControls.FindAction("Dash", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -641,12 +695,14 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private IOctopusControlsActions m_OctopusControlsActionsCallbackInterface;
     private readonly InputAction m_OctopusControls_Move;
     private readonly InputAction m_OctopusControls_Strike;
+    private readonly InputAction m_OctopusControls_Dash;
     public struct OctopusControlsActions
     {
         private @Controls m_Wrapper;
         public OctopusControlsActions(@Controls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_OctopusControls_Move;
         public InputAction @Strike => m_Wrapper.m_OctopusControls_Strike;
+        public InputAction @Dash => m_Wrapper.m_OctopusControls_Dash;
         public InputActionMap Get() { return m_Wrapper.m_OctopusControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -662,6 +718,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Strike.started -= m_Wrapper.m_OctopusControlsActionsCallbackInterface.OnStrike;
                 @Strike.performed -= m_Wrapper.m_OctopusControlsActionsCallbackInterface.OnStrike;
                 @Strike.canceled -= m_Wrapper.m_OctopusControlsActionsCallbackInterface.OnStrike;
+                @Dash.started -= m_Wrapper.m_OctopusControlsActionsCallbackInterface.OnDash;
+                @Dash.performed -= m_Wrapper.m_OctopusControlsActionsCallbackInterface.OnDash;
+                @Dash.canceled -= m_Wrapper.m_OctopusControlsActionsCallbackInterface.OnDash;
             }
             m_Wrapper.m_OctopusControlsActionsCallbackInterface = instance;
             if (instance != null)
@@ -672,6 +731,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Strike.started += instance.OnStrike;
                 @Strike.performed += instance.OnStrike;
                 @Strike.canceled += instance.OnStrike;
+                @Dash.started += instance.OnDash;
+                @Dash.performed += instance.OnDash;
+                @Dash.canceled += instance.OnDash;
             }
         }
     }
@@ -690,5 +752,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     {
         void OnMove(InputAction.CallbackContext context);
         void OnStrike(InputAction.CallbackContext context);
+        void OnDash(InputAction.CallbackContext context);
     }
 }
