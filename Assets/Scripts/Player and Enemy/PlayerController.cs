@@ -152,4 +152,14 @@ public class PlayerController : CharacterBehavior
         //myRb.velocity = Vector3.zero; 
         //Slidey-ness can be configured in linear drag of the rigidbody2d
     }
+    public override void BeStunned()
+    {
+        base.BeStunned();
+        MyPlayerInput.actions.Disable();
+    }
+    public override void BeUnStunned()
+    {
+        base.BeUnStunned();
+        MyPlayerInput.actions.Enable();
+    }
 }
