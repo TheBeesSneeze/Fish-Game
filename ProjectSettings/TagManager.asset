@@ -10,11 +10,12 @@ TagManager:
   - Light
   - Flash
   - Electricity
+  - Mirror
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Light
   - Water
   - UI
   - Walls
@@ -22,8 +23,8 @@ TagManager:
   - Enemy
   - Gorp
   - Globbington
-  - 
-  - 
+  - Mirror
+  - Electricity
   - 
   - 
   - 

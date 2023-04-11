@@ -17,8 +17,9 @@ using UnityEngine.Rendering.Universal;
 public class LightController : MonoBehaviour
 {
     [Header("Light settings:")]
-    public bool LightEnabled;
+    public bool LightEnabled=true;
     public float LightRadius;
+    private float lightRadiusDescale;
     [Tooltip("Inner = Outer / [THIS NUMBER]")]
     public float InnerRadiusDivisionFactor = 2;
 
@@ -35,7 +36,9 @@ public class LightController : MonoBehaviour
     {
         //just ironing things out...
         LightRadius = LightSource.pointLightOuterRadius;
-        LightTrigger.radius = LightRadius;
+        lightRadiusDescale = LightTrigger.transform.parent.localScale.x;
+        LightTrigger.radius = LightRadius / lightRadiusDescale;
+        
         //LightEnabled = (LightRadius >= 0);
         UpdateLightRadius();
     }
@@ -58,7 +61,8 @@ public class LightController : MonoBehaviour
             else
                 StartCoroutine(LightLerp(oldRadius, LightRadius, seconds));
 
-            LightTrigger.radius = LightRadius;
+            LightTrigger.radius = LightRadius / lightRadiusDescale;
+
         }
         //Clap off!
         else

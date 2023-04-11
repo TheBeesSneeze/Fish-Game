@@ -82,18 +82,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Interact"",
+                    ""name"": ""Select"",
                     ""type"": ""Button"",
-                    ""id"": ""168bbbaf-0145-49b6-8959-99b959bf3df3"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Cancel"",
-                    ""type"": ""Button"",
-                    ""id"": ""3ba278d7-5800-4c72-a034-537d4c61b292"",
+                    ""id"": ""25680229-bc24-40c5-8240-a8daa64029c2"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -334,45 +325,23 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""acb4c33e-7d3e-4658-b9ac-5aab245d7362"",
+                    ""id"": ""ede16bff-435d-49b1-9267-9a40748aa6b5"",
                     ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Interact"",
+                    ""action"": ""Select"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""e69c462d-081e-40ce-ba9b-cd20ad18f117"",
-                    ""path"": ""<Keyboard>/space"",
+                    ""id"": ""d77b7316-9607-4b33-8934-471cb4f76731"",
+                    ""path"": ""<Keyboard>/enter"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Interact"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""0208638a-2629-44e8-9fea-cc6d4464347e"",
-                    ""path"": ""<Gamepad>/buttonEast"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Cancel"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""7d900fc3-70c2-4cf8-8624-603333e30367"",
-                    ""path"": ""<Keyboard>/backspace"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Cancel"",
+                    ""action"": ""Select"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -395,24 +364,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""name"": ""Strike"",
                     ""type"": ""Button"",
                     ""id"": ""15e946ac-65fb-4699-94c5-14eeb025f927"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Interact"",
-                    ""type"": ""Button"",
-                    ""id"": ""74ac463d-5528-4f13-adc0-2630344c05e5"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Cancel"",
-                    ""type"": ""Button"",
-                    ""id"": ""decb3e59-8cf9-40c2-bde5-07153c120bb0"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -529,50 +480,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""action"": ""Strike"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""4d923009-a6b4-4b72-b6ae-1b33da67f244"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Interact"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""1a0adef5-ddb4-41ff-ae7d-1f7fdcd9311c"",
-                    ""path"": ""<Keyboard>/enter"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Interact"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""44a6b8bf-9625-48c3-bacb-578f24b1d394"",
-                    ""path"": ""<Gamepad>/buttonEast"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Cancel"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""a22e6893-ac5f-4247-8bb2-f404be767334"",
-                    ""path"": ""<Keyboard>/backspace"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Cancel"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -587,14 +494,11 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         m_FishControls_Pause = m_FishControls.FindAction("Pause", throwIfNotFound: true);
         m_FishControls_IncreaseLight = m_FishControls.FindAction("Increase Light", throwIfNotFound: true);
         m_FishControls_DecreaseLight = m_FishControls.FindAction("Decrease Light", throwIfNotFound: true);
-        m_FishControls_Interact = m_FishControls.FindAction("Interact", throwIfNotFound: true);
-        m_FishControls_Cancel = m_FishControls.FindAction("Cancel", throwIfNotFound: true);
+        m_FishControls_Select = m_FishControls.FindAction("Select", throwIfNotFound: true);
         // OctopusControls
         m_OctopusControls = asset.FindActionMap("OctopusControls", throwIfNotFound: true);
         m_OctopusControls_Move = m_OctopusControls.FindAction("Move", throwIfNotFound: true);
         m_OctopusControls_Strike = m_OctopusControls.FindAction("Strike", throwIfNotFound: true);
-        m_OctopusControls_Interact = m_OctopusControls.FindAction("Interact", throwIfNotFound: true);
-        m_OctopusControls_Cancel = m_OctopusControls.FindAction("Cancel", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -660,8 +564,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private readonly InputAction m_FishControls_Pause;
     private readonly InputAction m_FishControls_IncreaseLight;
     private readonly InputAction m_FishControls_DecreaseLight;
-    private readonly InputAction m_FishControls_Interact;
-    private readonly InputAction m_FishControls_Cancel;
+    private readonly InputAction m_FishControls_Select;
     public struct FishControlsActions
     {
         private @Controls m_Wrapper;
@@ -672,8 +575,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         public InputAction @Pause => m_Wrapper.m_FishControls_Pause;
         public InputAction @IncreaseLight => m_Wrapper.m_FishControls_IncreaseLight;
         public InputAction @DecreaseLight => m_Wrapper.m_FishControls_DecreaseLight;
-        public InputAction @Interact => m_Wrapper.m_FishControls_Interact;
-        public InputAction @Cancel => m_Wrapper.m_FishControls_Cancel;
+        public InputAction @Select => m_Wrapper.m_FishControls_Select;
         public InputActionMap Get() { return m_Wrapper.m_FishControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -701,12 +603,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @DecreaseLight.started -= m_Wrapper.m_FishControlsActionsCallbackInterface.OnDecreaseLight;
                 @DecreaseLight.performed -= m_Wrapper.m_FishControlsActionsCallbackInterface.OnDecreaseLight;
                 @DecreaseLight.canceled -= m_Wrapper.m_FishControlsActionsCallbackInterface.OnDecreaseLight;
-                @Interact.started -= m_Wrapper.m_FishControlsActionsCallbackInterface.OnInteract;
-                @Interact.performed -= m_Wrapper.m_FishControlsActionsCallbackInterface.OnInteract;
-                @Interact.canceled -= m_Wrapper.m_FishControlsActionsCallbackInterface.OnInteract;
-                @Cancel.started -= m_Wrapper.m_FishControlsActionsCallbackInterface.OnCancel;
-                @Cancel.performed -= m_Wrapper.m_FishControlsActionsCallbackInterface.OnCancel;
-                @Cancel.canceled -= m_Wrapper.m_FishControlsActionsCallbackInterface.OnCancel;
+                @Select.started -= m_Wrapper.m_FishControlsActionsCallbackInterface.OnSelect;
+                @Select.performed -= m_Wrapper.m_FishControlsActionsCallbackInterface.OnSelect;
+                @Select.canceled -= m_Wrapper.m_FishControlsActionsCallbackInterface.OnSelect;
             }
             m_Wrapper.m_FishControlsActionsCallbackInterface = instance;
             if (instance != null)
@@ -729,12 +628,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @DecreaseLight.started += instance.OnDecreaseLight;
                 @DecreaseLight.performed += instance.OnDecreaseLight;
                 @DecreaseLight.canceled += instance.OnDecreaseLight;
-                @Interact.started += instance.OnInteract;
-                @Interact.performed += instance.OnInteract;
-                @Interact.canceled += instance.OnInteract;
-                @Cancel.started += instance.OnCancel;
-                @Cancel.performed += instance.OnCancel;
-                @Cancel.canceled += instance.OnCancel;
+                @Select.started += instance.OnSelect;
+                @Select.performed += instance.OnSelect;
+                @Select.canceled += instance.OnSelect;
             }
         }
     }
@@ -745,16 +641,12 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private IOctopusControlsActions m_OctopusControlsActionsCallbackInterface;
     private readonly InputAction m_OctopusControls_Move;
     private readonly InputAction m_OctopusControls_Strike;
-    private readonly InputAction m_OctopusControls_Interact;
-    private readonly InputAction m_OctopusControls_Cancel;
     public struct OctopusControlsActions
     {
         private @Controls m_Wrapper;
         public OctopusControlsActions(@Controls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_OctopusControls_Move;
         public InputAction @Strike => m_Wrapper.m_OctopusControls_Strike;
-        public InputAction @Interact => m_Wrapper.m_OctopusControls_Interact;
-        public InputAction @Cancel => m_Wrapper.m_OctopusControls_Cancel;
         public InputActionMap Get() { return m_Wrapper.m_OctopusControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -770,12 +662,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Strike.started -= m_Wrapper.m_OctopusControlsActionsCallbackInterface.OnStrike;
                 @Strike.performed -= m_Wrapper.m_OctopusControlsActionsCallbackInterface.OnStrike;
                 @Strike.canceled -= m_Wrapper.m_OctopusControlsActionsCallbackInterface.OnStrike;
-                @Interact.started -= m_Wrapper.m_OctopusControlsActionsCallbackInterface.OnInteract;
-                @Interact.performed -= m_Wrapper.m_OctopusControlsActionsCallbackInterface.OnInteract;
-                @Interact.canceled -= m_Wrapper.m_OctopusControlsActionsCallbackInterface.OnInteract;
-                @Cancel.started -= m_Wrapper.m_OctopusControlsActionsCallbackInterface.OnCancel;
-                @Cancel.performed -= m_Wrapper.m_OctopusControlsActionsCallbackInterface.OnCancel;
-                @Cancel.canceled -= m_Wrapper.m_OctopusControlsActionsCallbackInterface.OnCancel;
             }
             m_Wrapper.m_OctopusControlsActionsCallbackInterface = instance;
             if (instance != null)
@@ -786,12 +672,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Strike.started += instance.OnStrike;
                 @Strike.performed += instance.OnStrike;
                 @Strike.canceled += instance.OnStrike;
-                @Interact.started += instance.OnInteract;
-                @Interact.performed += instance.OnInteract;
-                @Interact.canceled += instance.OnInteract;
-                @Cancel.started += instance.OnCancel;
-                @Cancel.performed += instance.OnCancel;
-                @Cancel.canceled += instance.OnCancel;
             }
         }
     }
@@ -804,14 +684,11 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         void OnPause(InputAction.CallbackContext context);
         void OnIncreaseLight(InputAction.CallbackContext context);
         void OnDecreaseLight(InputAction.CallbackContext context);
-        void OnInteract(InputAction.CallbackContext context);
-        void OnCancel(InputAction.CallbackContext context);
+        void OnSelect(InputAction.CallbackContext context);
     }
     public interface IOctopusControlsActions
     {
         void OnMove(InputAction.CallbackContext context);
         void OnStrike(InputAction.CallbackContext context);
-        void OnInteract(InputAction.CallbackContext context);
-        void OnCancel(InputAction.CallbackContext context);
     }
 }
