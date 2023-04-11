@@ -6,7 +6,7 @@ using TMPro;
 using UnityEngine.UI;
 /*******************************************************************************
 // File Name :         GarthController.cs
-// Author(s) :         Sky Beal
+// Author(s) :         Sky Beal, Jay Embry
 // Creation Date :     4/6/2023
 //
 // Brief Description : Controls when and how Garth speaks !!

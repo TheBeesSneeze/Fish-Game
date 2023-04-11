@@ -204,4 +204,14 @@ public IEnumerator DashRoutine()
         IgnoreMove = false;
 
     }
+
+    private void OnDestroy()
+    {
+
+        Move.started -= Move_started;
+        Move.canceled -= Move_canceled;
+
+        Dash.started -= DashInput;
+
+    }
 }

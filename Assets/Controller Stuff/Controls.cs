@@ -535,6 +535,120 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""MenuControls"",
+            ""id"": ""c26dd8e3-f60a-4c81-940c-3ae2f4687597"",
+            ""actions"": [
+                {
+                    ""name"": ""Move"",
+                    ""type"": ""Value"",
+                    ""id"": ""007e2efc-55f3-4f74-9943-5346739401ef"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Select"",
+                    ""type"": ""Button"",
+                    ""id"": ""32c1a3a4-c9fa-4278-a904-0b7071f80a5f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""8671bd97-244d-4e21-bf7a-5ba0ea6fb152"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""67317d6f-37e5-4a9c-ade6-6fda0ec1944e"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""d3818949-e70f-42eb-aff5-5b2a2a635984"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""4f67dce3-2d12-4625-aab6-ec11e96e5e94"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""bcb6d146-b7e8-4152-b3b3-58be22d84717"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""681d052f-cead-4ad9-a7c1-982394e3a569"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1e37aa28-71f6-4e9b-9e22-d51033a76a48"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Select"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b35b586e-2e46-462b-ba31-2a666b039a57"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Select"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -553,6 +667,10 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         m_OctopusControls_Move = m_OctopusControls.FindAction("Move", throwIfNotFound: true);
         m_OctopusControls_Strike = m_OctopusControls.FindAction("Strike", throwIfNotFound: true);
         m_OctopusControls_Dash = m_OctopusControls.FindAction("Dash", throwIfNotFound: true);
+        // MenuControls
+        m_MenuControls = asset.FindActionMap("MenuControls", throwIfNotFound: true);
+        m_MenuControls_Move = m_MenuControls.FindAction("Move", throwIfNotFound: true);
+        m_MenuControls_Select = m_MenuControls.FindAction("Select", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -738,6 +856,47 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         }
     }
     public OctopusControlsActions @OctopusControls => new OctopusControlsActions(this);
+
+    // MenuControls
+    private readonly InputActionMap m_MenuControls;
+    private IMenuControlsActions m_MenuControlsActionsCallbackInterface;
+    private readonly InputAction m_MenuControls_Move;
+    private readonly InputAction m_MenuControls_Select;
+    public struct MenuControlsActions
+    {
+        private @Controls m_Wrapper;
+        public MenuControlsActions(@Controls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Move => m_Wrapper.m_MenuControls_Move;
+        public InputAction @Select => m_Wrapper.m_MenuControls_Select;
+        public InputActionMap Get() { return m_Wrapper.m_MenuControls; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(MenuControlsActions set) { return set.Get(); }
+        public void SetCallbacks(IMenuControlsActions instance)
+        {
+            if (m_Wrapper.m_MenuControlsActionsCallbackInterface != null)
+            {
+                @Move.started -= m_Wrapper.m_MenuControlsActionsCallbackInterface.OnMove;
+                @Move.performed -= m_Wrapper.m_MenuControlsActionsCallbackInterface.OnMove;
+                @Move.canceled -= m_Wrapper.m_MenuControlsActionsCallbackInterface.OnMove;
+                @Select.started -= m_Wrapper.m_MenuControlsActionsCallbackInterface.OnSelect;
+                @Select.performed -= m_Wrapper.m_MenuControlsActionsCallbackInterface.OnSelect;
+                @Select.canceled -= m_Wrapper.m_MenuControlsActionsCallbackInterface.OnSelect;
+            }
+            m_Wrapper.m_MenuControlsActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Move.started += instance.OnMove;
+                @Move.performed += instance.OnMove;
+                @Move.canceled += instance.OnMove;
+                @Select.started += instance.OnSelect;
+                @Select.performed += instance.OnSelect;
+                @Select.canceled += instance.OnSelect;
+            }
+        }
+    }
+    public MenuControlsActions @MenuControls => new MenuControlsActions(this);
     public interface IFishControlsActions
     {
         void OnMove(InputAction.CallbackContext context);
@@ -753,5 +912,10 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnStrike(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
+    }
+    public interface IMenuControlsActions
+    {
+        void OnMove(InputAction.CallbackContext context);
+        void OnSelect(InputAction.CallbackContext context);
     }
 }
