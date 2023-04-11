@@ -23,6 +23,7 @@ public class EnemyBehavior : CharacterBehavior
 
     [Header("Unity Jargain")]
     private EnemyDetection enemyDetection;
+    private Collider2D enemyCollider;
 
     [Header("You don't need to touch this:")]
     public GameObject Gorp;
@@ -86,6 +87,10 @@ public class EnemyBehavior : CharacterBehavior
         {
             LayersOfLight++;
         }
+        if (tag.Equals("Flash"))
+        {
+            BeStunned();
+        }
     }
 
     public override void OnTriggerExit2D(Collider2D collision)
@@ -108,6 +113,19 @@ public class EnemyBehavior : CharacterBehavior
         }
     }
 
+    public override void BeStunned()
+    {
+        base.BeStunned();
+        Speed = 0;
+        enemyCollider = GetComponent<Collider2D>();
+        enemyCollider.enabled = false;
+    }
+    public override void BeUnStunned()
+    {
+        Speed = EnemyData.Speed;
+        enemyCollider.enabled = true;
+    }
+
     /// <summary>
     /// Sets variables to those in EnemyData
     /// </summary>
@@ -118,5 +136,6 @@ public class EnemyBehavior : CharacterBehavior
         Weight = EnemyData.Weight;
         TakeKnockback = EnemyData.TakeKnockback;
         ImmuneToElectricity = EnemyData.ImmuneToElectricity;
+        StunLength = EnemyData.StunDuration;
     }
 }

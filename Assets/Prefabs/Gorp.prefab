@@ -501,6 +501,7 @@ MonoBehaviour:
   ImmuneToElectricity: 0
   Weight: 0
   DefaultPosition: {x: 0, y: 0, z: 0}
+  StunLength: 0.4
   CharacterData: {fileID: 11400000, guid: 7a5fbf452c3d09b4590c3c0ffed95971, type: 2}
   PlayerNumber: 0
   Rumble: 0
@@ -510,6 +511,15 @@ MonoBehaviour:
     m_Type: 0
     m_ExpectedControlType: 
     m_Id: 8fc61d40-3cd0-4a10-bc10-709e3a148503
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  Select:
+    m_Name: Select
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 496b32f3-f56f-4bdd-8af0-3e633d3e7eee
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
@@ -543,7 +553,7 @@ MonoBehaviour:
     m_SingletonActionBindings: []
     m_Flags: 0
   FlashChargeTime: 1
-  FlashLength: 5
+  FlashLength: 1
   LightIncrement: 0.1
   LightIncrementDelay: 0.1
   ToggleLightTime: 0.2
