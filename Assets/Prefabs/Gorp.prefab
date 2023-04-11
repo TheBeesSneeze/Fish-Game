@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 224246328225213341}
   - component: {fileID: 964516673680466274}
   - component: {fileID: 7671763762992128079}
-  m_Layer: 9
+  m_Layer: 3
   m_Name: FishFlash
   m_TagString: Flash
   m_Icon: {fileID: 0}
@@ -192,7 +192,7 @@ GameObject:
   - component: {fileID: 6314224465902346820}
   - component: {fileID: 5168131707846391277}
   - component: {fileID: 2261076304649148020}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Fish Light
   m_TagString: Light
   m_Icon: {fileID: 0}
@@ -543,12 +543,12 @@ MonoBehaviour:
     m_SingletonActionBindings: []
     m_Flags: 0
   FlashChargeTime: 1
-  FlashLength: 5
+  FlashLength: 0.4
   LightIncrement: 0.1
   LightIncrementDelay: 0.1
   ToggleLightTime: 0.2
   MinLight: 1
-  MaxLight: 10
+  MaxLight: 5
   FlashTrigger: {fileID: 4950820922443560528}
 --- !u!114 &5052205749001080560
 MonoBehaviour:
@@ -565,7 +565,7 @@ MonoBehaviour:
   LightEnabled: 0
   LightRadius: 5
   InnerRadiusDivisionFactor: 2
-  LightTrigger: {fileID: 964516673680466274}
+  LightTrigger: {fileID: 2261076304649148020}
   LightSource: {fileID: 5168131707846391277}
   TransitionFrames: 20
 --- !u!50 &8678797230697677935

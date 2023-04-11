@@ -40,7 +40,7 @@ public class JellyfishBehavior : EnemyBehavior
         Weakened,     // After electrified (open for attack)
     }
 
-    public virtual void Start()
+    public override void Start()
     {
         base.Start();
 

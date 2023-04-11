@@ -20,14 +20,19 @@ public class EnemyType : CharacterType
     public bool  StunnedByFlash     ; //TODO
     public bool  HurtByFlash        ; //TODO
     public float StunDuration       ; //TODO
+    public float DamagedByLight     ; //TODO
 
     [Header("Detection:")]
 
     public float SightDistance      ;
+    [Tooltip("Space until enemy cant see you")]
     public float UnsightDistance    ;
-    public float PursueDelay        ;
-    public bool  NightVision        ; 
-
+    [Tooltip("Seconds until the enemy realizes its looking at you")]
+    public float PursueDelay        ; //IS this done?
+    [Tooltip("If the enemy can pursue without light.")]
+    public bool  NightVision        ;
+    [Tooltip("If the enemy can pursue while in light.")]
+    public bool  DayVision          ; //TODO
     
 
 }

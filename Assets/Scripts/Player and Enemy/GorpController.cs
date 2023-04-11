@@ -30,8 +30,6 @@ public class GorpController : PlayerController
     public float MinLight = 1f;
     public float MaxLight = 10f;
 
-    
-
     // Min/Max Light are the radius of Gorp's silly light
     [Header("Debug")]
     private bool togglingLight;
@@ -42,7 +40,10 @@ public class GorpController : PlayerController
     private Coroutine incrementCoroutine;
     private Coroutine decrementCoroutine; // i added a lot of unneccessary variables for a simple problem that was already working okay. but i want this game to be good man -Toby
     private LightController lightController;
+
     public  GameObject FlashTrigger;
+    private Coroutine flashCoroutine;
+    private bool flashedSuccessfully;
 
     // Start is called before the first frame update
     public override void Start()
@@ -65,13 +66,11 @@ public class GorpController : PlayerController
         DecreaseLight = MyPlayerInput.actions.FindAction("Decrease Light");
 
         //All the input functions!!!
-        ToggleLightAction.started += ToggleLight;
-        ToggleLightAction.canceled += ReleaseToggle;
+        ToggleLightAction.started += ToggleLight_started;
+        ToggleLightAction.canceled += Toggle_canceled;
 
-        IncreaseLight.started += FishFlash;
-
-        //IncreaseLight.started += IncreaseLight_started;
-        //IncreaseLight.canceled += IncreaseLight_canceled;
+        IncreaseLight.started += IncreaseLight_started;
+        IncreaseLight.canceled += IncreaseLight_canceled;
 
         DecreaseLight.started += DecreaseLight_started;
         DecreaseLight.canceled += DecreaseLight_canceled;
@@ -96,36 +95,82 @@ public class GorpController : PlayerController
     /// <summary>
     /// Begins the players light switch journey!
     /// </summary>
-    private void ToggleLight(InputAction.CallbackContext obj)
+    private void ToggleLight_started(InputAction.CallbackContext obj)
     {
-        if(Rumble)
+        togglingLight = true;
+
+        flashCoroutine = StartCoroutine( AttemptFlash() );
+
+        if (Rumble)
             MyGamepad.SetMotorSpeeds(0.20f, 0.25f);
     }
 
-    private void ReleaseToggle(InputAction.CallbackContext obj)
+    /// <summary>
+    /// Toggles light if no flash.
+    /// </summary>
+    private void Toggle_canceled(InputAction.CallbackContext obj)
     {
-        lightController.LightEnabled = !lightController.LightEnabled;
+        togglingLight = false;
+        StopCoroutine(flashCoroutine);
 
-        //Because this wont work the way it's supposed to for some FUCKING reason
-        if (lightController.LightEnabled)
-            LayersOfLight++;
+        // Normal input (not held down)
+        if ( ! flashedSuccessfully)
+        {
+            lightController.LightEnabled = !lightController.LightEnabled;
+            
 
+            //Because this wont work the way it's supposed to for some FUCKING reason
+            if (lightController.LightEnabled)
+                LayersOfLight++;
+
+            else //off
+                LayersOfLight--;
+
+            Invoke("AttemptFlash", FlashChargeTime);
+            lightController.UpdateLightRadius(ToggleLightTime, false);
+
+            if (Rumble)
+                MyGamepad.SetMotorSpeeds(0f, 0f);
+        }
         else
-            LayersOfLight--;
+        {
 
-        Invoke("AttemptFlash", FlashChargeTime);
-        lightController.UpdateLightRadius(ToggleLightTime);
-
-        if (Rumble)
-            MyGamepad.SetMotorSpeeds(0f, 0f);
+        }
     }
 
-    private void AttemptFlash() //theres an easy joke here
+    /// <summary>
+    /// fish flashes if the player is still holding the 
+    /// toggle light button.
+    /// </summary>
+    private IEnumerator AttemptFlash() //theres an easy joke here
     {
+        flashedSuccessfully = false;
 
+        yield return new WaitForSeconds(FlashChargeTime);
+
+        if ( togglingLight ) 
+        {
+            FishFlash();
+            StartCoroutine( SetRumble(0, 0, 0.1f) );
+            flashedSuccessfully = true;
+            lightController.LightEnabled = false;
+        }
     }
 
-    private void FishFlash(InputAction.CallbackContext obj)
+    /// <summary>
+    /// mostly just for when you need to Invoke a rumble after seconds
+    /// </summary>
+    private IEnumerator SetRumble(float min, float max, float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        if (Rumble)
+            MyGamepad.SetMotorSpeeds(min, max);
+    }
+
+    /// <summary>
+    /// Fishflash without inputaction context
+    /// </summary>
+    private void FishFlash()
     {
         FlashTrigger.SetActive(true);
         FlashTrigger.GetComponent<Collider2D>().enabled = true;
@@ -139,6 +184,14 @@ public class GorpController : PlayerController
         Invoke("StopFlash", FlashLength);
     }
 
+    /// <summary>
+    /// The FishFlash that the controller uses
+    /// </summary>
+    private void FishFlash(InputAction.CallbackContext obj)
+    {
+        FishFlash();
+    }
+
     private void StopFlash()
     {
         FlashTrigger.SetActive(false);
@@ -148,8 +201,6 @@ public class GorpController : PlayerController
     /// Adds/subtracts LightIncrement to LightRadius, depending on 
     /// Applies changes to Gorp's light
     /// </summary>
-    
-
     private void IncreaseLight_started(InputAction.CallbackContext obj)
     {
         currentlyIncrementing = true;
