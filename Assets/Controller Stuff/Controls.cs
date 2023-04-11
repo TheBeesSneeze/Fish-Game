@@ -80,6 +80,15 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Select"",
+                    ""type"": ""Button"",
+                    ""id"": ""25680229-bc24-40c5-8240-a8daa64029c2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -313,6 +322,28 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""action"": ""Decrease Light"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ede16bff-435d-49b1-9267-9a40748aa6b5"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Select"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d77b7316-9607-4b33-8934-471cb4f76731"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Select"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -463,6 +494,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         m_FishControls_Pause = m_FishControls.FindAction("Pause", throwIfNotFound: true);
         m_FishControls_IncreaseLight = m_FishControls.FindAction("Increase Light", throwIfNotFound: true);
         m_FishControls_DecreaseLight = m_FishControls.FindAction("Decrease Light", throwIfNotFound: true);
+        m_FishControls_Select = m_FishControls.FindAction("Select", throwIfNotFound: true);
         // OctopusControls
         m_OctopusControls = asset.FindActionMap("OctopusControls", throwIfNotFound: true);
         m_OctopusControls_Move = m_OctopusControls.FindAction("Move", throwIfNotFound: true);
@@ -532,6 +564,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private readonly InputAction m_FishControls_Pause;
     private readonly InputAction m_FishControls_IncreaseLight;
     private readonly InputAction m_FishControls_DecreaseLight;
+    private readonly InputAction m_FishControls_Select;
     public struct FishControlsActions
     {
         private @Controls m_Wrapper;
@@ -542,6 +575,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         public InputAction @Pause => m_Wrapper.m_FishControls_Pause;
         public InputAction @IncreaseLight => m_Wrapper.m_FishControls_IncreaseLight;
         public InputAction @DecreaseLight => m_Wrapper.m_FishControls_DecreaseLight;
+        public InputAction @Select => m_Wrapper.m_FishControls_Select;
         public InputActionMap Get() { return m_Wrapper.m_FishControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -569,6 +603,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @DecreaseLight.started -= m_Wrapper.m_FishControlsActionsCallbackInterface.OnDecreaseLight;
                 @DecreaseLight.performed -= m_Wrapper.m_FishControlsActionsCallbackInterface.OnDecreaseLight;
                 @DecreaseLight.canceled -= m_Wrapper.m_FishControlsActionsCallbackInterface.OnDecreaseLight;
+                @Select.started -= m_Wrapper.m_FishControlsActionsCallbackInterface.OnSelect;
+                @Select.performed -= m_Wrapper.m_FishControlsActionsCallbackInterface.OnSelect;
+                @Select.canceled -= m_Wrapper.m_FishControlsActionsCallbackInterface.OnSelect;
             }
             m_Wrapper.m_FishControlsActionsCallbackInterface = instance;
             if (instance != null)
@@ -591,6 +628,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @DecreaseLight.started += instance.OnDecreaseLight;
                 @DecreaseLight.performed += instance.OnDecreaseLight;
                 @DecreaseLight.canceled += instance.OnDecreaseLight;
+                @Select.started += instance.OnSelect;
+                @Select.performed += instance.OnSelect;
+                @Select.canceled += instance.OnSelect;
             }
         }
     }
@@ -644,6 +684,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         void OnPause(InputAction.CallbackContext context);
         void OnIncreaseLight(InputAction.CallbackContext context);
         void OnDecreaseLight(InputAction.CallbackContext context);
+        void OnSelect(InputAction.CallbackContext context);
     }
     public interface IOctopusControlsActions
     {

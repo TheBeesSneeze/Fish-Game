@@ -28,6 +28,7 @@ public class PlayerController : CharacterBehavior
 
     public PlayerInput MyPlayerInput;
     public InputAction Move;
+    public InputAction Select;
 
     public  bool ReadMove;
 
@@ -49,6 +50,7 @@ public class PlayerController : CharacterBehavior
 
         MyPlayerInput.actions.Enable();
         Move = MyPlayerInput.actions.FindAction("Move");
+        Select = MyPlayerInput.actions.FindAction("Select");
 
         //I believe this is adding the functions to the buttons...
         Move.started += Move_started;
@@ -149,5 +151,15 @@ public class PlayerController : CharacterBehavior
         ReadMove = false;
         //myRb.velocity = Vector3.zero; 
         //Slidey-ness can be configured in linear drag of the rigidbody2d
+    }
+    public override void BeStunned()
+    {
+        base.BeStunned();
+        MyPlayerInput.actions.Disable();
+    }
+    public override void BeUnStunned()
+    {
+        base.BeUnStunned();
+        MyPlayerInput.actions.Enable();
     }
 }
