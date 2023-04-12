@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.DualShock;
 /*******************************************************************************
 // File Name :         GlobbingtonAttackController.cs
-// Author(s) :         Sky Beal
+// Author(s) :         Sky Beal, Jay Embry
 // Creation Date :     3/28/2023
 //
 // Brief Description : Code for Globbington swinging his sword! Also accounts 
@@ -93,5 +93,12 @@ public class GlobbingtonAttackController : PlayerController
             RotatePlayer();
             yield return null;
         }
+    }
+
+    private void OnDestroy()
+    {
+
+        Strike.started -= Strike_started;
+
     }
 }

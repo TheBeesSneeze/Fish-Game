@@ -1,6 +1,6 @@
 /*******************************************************************************
 // File Name :         GorpController.cs
-// Author(s) :         Toby Schamberger, Sky Beal
+// Author(s) :         Toby Schamberger, Sky Beal, Jay Embry
 // Creation Date :     4/3/2023
 //
 // Brief Description : this code was written to optimize like 2 lines of code 
@@ -268,5 +268,17 @@ public class GorpController : PlayerController
 
         if (Rumble)
             MyGamepad.SetMotorSpeeds(0f, 0f);
+    }
+
+    private void OnDestroy()
+    {
+        ToggleLightAction.started -= ToggleLight_started;
+        ToggleLightAction.canceled -= Toggle_canceled;
+
+        IncreaseLight.started -= IncreaseLight_started;
+        IncreaseLight.canceled -= IncreaseLight_canceled;
+
+        DecreaseLight.started -= DecreaseLight_started;
+        DecreaseLight.canceled -= DecreaseLight_canceled;
     }
 }

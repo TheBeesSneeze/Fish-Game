@@ -18,7 +18,6 @@ public class PipeTransportation : MonoBehaviour
     /// Public variables allow us to edit coordinates for each pipe
     /// </summary>
     public Vector2 OutputPosition;
-    public Vector2 Brazil;
     public float TransportationSpeed;
 
     GameObject globbington;
@@ -43,7 +42,7 @@ public class PipeTransportation : MonoBehaviour
     public void Wait()
     {
 
-        globbington.transform.position = Brazil;
+        globbington.transform.position = new Vector2(100, 100);
         Invoke("Transportation", TransportationSpeed);
 
     }
