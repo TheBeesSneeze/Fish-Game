@@ -57,8 +57,6 @@ public class EnemyDetection : MonoBehaviour
 
         rb = GetComponent<Rigidbody2D>();
         StartCoroutine(SearchForPlayer());
-
-        
     }
 
     /// <summary>
@@ -160,22 +158,29 @@ public class EnemyDetection : MonoBehaviour
 
         while(CurrentTarget!=null)
         {
-            float dist = Vector2.Distance(transform.position, CurrentTarget.transform.position);
-            bool  closeEnough = dist <= unsightDistance;
-            bool  canSee = targetController.LayersOfLight > 0 || darkVision;
-
-            if (canSee && closeEnough)
+            if(enemyData.BlindedByTheLight && enemyBehavior.LayersOfLight > 0)
             {
-                Vector2 positionDifference = Vector2.MoveTowards(transform.position, CurrentTarget.transform.position, enemyBehavior.Speed);
-                Vector2 movementVelocity = positionDifference - (Vector2)transform.position;
-                rb.velocity = movementVelocity;
+                CurrentTarget = null;
             }
             else
             {
-                targetController = null;
-                CurrentTarget = null;
+                float dist = Vector2.Distance(transform.position, CurrentTarget.transform.position);
+                bool closeEnough = dist <= unsightDistance;
+                bool canSee = targetController.LayersOfLight > 0 || darkVision;
+
+                if (canSee && closeEnough)
+                {
+                    Vector2 positionDifference = Vector2.MoveTowards(transform.position, CurrentTarget.transform.position, enemyBehavior.Speed);
+                    Vector2 movementVelocity = positionDifference - (Vector2)transform.position;
+                    rb.velocity = movementVelocity;
+                }
+                else
+                {
+                    targetController = null;
+                    CurrentTarget = null;
+                }
+                yield return new WaitForSeconds(0.1f);
             }
-            yield return new WaitForSeconds(0.1f);
         }
 
         rb.velocity = Vector2.zero;
@@ -190,8 +195,6 @@ public class EnemyDetection : MonoBehaviour
         unsightDistance = enemyData.UnsightDistance ;
         pursueDelay     = enemyData.PursueDelay     ;
         darkVision      = enemyData.NightVision     ;
-        
-        //TODO
     }
 }
 

@@ -29,6 +29,7 @@ public class LightController : MonoBehaviour
 
     [Header("Settings")]
     public float TransitionFrames = 20;
+    private Coroutine lightLerpCoroutine;
 
 
     // Start is called before the first frame update
@@ -52,14 +53,17 @@ public class LightController : MonoBehaviour
 
         LightTrigger.enabled = LightEnabled;
 
+        if (lightLerpCoroutine != null)
+            StopCoroutine(lightLerpCoroutine);
+
         //Clap on!
         if (LightEnabled)
         {
             if (startfromZero)
-                StartCoroutine(LightLerp(0, LightRadius, seconds));
+                lightLerpCoroutine = StartCoroutine(LightLerp(0, LightRadius, seconds));
             //regular mode
             else
-                StartCoroutine(LightLerp(oldRadius, LightRadius, seconds));
+                lightLerpCoroutine = StartCoroutine(LightLerp(oldRadius, LightRadius, seconds));
 
             LightTrigger.radius = LightRadius / lightRadiusDescale;
 
@@ -67,13 +71,11 @@ public class LightController : MonoBehaviour
         //Clap off!
         else
         {
-            StartCoroutine(LightLerp(oldRadius, 0, seconds));
+            lightLerpCoroutine = StartCoroutine(LightLerp(oldRadius, 0, seconds));
 
             LightTrigger.radius = 0;
         }
         //The clapper!
-
-        
     }
 
     /// <summary>
@@ -98,7 +100,6 @@ public class LightController : MonoBehaviour
     /// <param name="startRadius"></param>
     /// <param name="endRadius"></param>
     /// <param name="seconds"></param>
-    /// <returns></returns>
     private IEnumerator LightLerp(float startRadius, float endRadius, float seconds)
     {
         if (seconds > 0)
@@ -120,5 +121,6 @@ public class LightController : MonoBehaviour
             LightSource.pointLightInnerRadius = endRadius/ InnerRadiusDivisionFactor;
             LightSource.pointLightOuterRadius = endRadius;
         }
+        lightLerpCoroutine = null;
     }
 }

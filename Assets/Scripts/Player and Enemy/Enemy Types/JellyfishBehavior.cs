@@ -25,6 +25,9 @@ public class JellyfishBehavior : EnemyBehavior
     public float MaxLightRadius;
     [Tooltip("How intense light will be at its intensest")]
     public float MaxIntensity;
+    public float ElectrifyingDelay;
+    public float ElectrifyingTime;
+    public float WeakenedTime;
 
     [Header("Unity")]
     public GameObject PassiveElectricityTrigger;
@@ -48,13 +51,19 @@ public class JellyfishBehavior : EnemyBehavior
 
         StartCoroutine(AdjustLight());
     }
-
+    
     /// <summary>
     /// Sets JellyState = state and enables/disables appropriate triggers.
     /// Also calls/invokes some functions relating to current state.
     /// </summary>
-    public void SetState(JellyfishState state)
+    public IEnumerator SetState(JellyfishState state, float Delay)
     {
+        yield return new WaitForSeconds(Delay);
+
+        // this would be redundant!
+        if (JellyState == state)
+            yield return null;
+
         JellyState = state;
         switch(JellyState) 
         {
@@ -66,13 +75,24 @@ public class JellyfishBehavior : EnemyBehavior
             case JellyfishState.Electrifying:
                 PassiveElectricityTrigger.SetActive(false);
                 ElectrifyingTrigger.SetActive(true);
-                break;
 
+                StartCoroutine( StopElectrifying() );
+                break;
+                
             case JellyfishState.Weakened:
                 PassiveElectricityTrigger.SetActive(false);
                 ElectrifyingTrigger.SetActive(false);
+
+                StartCoroutine( StopBeingWeak() );
                 break;
         }
+        yield return null;
+    }
+
+    public IEnumerator SetState(JellyfishState state)
+    {
+        StartCoroutine(SetState(state, 0));
+        yield return null;
     }
 
     public IEnumerator AdjustLight()
@@ -119,16 +139,39 @@ public class JellyfishBehavior : EnemyBehavior
         string tag = collider.tag;
 
         // Start electric blast
-        if( JellyState.Equals( JellyfishState.Passive ) )
+        if (JellyState.Equals(JellyfishState.Passive))
         {
-            if(tag.Equals("Flash") || tag.Equals("Electricity")) //2nd part for debug
+            if (tag.Equals("Flash") || tag.Equals("Electricity")) //2nd part for debug
             {
-                Debug.Log("Electric avenue");
-                SetState(JellyfishState.Electrifying);
-                KnockBack(collider.GetComponentInParent<GameObject>(), transform.position); // knocks the player back
+                
+                StartCoroutine(SetState(JellyfishState.Electrifying, ElectrifyingDelay));
+                //KnockBack(collider.GetComponentInParent<GameObject>(), transform.position); // knocks the player back
+            }
+        }
+        else if (JellyState.Equals(JellyfishState.Weakened))
+        {
+            if (tag.Equals("Attack")) //2nd part for debug
+            {
+                TakeDamage(1);
             }
         }
     }
 
-    
+    /// <summary>
+    /// Function to run some time after electrifiny
+    /// </summary>
+    public IEnumerator StopElectrifying()
+    {
+        yield return new WaitForSeconds(ElectrifyingTime);
+        StartCoroutine(SetState(JellyfishState.Weakened));
+    }
+
+    /// <summary>
+    /// Function to run some time after being weakened
+    /// </summary>
+    public IEnumerator StopBeingWeak()
+    {
+        yield return new WaitForSeconds(WeakenedTime);
+        StartCoroutine(SetState(JellyfishState.Passive));
+    }
 }

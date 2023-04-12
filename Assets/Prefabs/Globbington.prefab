@@ -288,6 +288,7 @@ MonoBehaviour:
   ImmuneToElectricity: 0
   Weight: 0
   DefaultPosition: {x: 0, y: 0, z: 0}
+  StunLength: 0
   CharacterData: {fileID: 11400000, guid: 7f175cdaa82c39e47abd86895c531c1c, type: 2}
   PlayerNumber: 0
   Rumble: 0
@@ -297,6 +298,15 @@ MonoBehaviour:
     m_Type: 0
     m_ExpectedControlType: 
     m_Id: 83ea90a5-5730-4217-819a-865620727531
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  Select:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 6d6ac5f7-8848-443e-9873-1ccc26d986eb
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []

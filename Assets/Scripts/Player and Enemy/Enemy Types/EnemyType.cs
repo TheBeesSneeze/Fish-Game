@@ -16,11 +16,14 @@ public class EnemyType : CharacterType
 {
     [Header("Enemy Exclusive:")]
 
+    [Tooltip("If the door will open ")]
     public bool  RequiredToKill     ; //Not used in any EnemyScripts, is checked in RoomBehavior tho
+    [Tooltip("If Enemy is stunned from flash")]
     public bool  StunnedByFlash     ;
+    [Tooltip("If Enemy takes damage from flash")]
     public bool  HurtByFlash        ;
     [Tooltip("DPS enemy takes while inside light. 0 means damage is ignored. Negative means healing")]
-    public float LightDamagePerSec  ; //TODO
+    public float LightDamagePerSec  ;
 
     [Header("Detection:")]
 

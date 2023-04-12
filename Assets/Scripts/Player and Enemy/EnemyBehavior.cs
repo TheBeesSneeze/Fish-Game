@@ -149,15 +149,15 @@ public class EnemyBehavior : CharacterBehavior
     }
 
     /// <summary>
-    /// Every half, enemy takes lightDamagePerSecond/2.
+    /// Every third of a second, enemy takes lightDamagePerSecond/3.
     /// </summary>
     /// <returns></returns>
     public IEnumerator TakeLightDamage()
     {
         while(LayersOfLight > 0)
         {
-            yield return new WaitForSeconds(0.5f);
-            TakeDamage(lightDamagePerSecond/2);
+            yield return new WaitForSeconds(1/3);
+            TakeDamage(lightDPS/3);
         }
     }
 }

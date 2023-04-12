@@ -16,12 +16,14 @@ MonoBehaviour:
   Speed: 10
   Weight: 1
   TakeKnockback: 1
+  ImmuneToElectricity: 0
+  StunDuration: 2.5
+  RequiredToKill: 1
+  StunnedByFlash: 1
+  HurtByFlash: 0
+  LightDamagePerSec: -1
   SightDistance: 8
   UnsightDistance: 12
   PursueDelay: 0.4
   NightVision: 0
-  StunnedByFlash: 1
-  HurtByFlash: 0
-  StunDuration: 2.5
-  ImmuneToElectricity: 0
-  RequiredToKill: 1
+  BlindedByTheLight: 0

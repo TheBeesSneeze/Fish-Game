@@ -52,6 +52,7 @@ public class RoomBehaviour : MonoBehaviour
     /// Also will just return true if room doesnt need enemies to die.
     /// </summary>
     /// <returns>true if the room is okay to leave</returns>
+    [System.Obsolete]
     public bool RoomCleared()
     {
         //if checking if dead even matters

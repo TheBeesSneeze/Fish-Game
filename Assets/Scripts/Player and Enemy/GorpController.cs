@@ -20,15 +20,15 @@ public class GorpController : PlayerController
     public InputAction DecreaseLight;
 
     [Header("Settings")]
-    public float FlashChargeTime = 1.0f;
+    public float FlashChargeTime;
     public float FlashLength;
 
-    public float LightIncrement = 0.1f;
-    public float LightIncrementDelay = 0.1f;
-    public float ToggleLightTime = 0.5f;
+    public float LightIncrement;
+    public float LightIncrementDelay;
+    public float ToggleLightTime;
 
-    public float MinLight = 1f;
-    public float MaxLight = 10f;
+    public float MinLight;
+    public float MaxLight;
 
     // Min/Max Light are the radius of Gorp's silly light
     [Header("Debug")]
@@ -40,9 +40,12 @@ public class GorpController : PlayerController
     private Coroutine incrementCoroutine;
     private Coroutine decrementCoroutine; // i added a lot of unneccessary variables for a simple problem that was already working okay. but i want this game to be good man -Toby
     private LightController lightController;
-
+    public LightController FishChargeLight;
+    
+    private bool previousLightEnabled;
     public  GameObject FlashTrigger;
     private Coroutine flashCoroutine;
+    private Coroutine secondFlashCoroutine; // the long awaited sequel
     private bool flashedSuccessfully;
 
     // Start is called before the first frame update
@@ -59,6 +62,10 @@ public class GorpController : PlayerController
 
         //fishLight = this.gameObject.transform.GetChild(0).GetComponent<Light2D>(); //Weird syntax but I think its more legible?
         lightController.LightRadius = lightController.LightSource.pointLightOuterRadius;
+
+        FishChargeLight.LightRadius = 2.5f;
+        FishChargeLight.LightEnabled = false;
+        FishChargeLight.UpdateLightRadius(0,true);
 
         MyPlayerInput.actions.Enable();
         ToggleLightAction = MyPlayerInput.actions.FindAction("Toggle Light");
@@ -97,9 +104,21 @@ public class GorpController : PlayerController
     /// </summary>
     private void ToggleLight_started(InputAction.CallbackContext obj)
     {
+        previousLightEnabled = lightController.LightEnabled;
+
         togglingLight = true;
 
         flashCoroutine = StartCoroutine( AttemptFlash() );
+
+        if(lightController.LightEnabled)
+        {
+            lightController.LightEnabled = false;
+            lightController.UpdateLightRadius(ToggleLightTime,false);
+        }
+
+        FishChargeLight.LightRadius = 2.5f;
+        FishChargeLight.LightEnabled = true;
+        FishChargeLight.UpdateLightRadius(FlashChargeTime, true);
 
         if (Rumble)
             MyGamepad.SetMotorSpeeds(0.20f, 0.25f);
@@ -113,11 +132,13 @@ public class GorpController : PlayerController
         togglingLight = false;
         StopCoroutine(flashCoroutine);
 
+        FishChargeLight.LightEnabled = false;
+        FishChargeLight.UpdateLightRadius(0, true);
+
         // Normal input (not held down)
         if ( ! flashedSuccessfully)
         {
-            lightController.LightEnabled = !lightController.LightEnabled;
-            
+            lightController.LightEnabled = !previousLightEnabled;
 
             //Because this wont work the way it's supposed to for some FUCKING reason
             if (lightController.LightEnabled)
@@ -127,14 +148,12 @@ public class GorpController : PlayerController
                 LayersOfLight--;
 
             Invoke("AttemptFlash", FlashChargeTime);
-            lightController.UpdateLightRadius(ToggleLightTime, false);
+
+            if(! previousLightEnabled) //because it already happened
+                lightController.UpdateLightRadius(ToggleLightTime, false);
 
             if (Rumble)
                 MyGamepad.SetMotorSpeeds(0f, 0f);
-        }
-        else
-        {
-
         }
     }
 
@@ -148,6 +167,7 @@ public class GorpController : PlayerController
 
         yield return new WaitForSeconds(FlashChargeTime);
 
+        //Successful flash:
         if ( togglingLight ) 
         {
             FishFlash();
@@ -155,6 +175,10 @@ public class GorpController : PlayerController
             flashedSuccessfully = true;
             lightController.LightEnabled = false;
             lightController.UpdateLightRadius(0.1f);
+
+            FishChargeLight.LightEnabled = true;
+            FishChargeLight.LightRadius = 7.5f;
+            FishChargeLight.UpdateLightRadius(0.1f, true);
         }
     }
 
@@ -185,17 +209,12 @@ public class GorpController : PlayerController
         Invoke("StopFlash", FlashLength);
     }
 
-    /// <summary>
-    /// The FishFlash that the controller uses
-    /// </summary>
-    private void FishFlash(InputAction.CallbackContext obj)
-    {
-        FishFlash();
-    }
-
     private void StopFlash()
     {
         FlashTrigger.SetActive(false);
+
+        FishChargeLight.LightEnabled = false;
+        FishChargeLight.UpdateLightRadius(0.1f, true);
     }
 
     /// <summary>
