@@ -290,8 +290,9 @@ MonoBehaviour:
   DefaultPosition: {x: 0, y: 0, z: 0}
   StunLength: 0
   CharacterData: {fileID: 11400000, guid: 7f175cdaa82c39e47abd86895c531c1c, type: 2}
-  PlayerNumber: 0
+  PlayerNumber: 1
   Rumble: 0
+  IgnoreMove: 0
   MyPlayerInput: {fileID: 4302747830044685625}
   Move:
     m_Name: Move
@@ -302,8 +303,17 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
+  Dash:
+    m_Name: Dash
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: fe8b4f95-a84c-4b11-a25b-c784253e42e0
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
   Select:
-    m_Name: 
+    m_Name: Select
     m_Type: 0
     m_ExpectedControlType: 
     m_Id: 6d6ac5f7-8848-443e-9873-1ccc26d986eb
@@ -312,6 +322,7 @@ MonoBehaviour:
     m_SingletonActionBindings: []
     m_Flags: 0
   ReadMove: 0
+  DashForce: 40
   AttackLength: 0.16
   Sword: {fileID: 1137317766113117558}
   RotatePoint: {fileID: 7118317646495259653}
