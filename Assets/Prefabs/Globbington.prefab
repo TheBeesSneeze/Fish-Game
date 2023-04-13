@@ -323,7 +323,7 @@ MonoBehaviour:
     m_SingletonActionBindings: []
     m_Flags: 0
   ReadMove: 0
-  DashForce: 0
+  DashForce: 40
   AttackLength: 0.16
   Sword: {fileID: 1137317766113117558}
   RotatePoint: {fileID: 7118317646495259653}

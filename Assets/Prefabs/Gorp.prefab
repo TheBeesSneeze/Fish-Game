@@ -753,8 +753,7 @@ MonoBehaviour:
     m_SingletonActionBindings: []
     m_Flags: 0
   ReadMove: 0
-  DashForce: 0
-  NoPlayerMovementWait: 0.1
+  DashForce: 50
   ToggleLightAction:
     m_Name: Toggle Light
     m_Type: 0

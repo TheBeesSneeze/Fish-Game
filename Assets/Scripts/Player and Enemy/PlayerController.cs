@@ -34,7 +34,6 @@ public class PlayerController : CharacterBehavior
 
     public  bool ReadMove;
     public float DashForce;
-    public float NoPlayerMovementWait;
 
     //public float dashForce = 40;
 
@@ -71,10 +70,12 @@ public class PlayerController : CharacterBehavior
         
     }
 
+    /*
     private void Dash_canceled(InputAction.CallbackContext obj)
     {
         throw new System.NotImplementedException();
     }
+    */
 
     /// <summary>
     /// Sets variables to those in CharacterData
@@ -99,14 +100,9 @@ public class PlayerController : CharacterBehavior
         while (ReadMove)
         {
             if(!IgnoreMove)
-            {
-
                 myRb.velocity = Move.ReadValue<Vector2>() * Speed;
 
-            }
-
             yield return null;
-
         }
     }
 
@@ -186,8 +182,7 @@ public class PlayerController : CharacterBehavior
         IgnoreMove = true;
         myRb.AddForce(Move.ReadValue<Vector2>() * DashForce, ForceMode2D.Impulse);
 
-        NoPlayerMovementWait = 0.2f;
-        StartCoroutine(NoMovementRoutine());
+        StartCoroutine(NoMovementRoutine(0.2f));
     }
 
     public override void BeStunned()
@@ -200,10 +195,10 @@ public class PlayerController : CharacterBehavior
         base.BeUnStunned();
         MyPlayerInput.actions.Enable();
     }
-public IEnumerator NoMovementRoutine()
+    public IEnumerator NoMovementRoutine(float Seconds)
     {
 
-        yield return new WaitForSeconds(NoPlayerMovementWait);
+        yield return new WaitForSeconds(Seconds);
         IgnoreMove = false;
 
     }
@@ -214,8 +209,7 @@ public IEnumerator NoMovementRoutine()
         IgnoreMove = true;
         Debug.Log("knocking back");
 
-        NoPlayerMovementWait = 0.1f;
-        StartCoroutine(NoMovementRoutine());
+        StartCoroutine(NoMovementRoutine(0.1f));
     }
 
     private void OnDestroy()
