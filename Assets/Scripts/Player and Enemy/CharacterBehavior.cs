@@ -24,9 +24,8 @@ public class CharacterBehavior : MonoBehaviour
     
     public float Weight; 
     public Vector3 DefaultPosition;
-    private float defaultSpeed;
     public float StunLength;
-    private Rigidbody2D myRB;
+    public Rigidbody2D MyRB;
     public float KnockbackForce;
 
     /// <summary>
@@ -80,10 +79,10 @@ public class CharacterBehavior : MonoBehaviour
     /// <param name="damageSourcePosition"></param>
     public virtual void KnockBack(GameObject target, Vector3 damageSourcePosition)
     {
-        myRB = this.GetComponent<Rigidbody2D>();
+        MyRB = this.GetComponent<Rigidbody2D>();
         Vector3 positionDifference = target.transform.position - damageSourcePosition; 
         //target.transform.position -= positionDifference;
-        myRB.AddForce(positionDifference * KnockbackForce, ForceMode2D.Impulse);
+        MyRB.AddForce(positionDifference * KnockbackForce, ForceMode2D.Impulse);
     }
 
     /// <summary>

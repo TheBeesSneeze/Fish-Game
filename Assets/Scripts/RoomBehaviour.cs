@@ -67,7 +67,7 @@ public class RoomBehaviour : MonoBehaviour
         //Players will respawn after these messages!
         Invoke("RespawnPlayers", GameMaster.CameraLerpSeconds+0.1f);
 
-        cameraControl.UpdateCamera(CamUp,CamDown,CamLeft,CamRight);
+        cameraControl.UpdateCamera(CameraPosition.position, CamUp,CamDown,CamLeft,CamRight);
     }
 
     /// <summary>
