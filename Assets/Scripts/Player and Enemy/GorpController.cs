@@ -116,9 +116,11 @@ public class GorpController : PlayerController
             lightController.UpdateLightRadius(ToggleLightTime,false);
         }
 
+        //turn on yellow light
         FishChargeLight.LightRadius = 2.5f;
         FishChargeLight.LightEnabled = true;
         FishChargeLight.UpdateLightRadius(FlashChargeTime, true);
+        LayersOfLight++;
 
         if (Rumble)
             MyGamepad.SetMotorSpeeds(0.20f, 0.25f);
@@ -132,8 +134,10 @@ public class GorpController : PlayerController
         togglingLight = false;
         StopCoroutine(flashCoroutine);
 
+        //turn off yellow light
         FishChargeLight.LightEnabled = false;
         FishChargeLight.UpdateLightRadius(0, true);
+        LayersOfLight--;
 
         // Normal input (not held down)
         if ( ! flashedSuccessfully)
@@ -175,6 +179,7 @@ public class GorpController : PlayerController
             flashedSuccessfully = true;
             lightController.LightEnabled = false;
             lightController.UpdateLightRadius(0.1f);
+            LayersOfLight--;
 
             FishChargeLight.LightEnabled = true;
             FishChargeLight.LightRadius = 7.5f;
