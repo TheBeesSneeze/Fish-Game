@@ -153,10 +153,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4302747830044685630}
   - component: {fileID: 4302747830044685631}
-  - component: {fileID: 4302747830044685628}
   - component: {fileID: 4302747830044685629}
   - component: {fileID: 5051481756267194680}
   - component: {fileID: 4302747830044685625}
+  - component: {fileID: 4302747830044685628}
   m_Layer: 10
   m_Name: Globbington
   m_TagString: Player
@@ -232,22 +232,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &4302747830044685628
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4302747830044685618}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
 --- !u!50 &4302747830044685629
 Rigidbody2D:
   serializedVersion: 4
@@ -289,6 +273,7 @@ MonoBehaviour:
   Weight: 0
   DefaultPosition: {x: 0, y: 0, z: 0}
   StunLength: 0
+  MyRB: {fileID: 0}
   KnockbackForce: 7
   CharacterData: {fileID: 11400000, guid: 7f175cdaa82c39e47abd86895c531c1c, type: 2}
   PlayerNumber: 0
@@ -366,3 +351,19 @@ MonoBehaviour:
   m_DefaultActionMap: OctopusControls
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!58 &4302747830044685628
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4302747830044685618}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1
