@@ -89,6 +89,7 @@ public class PlayerController : CharacterBehavior
         ImmuneToElectricity = CharacterData.ImmuneToElectricity;
         StunLength = CharacterData.StunDuration;
         KnockbackForce = CharacterData.KnockBackForce;
+        DashForce = CharacterData.DashForce;
     }
 
     /// <summary>
