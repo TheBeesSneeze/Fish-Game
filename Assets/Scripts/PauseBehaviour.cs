@@ -75,4 +75,15 @@ public class PauseBehaviour : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Simply refrences GameManager and calls its swap function.
+    /// Resumes the game after.
+    /// </summary>
+    public void SwapPlayers()
+    {
+        GameManager gm = GameManager.FindObjectOfType<GameManager>();
+        gm.SwapPlayers();
+        ResumeGame();
+    }
+
 }

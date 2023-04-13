@@ -45,7 +45,6 @@ public class GorpController : PlayerController
     private bool previousLightEnabled;
     public  GameObject FlashTrigger;
     private Coroutine flashCoroutine;
-    private Coroutine secondFlashCoroutine; // the long awaited sequel
     private bool flashedSuccessfully;
 
     // Start is called before the first frame update

@@ -5,6 +5,8 @@
 //
 // Brief Description : Code that keeps track of game state. Slides camera when
 // enterring new rooms.
+// Contains the function for players to swap controllers / characters. (the
+// input is in PlayerController)
 *****************************************************************************/
 using System.Collections;
 using System.Collections.Generic;
@@ -28,6 +30,11 @@ public class GameManager : MonoBehaviour
     {
         _camera = GameObject.FindGameObjectWithTag("MainCamera");
     }
+
+    /// <summary>
+    /// Smoothly transitions the camera from its old positon to CurrentRoom.CameraPosition
+    /// </summary>
+    /// <returns></returns>
     public IEnumerator SlideCamera()
     {
         Vector3 oldCameraPosition = _camera.transform.position;
@@ -40,6 +47,14 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(CameraLerpSeconds / CameraLerpSamples);
         }
         
+    }
+
+    /// <summary>
+    /// Lets your younger brother take a spin as gorp
+    /// </summary>
+    public void SwapPlayers()
+    {
+        Debug.Log("Swapping players!");
     }
 
 }
