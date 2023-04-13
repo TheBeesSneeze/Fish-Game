@@ -87,8 +87,6 @@ public class GorpController : PlayerController
 
     public IEnumerator AdjustLight()
     {
-        Debug.Log("adjusting...");
-
         while (currentlyIncrementing)
         {
             if (lightController.LightEnabled) //not part of while loop so player can turn on light while holding button and it will work

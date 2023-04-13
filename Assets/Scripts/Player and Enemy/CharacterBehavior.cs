@@ -34,7 +34,6 @@ public class CharacterBehavior : MonoBehaviour
     public virtual void Start()
     {
         DefaultPosition = this.transform.position;
-        
     }
 
     /// <summary>
@@ -171,8 +170,6 @@ public class CharacterBehavior : MonoBehaviour
                     min = dist;
             }
         }
-        
-
         return min;
     }
 
