@@ -18,6 +18,8 @@ public class EnemyType : CharacterType
 
     [Tooltip("If the door will open ")]
     public bool  RequiredToKill     ; //Not used in any EnemyScripts, is checked in RoomBehavior tho
+    [Tooltip("If can take damage before its been stunned")]
+    public bool  ProtectedUntilFlash;
     [Tooltip("If Enemy is stunned from flash")]
     public bool  StunnedByFlash     ;
     [Tooltip("If Enemy takes damage from flash")]

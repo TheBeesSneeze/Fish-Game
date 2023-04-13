@@ -595,7 +595,7 @@ GameObject:
   m_Layer: 9
   m_Name: Gorp
   m_TagString: Player
-  m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 2800000, guid: 3decc5f5bdcddb047bf5a0ac77d3320c, type: 3}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -749,6 +749,15 @@ MonoBehaviour:
     m_Type: 0
     m_ExpectedControlType: 
     m_Id: 07584de4-7fad-48f1-9141-4c9d7e212e57
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  Swap:
+    m_Name: Swap
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 5acd7385-57f4-498e-93c4-968f1cfedadc
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []

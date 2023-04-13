@@ -55,6 +55,15 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Swap"",
+                    ""type"": ""Button"",
+                    ""id"": ""994a502a-9a23-4adc-a791-34a525b569a8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Pause"",
                     ""type"": ""Button"",
                     ""id"": ""45b0cccd-6158-48be-8167-28539ae61ee7"",
@@ -259,17 +268,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""e84d26b4-b74f-4832-b09e-64ec7878244c"",
-                    ""path"": ""<Gamepad>/select"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Pause"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""bf4c96b7-baad-4b54-96b3-375670308647"",
                     ""path"": ""<Keyboard>/2"",
                     ""interactions"": """",
@@ -355,6 +353,28 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""action"": ""Select"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""78129ad7-b246-42a0-a921-67e1d69a894b"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Swap"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f731352a-a502-4b85-b47e-c9211d364b61"",
+                    ""path"": ""<Gamepad>/select"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Swap"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -384,6 +404,33 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""name"": ""Dash"",
                     ""type"": ""Button"",
                     ""id"": ""458e6de7-76ff-4775-88a7-49caf603c672"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Swap"",
+                    ""type"": ""Button"",
+                    ""id"": ""c2b9f2dd-1d97-4b60-b1c0-6a7a895fe90d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""9f2b1275-3f9b-4aa9-bf9f-734876fcb649"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Select"",
+                    ""type"": ""Button"",
+                    ""id"": ""27f94ddd-9d36-4681-a4ca-7f9e8b69ca7f"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -544,6 +591,72 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""action"": ""Dash"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""523c1010-bad3-487d-9c61-79981205df7d"",
+                    ""path"": ""<Gamepad>/select"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Swap"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""eb6c25fd-adcc-4093-8a6c-b237dd56d88b"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Swap"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1478e4a1-fa1c-4a14-96d8-a9f2c0eee304"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f2cf9854-e1ab-48c1-99bd-76f908e7e35c"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""744724b3-c5a0-4073-a058-989635d3a833"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Select"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5495ac9c-5579-4aef-b67a-05e8971a581f"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Select"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -669,6 +782,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         m_FishControls_Move = m_FishControls.FindAction("Move", throwIfNotFound: true);
         m_FishControls_ToggleLight = m_FishControls.FindAction("Toggle Light", throwIfNotFound: true);
         m_FishControls_Dash = m_FishControls.FindAction("Dash", throwIfNotFound: true);
+        m_FishControls_Swap = m_FishControls.FindAction("Swap", throwIfNotFound: true);
         m_FishControls_Pause = m_FishControls.FindAction("Pause", throwIfNotFound: true);
         m_FishControls_IncreaseLight = m_FishControls.FindAction("Increase Light", throwIfNotFound: true);
         m_FishControls_DecreaseLight = m_FishControls.FindAction("Decrease Light", throwIfNotFound: true);
@@ -678,6 +792,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         m_OctopusControls_Move = m_OctopusControls.FindAction("Move", throwIfNotFound: true);
         m_OctopusControls_Strike = m_OctopusControls.FindAction("Strike", throwIfNotFound: true);
         m_OctopusControls_Dash = m_OctopusControls.FindAction("Dash", throwIfNotFound: true);
+        m_OctopusControls_Swap = m_OctopusControls.FindAction("Swap", throwIfNotFound: true);
+        m_OctopusControls_Pause = m_OctopusControls.FindAction("Pause", throwIfNotFound: true);
+        m_OctopusControls_Select = m_OctopusControls.FindAction("Select", throwIfNotFound: true);
         // MenuControls
         m_MenuControls = asset.FindActionMap("MenuControls", throwIfNotFound: true);
         m_MenuControls_Move = m_MenuControls.FindAction("Move", throwIfNotFound: true);
@@ -744,6 +861,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private readonly InputAction m_FishControls_Move;
     private readonly InputAction m_FishControls_ToggleLight;
     private readonly InputAction m_FishControls_Dash;
+    private readonly InputAction m_FishControls_Swap;
     private readonly InputAction m_FishControls_Pause;
     private readonly InputAction m_FishControls_IncreaseLight;
     private readonly InputAction m_FishControls_DecreaseLight;
@@ -755,6 +873,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         public InputAction @Move => m_Wrapper.m_FishControls_Move;
         public InputAction @ToggleLight => m_Wrapper.m_FishControls_ToggleLight;
         public InputAction @Dash => m_Wrapper.m_FishControls_Dash;
+        public InputAction @Swap => m_Wrapper.m_FishControls_Swap;
         public InputAction @Pause => m_Wrapper.m_FishControls_Pause;
         public InputAction @IncreaseLight => m_Wrapper.m_FishControls_IncreaseLight;
         public InputAction @DecreaseLight => m_Wrapper.m_FishControls_DecreaseLight;
@@ -777,6 +896,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Dash.started -= m_Wrapper.m_FishControlsActionsCallbackInterface.OnDash;
                 @Dash.performed -= m_Wrapper.m_FishControlsActionsCallbackInterface.OnDash;
                 @Dash.canceled -= m_Wrapper.m_FishControlsActionsCallbackInterface.OnDash;
+                @Swap.started -= m_Wrapper.m_FishControlsActionsCallbackInterface.OnSwap;
+                @Swap.performed -= m_Wrapper.m_FishControlsActionsCallbackInterface.OnSwap;
+                @Swap.canceled -= m_Wrapper.m_FishControlsActionsCallbackInterface.OnSwap;
                 @Pause.started -= m_Wrapper.m_FishControlsActionsCallbackInterface.OnPause;
                 @Pause.performed -= m_Wrapper.m_FishControlsActionsCallbackInterface.OnPause;
                 @Pause.canceled -= m_Wrapper.m_FishControlsActionsCallbackInterface.OnPause;
@@ -802,6 +924,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Dash.started += instance.OnDash;
                 @Dash.performed += instance.OnDash;
                 @Dash.canceled += instance.OnDash;
+                @Swap.started += instance.OnSwap;
+                @Swap.performed += instance.OnSwap;
+                @Swap.canceled += instance.OnSwap;
                 @Pause.started += instance.OnPause;
                 @Pause.performed += instance.OnPause;
                 @Pause.canceled += instance.OnPause;
@@ -825,6 +950,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private readonly InputAction m_OctopusControls_Move;
     private readonly InputAction m_OctopusControls_Strike;
     private readonly InputAction m_OctopusControls_Dash;
+    private readonly InputAction m_OctopusControls_Swap;
+    private readonly InputAction m_OctopusControls_Pause;
+    private readonly InputAction m_OctopusControls_Select;
     public struct OctopusControlsActions
     {
         private @Controls m_Wrapper;
@@ -832,6 +960,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         public InputAction @Move => m_Wrapper.m_OctopusControls_Move;
         public InputAction @Strike => m_Wrapper.m_OctopusControls_Strike;
         public InputAction @Dash => m_Wrapper.m_OctopusControls_Dash;
+        public InputAction @Swap => m_Wrapper.m_OctopusControls_Swap;
+        public InputAction @Pause => m_Wrapper.m_OctopusControls_Pause;
+        public InputAction @Select => m_Wrapper.m_OctopusControls_Select;
         public InputActionMap Get() { return m_Wrapper.m_OctopusControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -850,6 +981,15 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Dash.started -= m_Wrapper.m_OctopusControlsActionsCallbackInterface.OnDash;
                 @Dash.performed -= m_Wrapper.m_OctopusControlsActionsCallbackInterface.OnDash;
                 @Dash.canceled -= m_Wrapper.m_OctopusControlsActionsCallbackInterface.OnDash;
+                @Swap.started -= m_Wrapper.m_OctopusControlsActionsCallbackInterface.OnSwap;
+                @Swap.performed -= m_Wrapper.m_OctopusControlsActionsCallbackInterface.OnSwap;
+                @Swap.canceled -= m_Wrapper.m_OctopusControlsActionsCallbackInterface.OnSwap;
+                @Pause.started -= m_Wrapper.m_OctopusControlsActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_OctopusControlsActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_OctopusControlsActionsCallbackInterface.OnPause;
+                @Select.started -= m_Wrapper.m_OctopusControlsActionsCallbackInterface.OnSelect;
+                @Select.performed -= m_Wrapper.m_OctopusControlsActionsCallbackInterface.OnSelect;
+                @Select.canceled -= m_Wrapper.m_OctopusControlsActionsCallbackInterface.OnSelect;
             }
             m_Wrapper.m_OctopusControlsActionsCallbackInterface = instance;
             if (instance != null)
@@ -863,6 +1003,15 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Dash.started += instance.OnDash;
                 @Dash.performed += instance.OnDash;
                 @Dash.canceled += instance.OnDash;
+                @Swap.started += instance.OnSwap;
+                @Swap.performed += instance.OnSwap;
+                @Swap.canceled += instance.OnSwap;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
+                @Select.started += instance.OnSelect;
+                @Select.performed += instance.OnSelect;
+                @Select.canceled += instance.OnSelect;
             }
         }
     }
@@ -913,6 +1062,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnToggleLight(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
+        void OnSwap(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
         void OnIncreaseLight(InputAction.CallbackContext context);
         void OnDecreaseLight(InputAction.CallbackContext context);
@@ -923,6 +1073,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnStrike(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
+        void OnSwap(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
+        void OnSelect(InputAction.CallbackContext context);
     }
     public interface IMenuControlsActions
     {
