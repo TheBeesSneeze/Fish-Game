@@ -1695,6 +1695,7 @@ MonoBehaviour:
   Weight: 0
   DefaultPosition: {x: 0, y: 0, z: 0}
   StunLength: 0
+  KnockbackForce: 0
   DespawnOnStart: 0
   EnemyData: {fileID: 11400000, guid: e9badf18f0d8c404886e92abd26d74c3, type: 2}
   Gorp: {fileID: 0}
