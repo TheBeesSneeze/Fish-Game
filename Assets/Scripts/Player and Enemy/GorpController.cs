@@ -47,6 +47,10 @@ public class GorpController : PlayerController
     private Coroutine flashCoroutine;
     private bool flashedSuccessfully;
 
+    //TEMPORARY
+    GameManager gameManagerInstance;
+
+
     // Start is called before the first frame update
     public override void Start()
     {
@@ -82,6 +86,10 @@ public class GorpController : PlayerController
 
         DecreaseLight.started += DecreaseLight_started;
         DecreaseLight.canceled += DecreaseLight_canceled;
+
+        //TEMPORARY
+        gameManagerInstance = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
+
     }
 
     public IEnumerator AdjustLight()
@@ -125,6 +133,10 @@ public class GorpController : PlayerController
 
         if (Rumble)
             MyGamepad.SetMotorSpeeds(0.20f, 0.25f);
+
+
+        //TEMPORARY
+        gameManagerInstance.instructions.SetActive(true);
     }
 
     /// <summary>

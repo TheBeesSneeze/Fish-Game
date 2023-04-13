@@ -11,6 +11,8 @@ TagManager:
   - Flash
   - Electricity
   - Mirror
+  - GarthBox
+  - Instructions
   layers:
   - Default
   - TransparentFX

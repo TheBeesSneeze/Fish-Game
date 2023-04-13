@@ -730,6 +730,17 @@
                 },
                 {
                     "name": "",
+                    "id": "9e65ff27-1558-472b-ac6e-b1c527994dd8",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "1e37aa28-71f6-4e9b-9e22-d51033a76a48",
                     "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
@@ -743,6 +754,17 @@
                     "name": "",
                     "id": "b35b586e-2e46-462b-ba31-2a666b039a57",
                     "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Select",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d2fbbb86-d222-407a-933c-750519344a68",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
