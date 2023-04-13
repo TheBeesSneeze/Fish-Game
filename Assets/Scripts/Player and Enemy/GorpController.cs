@@ -55,19 +55,20 @@ public class GorpController : PlayerController
     public override void Start()
     {
         base.Start();
+
+        LayersOfLight = 1;
+
         //didnt know where else to put this line:
         this.gameObject.name = "Gorp";
 
         FishChargeLight.LightRadius = 2.5f;
-        FishChargeLight.LightEnabled = false;
+        UpdateLightEnabled(FishChargeLight, false);
         FishChargeLight.UpdateLightRadius(0, true);
-
-        LayersOfLight = 0;
 
         lightController = GetComponent<LightController>();
 
-        if (lightController.LightEnabled)
-            LayersOfLight = 1;
+        //if (lightController.LightEnabled)
+        //    LayersOfLight = 1;
 
         //fishLight = this.gameObject.transform.GetChild(0).GetComponent<Light2D>(); //Weird syntax but I think its more legible?
         lightController.LightRadius = lightController.LightSource.pointLightOuterRadius;
@@ -94,8 +95,6 @@ public class GorpController : PlayerController
 
     public IEnumerator AdjustLight()
     {
-        Debug.Log("adjusting...");
-
         while (currentlyIncrementing)
         {
             if (lightController.LightEnabled) //not part of while loop so player can turn on light while holding button and it will work
@@ -121,15 +120,14 @@ public class GorpController : PlayerController
 
         if(lightController.LightEnabled)
         {
-            lightController.LightEnabled = false;
+            UpdateLightEnabled(lightController, false);
             lightController.UpdateLightRadius(ToggleLightTime,false);
         }
 
         //turn on yellow light
         FishChargeLight.LightRadius = 2.5f;
-        FishChargeLight.LightEnabled = true;
+        UpdateLightEnabled(FishChargeLight, true);
         FishChargeLight.UpdateLightRadius(FlashChargeTime, true);
-        LayersOfLight++;
 
         if (Rumble)
             MyGamepad.SetMotorSpeeds(0.20f, 0.25f);
@@ -148,21 +146,13 @@ public class GorpController : PlayerController
         StopCoroutine(flashCoroutine);
 
         //turn off yellow light
-        FishChargeLight.LightEnabled = false;
+        UpdateLightEnabled(FishChargeLight, false);
         FishChargeLight.UpdateLightRadius(0, true);
-        LayersOfLight--;
 
         // Normal input (not held down)
         if ( ! flashedSuccessfully)
         {
-            lightController.LightEnabled = !previousLightEnabled;
-
-            //Because this wont work the way it's supposed to for some FUCKING reason
-            if (lightController.LightEnabled)
-                LayersOfLight++;
-
-            else //off
-                LayersOfLight--;
+            UpdateLightEnabled(lightController, !previousLightEnabled);
 
             Invoke("AttemptFlash", FlashChargeTime);
 
@@ -191,17 +181,13 @@ public class GorpController : PlayerController
             FishFlash();
 
             StartCoroutine( SetRumble(0, 0, 0.4f) );
-            
-            if(lightController.LightEnabled)
-                LayersOfLight--;
-            lightController.LightEnabled = false;
-            lightController.UpdateLightRadius(0.1f);
-            
 
-            FishChargeLight.LightEnabled = true;
+            UpdateLightEnabled(lightController, false);
+            lightController.UpdateLightRadius(0.1f);
+
             FishChargeLight.LightRadius = 7.5f;
+            UpdateLightEnabled(FishChargeLight, true);
             FishChargeLight.UpdateLightRadius(0.1f, true);
-            //LayersOfLight++;
         }
     }
 
@@ -236,7 +222,7 @@ public class GorpController : PlayerController
     {
         FlashTrigger.SetActive(false);
 
-        FishChargeLight.LightEnabled = false;
+        UpdateLightEnabled(FishChargeLight, false);
         FishChargeLight.UpdateLightRadius(0.1f, true);
     }
 
@@ -303,5 +289,21 @@ public class GorpController : PlayerController
 
         DecreaseLight.started -= DecreaseLight_started;
         DecreaseLight.canceled -= DecreaseLight_canceled;
+    }
+
+    /// <summary>
+    /// Sets LightEnabled on LightCtrl = Enabled.
+    /// Makes checks that account for LayersOfLight and increments as necessary.
+    /// </summary>
+    /// <param name="Light"></param>
+    /// <param name="Enabled"></param>
+    private void UpdateLightEnabled(LightController LightCtrl, bool Enabled)
+    {
+        if (LightCtrl.LightEnabled && !Enabled)
+            LayersOfLight--;
+        else if ( !LightCtrl.LightEnabled && Enabled)
+            LayersOfLight++;
+
+        LightCtrl.LightEnabled = Enabled;
     }
 }

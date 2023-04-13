@@ -22,8 +22,8 @@ public class CharacterBehavior : MonoBehaviour
     public bool TakeKnockback;
     public bool ImmuneToElectricity;
     
-    public float Weight; 
     public Vector3 DefaultPosition;
+    public bool Stunned;
     public float StunLength;
     public Rigidbody2D MyRB;
     public float KnockbackForce;
@@ -34,7 +34,6 @@ public class CharacterBehavior : MonoBehaviour
     public virtual void Start()
     {
         DefaultPosition = this.transform.position;
-        
     }
 
     /// <summary>
@@ -171,18 +170,17 @@ public class CharacterBehavior : MonoBehaviour
                     min = dist;
             }
         }
-        
-
         return min;
     }
 
     public virtual void BeStunned()
     {
+        Stunned = true;
         Invoke("BeUnStunned", StunLength);
     }
 
     public virtual void BeUnStunned()
     {
-        Debug.Log("BAD");
+        Stunned = false;
     }
 }

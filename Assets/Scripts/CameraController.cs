@@ -67,7 +67,7 @@ public class CameraController : MonoBehaviour
             Vector2 newPos = AveragePlayerPostion();
             transform.position = CameraClamp(newPos);
 
-            yield return new WaitForSeconds(0.01f);
+            yield return null;
         }
         
     }
