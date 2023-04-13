@@ -146,6 +146,7 @@ public class EnemyBehavior : CharacterBehavior
         ImmuneToElectricity = EnemyData.ImmuneToElectricity;
         StunLength = EnemyData.StunDuration;
         lightDPS = EnemyData.LightDamagePerSec;
+        KnockbackForce = EnemyData.KnockBackForce;
     }
 
     /// <summary>

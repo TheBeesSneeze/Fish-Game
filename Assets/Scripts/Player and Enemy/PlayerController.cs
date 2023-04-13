@@ -33,8 +33,8 @@ public class PlayerController : CharacterBehavior
     public InputAction Select;
 
     public  bool ReadMove;
-
     public float DashForce;
+    public float NoPlayerMovementWait;
 
     //public float dashForce = 40;
 
@@ -87,6 +87,7 @@ public class PlayerController : CharacterBehavior
         TakeKnockback = CharacterData.TakeKnockback;
         ImmuneToElectricity = CharacterData.ImmuneToElectricity;
         StunLength = CharacterData.StunDuration;
+        KnockbackForce = CharacterData.KnockBackForce;
     }
 
     /// <summary>
@@ -185,7 +186,8 @@ public class PlayerController : CharacterBehavior
         IgnoreMove = true;
         myRb.AddForce(Move.ReadValue<Vector2>() * DashForce, ForceMode2D.Impulse);
 
-        StartCoroutine(DashRoutine());
+        NoPlayerMovementWait = 0.2f;
+        StartCoroutine(NoMovementRoutine());
     }
 
     public override void BeStunned()
@@ -198,12 +200,22 @@ public class PlayerController : CharacterBehavior
         base.BeUnStunned();
         MyPlayerInput.actions.Enable();
     }
-public IEnumerator DashRoutine()
+public IEnumerator NoMovementRoutine()
     {
 
-        yield return new WaitForSeconds(.2f);
+        yield return new WaitForSeconds(NoPlayerMovementWait);
         IgnoreMove = false;
 
+    }
+
+    public override void KnockBack(GameObject target, Vector3 damageSourcePosition)
+    {
+        base.KnockBack(target, damageSourcePosition);
+        IgnoreMove = true;
+        Debug.Log("knocking back");
+
+        NoPlayerMovementWait = 0.1f;
+        StartCoroutine(NoMovementRoutine());
     }
 
     private void OnDestroy()

@@ -305,6 +305,8 @@ MonoBehaviour:
   ImmuneToElectricity: 0
   Weight: 0
   DefaultPosition: {x: 0, y: 0, z: 0}
+  StunLength: 0
+  KnockbackForce: 5
   DespawnOnStart: 1
   EnemyData: {fileID: 11400000, guid: f6faf0377237e1b4ea33341bd2fb2176, type: 2}
   Gorp: {fileID: 0}
