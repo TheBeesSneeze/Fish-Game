@@ -191,11 +191,12 @@ GameObject:
   - component: {fileID: 6949314042437748595}
   - component: {fileID: 8930018546449093636}
   - component: {fileID: 7298649008823687199}
+  - component: {fileID: 1345870176302449710}
   - component: {fileID: 4851970326703520874}
-  - component: {fileID: 3937383357260306720}
+  - component: {fileID: 3525367817744892328}
   m_Layer: 3
   m_Name: Fish Charge Light
-  m_TagString: Untagged
+  m_TagString: Light
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -345,6 +346,22 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!58 &1345870176302449710
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7416625650734146699}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!114 &4851970326703520874
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -360,10 +377,10 @@ MonoBehaviour:
   LightEnabled: 1
   LightRadius: 3
   InnerRadiusDivisionFactor: 3
-  LightTrigger: {fileID: 3937383357260306720}
+  LightTrigger: {fileID: 1345870176302449710}
   LightSource: {fileID: 7298649008823687199}
   TransitionFrames: 20
---- !u!58 &3937383357260306720
+--- !u!58 &3525367817744892328
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -378,7 +395,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.0001
+  m_Radius: 0.5
 --- !u!1 &8373497791673511006
 GameObject:
   m_ObjectHideFlags: 0
@@ -694,7 +711,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9a93f36c75542f459d2606feb1ca299, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LayersOfLight: 0
+  LayersOfLight: 1
   Health: 0
   Speed: 0
   TakeKnockback: 0
@@ -702,6 +719,7 @@ MonoBehaviour:
   Weight: 0
   DefaultPosition: {x: 0, y: 0, z: 0}
   StunLength: 0
+  KnockbackForce: 7
   CharacterData: {fileID: 11400000, guid: 7a5fbf452c3d09b4590c3c0ffed95971, type: 2}
   PlayerNumber: 0
   Rumble: 0
@@ -720,7 +738,7 @@ MonoBehaviour:
     m_Name: Dash
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 60864aa1-3f7d-4d31-a6ea-d3469bc53065
+    m_Id: b1b88717-1c16-4792-822b-87e9649cf587
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
@@ -735,7 +753,8 @@ MonoBehaviour:
     m_SingletonActionBindings: []
     m_Flags: 0
   ReadMove: 0
-  DashForce: 50
+  DashForce: 0
+  NoPlayerMovementWait: 0.1
   ToggleLightAction:
     m_Name: Toggle Light
     m_Type: 0

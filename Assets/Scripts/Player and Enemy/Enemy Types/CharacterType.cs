@@ -29,4 +29,5 @@ public class CharacterType : ScriptableObject
     public bool ImmuneToElectricity; //TODO*
     [Tooltip("How long character will be stunned for")]
     public float StunDuration;
+    public float KnockBackForce;
 }
