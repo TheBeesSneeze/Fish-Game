@@ -15,10 +15,10 @@ using UnityEngine.InputSystem.Utilities;
 
 public class PlayerController : CharacterBehavior
 {
+    [Header("Settings:")]
     public CharacterType CharacterData;
     public int PlayerNumber;
 
-    private Rigidbody2D myRb;
     private GameManager gameManager;
 
     [Header("Controller stuff:")]
@@ -50,7 +50,7 @@ public class PlayerController : CharacterBehavior
         base.Start();
         SetAttributes();
 
-        myRb = GetComponent<Rigidbody2D>();
+        MyRB = GetComponent<Rigidbody2D>();
         gameManager = GameObject.FindObjectOfType<GameManager>();
 
         MyPlayerInput.actions.Enable();
@@ -100,7 +100,7 @@ public class PlayerController : CharacterBehavior
         while (ReadMove)
         {
             if(!IgnoreMove)
-                myRb.velocity = Move.ReadValue<Vector2>() * Speed;
+                MyRB.velocity = Move.ReadValue<Vector2>() * Speed;
 
             yield return null;
         }
@@ -168,7 +168,7 @@ public class PlayerController : CharacterBehavior
     private void Move_canceled(InputAction.CallbackContext obj)
     {
         ReadMove = false;
-        //myRb.velocity = Vector3.zero; 
+        //MyRB.velocity = Vector3.zero; 
         //Slidey-ness can be configured in linear drag of the rigidbody2d
     }
 
@@ -180,7 +180,7 @@ public class PlayerController : CharacterBehavior
     {
 
         IgnoreMove = true;
-        myRb.AddForce(Move.ReadValue<Vector2>() * DashForce, ForceMode2D.Impulse);
+        MyRB.AddForce(Move.ReadValue<Vector2>() * DashForce, ForceMode2D.Impulse);
 
         StartCoroutine(NoMovementRoutine(0.2f));
     }
