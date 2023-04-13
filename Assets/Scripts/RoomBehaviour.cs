@@ -13,6 +13,17 @@ using UnityEngine.InputSystem;
 
 public class RoomBehaviour : MonoBehaviour
 {
+    [Header("Camera Bounds")]
+
+    [Tooltip("Units up the camera can travel")]
+    public float CamUp;
+    [Tooltip("Units down the camera can travel")]
+    public float CamDown;
+    [Tooltip("Units left the camera can travel")]
+    public float CamLeft;
+    [Tooltip("Units right the camera can travel")]
+    public float CamRight;
+
     [Header("Settings")]
     public bool RequireSweep; // Recquires all enemies to be killed
     public Transform CameraPosition;
@@ -27,14 +38,25 @@ public class RoomBehaviour : MonoBehaviour
     [Header("You don't need to touch this:")]
     public GameManager GameMaster; //DND REFERENCE!??!?!?!?!?!?!?!
     public bool PreviouslyCleared = false;
+    private CameraController cameraControl;
 
     /// <summary>
-    /// Spawns in Gorp and Globbington; respawns enemies from the inspector
+    /// finds CameraController
+    /// </summary>
+    private void Start()
+    {
+        cameraControl = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraController>();
+    }
+
+    /// <summary>
+    /// Spawns in Gorp and Globbington; respawns enemies from the inspector.
+    /// Locks the doors.
     /// </summary>
     public void EnterRoom()
     {
         GameMaster.LastRoom = GameMaster.CurrentRoom;
         GameMaster.CurrentRoom = this;
+
         StartCoroutine(GameMaster.SlideCamera());
 
         RespawnEnemies();
@@ -43,7 +65,9 @@ public class RoomBehaviour : MonoBehaviour
         SetDoors( ! RoomCleared() );
 
         //Players will respawn after these messages!
-        Invoke("RespawnPlayers", GameMaster.CameraLerpSeconds+0.1f); 
+        Invoke("RespawnPlayers", GameMaster.CameraLerpSeconds+0.1f);
+
+        cameraControl.UpdateCamera(CamUp,CamDown,CamLeft,CamRight);
     }
 
     /// <summary>

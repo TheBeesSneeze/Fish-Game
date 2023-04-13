@@ -171,17 +171,6 @@
                 },
                 {
                     "name": "",
-                    "id": "8fa5276f-79bd-4248-8b26-778efc9e3cf3",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Toggle Light",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "a5e86912-e52b-485b-ab3b-58b767af9d1b",
                     "path": "<Gamepad>/rightStickPress",
                     "interactions": "",
@@ -206,6 +195,17 @@
                     "name": "",
                     "id": "e3f8ddfc-df1a-4aeb-a72f-2f4a87f6d7a5",
                     "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d84cb781-5d87-4cbf-ad7d-20b09357c83f",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -505,6 +505,17 @@
                     "name": "",
                     "id": "3c9a64fb-f6d0-4eab-b94a-8169f9d73675",
                     "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a66692be-617b-4bef-9636-937deaa888d1",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

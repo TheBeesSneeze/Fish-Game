@@ -719,6 +719,7 @@ MonoBehaviour:
   Weight: 0
   DefaultPosition: {x: 0, y: 0, z: 0}
   StunLength: 0
+  KnockbackForce: 7
   CharacterData: {fileID: 11400000, guid: 7a5fbf452c3d09b4590c3c0ffed95971, type: 2}
   PlayerNumber: 0
   Rumble: 0
@@ -737,7 +738,7 @@ MonoBehaviour:
     m_Name: Dash
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: ab80319f-70f5-4aab-ae4d-0ea3560e3d9e
+    m_Id: b1b88717-1c16-4792-822b-87e9649cf587
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
@@ -752,7 +753,7 @@ MonoBehaviour:
     m_SingletonActionBindings: []
     m_Flags: 0
   ReadMove: 0
-  DashForce: 40
+  DashForce: 50
   ToggleLightAction:
     m_Name: Toggle Light
     m_Type: 0

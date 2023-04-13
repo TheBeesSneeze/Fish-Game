@@ -1,6 +1,6 @@
 /*******************************************************************************
 // File Name :         CharacterBehavior.cs
-// Author(s) :         Toby Schamberger
+// Author(s) :         Toby Schamberger, Sky Beal
 // Creation Date :     3/28/2023
 //
 // Brief Description : Basic code that is shared between players and enemies.
@@ -26,6 +26,8 @@ public class CharacterBehavior : MonoBehaviour
     public Vector3 DefaultPosition;
     private float defaultSpeed;
     public float StunLength;
+    private Rigidbody2D myRB;
+    public float KnockbackForce;
 
     /// <summary>
     /// Sets Health to the Default
@@ -78,8 +80,10 @@ public class CharacterBehavior : MonoBehaviour
     /// <param name="damageSourcePosition"></param>
     public virtual void KnockBack(GameObject target, Vector3 damageSourcePosition)
     {
-        Vector3 positionDifference = damageSourcePosition - target.transform.position;
-        target.transform.position -= positionDifference;
+        myRB = this.GetComponent<Rigidbody2D>();
+        Vector3 positionDifference = target.transform.position - damageSourcePosition; 
+        //target.transform.position -= positionDifference;
+        myRB.AddForce(positionDifference * KnockbackForce, ForceMode2D.Impulse);
     }
 
     /// <summary>

@@ -37,8 +37,13 @@ public class LightController : MonoBehaviour
     {
         //just ironing things out...
         LightRadius = LightSource.pointLightOuterRadius;
-        lightRadiusDescale = LightTrigger.transform.parent.localScale.x;
-        LightTrigger.radius = LightRadius / lightRadiusDescale;
+
+        lightRadiusDescale = 1;
+        if (LightTrigger != null)
+        {
+            lightRadiusDescale = LightTrigger.transform.parent.localScale.x;
+            LightTrigger.radius = LightRadius / lightRadiusDescale;
+        }
         
         //LightEnabled = (LightRadius >= 0);
         UpdateLightRadius();
@@ -51,7 +56,8 @@ public class LightController : MonoBehaviour
     {
         float oldRadius = LightSource.pointLightOuterRadius;
 
-        LightTrigger.enabled = LightEnabled;
+        if (LightTrigger != null)
+            LightTrigger.enabled = LightEnabled;
 
         if (lightLerpCoroutine != null)
             StopCoroutine(lightLerpCoroutine);
@@ -65,7 +71,8 @@ public class LightController : MonoBehaviour
             else
                 lightLerpCoroutine = StartCoroutine(LightLerp(oldRadius, LightRadius, seconds));
 
-            LightTrigger.radius = LightRadius / lightRadiusDescale;
+            if(LightTrigger!= null)
+                LightTrigger.radius = LightRadius / lightRadiusDescale;
 
         }
         //Clap off!
@@ -73,7 +80,11 @@ public class LightController : MonoBehaviour
         {
             lightLerpCoroutine = StartCoroutine(LightLerp(oldRadius, 0, seconds));
 
-            LightTrigger.radius = 0;
+            if (LightTrigger != null)
+            {
+                LightTrigger.radius = 0;
+            }
+                
         }
         //The clapper!
     }

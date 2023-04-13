@@ -18,10 +18,11 @@ MonoBehaviour:
   TakeKnockback: 1
   ImmuneToElectricity: 0
   StunDuration: 2.5
+  KnockBackForce: 10
   RequiredToKill: 1
   StunnedByFlash: 1
   HurtByFlash: 0
-  LightDamagePerSec: -1
+  LightDamagePerSec: 0
   SightDistance: 8
   UnsightDistance: 12
   PursueDelay: 0.4

@@ -289,6 +289,7 @@ MonoBehaviour:
   Weight: 0
   DefaultPosition: {x: 0, y: 0, z: 0}
   StunLength: 0
+  KnockbackForce: 7
   CharacterData: {fileID: 11400000, guid: 7f175cdaa82c39e47abd86895c531c1c, type: 2}
   PlayerNumber: 0
   Rumble: 0
@@ -307,7 +308,7 @@ MonoBehaviour:
     m_Name: Dash
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 533875a6-b2d9-4757-96a9-ebf9206a193a
+    m_Id: 47757f5b-6211-4f7e-bc65-2e6535c3ecb5
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
