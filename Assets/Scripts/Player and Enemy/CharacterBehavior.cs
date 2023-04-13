@@ -22,8 +22,8 @@ public class CharacterBehavior : MonoBehaviour
     public bool TakeKnockback;
     public bool ImmuneToElectricity;
     
-    public float Weight; 
     public Vector3 DefaultPosition;
+    public bool Stunned;
     public float StunLength;
     public Rigidbody2D MyRB;
     public float KnockbackForce;
@@ -178,11 +178,12 @@ public class CharacterBehavior : MonoBehaviour
 
     public virtual void BeStunned()
     {
+        Stunned = true;
         Invoke("BeUnStunned", StunLength);
     }
 
     public virtual void BeUnStunned()
     {
-        Debug.Log("BAD");
+        Stunned = false;
     }
 }

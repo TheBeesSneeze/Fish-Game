@@ -31,6 +31,7 @@ public class PlayerController : CharacterBehavior
     public InputAction Move;
     public InputAction Dash;
     public InputAction Select;
+    public InputAction Swap;
 
     public  bool ReadMove;
     public float DashForce;
@@ -57,6 +58,7 @@ public class PlayerController : CharacterBehavior
         Move = MyPlayerInput.actions.FindAction("Move");
         Dash = MyPlayerInput.actions.FindAction("Dash");
         Select = MyPlayerInput.actions.FindAction("Select");
+        Swap = MyPlayerInput.actions.FindAction("Swap");
 
         //I believe this is adding the functions to the buttons...
         Move.started += Move_started;
@@ -64,10 +66,10 @@ public class PlayerController : CharacterBehavior
 
         Dash.started += DashInput;
 
+        Swap.started += SwapInput;
+
         MyGamepad = MyPlayerInput.GetDevice<Gamepad>();
         if (MyGamepad == null) Rumble = false;
-
-        
     }
 
     /*
@@ -80,11 +82,10 @@ public class PlayerController : CharacterBehavior
     /// <summary>
     /// Sets variables to those in CharacterData
     /// </summary>
-    public virtual void SetAttributes()
+    public override void SetAttributes()
     {
         Health = CharacterData.Health;
         Speed = CharacterData.Speed;
-        Weight = CharacterData.Weight;
         TakeKnockback = CharacterData.TakeKnockback;
         ImmuneToElectricity = CharacterData.ImmuneToElectricity;
         StunLength = CharacterData.StunDuration;
@@ -156,7 +157,6 @@ public class PlayerController : CharacterBehavior
         }
         if(tag.Equals("Player"))
         {
-            Debug.Log("knock player");
             KnockBack(this.gameObject, collision.transform.position);
         }
     }
@@ -187,6 +187,11 @@ public class PlayerController : CharacterBehavior
         StartCoroutine(NoMovementRoutine(0.2f));
     }
 
+    public void SwapInput(InputAction.CallbackContext obj)
+    {
+
+        gameManager.SwapPlayers();
+    }
     public override void BeStunned()
     {
         base.BeStunned();

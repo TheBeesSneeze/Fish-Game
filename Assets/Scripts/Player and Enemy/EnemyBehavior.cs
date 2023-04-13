@@ -19,7 +19,6 @@ public class EnemyBehavior : CharacterBehavior
     [Header("Attributes")]
     public bool DespawnOnStart = true;
     public EnemyType EnemyData;
-    private bool stunnedByLight;
 
     [Header("Unity Jargain")]
     private EnemyDetection enemyDetection;
@@ -40,6 +39,8 @@ public class EnemyBehavior : CharacterBehavior
 
         //Unity moment
         enemyDetection = gameObject.GetComponent<EnemyDetection>();
+        enemyCollider  = gameObject.GetComponent<Collider2D>();
+
         Gorp        = GameObject.Find("Gorp");
         Globbington = GameObject.Find("Globbington");
 
@@ -82,12 +83,13 @@ public class EnemyBehavior : CharacterBehavior
         string tag = collision.gameObject.tag;
         if(tag.Equals("Attack"))
         {
-            TakeDamage(1, collision.gameObject.transform.position);
+            //if enemy needs to be stunned
+            if( (EnemyData.ProtectedUntilFlash && Stunned) || ! EnemyData.ProtectedUntilFlash )
+                TakeDamage(1, collision.gameObject.transform.position);
         }
         else if (tag.Equals("Light"))
         {
             LayersOfLight++;
-
             if (LayersOfLight == 1 && lightDPS != 0) //only on 1st LOL to avoid too many coroutines at once
                 StartCoroutine(TakeLightDamage());
 
@@ -124,12 +126,13 @@ public class EnemyBehavior : CharacterBehavior
     public override void BeStunned()
     {
         base.BeStunned();
+        Stunned = true;
         Speed = 0;
-        enemyCollider = GetComponent<Collider2D>();
         enemyCollider.enabled = false;
     }
     public override void BeUnStunned()
     {
+        Stunned = false;
         Speed = EnemyData.Speed;
         enemyCollider.enabled = true;
     }
@@ -141,7 +144,6 @@ public class EnemyBehavior : CharacterBehavior
     {
         Health = EnemyData.Health;
         Speed = EnemyData.Speed;
-        Weight = EnemyData.Weight;
         TakeKnockback = EnemyData.TakeKnockback;
         ImmuneToElectricity = EnemyData.ImmuneToElectricity;
         StunLength = EnemyData.StunDuration;

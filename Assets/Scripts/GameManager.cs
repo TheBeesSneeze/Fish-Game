@@ -11,6 +11,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
@@ -55,6 +56,19 @@ public class GameManager : MonoBehaviour
     public void SwapPlayers()
     {
         Debug.Log("Swapping players!");
+
+        PlayerInput gorp = null;
+        PlayerInput glob = null;
+        try { gorp = GameObject.Find("Gorp")       .GetComponent<PlayerInput>();            } catch { gorp = null; }
+        try { glob = GameObject.Find("Globbington").GetComponent<PlayerInput>(); } catch { glob = null; }
+
+        if( gorp != null && glob != null) 
+        {
+            var temp = gorp.defaultActionMap;
+            glob.defaultActionMap = gorp.defaultActionMap;
+            gorp.defaultActionMap = temp;
+            
+        }
     }
 
 }
