@@ -722,12 +722,22 @@ MonoBehaviour:
   CharacterData: {fileID: 11400000, guid: 7a5fbf452c3d09b4590c3c0ffed95971, type: 2}
   PlayerNumber: 0
   Rumble: 0
+  IgnoreMove: 0
   MyPlayerInput: {fileID: 8678797230697677920}
   Move:
     m_Name: Move
     m_Type: 0
     m_ExpectedControlType: 
     m_Id: 8fc61d40-3cd0-4a10-bc10-709e3a148503
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  Dash:
+    m_Name: Dash
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: ab80319f-70f5-4aab-ae4d-0ea3560e3d9e
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
@@ -742,6 +752,7 @@ MonoBehaviour:
     m_SingletonActionBindings: []
     m_Flags: 0
   ReadMove: 0
+  DashForce: 40
   ToggleLightAction:
     m_Name: Toggle Light
     m_Type: 0
