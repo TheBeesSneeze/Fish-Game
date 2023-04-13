@@ -104,6 +104,8 @@ public class GorpController : PlayerController
     /// </summary>
     private void ToggleLight_started(InputAction.CallbackContext obj)
     {
+        FishChargeLight.gameObject.SetActive(true);
+
         previousLightEnabled = lightController.LightEnabled;
 
         togglingLight = true;
@@ -150,6 +152,8 @@ public class GorpController : PlayerController
             if (Rumble)
                 MyGamepad.SetMotorSpeeds(0f, 0f);
         }
+
+        FishChargeLight.gameObject.SetActive(false);
     }
 
     /// <summary>

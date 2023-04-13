@@ -115,7 +115,8 @@ public class CharacterBehavior : MonoBehaviour
     {
         if( ! ImmuneToElectricity ) 
         {
-            //Stun
+            Stunned = true;
+            BeStunned();
             TakeDamage(1);
         }
     }
