@@ -287,7 +287,7 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!43 &106712353
+--- !u!43 &145087410
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1081,6 +1081,18 @@ PrefabInstance:
     - target: {fileID: 2945670061033812175, guid: 5412b0065dec19e4186bc10821fa0b66, type: 3}
       propertyPath: KnockbackForce
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2945670061033812785, guid: 5412b0065dec19e4186bc10821fa0b66, type: 3}
+      propertyPath: m_Mass
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2945670061033812785, guid: 5412b0065dec19e4186bc10821fa0b66, type: 3}
+      propertyPath: m_LinearDrag
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2945670061033812785, guid: 5412b0065dec19e4186bc10821fa0b66, type: 3}
+      propertyPath: m_AngularDrag
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 2945670061033812787, guid: 5412b0065dec19e4186bc10821fa0b66, type: 3}
       propertyPath: m_RootOrder
