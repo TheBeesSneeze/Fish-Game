@@ -39,15 +39,17 @@ public class CameraController : MonoBehaviour
     /// </summary>
     public void UpdateCamera(Vector2 CameraCenter, float Up, float Down, float Left, float Right)
     {
+        MoveCamera = true;
+
         gorp = GameObject.Find("Gorp").transform;
-        glob = GameObject.Find("Globbington").transform;
+        try { glob = GameObject.Find("Globbington").transform; } catch { glob = null; }
 
         CamUp    = CameraCenter.y + Up      ;
         CamDown  = CameraCenter.y - Down    ;
         CamRight = CameraCenter.x + Right   ;
         CamLeft  = CameraCenter.x - Left    ;
         
-        if (CamUp == 0 && CamDown == 0 && CamLeft == 0 && CamRight == 0)
+        if (Up == 0 && Down == 0 && Left == 0 && Right == 0)
             MoveCamera = false;
 
         StartCoroutine(AdjustCameraPosition());
@@ -88,11 +90,11 @@ public class CameraController : MonoBehaviour
     /// bounds CameraPos to Up,Down,Left,Right variables 
     /// </summary>
     /// <returns>Adjusted postion</returns>
-    private Vector2 CameraClamp(Vector2 CameraPos)
+    private Vector3 CameraClamp(Vector2 CameraPos)
     {
         float x = Mathf.Clamp(CameraPos.x, CamLeft, CamRight);
         float y = Mathf.Clamp(CameraPos.y, CamDown, CamUp);
 
-        return new Vector2 (x, y);
+        return new Vector3 (x, y, -15);
     }
 }

@@ -89,6 +89,7 @@ public class PlayerController : CharacterBehavior
         ImmuneToElectricity = CharacterData.ImmuneToElectricity;
         StunLength = CharacterData.StunDuration;
         KnockbackForce = CharacterData.KnockBackForce;
+        DashForce = CharacterData.DashForce;
     }
 
     /// <summary>
@@ -155,6 +156,7 @@ public class PlayerController : CharacterBehavior
         }
         if(tag.Equals("Player"))
         {
+            Debug.Log("knock player");
             KnockBack(this.gameObject, collision.transform.position);
         }
     }

@@ -196,7 +196,7 @@ GameObject:
   - component: {fileID: 3525367817744892328}
   m_Layer: 3
   m_Name: Fish Charge Light
-  m_TagString: Light
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -719,6 +719,7 @@ MonoBehaviour:
   Weight: 0
   DefaultPosition: {x: 0, y: 0, z: 0}
   StunLength: 0
+  MyRB: {fileID: 0}
   KnockbackForce: 7
   CharacterData: {fileID: 11400000, guid: 7a5fbf452c3d09b4590c3c0ffed95971, type: 2}
   PlayerNumber: 0
@@ -871,4 +872,4 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.96
+  m_Radius: 1

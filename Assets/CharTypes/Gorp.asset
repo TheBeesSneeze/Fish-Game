@@ -19,3 +19,4 @@ MonoBehaviour:
   ImmuneToElectricity: 0
   StunDuration: 0
   KnockBackForce: 7
+  DashForce: 50

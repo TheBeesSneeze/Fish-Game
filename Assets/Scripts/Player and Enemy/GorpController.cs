@@ -55,6 +55,12 @@ public class GorpController : PlayerController
         //didnt know where else to put this line:
         this.gameObject.name = "Gorp";
 
+        FishChargeLight.LightRadius = 2.5f;
+        FishChargeLight.LightEnabled = false;
+        FishChargeLight.UpdateLightRadius(0, true);
+
+        LayersOfLight = 0;
+
         lightController = GetComponent<LightController>();
 
         if (lightController.LightEnabled)
@@ -62,10 +68,6 @@ public class GorpController : PlayerController
 
         //fishLight = this.gameObject.transform.GetChild(0).GetComponent<Light2D>(); //Weird syntax but I think its more legible?
         lightController.LightRadius = lightController.LightSource.pointLightOuterRadius;
-
-        FishChargeLight.LightRadius = 2.5f;
-        FishChargeLight.LightEnabled = false;
-        FishChargeLight.UpdateLightRadius(0,true);
 
         MyPlayerInput.actions.Enable();
         ToggleLightAction = MyPlayerInput.actions.FindAction("Toggle Light");
@@ -174,16 +176,21 @@ public class GorpController : PlayerController
         //Successful flash:
         if ( togglingLight ) 
         {
-            FishFlash();
-            StartCoroutine( SetRumble(0, 0, 0.4f) );
             flashedSuccessfully = true;
+            FishFlash();
+
+            StartCoroutine( SetRumble(0, 0, 0.4f) );
+            
+            if(lightController.LightEnabled)
+                LayersOfLight--;
             lightController.LightEnabled = false;
             lightController.UpdateLightRadius(0.1f);
-            LayersOfLight--;
+            
 
             FishChargeLight.LightEnabled = true;
             FishChargeLight.LightRadius = 7.5f;
             FishChargeLight.UpdateLightRadius(0.1f, true);
+            //LayersOfLight++;
         }
     }
 

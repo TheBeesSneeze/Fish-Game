@@ -32,5 +32,5 @@ public class CharacterType : ScriptableObject
     [Tooltip("How much to multiply knockback by")]
     public float KnockBackForce;
     [Tooltip("PLAYER EXCLUSIVE How much to multiply dash by")]
-    public float DashForce; //TODO
+    public float DashForce; 
 }
