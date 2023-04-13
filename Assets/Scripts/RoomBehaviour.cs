@@ -67,7 +67,7 @@ public class RoomBehaviour : MonoBehaviour
         //Players will respawn after these messages!
         Invoke("RespawnPlayers", GameMaster.CameraLerpSeconds+0.1f);
 
-        cameraControl.UpdateCamera(CamUp,CamDown,CamLeft,CamRight);
+        
     }
 
     /// <summary>
@@ -76,7 +76,6 @@ public class RoomBehaviour : MonoBehaviour
     /// Also will just return true if room doesnt need enemies to die.
     /// </summary>
     /// <returns>true if the room is okay to leave</returns>
-    [System.Obsolete]
     public bool RoomCleared()
     {
         //if checking if dead even matters
@@ -88,7 +87,7 @@ public class RoomBehaviour : MonoBehaviour
             EnemyBehavior enemyBehavior = enemy.GetComponent<EnemyBehavior>();
 
             // "If enemy is alive and it needs to not be alive"
-            if(enemy.active && enemyBehavior.EnemyData.RequiredToKill)
+            if(enemy.activeSelf && enemyBehavior.EnemyData.RequiredToKill)
                 return false;
         }
 
@@ -110,6 +109,8 @@ public class RoomBehaviour : MonoBehaviour
 
         if(GameMaster.LastRoom != null)
             GameMaster.LastRoom.DespawnEnemies();
+
+        cameraControl.UpdateCamera(CameraPosition.position, CamUp, CamDown, CamLeft, CamRight);
     }
 
     public void RespawnEnemies()

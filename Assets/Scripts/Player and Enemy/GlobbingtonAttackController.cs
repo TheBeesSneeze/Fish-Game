@@ -20,7 +20,6 @@ public class GlobbingtonAttackController : PlayerController
     [Header("Unity Stuff")]
     public Collider2D Sword;
     public Transform RotatePoint;
-    private Rigidbody2D myRB;
 
     [Header("Controls")]
     public InputAction Strike;
@@ -33,7 +32,7 @@ public class GlobbingtonAttackController : PlayerController
         base.Start();
 
         this.gameObject.name = "Globbington";
-        myRB = GetComponent<Rigidbody2D>();
+        MyRB = GetComponent<Rigidbody2D>();
         MyPlayerInput.actions.Enable();
         Strike = MyPlayerInput.actions.FindAction("Strike");
 
@@ -89,7 +88,7 @@ public class GlobbingtonAttackController : PlayerController
     {
         while (ReadMove)
         {
-            myRB.velocity = Move.ReadValue<Vector2>() * Speed;
+            MyRB.velocity = Move.ReadValue<Vector2>() * Speed;
             RotatePlayer();
             yield return null;
         }

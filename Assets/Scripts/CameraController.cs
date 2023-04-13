@@ -30,21 +30,29 @@ public class CameraController : MonoBehaviour
     [Tooltip("Units right the camera can travel")]
     public float CamRight;
 
+    private Transform gorp;
+    private Transform glob;
+
     /// <summary>
     /// Sets all of the cameras perameters. percameters.
     /// If all percameters are 0, the camera wont even bother moving
     /// </summary>
-    public void UpdateCamera(float Up, float Down, float Left, float Right)
+    public void UpdateCamera(Vector2 CameraCenter, float Up, float Down, float Left, float Right)
     {
-        CamUp = Up;
-        CamDown = Down;
-        CamLeft = Left;
-        CamRight = Right;
+        MoveCamera = true;
 
-        if (CamUp == 0 && CamDown == 0 && CamLeft == 0 && CamRight == 0)
+        gorp = GameObject.Find("Gorp").transform;
+        try { glob = GameObject.Find("Globbington").transform; } catch { glob = null; }
+
+        CamUp    = CameraCenter.y + Up      ;
+        CamDown  = CameraCenter.y - Down    ;
+        CamRight = CameraCenter.x + Right   ;
+        CamLeft  = CameraCenter.x - Left    ;
+        
+        if (Up == 0 && Down == 0 && Left == 0 && Right == 0)
             MoveCamera = false;
 
-
+        StartCoroutine(AdjustCameraPosition());
     }
 
     /// <summary>
@@ -56,8 +64,37 @@ public class CameraController : MonoBehaviour
     {
         while(MoveCamera) 
         {
-            yield return null;
+            Vector2 newPos = AveragePlayerPostion();
+            transform.position = CameraClamp(newPos);
+
+            yield return new WaitForSeconds(0.01f);
         }
         
+    }
+
+    /// <summary>
+    /// Returns average position of both players.
+    /// Returns gorps position if globbington is null.
+    /// </summary>
+    /// <returns></returns>
+    public Vector2 AveragePlayerPostion()
+    {
+        //no checks for gorp null bc this function shouldnt run w/o gorp in theory?
+        if (gorp != null && glob == null)
+            return gorp.position;
+
+        return (gorp.position + glob.position) / 2;
+    }
+
+    /// <summary>
+    /// bounds CameraPos to Up,Down,Left,Right variables 
+    /// </summary>
+    /// <returns>Adjusted postion</returns>
+    private Vector3 CameraClamp(Vector2 CameraPos)
+    {
+        float x = Mathf.Clamp(CameraPos.x, CamLeft, CamRight);
+        float y = Mathf.Clamp(CameraPos.y, CamDown, CamUp);
+
+        return new Vector3 (x, y, -15);
     }
 }
