@@ -21,8 +21,6 @@ public class CharacterType : ScriptableObject
     public int Health;
     [Tooltip("Speed of character. 0 means no movement")]
     public float Speed;
-    [Tooltip("Weight determines distance knocked back. 0 = no knockback. 10 = across the room.less than 0 is funny.")]
-    public float Weight; //REMOVE
     [Tooltip("If damage knocks character back")]
     public bool TakeKnockback;
     [Tooltip("If the character takes damage from electricity")]

@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 /*******************************************************************************
 // File Name :         ReactiveSpikeBehavior.cs
-// Author(s) :         Sky Beal
+// Author(s) :         Sky Beal, Toby Schamberger
 // Creation Date :     4/11/2023
 //
 // Brief Description : Code for spike that turns on after players step on them.
+// Can also be activated by light (Toby did that hes sooooo cool)
 *****************************************************************************/
 public class ReactiveSpikeBehaviour : MonoBehaviour
 {
@@ -14,6 +15,12 @@ public class ReactiveSpikeBehaviour : MonoBehaviour
     public GameObject Spike;
     public float TimeUntilSpikeOn;
     public float TimeUntilSpikeOff;
+
+    public ActivationType Activator;
+    public enum ActivationType
+    {
+        Character, Light
+    }
     
     private bool spikeActive;
     private Coroutine toTurnSpikeOn;
@@ -25,9 +32,26 @@ public class ReactiveSpikeBehaviour : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         string tag = collision.gameObject.tag;
-        if (tag.Equals("Player") || tag.Equals("Enemy"))
+
+        if (Activator == ActivationType.Character)
         {
-            SpikeSwitch();
+            if (tag.Equals("Player") || tag.Equals("Enemy"))
+                SpikeSwitch();
+        }
+        else if (Activator == ActivationType.Light)
+        {
+            if (tag.Equals("Light"))
+                Spike.SetActive(true);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        string tag = collision.gameObject.tag;
+        if (Activator == ActivationType.Light)
+        {
+            if (tag.Equals("Light"))
+                StartCoroutine(TurnOnSpike());
         }
     }
 
@@ -48,10 +72,14 @@ public class ReactiveSpikeBehaviour : MonoBehaviour
     /// <returns></returns>
     public IEnumerator TurnOnSpike()
     {
-        yield return new WaitForSeconds(TimeUntilSpikeOn);
-        Spike.SetActive(true);
-        Debug.Log("Spike On");
-        spikeActive = true;
+        if(Activator == ActivationType.Character)
+        {
+            yield return new WaitForSeconds(TimeUntilSpikeOn);
+            Spike.SetActive(true);
+            Debug.Log("Spike On");
+            spikeActive = true;
+        }
+        
         yield return new WaitForSeconds(TimeUntilSpikeOff);
         spikeActive = false;
         Spike.SetActive(false);

@@ -128,13 +128,13 @@ public class EnemyBehavior : CharacterBehavior
         base.BeStunned();
         Stunned = true;
         Speed = 0;
-        enemyCollider.enabled = false;
+        //enemyCollider.enabled = false;
     }
     public override void BeUnStunned()
     {
         Stunned = false;
         Speed = EnemyData.Speed;
-        enemyCollider.enabled = true;
+        //enemyCollider.enabled = true;
     }
 
     /// <summary>

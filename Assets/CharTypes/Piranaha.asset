@@ -10,23 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3117d9298812b284b91b01da03d2488f, type: 3}
-  m_Name: Regular
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyData
-  Health: 3
-  Speed: 10
-  Weight: 1
+  m_Name: Piranaha
+  m_EditorClassIdentifier: 
+  Health: 1
+  Speed: 18
   TakeKnockback: 1
   ImmuneToElectricity: 0
-  StunDuration: 8
-  KnockBackForce: 10
+  StunDuration: 0
+  KnockBackForce: 0
   DashForce: 0
   RequiredToKill: 1
-  ProtectedUntilFlash: 1
-  StunnedByFlash: 1
-  HurtByFlash: 0
+  ProtectedUntilFlash: 0
+  StunnedByFlash: 0
+  HurtByFlash: 1
   LightDamagePerSec: 0
-  SightDistance: 8
-  UnsightDistance: 12
-  PursueDelay: 0.4
+  SightDistance: 13
+  UnsightDistance: 15
+  PursueDelay: 0.1
   NightVision: 0
   BlindedByTheLight: 0
