@@ -1,40 +1,79 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 /*******************************************************************************
 // File Name :         CrateBehaviour.cs
-// Author(s) :         Sky Beal
+// Author(s) :         Sky Beal, Toby Schamberger
 // Creation Date :     4/5/2023
 //
-// Brief Description : Code for crate break !!
-// PUSH GOAL: key in crates ??? (instantiate ??)
+// Brief Description : Code for crate break !! Crates extend CharacterBehavior because they need to respawn
+// Prefabs can be placed inside crates!
 *****************************************************************************/
 
-public class CrateBehaviour : MonoBehaviour
+public class CrateBehaviour : CharacterBehavior
 {
-    [Header("Settings")]
+    [Header("Crate:")]
 
-    public Vector3 CrateStartingPosition;
+    [Tooltip("PREFAB to instantiate when crate is destroyed")]
+    public GameObject SurpriseInside;
+    private GameObject surpriseOutside;
 
-    /// <summary>
-    /// starting position oooooo
-    /// </summary>
-    private void Start()
+    public override void Start()
     {
-        CrateStartingPosition = this.transform.position;
+        base.Start();
     }
-
     /// <summary>
     /// if sword swing hits it BOOM dead
     /// </summary>
     /// <param name="collision"></param>
-    private void OnTriggerEnter2D(Collider2D collision)
+    public override void OnTriggerEnter2D(Collider2D collision)
     {
         string tag = collision.gameObject.tag;
         if (tag.Equals("Attack"))
         {
-            Destroy(gameObject);
+            if (SurpriseInside != null)
+            {
+                surpriseOutside = Instantiate(SurpriseInside, DefaultPosition, Quaternion.identity);
+
+                Debug.Log(surpriseOutside.name);
+            }
+
+            try { surpriseOutside.GetComponent<CharacterBehavior>().Health++; } catch { }
+            try { surpriseOutside.GetComponent<EnemyBehavior>().DespawnOnStart=false; } catch { }
+            StartCoroutine(WaitToSpawnEnemy());
+
+            this.gameObject.SetActive(false);
         }
     }
 
+    /// <summary>
+    /// Destroys the item inside the crate
+    /// </summary>
+    public override void Respawn()
+    {
+        DespawnItem();
+        surpriseOutside = null;
+
+        this.gameObject.SetActive(true);
+    }
+
+    /// <summary>
+    /// If the item from inside the crate has been spawned,
+    /// despawns the item.
+    /// </summary>
+    private void DespawnItem()
+    {
+        if (surpriseOutside != null)
+            Destroy(surpriseOutside);
+
+        surpriseOutside = null;
+    }
+
+    private IEnumerator WaitToSpawnEnemy()
+    {
+        yield return new WaitForSeconds(0.05f);
+        surpriseOutside.SetActive(true);
+    }
 }
