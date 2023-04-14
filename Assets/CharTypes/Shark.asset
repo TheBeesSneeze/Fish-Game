@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3117d9298812b284b91b01da03d2488f, type: 3}
+  m_Name: Shark
+  m_EditorClassIdentifier: 
+  Health: 10
+  Speed: 5
+  TakeKnockback: 1
+  ImmuneToElectricity: 1
+  StunDuration: 2
+  KnockBackForce: 1
+  DashForce: 1000
+  RequiredToKill: 1
+  ProtectedUntilFlash: 0
+  StunnedByFlash: 0
+  HurtByFlash: 0
+  LightDamagePerSec: 0
+  SightDistance: 4
+  UnsightDistance: 5
+  PursueDelay: 1
+  NightVision: 1
+  BlindedByTheLight: 0

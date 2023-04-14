@@ -49,9 +49,15 @@ public class JellyfishBehavior : EnemyBehavior
 
         lightController = GetComponent<LightController>();
 
-        StartCoroutine(AdjustLight());
+        if(gameObject.activeSelf)
+            StartCoroutine(AdjustLight());
     }
-    
+
+    private void OnEnable()
+    {
+        SetState(JellyfishState.Passive);
+    }
+
     /// <summary>
     /// Sets JellyState = state and enables/disables appropriate triggers.
     /// Also calls/invokes some functions relating to current state.
@@ -99,7 +105,7 @@ public class JellyfishBehavior : EnemyBehavior
     {
         while(true)
         {
-            if (JellyState.Equals(JellyfishState.Passive))
+            if (JellyState.Equals(JellyfishState.Passive) && this.gameObject.activeSelf)
             {
                 float closestPlayer = GetDistanceOfClosestTag(this.transform.position, "Player");
 
@@ -173,5 +179,11 @@ public class JellyfishBehavior : EnemyBehavior
     {
         yield return new WaitForSeconds(WeakenedTime);
         StartCoroutine(SetState(JellyfishState.Passive));
+    }
+
+    public  override void Respawn()
+    {
+        base.Respawn();
+        SetState(JellyfishState.Passive);
     }
 }

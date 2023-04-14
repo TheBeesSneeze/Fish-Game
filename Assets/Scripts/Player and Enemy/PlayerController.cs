@@ -146,8 +146,8 @@ public class PlayerController : CharacterBehavior
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         foreach(GameObject enemy in enemies) 
         { 
-            Debug.Log(enemy.name);
-            enemy.GetComponent<CharacterBehavior>().Respawn();
+            //Debug.Log(enemy.name);
+            enemy.GetComponent<EnemyBehavior>().Respawn();
         }
     }
 

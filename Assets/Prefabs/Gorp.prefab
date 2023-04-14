@@ -1016,7 +1016,7 @@ MonoBehaviour:
   KnockbackForce: 7
   CharacterData: {fileID: 11400000, guid: 7a5fbf452c3d09b4590c3c0ffed95971, type: 2}
   PlayerNumber: 0
-  Rumble: 0
+  Rumble: 1
   IgnoreMove: 0
   MyPlayerInput: {fileID: 8678797230697677920}
   Move:
