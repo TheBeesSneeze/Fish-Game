@@ -17,8 +17,6 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using static UnityEditor.PlayerSettings;
-
 
 public class PlayerManager : MonoBehaviour
 {
