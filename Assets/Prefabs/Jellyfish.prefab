@@ -108,10 +108,12 @@ MonoBehaviour:
   Speed: 0
   TakeKnockback: 0
   ImmuneToElectricity: 0
-  Weight: 0
   DefaultPosition: {x: 0, y: 0, z: 0}
+  Stunned: 0
   StunLength: 0
-  DespawnOnStart: 0
+  MyRB: {fileID: 0}
+  KnockbackForce: 0
+  DespawnOnStart: 1
   EnemyData: {fileID: 11400000, guid: e9badf18f0d8c404886e92abd26d74c3, type: 2}
   Gorp: {fileID: 0}
   Globbington: {fileID: 0}
@@ -482,7 +484,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -1
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.44716978, g: 1, b: 0.9783319, a: 0.7607843}
+  m_Color: {r: 1, g: 0.9983165, b: 0.4470588, a: 0.7607843}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

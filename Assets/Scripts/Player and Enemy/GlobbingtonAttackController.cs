@@ -37,6 +37,7 @@ public class GlobbingtonAttackController : PlayerController
         Strike = MyPlayerInput.actions.FindAction("Strike");
 
         Strike.started += Strike_started;
+        Dash.started += Strike_started;
     }
 
     /// <summary>

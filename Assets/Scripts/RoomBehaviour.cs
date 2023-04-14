@@ -60,6 +60,8 @@ public class RoomBehaviour : MonoBehaviour
 
         StartCoroutine(GameMaster.SlideCamera());
 
+        if (GameMaster.LastRoom != null)
+            GameMaster.LastRoom.DespawnEnemies();
         RespawnEnemies();
 
         //Putting this check right after respawning all enemies was very intentional
@@ -111,9 +113,6 @@ public class RoomBehaviour : MonoBehaviour
             playerController.DefaultPosition = PlayerStartPosition.position;
             player.transform.position = PlayerStartPosition.position;
         }
-
-        if(GameMaster.LastRoom != null)
-            GameMaster.LastRoom.DespawnEnemies();
 
         cameraControl.UpdateCamera(CameraPosition.position, CamUp, CamDown, CamLeft, CamRight);
     }
