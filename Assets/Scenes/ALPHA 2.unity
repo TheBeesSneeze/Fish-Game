@@ -13326,13 +13326,17 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3247231264155628965, guid: 35942ed204b52b245ae387d7918b9fc0, type: 3}
+      propertyPath: PreviouslyCleared
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3247231264155628965, guid: 35942ed204b52b245ae387d7918b9fc0, type: 3}
       propertyPath: Enemies.Array.size
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3247231264155628965, guid: 35942ed204b52b245ae387d7918b9fc0, type: 3}
       propertyPath: Doors.Array.data[0]
       value: 
-      objectReference: {fileID: 1750262572}
+      objectReference: {fileID: 1625791454}
     - target: {fileID: 3247231264155628965, guid: 35942ed204b52b245ae387d7918b9fc0, type: 3}
       propertyPath: Doors.Array.data[1]
       value: 
