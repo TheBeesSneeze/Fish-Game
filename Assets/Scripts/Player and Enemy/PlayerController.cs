@@ -35,6 +35,8 @@ public class PlayerController : CharacterBehavior
 
     public  bool ReadMove;
     public float DashForce;
+    public AudioClip Scream;
+    public AudioSource AS;
 
     //public float dashForce = 40;
 
@@ -155,6 +157,7 @@ public class PlayerController : CharacterBehavior
         if (tag.Equals("Enemy"))
         {
             TakeDamage(1, collision.transform.position);
+            AS.Play();
         }
         if(tag.Equals("Player"))
         {
