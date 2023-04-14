@@ -14,7 +14,7 @@ using UnityEngine.InputSystem.DualShock;
 
 public class GlobbingtonAttackController : PlayerController
 {
-    [Header("Settings")]
+    [Header("Crate")]
     public float AttackLength;
 
     [Header("Unity Stuff")]

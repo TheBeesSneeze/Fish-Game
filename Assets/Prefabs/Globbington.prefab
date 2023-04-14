@@ -309,17 +309,17 @@ MonoBehaviour:
     m_SingletonActionBindings: []
     m_Flags: 0
   Swap:
-    m_Name: 
+    m_Name: Swap
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 
+    m_Id: 5258d069-f33f-4f48-b670-725c9332d454
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
   ReadMove: 0
   DashForce: 40
-  AttackLength: 0.16
+  AttackLength: 0.1
   Sword: {fileID: 1137317766113117558}
   RotatePoint: {fileID: 7118317646495259653}
   Strike:

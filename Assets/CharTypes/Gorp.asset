@@ -14,9 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Health: 3
   Speed: 10
-  Weight: 1
   TakeKnockback: 1
-  ImmuneToElectricity: 0
+  ImmuneToElectricity: 1
   StunDuration: 0
   KnockBackForce: 7
   DashForce: 50

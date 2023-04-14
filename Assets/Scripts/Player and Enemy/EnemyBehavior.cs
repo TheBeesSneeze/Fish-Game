@@ -75,7 +75,7 @@ public class EnemyBehavior : CharacterBehavior
             StartCoroutine(enemyDetection.SearchForPlayer());
         }
 
-        this.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        try { this.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero; } catch { }
     }
 
     public override void OnTriggerEnter2D(Collider2D collision)

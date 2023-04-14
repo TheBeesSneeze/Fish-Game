@@ -30,7 +30,7 @@ public class RoomBehaviour : MonoBehaviour
     public Transform PlayerStartPosition;
 
     [Header("Drag Enemies into this list! Very important")]
-    public List<GameObject> Enemies = new List<GameObject>();
+    public List<GameObject> RespawnObjects = new List<GameObject>();
 
     [Header("Drag doors (that are connected to this room and lead into other rooms) into this list! Very important")]
     public List<DoorBehaviour> Doors = new List<DoorBehaviour>();
@@ -54,6 +54,7 @@ public class RoomBehaviour : MonoBehaviour
     /// </summary>
     public void EnterRoom()
     {
+        cameraControl.MoveCamera = false;
         GameMaster.LastRoom = GameMaster.CurrentRoom;
         GameMaster.CurrentRoom = this;
 
@@ -82,13 +83,17 @@ public class RoomBehaviour : MonoBehaviour
         if( ! RequireSweep || PreviouslyCleared)
             return true;
 
-        foreach(GameObject enemy in Enemies) 
+        foreach(GameObject enemy in RespawnObjects) 
         {
-            EnemyBehavior enemyBehavior = enemy.GetComponent<EnemyBehavior>();
+            try
+            {
+                EnemyBehavior enemyBehavior = enemy.GetComponent<EnemyBehavior>();
 
-            // "If enemy is alive and it needs to not be alive"
-            if(enemy.activeSelf && enemyBehavior.EnemyData.RequiredToKill)
-                return false;
+                // "If enemy is alive and it needs to not be alive"
+                if (enemy.activeSelf && enemyBehavior.EnemyData.RequiredToKill)
+                    return false;
+            }
+            catch { } //bro why do i even need catch tbh
         }
 
         return true;
@@ -115,16 +120,16 @@ public class RoomBehaviour : MonoBehaviour
 
     public void RespawnEnemies()
     {
-        foreach (GameObject enemy in Enemies)
+        foreach (GameObject enemy in RespawnObjects)
         {
-            EnemyBehavior enemyBehaviorInstance = enemy.GetComponent<EnemyBehavior>();
-            enemyBehaviorInstance.Respawn();
+            CharacterBehavior characterBehaviorInstance = enemy.GetComponent<CharacterBehavior>();
+            characterBehaviorInstance.Respawn();
         }
     }
 
     public void DespawnEnemies()
     {
-        foreach (GameObject enemy in Enemies)
+        foreach (GameObject enemy in RespawnObjects)
         {
             enemy.SetActive(false);
         }
