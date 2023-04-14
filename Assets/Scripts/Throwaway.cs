@@ -1,33 +1,26 @@
 /*******************************************************************************
-// File Name :         Alpha2.cs
-// Author(s) :         Jay Embry
+// File Name :         Throwaway.cs
+// Author :            Jay Embry
 // Creation Date :     4/13/2023
 //
-// Brief Description : Cannot emphasize enough that this will be deleted
+// Brief Description : Does ONE thing ONE time. Will delete later.
 *****************************************************************************/
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Alpha2 : MonoBehaviour
+public class Throwaway : MonoBehaviour
 {
-
-
-    public GameObject Instructions;
-    public GameObject StartText;
-    public GameObject Instructions2;
-
+    public GameObject GarthInstructions;
     public void OnTriggerEnter2D(Collider2D collision)
     {
-
         if (collision.gameObject.tag == "Player")
         {
 
-            Instructions.SetActive(true);
-            StartText.SetActive(true);
-            Instructions2.SetActive(false);
+            GarthInstructions.SetActive(false);
 
         }
 
     }
+
 }
