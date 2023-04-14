@@ -144,7 +144,8 @@ public class PlayerController : CharacterBehavior
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         foreach(GameObject enemy in enemies) 
         { 
-            enemy.GetComponent<EnemyBehavior>().Respawn();
+            Debug.Log(enemy.name);
+            enemy.GetComponent<CharacterBehavior>().Respawn();
         }
     }
 
@@ -214,7 +215,6 @@ public class PlayerController : CharacterBehavior
     {
         base.KnockBack(target, damageSourcePosition);
         IgnoreMove = true;
-        Debug.Log("knocking back");
 
         StartCoroutine(NoMovementRoutine(0.1f));
     }
