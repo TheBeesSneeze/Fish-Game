@@ -161,7 +161,11 @@ public class PlayerController : CharacterBehavior
         }
         if(tag.Equals("Player"))
         {
-            KnockBack(this.gameObject, collision.transform.position);
+            KnockBack(this.gameObject, collision.transform.position,2);
+        }
+        if(tag.Equals("Eye"))
+        { 
+            KnockBack(this.gameObject,collision.transform.position); 
         }
     }
 
@@ -217,6 +221,14 @@ public class PlayerController : CharacterBehavior
     public override void KnockBack(GameObject target, Vector3 damageSourcePosition)
     {
         base.KnockBack(target, damageSourcePosition);
+        IgnoreMove = true;
+
+        StartCoroutine(NoMovementRoutine(0.1f));
+    }
+
+    public override void KnockBack(GameObject target, Vector3 damageSourcePosition, float Force)
+    {
+        base.KnockBack(target, damageSourcePosition, Force);
         IgnoreMove = true;
 
         StartCoroutine(NoMovementRoutine(0.1f));

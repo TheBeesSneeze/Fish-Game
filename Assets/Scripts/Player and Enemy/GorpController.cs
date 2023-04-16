@@ -136,8 +136,8 @@ public class GorpController : PlayerController
 
 
         //TEMPORARY
-        gameManagerInstance.Instructions.SetActive(true);
-        gameManagerInstance.StartText.SetActive(false);
+        //gameManagerInstance.Instructions.SetActive(true);
+        //gameManagerInstance.StartText.SetActive(false);
     }
 
     /// <summary>

@@ -28,16 +28,16 @@ public class GameManager : MonoBehaviour
     public RoomBehaviour LastRoom;
 
     //TEMPORARY
-    public GameObject Instructions;
-    public GameObject StartText;
+    //public GameObject Instructions;
+    //public GameObject StartText;
 
     private void Start()
     {
         _camera = GameObject.FindGameObjectWithTag("MainCamera");
 
         //TEMPORARY
-        Instructions = GameObject.Find("Instructions");
-        Instructions.SetActive(false);
+        //Instructions = GameObject.Find("Instructions");
+        //Instructions.SetActive(false);
 
     }
 
