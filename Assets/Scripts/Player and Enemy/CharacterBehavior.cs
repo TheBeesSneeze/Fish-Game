@@ -74,14 +74,24 @@ public class CharacterBehavior : MonoBehaviour
     /// <summary>
     /// Knocks back target away from damageSourcePosition
     /// </summary>
-    /// <param name="target"></param>
-    /// <param name="damageSourcePosition"></param>
+    /// <param name="target">who is getting knockedback</param>
+    /// <param name="damageSourcePosition">where they are getting knocked back from</param>
     public virtual void KnockBack(GameObject target, Vector3 damageSourcePosition)
     {
+        KnockBack(target, damageSourcePosition, KnockbackForce);
+    }
+
+    /// <summary>
+    /// Knockback override to include knockbackforce override
+    /// </summary>
+    /// <param name="target">who is getting knockedback</param>
+    /// <param name="damageSourcePosition">where they are getting knocked back from</param>
+    /// <param name="Force">how much to multiply knockback by</param>
+    public virtual void KnockBack(GameObject target, Vector3 damageSourcePosition, float Force)
+    {
         MyRB = this.GetComponent<Rigidbody2D>();
-        Vector3 positionDifference = target.transform.position - damageSourcePosition; 
-        //target.transform.position -= positionDifference;
-        MyRB.AddForce(positionDifference * KnockbackForce, ForceMode2D.Impulse);
+        Vector3 positionDifference = target.transform.position - damageSourcePosition;
+        MyRB.AddForce(positionDifference * Force, ForceMode2D.Impulse);
     }
 
     /// <summary>
