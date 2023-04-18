@@ -12,6 +12,7 @@ TagManager:
   - Electricity
   - Mirror
   - GarthBox
+  - Eye
   layers:
   - Default
   - TransparentFX
