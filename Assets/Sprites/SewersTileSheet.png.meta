@@ -158,7 +158,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SewersTileSheet_4
+      name: Important Dark Spot
       rect:
         serializedVersion: 2
         x: 64
@@ -169,7 +169,11 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -8, y: 8}
+        - {x: -8, y: -8}
+        - {x: 8, y: -8}
+        - {x: 8, y: 8}
       tessellationDetail: 0
       bones: []
       spriteID: 8e30d2a6ccf490845a0adf49f5787910
@@ -985,13 +989,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SewersTileSheet_43
+      name: Important Dark Spot 2
       rect:
         serializedVersion: 2
         x: 48
-        y: 224
-        width: 16
-        height: 16
+        y: 215
+        width: 18
+        height: 18
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -8782,7 +8786,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -8830,6 +8834,7 @@ TextureImporter:
       SewersTileSheet_121: 408397528
       SewersTileSheet_504: -55755972
       SewersTileSheet_185: -2123479125
+      Important Dark Spot: 971092098
       SewersTileSheet_248: -776148332
       DoorClosed3: 1559742990
       SewersTileSheet_472: 1341132742
@@ -8978,6 +8983,7 @@ TextureImporter:
       SewersTileSheet_256: 920323955
       SewersTileSheet_310: -815566567
       SewersTileSheet_273: -110590810
+      Important Dark Spot 2: 1457753773
       SewersTileSheet_1: -756134164
       SewersTileSheet_235: 2110837814
       SewersTileSheet_95: -341095240
@@ -9138,7 +9144,6 @@ TextureImporter:
       SewersTileSheet_126: 1958800841
       SewersTileSheet_47: 1705908917
       SewersTileSheet_59: -1301276852
-      SewersTileSheet_43: 1457753773
       SewersTileSheet_289: -1666905305
       SewersTileSheet_296: 418691156
       SewersTileSheet_494: -36066232
@@ -9277,7 +9282,6 @@ TextureImporter:
       SewersTileSheet_62: -2079510723
       SewersTileSheet_192: -1012970960
       SewersTileSheet_252: 652815757
-      SewersTileSheet_4: 971092098
       SewersTileSheet_110: -558352145
       SewersTileSheet_164: -350266376
       SewersTileSheet_452: 1613154377
