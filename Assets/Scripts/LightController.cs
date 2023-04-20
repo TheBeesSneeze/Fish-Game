@@ -79,6 +79,7 @@ public class LightController : MonoBehaviour
         else
         {
             gameObject.SetActive(true);
+
             lightLerpCoroutine = StartCoroutine(LightLerp(oldRadius, 0, seconds));
 
             if (LightTrigger != null)
@@ -114,6 +115,7 @@ public class LightController : MonoBehaviour
     /// <param name="seconds"></param>
     private IEnumerator LightLerp(float startRadius, float endRadius, float seconds)
     {
+
         if (seconds > 0)
         {
             for (int i = 0; i <= TransitionFrames; i++)
