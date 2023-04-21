@@ -33,7 +33,7 @@ public class LightActivator : ActivatorType
 
             if(LayersOfLight == 0) 
             {
-                DectivationInput();
+                DeactivationInput();
             }
             
         }

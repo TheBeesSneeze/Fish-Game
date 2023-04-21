@@ -4,7 +4,8 @@
 // Creation Date :     4/16/2023
 //
 // This code was made on a whim. Searches for gorp, when gorp is visible, it
-// searches for things affected by light (mirrors and enemies)
+// searches for things affected by light (mirrors and enemies).
+// Apply EyeActivator to gameobject if you want the eye to be an activator.
 *****************************************************************************/
 
 using System.Collections;
@@ -27,6 +28,7 @@ public class EyeBehaviour : MonoBehaviour
     [Header("Unity Stuff")]
     public Light2D Light;
     public GameObject LightAnchor;
+    public ActivatorType eyeActivator; //unity gets this guy automatically :D ;D
 
     [Header("Debug")]
     private Coroutine gazing;
@@ -38,6 +40,8 @@ public class EyeBehaviour : MonoBehaviour
     void Start()
     {
         StartCoroutine(SearchForPlayers());
+
+        this.gameObject.TryGetComponent<ActivatorType>(out eyeActivator);
     }
 
     /// <summary>
@@ -71,6 +75,7 @@ public class EyeBehaviour : MonoBehaviour
 
                     if (tag.Equals("Player"))
                     {
+
                         //this cant be an && statement because i am not feeling computer science-y today
                         if(gazing == null)
                         {
@@ -79,7 +84,9 @@ public class EyeBehaviour : MonoBehaviour
 
                             gazing = StartCoroutine(CalculateGaze(players[i]));
                         }
-                        
+
+                        if (eyeActivator != null)
+                            eyeActivator.ActivationInput();
                     }
                     //if it missed and the coroutine needs to stop now
                     else if (visibleTargets[i] != null)
@@ -96,9 +103,14 @@ public class EyeBehaviour : MonoBehaviour
                         if (i == 0) j = 1;
                         else        j = 0;
 
+                        //Redirecting gaze...
                         if (visibleTargets[j] != null)
                             StartCoroutine(CalculateGaze(visibleTargets[j]));
-            
+                        else
+                        {
+                            if (eyeActivator != null)
+                                eyeActivator.DeactivationInput();
+                        }
                     }
                 }
             }

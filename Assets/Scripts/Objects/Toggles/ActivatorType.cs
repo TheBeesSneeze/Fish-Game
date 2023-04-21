@@ -5,6 +5,7 @@
 //
 // Brief Description : Base interface for activator objects. Designed to interract
 // with ReactiveTypes. Extends ReactiveType because 
+// Can be used without extensions (see Eyes and EyeBehavior)
 *****************************************************************************/
 
 using System.Collections;
@@ -33,7 +34,7 @@ public class ActivatorType : ReactiveType
     /// <summary>
     /// Call this function when the thing is deactivated
     /// </summary>
-    public virtual void DectivationInput()
+    public virtual void DeactivationInput()
     {
         SetState(false);
     }
