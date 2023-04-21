@@ -8798,6 +8798,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: LightOff
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 80
+        width: 16
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 46467a9497f101e458bbf36e2af81a04
+      internalID: 590617790
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -9005,6 +9026,7 @@ TextureImporter:
       SewersTileSheet_242: -2095560120
       SewersTileSheet_429: -1744080386
       SewersTileSheet_389: 1989540286
+      LightOff: 590617790
       SewersTileSheet_88: 1328057444
       SewersTileSheet_333: 1886215070
       SewersTileSheet_213: -1426546263

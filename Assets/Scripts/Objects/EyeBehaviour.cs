@@ -68,9 +68,6 @@ public class EyeBehaviour : MonoBehaviour
                 if(hit)
                 {
                     string tag = hit.collider.tag;
-                    Debug.Log(tag);
-
-
 
                     if (tag.Equals("Player"))
                     {

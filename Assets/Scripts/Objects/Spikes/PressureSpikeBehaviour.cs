@@ -9,7 +9,7 @@ using UnityEngine;
 // Brief Description : Code for spike that turns on after players step on them.
 // Can also be activated by light (Toby did that hes sooooo cool)
 *****************************************************************************/
-public class ReactiveSpikeBehaviour : MonoBehaviour
+public class PressureSpikeBehaviour : MonoBehaviour
 {
     [Header ("Settings")]
     public GameObject Spike;

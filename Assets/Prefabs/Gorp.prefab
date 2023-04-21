@@ -1059,11 +1059,28 @@ MonoBehaviour:
   DashForce: 50
   Scream: {fileID: 0}
   AS: {fileID: 3761592909301609809}
+  FlashTrigger: {fileID: 4950820922443560528}
+  FlashChargeTime: 1
+  FlashLength: 0.4
+  LightIncrement: 0.8
+  LightIncrementDelay: 0.1
+  ToggleLightTime: 0.2
+  MinLight: 1
+  MaxLight: 10
   ToggleLightAction:
     m_Name: Toggle Light
     m_Type: 0
     m_ExpectedControlType: 
     m_Id: f8bf6849-d147-4b06-b9cc-f527067a5020
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  FlashAction:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 0e45055e-80ab-4f56-8b02-19bae601a24d
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
@@ -1086,15 +1103,7 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
-  FlashChargeTime: 1
-  FlashLength: 0.4
-  LightIncrement: 0.8
-  LightIncrementDelay: 0.1
-  ToggleLightTime: 0.2
-  MinLight: 1
-  MaxLight: 10
   FishChargeLight: {fileID: 4851970326703520874}
-  FlashTrigger: {fileID: 4950820922443560528}
 --- !u!114 &5052205749001080560
 MonoBehaviour:
   m_ObjectHideFlags: 0
