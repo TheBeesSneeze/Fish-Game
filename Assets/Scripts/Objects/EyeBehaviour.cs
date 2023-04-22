@@ -79,7 +79,6 @@ public class EyeBehaviour : MonoBehaviour
 
                     if (tag.Equals("Player"))
                     {
-
                         //this cant be an && statement because i am not feeling computer science-y today
                         if(gazing == null)
                         {
@@ -92,6 +91,7 @@ public class EyeBehaviour : MonoBehaviour
                         if (eyeActivator != null)
                             eyeActivator.ActivationInput();
                     }
+
                     //if it missed and the coroutine needs to stop now
                     else if (visibleTargets[i] != null)
                     {
@@ -142,16 +142,24 @@ public class EyeBehaviour : MonoBehaviour
     private IEnumerator CalculateGaze(GameObject target)
     {
         LightAnchor.SetActive(true);
+        Vector3 sourcePosition = Vector3.zero;
+
         while (true)
         {
-            Vector3 sourcePosition = target.transform.position;
+            //only recalculates gaze if it needs too!
+            //this is efficient and it 
+            if(sourcePosition != target.transform.position)
+            {
+                sourcePosition = target.transform.position;
 
-            //vector between two points
-            Vector2 Direction = transform.position - sourcePosition;
-            float angle = Vector2.SignedAngle(Vector2.right, Direction) + 90;
+                //vector between two points
+                Vector2 Direction = transform.position - sourcePosition;
+                float angle = Vector2.SignedAngle(Vector2.right, Direction) + 90;
 
-            Vector3 TargetRotation = new Vector3(0, 0, angle);
-            LightAnchor.transform.rotation = Quaternion.RotateTowards(LightAnchor.transform.rotation, Quaternion.Euler(TargetRotation), RotateSpeed);
+                Vector3 TargetRotation = new Vector3(0, 0, angle);
+                LightAnchor.transform.rotation = Quaternion.RotateTowards(LightAnchor.transform.rotation, Quaternion.Euler(TargetRotation), RotateSpeed);
+            }
+            
 
             yield return new WaitForSeconds(AngleRecalculationDelay);
         }

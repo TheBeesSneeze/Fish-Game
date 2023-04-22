@@ -93,13 +93,13 @@ public class ReactiveType : MonoBehaviour
         activateCoroutine = null;
     }
 
-    public virtual void OnActivate()
-    {
-        Debug.Log("Override This Function!");
-    }
+    /// <summary>
+    /// Overwrite me!!!
+    /// </summary>
+    public virtual void OnActivate() { }
 
-    public virtual void OnDeactivate()
-    {
-        Debug.Log("Override This Function!");
-    }
+    /// <summary>
+    /// Overwrite me!!!
+    /// </summary>
+    public virtual void OnDeactivate() { }
 }
