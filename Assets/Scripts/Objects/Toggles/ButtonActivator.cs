@@ -1,6 +1,6 @@
 /*******************************************************************************
 // File Name :         ButtonActivator.cs
-// Author(s) :         Toby Schamberger
+// Author(s) :         Toby Schamberger, Jay Embry
 // Creation Date :     4/20/2023
 //
 // Brief Description : Extends ActivatorType. Activates objects when globbington
@@ -13,6 +13,23 @@ using UnityEngine;
 
 public class ButtonActivator : ActivatorType
 {
-    //look at LeverActivor and LightActivator for a reference.
-    //dont add any funtions that arent oncollisionenter and oncollisionexit
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.gameObject.name == "Globbington")
+        {
+
+            ActivationInput();
+
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collider)
+    {
+        if (collider.gameObject.name == "Globbington")
+        {
+
+            DeactivationInput();
+
+        }
+    }
 }
