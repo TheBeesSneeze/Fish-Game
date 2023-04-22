@@ -17,6 +17,8 @@ using static UnityEngine.UI.Image;
 public class EyeBehaviour : MonoBehaviour
 {
     [Header("Settings")]
+
+    [Tooltip("i dont remeber if this works")]
     public bool SeeEnemies;
     public LayerMask LM;
     public float RayCastDistance;
@@ -24,6 +26,7 @@ public class EyeBehaviour : MonoBehaviour
     [Tooltip("How frequently eye checks if player is still visible to eye")]
     public float PlayerSearchDelay = 1;
     public float RotateSpeed = 5;
+    public float BlindLength = 10;
 
     [Header("Unity Stuff")]
     public Light2D Light;
@@ -34,7 +37,8 @@ public class EyeBehaviour : MonoBehaviour
     private Coroutine gazing;
     private GameObject[] players;
     public GameObject[] visibleTargets = new GameObject[2];
-
+    public bool Blinded;
+    private Coroutine blindCoroutine;
     
     // Start is called before the first frame update
     void Start()
@@ -54,7 +58,7 @@ public class EyeBehaviour : MonoBehaviour
     private IEnumerator SearchForPlayers()
     {
         LightAnchor.SetActive(true);
-        while(true) 
+        while(!Blinded) 
         {
             players = GameObject.FindGameObjectsWithTag("Player");
 
@@ -91,9 +95,7 @@ public class EyeBehaviour : MonoBehaviour
                     //if it missed and the coroutine needs to stop now
                     else if (visibleTargets[i] != null)
                     {
-                        StopCoroutine(gazing);
-                        gazing = null;
-                        LightAnchor.SetActive(false);
+                        DisableLight();
 
                         visibleTargets[i].GetComponent<PlayerController>().LayersOfLight--;
                         visibleTargets[i] = null;
@@ -120,6 +122,20 @@ public class EyeBehaviour : MonoBehaviour
     }
 
     /// <summary>
+    /// Turns off light really.
+    /// </summary>
+    private void DisableLight()
+    {
+        if(gazing!= null)
+        {
+            StopCoroutine(gazing);
+            gazing = null;
+        }
+        
+        LightAnchor.SetActive(false);
+    }
+
+    /// <summary>
     /// Constantly rotates the mirror to face away from the player. Like a real light bouncing off.
     /// Does a lot of cool math that I copied and pasted from online.
     /// </summary>
@@ -141,5 +157,42 @@ public class EyeBehaviour : MonoBehaviour
         }
     }
 
-   
+    public void BecomeBlind()
+    {
+        Blinded = true;
+        DisableLight();
+    }
+
+    /// <summary>
+    /// Runs after being blind. Waits for a delay
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator BecomeUnblind()
+    {
+        yield return new WaitForSeconds(BlindLength);
+        blindCoroutine = null;
+
+        Blinded = false;
+
+        StartCoroutine(SearchForPlayers());
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        string tag = collision.tag;
+
+        if(tag.Equals("Flash"))
+        {
+            if(blindCoroutine != null)
+            {
+                StopCoroutine(blindCoroutine);
+                blindCoroutine = null;
+            }
+
+            BecomeBlind();
+            blindCoroutine = StartCoroutine(BecomeUnblind());
+        }
+        
+    }
+
 }

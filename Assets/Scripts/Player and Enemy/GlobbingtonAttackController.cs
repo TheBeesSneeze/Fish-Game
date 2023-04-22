@@ -97,6 +97,12 @@ public class GlobbingtonAttackController : PlayerController
         }
     }
 
+    public override void GetElectrified()
+    {
+        Stunned = true;
+        BeStunned();
+    }
+
     private void OnDestroy()
     {
 

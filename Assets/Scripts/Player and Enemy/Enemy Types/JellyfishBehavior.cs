@@ -149,7 +149,6 @@ public class JellyfishBehavior : EnemyBehavior
         {
             if (tag.Equals("Flash") || tag.Equals("Electricity")) //2nd part for debug
             {
-                
                 StartCoroutine(SetState(JellyfishState.Electrifying, ElectrifyingDelay));
                 //KnockBack(collider.GetComponentInParent<GameObject>(), transform.position); // knocks the player back
             }

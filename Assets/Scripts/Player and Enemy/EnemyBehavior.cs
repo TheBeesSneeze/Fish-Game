@@ -16,6 +16,8 @@ using UnityEngine;
 public class EnemyBehavior : CharacterBehavior
 {
     [Header("Attributes")]
+
+    [Tooltip("If the enemy will despawn on start. Enemy should be spawning when enterring the room")]
     public bool DespawnOnStart = true;
     public EnemyType EnemyData;
 

@@ -164,7 +164,7 @@ public class PlayerController : CharacterBehavior
             KnockBack(this.gameObject, collision.transform.position,2);
         }
         if(tag.Equals("Eye"))
-        { 
+        {
             KnockBack(this.gameObject,collision.transform.position); 
         }
     }
