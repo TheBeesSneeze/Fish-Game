@@ -46,6 +46,7 @@ public class RoomBehaviour : MonoBehaviour
     private void Start()
     {
         cameraControl = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraController>();
+        GameMaster = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
     }
 
     /// <summary>

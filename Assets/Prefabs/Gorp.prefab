@@ -236,7 +236,7 @@ MonoBehaviour:
   m_ApplyToSortingLayers: 00000000
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
-  m_LightOrder: -2
+  m_LightOrder: -20
   m_OverlapOperation: 1
   m_NormalMapDistance: 15
   m_NormalMapQuality: 1
@@ -1185,4 +1185,4 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1
+  m_Radius: 0.58
