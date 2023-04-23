@@ -47,16 +47,31 @@ public class GameManager : MonoBehaviour
     /// <returns></returns>
     public IEnumerator SlideCamera()
     {
-        Vector3 oldCameraPosition = _camera.transform.position;
-        float i = 0;
+        StartCoroutine(SlideCamera(false));
+        yield return null; //fufilling my coroutine requirements or whatever
+    }
 
-        while(i < CameraLerpSamples) 
+    /// <summary>
+    /// Overload for SlideCamera, includes whether or not the camera will zoom in/out
+    /// </summary>
+    /// <param name="zoom">If the camera will worry about the z axis</param>
+    public IEnumerator SlideCamera(bool zoom)
+    {
+        Vector3 oldCameraPosition = _camera.transform.position;
+        Vector3 newCameraPosition = CurrentRoom.CameraPosition.position;
+
+        if (!zoom)
+            newCameraPosition = new Vector3(newCameraPosition.x, newCameraPosition.y, oldCameraPosition.z);
+
+        float i = 0;
+            
+        while (i < CameraLerpSamples)
         {
-            _camera.transform.position = Vector3.Lerp(oldCameraPosition, CurrentRoom.CameraPosition.position, i/CameraLerpSamples);
+            _camera.transform.position = Vector3.Lerp(oldCameraPosition, newCameraPosition , i / CameraLerpSamples);
             i++;
             yield return new WaitForSeconds(CameraLerpSeconds / CameraLerpSamples);
         }
-        
+
     }
 
     /// <summary>

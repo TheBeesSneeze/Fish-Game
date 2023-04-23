@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 1395837169031865484}
   - component: {fileID: 1395837169031865487}
   - component: {fileID: 1395837169031865485}
+  - component: {fileID: 8125384394801042991}
+  - component: {fileID: 5495058516823332978}
   m_Layer: 0
   m_Name: Eye
   m_TagString: Eye
@@ -106,11 +108,47 @@ MonoBehaviour:
   AngleRecalculationDelay: 0.05
   PlayerSearchDelay: 0.25
   RotateSpeed: 5
+  BlindLength: 10
   Light: {fileID: 1395837169967976581}
   LightAnchor: {fileID: 1395837171067715834}
+  eyeActivator: {fileID: 0}
   visibleTargets:
   - {fileID: 0}
   - {fileID: 0}
+  Blinded: 0
+--- !u!114 &8125384394801042991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1395837169031865486}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fe25aef64f3bbd45b5528352b0582da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ActivatedByDefault: 0
+  Delay: 0
+  ActiveSprite: {fileID: 0}
+  DeactiveSprite: {fileID: 0}
+  LinkedObjects: []
+--- !u!58 &5495058516823332978
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1395837169031865486}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &1395837169967976583
 GameObject:
   m_ObjectHideFlags: 0
@@ -168,8 +206,8 @@ MonoBehaviour:
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
   m_OverlapOperation: 1
-  m_NormalMapDistance: 3
-  m_NormalMapQuality: 2
+  m_NormalMapDistance: 7.4
+  m_NormalMapQuality: 0
   m_UseNormalMap: 0
   m_ShadowIntensityEnabled: 1
   m_ShadowIntensity: 1

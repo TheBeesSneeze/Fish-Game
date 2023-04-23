@@ -141,7 +141,6 @@ public class CharacterBehavior : MonoBehaviour
         }
         if (tag.Equals("Electricity") && !ImmuneToElectricity)
         {
-            Debug.Log(collision.gameObject.name + " was zapped! idk how this code is gonna work yet tbh");
             GetElectrified();
         }
         if (tag.Equals("Flash"))

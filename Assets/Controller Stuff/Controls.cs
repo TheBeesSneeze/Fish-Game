@@ -46,6 +46,15 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Flash"",
+                    ""type"": ""Button"",
+                    ""id"": ""46e5bf22-3eaf-437a-86a6-b507280d5de8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Dash"",
                     ""type"": ""Button"",
                     ""id"": ""93a520f9-0059-4750-8119-3bd4e4ca1a9b"",
@@ -170,18 +179,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""9df0e515-db6b-49f2-baa9-68e370e02b3e"",
-                    ""path"": ""<Keyboard>/e"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Toggle Light"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""22ad23e6-0c2f-487a-902d-2c001950305c"",
-                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""path"": ""<Keyboard>/q"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -373,6 +371,28 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Swap"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a157f1e6-33e0-49ce-a384-9fa33d1e9e94"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Flash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c8537ec4-da4b-4e4d-b34c-5e64d476902c"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Flash"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -803,6 +823,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         m_FishControls = asset.FindActionMap("FishControls", throwIfNotFound: true);
         m_FishControls_Move = m_FishControls.FindAction("Move", throwIfNotFound: true);
         m_FishControls_ToggleLight = m_FishControls.FindAction("Toggle Light", throwIfNotFound: true);
+        m_FishControls_Flash = m_FishControls.FindAction("Flash", throwIfNotFound: true);
         m_FishControls_Dash = m_FishControls.FindAction("Dash", throwIfNotFound: true);
         m_FishControls_Swap = m_FishControls.FindAction("Swap", throwIfNotFound: true);
         m_FishControls_Pause = m_FishControls.FindAction("Pause", throwIfNotFound: true);
@@ -882,6 +903,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private IFishControlsActions m_FishControlsActionsCallbackInterface;
     private readonly InputAction m_FishControls_Move;
     private readonly InputAction m_FishControls_ToggleLight;
+    private readonly InputAction m_FishControls_Flash;
     private readonly InputAction m_FishControls_Dash;
     private readonly InputAction m_FishControls_Swap;
     private readonly InputAction m_FishControls_Pause;
@@ -894,6 +916,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         public FishControlsActions(@Controls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_FishControls_Move;
         public InputAction @ToggleLight => m_Wrapper.m_FishControls_ToggleLight;
+        public InputAction @Flash => m_Wrapper.m_FishControls_Flash;
         public InputAction @Dash => m_Wrapper.m_FishControls_Dash;
         public InputAction @Swap => m_Wrapper.m_FishControls_Swap;
         public InputAction @Pause => m_Wrapper.m_FishControls_Pause;
@@ -915,6 +938,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @ToggleLight.started -= m_Wrapper.m_FishControlsActionsCallbackInterface.OnToggleLight;
                 @ToggleLight.performed -= m_Wrapper.m_FishControlsActionsCallbackInterface.OnToggleLight;
                 @ToggleLight.canceled -= m_Wrapper.m_FishControlsActionsCallbackInterface.OnToggleLight;
+                @Flash.started -= m_Wrapper.m_FishControlsActionsCallbackInterface.OnFlash;
+                @Flash.performed -= m_Wrapper.m_FishControlsActionsCallbackInterface.OnFlash;
+                @Flash.canceled -= m_Wrapper.m_FishControlsActionsCallbackInterface.OnFlash;
                 @Dash.started -= m_Wrapper.m_FishControlsActionsCallbackInterface.OnDash;
                 @Dash.performed -= m_Wrapper.m_FishControlsActionsCallbackInterface.OnDash;
                 @Dash.canceled -= m_Wrapper.m_FishControlsActionsCallbackInterface.OnDash;
@@ -943,6 +969,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @ToggleLight.started += instance.OnToggleLight;
                 @ToggleLight.performed += instance.OnToggleLight;
                 @ToggleLight.canceled += instance.OnToggleLight;
+                @Flash.started += instance.OnFlash;
+                @Flash.performed += instance.OnFlash;
+                @Flash.canceled += instance.OnFlash;
                 @Dash.started += instance.OnDash;
                 @Dash.performed += instance.OnDash;
                 @Dash.canceled += instance.OnDash;
@@ -1083,6 +1112,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     {
         void OnMove(InputAction.CallbackContext context);
         void OnToggleLight(InputAction.CallbackContext context);
+        void OnFlash(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
         void OnSwap(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);

@@ -14,7 +14,8 @@ GameObject:
   - component: {fileID: 6697862178388370597}
   - component: {fileID: 6697862178388370599}
   - component: {fileID: 6697862178388370598}
-  m_Layer: 8
+  - component: {fileID: 544238598}
+  m_Layer: 13
   m_Name: Jellyfish
   m_TagString: Enemy
   m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
@@ -30,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 6697862178388370592}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -12.05, y: 3.02, z: 0}
-  m_LocalScale: {x: 4, y: 3, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6697862178715771704}
@@ -80,8 +81,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 15
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.060590927, g: 0.6469702, b: 0.8679245, a: 1}
+  m_Sprite: {fileID: -142316212, guid: 860bc6cbcffcfa748b8a49f3ba06d7ed, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -113,7 +114,7 @@ MonoBehaviour:
   StunLength: 0
   MyRB: {fileID: 0}
   KnockbackForce: 0
-  DespawnOnStart: 1
+  DespawnOnStart: 0
   EnemyData: {fileID: 11400000, guid: e9badf18f0d8c404886e92abd26d74c3, type: 2}
   Gorp: {fileID: 0}
   Globbington: {fileID: 0}
@@ -181,6 +182,26 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!95 &544238598
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6697862178388370592}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8b3fbc320218b4240b9c04a7a6670f20, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6697862178715771705
 GameObject:
   m_ObjectHideFlags: 0
@@ -335,8 +356,8 @@ Transform:
   m_GameObject: {fileID: 6697862179025775584}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -0.5, z: 0}
-  m_LocalScale: {x: 6.11, y: 8.1466675, z: 0}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 10, y: 10, z: 0}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6697862178388370594}
   m_RootOrder: 2
@@ -436,8 +457,8 @@ Transform:
   m_GameObject: {fileID: 6697862179214221131}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.1999999, y: 1.6, z: 0}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 1, y: 1, z: 0}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6697862178388370594}
   m_RootOrder: 1

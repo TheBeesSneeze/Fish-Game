@@ -33,14 +33,15 @@ public class JellyfishBehavior : EnemyBehavior
     public GameObject PassiveElectricityTrigger;
     public GameObject ElectrifyingTrigger;
     private LightController lightController;
+    private Animator animator;
 
     [Header("Debug")]
     public JellyfishState JellyState = JellyfishState.Passive;
     public enum JellyfishState
     {
-        Passive,      // *casually electrucutes you*
-        Electrifying, // zip zap
-        Weakened,     // After electrified (open for attack)
+        Passive,      // *casually electrucutes you*            0
+        Electrifying, // zip zap                                1
+        Weakened,     // After electrified (open for attack)    2
     }
 
     public override void Start()
@@ -48,6 +49,7 @@ public class JellyfishBehavior : EnemyBehavior
         base.Start();
 
         lightController = GetComponent<LightController>();
+        animator = GetComponent<Animator>();
 
         if(gameObject.activeSelf)
             StartCoroutine(AdjustLight());
@@ -71,6 +73,8 @@ public class JellyfishBehavior : EnemyBehavior
             yield return null;
 
         JellyState = state;
+        animator.SetInteger("JellyEnum", (int)state);
+
         switch(JellyState) 
         {
             case JellyfishState.Passive:
@@ -92,7 +96,6 @@ public class JellyfishBehavior : EnemyBehavior
                 StartCoroutine( StopBeingWeak() );
                 break;
         }
-        yield return null;
     }
 
     public IEnumerator SetState(JellyfishState state)
@@ -149,7 +152,6 @@ public class JellyfishBehavior : EnemyBehavior
         {
             if (tag.Equals("Flash") || tag.Equals("Electricity")) //2nd part for debug
             {
-                
                 StartCoroutine(SetState(JellyfishState.Electrifying, ElectrifyingDelay));
                 //KnockBack(collider.GetComponentInParent<GameObject>(), transform.position); // knocks the player back
             }

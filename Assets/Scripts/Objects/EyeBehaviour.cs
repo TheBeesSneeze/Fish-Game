@@ -4,7 +4,8 @@
 // Creation Date :     4/16/2023
 //
 // This code was made on a whim. Searches for gorp, when gorp is visible, it
-// searches for things affected by light (mirrors and enemies)
+// searches for things affected by light (mirrors and enemies).
+// Apply EyeActivator to gameobject if you want the eye to be an activator.
 *****************************************************************************/
 
 using System.Collections;
@@ -16,6 +17,8 @@ using static UnityEngine.UI.Image;
 public class EyeBehaviour : MonoBehaviour
 {
     [Header("Settings")]
+
+    [Tooltip("i dont remeber if this works")]
     public bool SeeEnemies;
     public LayerMask LM;
     public float RayCastDistance;
@@ -23,21 +26,26 @@ public class EyeBehaviour : MonoBehaviour
     [Tooltip("How frequently eye checks if player is still visible to eye")]
     public float PlayerSearchDelay = 1;
     public float RotateSpeed = 5;
+    public float BlindLength = 10;
 
     [Header("Unity Stuff")]
     public Light2D Light;
     public GameObject LightAnchor;
+    public ActivatorType eyeActivator; //unity gets this guy automatically :D ;D
 
     [Header("Debug")]
     private Coroutine gazing;
     private GameObject[] players;
     public GameObject[] visibleTargets = new GameObject[2];
-
+    public bool Blinded;
+    private Coroutine blindCoroutine;
     
     // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(SearchForPlayers());
+
+        this.gameObject.TryGetComponent<ActivatorType>(out eyeActivator);
     }
 
     /// <summary>
@@ -50,7 +58,7 @@ public class EyeBehaviour : MonoBehaviour
     private IEnumerator SearchForPlayers()
     {
         LightAnchor.SetActive(true);
-        while(true) 
+        while(!Blinded) 
         {
             players = GameObject.FindGameObjectsWithTag("Player");
 
@@ -68,9 +76,6 @@ public class EyeBehaviour : MonoBehaviour
                 if(hit)
                 {
                     string tag = hit.collider.tag;
-                    Debug.Log(tag);
-
-
 
                     if (tag.Equals("Player"))
                     {
@@ -82,14 +87,15 @@ public class EyeBehaviour : MonoBehaviour
 
                             gazing = StartCoroutine(CalculateGaze(players[i]));
                         }
-                        
+
+                        if (eyeActivator != null)
+                            eyeActivator.ActivationInput();
                     }
+
                     //if it missed and the coroutine needs to stop now
                     else if (visibleTargets[i] != null)
                     {
-                        StopCoroutine(gazing);
-                        gazing = null;
-                        LightAnchor.SetActive(false);
+                        DisableLight();
 
                         visibleTargets[i].GetComponent<PlayerController>().LayersOfLight--;
                         visibleTargets[i] = null;
@@ -99,9 +105,14 @@ public class EyeBehaviour : MonoBehaviour
                         if (i == 0) j = 1;
                         else        j = 0;
 
+                        //Redirecting gaze...
                         if (visibleTargets[j] != null)
                             StartCoroutine(CalculateGaze(visibleTargets[j]));
-            
+                        else
+                        {
+                            if (eyeActivator != null)
+                                eyeActivator.DeactivationInput();
+                        }
                     }
                 }
             }
@@ -111,26 +122,85 @@ public class EyeBehaviour : MonoBehaviour
     }
 
     /// <summary>
+    /// Turns off light really.
+    /// </summary>
+    private void DisableLight()
+    {
+        if(gazing!= null)
+        {
+            StopCoroutine(gazing);
+            gazing = null;
+        }
+        
+        LightAnchor.SetActive(false);
+    }
+
+    /// <summary>
     /// Constantly rotates the mirror to face away from the player. Like a real light bouncing off.
     /// Does a lot of cool math that I copied and pasted from online.
     /// </summary>
     private IEnumerator CalculateGaze(GameObject target)
     {
         LightAnchor.SetActive(true);
+        Vector3 sourcePosition = Vector3.zero;
+
         while (true)
         {
-            Vector3 sourcePosition = target.transform.position;
+            //only recalculates gaze if it needs too!
+            //this is efficient and it 
+            if(sourcePosition != target.transform.position)
+            {
+                sourcePosition = target.transform.position;
 
-            //vector between two points
-            Vector2 Direction = transform.position - sourcePosition;
-            float angle = Vector2.SignedAngle(Vector2.right, Direction) + 90;
+                //vector between two points
+                Vector2 Direction = transform.position - sourcePosition;
+                float angle = Vector2.SignedAngle(Vector2.right, Direction) + 90;
 
-            Vector3 TargetRotation = new Vector3(0, 0, angle);
-            LightAnchor.transform.rotation = Quaternion.RotateTowards(LightAnchor.transform.rotation, Quaternion.Euler(TargetRotation), RotateSpeed);
+                Vector3 TargetRotation = new Vector3(0, 0, angle);
+                LightAnchor.transform.rotation = Quaternion.RotateTowards(LightAnchor.transform.rotation, Quaternion.Euler(TargetRotation), RotateSpeed);
+            }
+            
 
             yield return new WaitForSeconds(AngleRecalculationDelay);
         }
     }
 
-   
+    public void BecomeBlind()
+    {
+        Blinded = true;
+        DisableLight();
+    }
+
+    /// <summary>
+    /// Runs after being blind. Waits for a delay
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator BecomeUnblind()
+    {
+        yield return new WaitForSeconds(BlindLength);
+        blindCoroutine = null;
+
+        Blinded = false;
+
+        StartCoroutine(SearchForPlayers());
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        string tag = collision.tag;
+
+        if(tag.Equals("Flash"))
+        {
+            if(blindCoroutine != null)
+            {
+                StopCoroutine(blindCoroutine);
+                blindCoroutine = null;
+            }
+
+            BecomeBlind();
+            blindCoroutine = StartCoroutine(BecomeUnblind());
+        }
+        
+    }
+
 }
