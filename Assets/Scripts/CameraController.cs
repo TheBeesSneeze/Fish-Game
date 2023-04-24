@@ -14,7 +14,13 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    [Header("Dont touch any of these variables")]
+    [Header("Settings")]
+
+    //[Tooltip("If the camera will zoom out when players get far away enough")]
+    //public bool ZoomOut;
+    //private float MinZoom;
+
+    [Header("Don't touch any of these variables")]
 
     [Tooltip("If the camera will even move")]
     public bool MoveCamera;
