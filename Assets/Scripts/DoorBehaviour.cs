@@ -12,20 +12,32 @@ using UnityEngine;
 
 public class DoorBehaviour : MonoBehaviour
 {
-
-    [Header("Debug")]
-    public bool Open = true;
-    private GameManager gameMaster;
-    private bool canEnter=true; //canEnter is just there to fix timing and prevents two players from enterring door and fucking things up. its seperate from Open
-
     [Header("The room this door is connected too:")]
     public RoomBehaviour ThisRoom;
     [Header("The room this door leads too:")]
     public RoomBehaviour OutputRoom;
 
+    [Header("Debug")]
+    public bool Open = true;
+    private GameManager gameMaster;
+    private bool canEnter=true; //canEnter is just there to fix timing and prevents two players from enterring door and fucking things up. its seperate from Open
+    public Collider2D MyCollider;
+
+    [Header("Animations")]
+    public Animator DoorAnimator;
+    //public Animation OpenAnimation;
+    //public Animation ClosedAnimation;
+    //public Animation OpeningAnimation;
+
     private void Start()
     {
+        if (Open)
+            OpenDoor();
+        else
+            CloseDoor();
+
         gameMaster = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
+        //myCollider = this.gameObject.GetComponent<BoxCollider2D>();
     }
 
     /// <summary>
@@ -37,7 +49,7 @@ public class DoorBehaviour : MonoBehaviour
     {
         if(collision.gameObject.tag=="Player")
         {
-            if( canEnter && ThisRoom.RoomCleared() )
+            if( canEnter && ThisRoom.RoomCleared() && Open)
             {
                 canEnter = false;
                 collision.gameObject.transform.position = new Vector3(9999, 9999, 0); //send one player to brazil
@@ -45,9 +57,7 @@ public class DoorBehaviour : MonoBehaviour
                 Invoke("Kill", gameMaster.DoorEnterTime);
                 OutputRoom.Invoke("EnterRoom", gameMaster.DoorEnterTime);             
             }
-            
         }
-
     }
 
     /// <summary>
@@ -63,4 +73,30 @@ public class DoorBehaviour : MonoBehaviour
         canEnter = true;
     }
 
+    /// <summary>
+    /// Opens the door!
+    /// </summary>
+    public void OpenDoor()
+    {
+        Open = true;
+
+        MyCollider.isTrigger = true;
+     
+
+        if (DoorAnimator != null)
+            DoorAnimator.SetBool("Open", true);
+    }
+
+    /// <summary>
+    /// Closes the door!
+    /// </summary>
+    public void CloseDoor()
+    {
+        Open = false;
+
+        MyCollider.isTrigger = false;
+
+        if (DoorAnimator != null)
+            DoorAnimator.SetBool("Open", false);
+    }
 }

@@ -66,7 +66,7 @@ public class RoomBehaviour : MonoBehaviour
         RespawnEnemies();
 
         //Putting this check right after respawning all enemies was very intentional
-        SetDoors( ! RoomCleared() );
+        SetAllDoors( ! RoomCleared() );
 
         //Players will respawn after these messages!
         Invoke("RespawnPlayers", GameMaster.CameraLerpSeconds+0.1f);
@@ -139,11 +139,14 @@ public class RoomBehaviour : MonoBehaviour
     /// Sets all doors to open or closed
     /// </summary>
     /// <param name="Open">if door should be Open</param>
-    public void SetDoors(bool Open)
+    public void SetAllDoors(bool Open)
     {
         foreach(DoorBehaviour door in Doors)
         {
-            door.Open = Open;
+            if(Open)
+                door.OpenDoor();
+            else
+                door.CloseDoor();
         }
     }
 }

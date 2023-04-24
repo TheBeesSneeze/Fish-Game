@@ -1,5 +1,70 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2886034190351453983
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3758837696505608288}
+  - component: {fileID: 8231866258827387260}
+  m_Layer: 6
+  m_Name: Door Collider
+  m_TagString: Wall
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3758837696505608288
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2886034190351453983}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8404659121427470058}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!60 &8231866258827387260
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2886034190351453983}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 3, y: 3}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -1.5, y: 1.5}
+      - {x: -1.5, y: -0.6875}
+      - {x: -0.8125, y: -0.6875}
+      - {x: -0.8125, y: 0.6875}
+      - {x: 0.8125, y: 0.6875}
+      - {x: 0.8125, y: -0.6875}
+      - {x: 1.5, y: -0.6875}
+      - {x: 1.5, y: 1.5}
 --- !u!1 &8404659121427470055
 GameObject:
   m_ObjectHideFlags: 0
@@ -11,7 +76,8 @@ GameObject:
   - component: {fileID: 8404659121427470058}
   - component: {fileID: 8404659121427470057}
   - component: {fileID: 322378990}
-  - component: {fileID: 322378989}
+  - component: {fileID: 6830106694395074860}
+  - component: {fileID: 5564036600995312022}
   m_Layer: 6
   m_Name: Door
   m_TagString: Wall
@@ -30,7 +96,8 @@ Transform:
   m_LocalPosition: {x: -0.7779, y: 8.31, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 3758837696505608288}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -74,7 +141,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: -724379232, guid: 622f3d102c49cd748aa6c0c50c3d1201, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -98,11 +165,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6c55cfc7c610674495fd7d407055cb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Open: 0
   ThisRoom: {fileID: 0}
   OutputRoom: {fileID: 0}
---- !u!60 &322378989
-PolygonCollider2D:
+  Open: 0
+  DoorAnimator: {fileID: 6830106694395074860}
+--- !u!95 &6830106694395074860
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8404659121427470055}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 42f8fea8684e3b74eba5cd4a11a2ea7d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!61 &5564036600995312022
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -114,7 +202,7 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.3}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -124,13 +212,6 @@ PolygonCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -1.5, y: 1.5}
-      - {x: -1.5, y: -0.6875}
-      - {x: -0.8125, y: -0.6875}
-      - {x: -0.8125, y: -0.5625}
-      - {x: 0.8125, y: -0.5625}
-      - {x: 0.8125, y: -0.6875}
-      - {x: 1.5, y: -0.6875}
-      - {x: 1.5, y: 1.5}
+  serializedVersion: 2
+  m_Size: {x: 1.63, y: 2.13}
+  m_EdgeRadius: 0
