@@ -296,64 +296,26 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SewersTileSheet_10
+      name: Door Back
       rect:
         serializedVersion: 2
         x: 160
-        y: 240
-        width: 16
-        height: 16
+        y: 224
+        width: 48
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -24, y: -7}
+        - {x: -24, y: -16}
+        - {x: 24, y: -16}
+        - {x: 24, y: -7}
       tessellationDetail: 0
       bones: []
       spriteID: 5b9832be1b5d6d04c9281869a7289772
       internalID: -1784012394
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SewersTileSheet_11
-      rect:
-        serializedVersion: 2
-        x: 176
-        y: 240
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 05fb2a2e464d9a34a80aa6df794d5c5e
-      internalID: -635469823
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SewersTileSheet_12
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 240
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 63b704734832387409557a04be971c2f
-      internalID: -1065793775
       vertices: []
       indices: 
       edges: []
@@ -1131,69 +1093,6 @@ TextureImporter:
       bones: []
       spriteID: 3e66a8d9d6dabf34db8b433c539e8a32
       internalID: 954661350
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SewersTileSheet_50
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 224
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2e2c91599d8b6e242985e3e1d10db9fa
-      internalID: -1459779636
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SewersTileSheet_51
-      rect:
-        serializedVersion: 2
-        x: 176
-        y: 224
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 36b21eb9478bbb246bf1dd933065afba
-      internalID: -1269090450
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SewersTileSheet_52
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 224
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3e256c8875a7ff74b918354ffe2c6f2e
-      internalID: 70672992
       vertices: []
       indices: 
       edges: []
@@ -2949,14 +2848,10 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
-      - - {x: -8, y: 8}
-        - {x: -8, y: 5}
-        - {x: -4.22567, y: 5}
+      - - {x: -4, y: 8}
         - {x: -4, y: -8}
         - {x: 1, y: -8}
-        - {x: 1.1959991, y: 5}
-        - {x: 8, y: 5}
-        - {x: 8, y: 8}
+        - {x: 1, y: 8}
       tessellationDetail: 0
       bones: []
       spriteID: 81f6db5484a462542a4b39904b462b5c
@@ -5309,7 +5204,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SewersTileSheet_323
+      name: pipe1
       rect:
         serializedVersion: 2
         x: 128
@@ -6170,7 +6065,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SewersTileSheet_373
+      name: wall pipe
       rect:
         serializedVersion: 2
         x: 80
@@ -6195,7 +6090,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SewersTileSheet_374
+      name: pipe2
       rect:
         serializedVersion: 2
         x: 128
@@ -7056,7 +6951,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SewersTileSheet_420
+      name: pipe3
       rect:
         serializedVersion: 2
         x: 128
@@ -7917,7 +7812,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SewersTileSheet_465
+      name: pipe4
       rect:
         serializedVersion: 2
         x: 128
@@ -8807,7 +8702,7 @@ TextureImporter:
         width: 16
         height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -8815,6 +8710,27 @@ TextureImporter:
       bones: []
       spriteID: 46467a9497f101e458bbf36e2af81a04
       internalID: 590617790
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipe back
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 121
+        width: 32
+        height: 7
+      alignment: 9
+      pivot: {x: 0.5, y: -1.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d58cb1cbefc7e3e4c88537e895e53a4f
+      internalID: 1711771122
       vertices: []
       indices: 
       edges: []
@@ -8843,6 +8759,7 @@ TextureImporter:
       SewersTileSheet_476: -639000823
       SewersTileSheet_161: -1357030675
       SewersTileSheet_483: 1143444368
+      pipe back: 1711771122
       SewersTileSheet_376: 2116888379
       SewersTileSheet_190: 2030246612
       SewersTileSheet_53: -1303649347
@@ -8940,7 +8857,6 @@ TextureImporter:
       SewersTileSheet_150: 496634256
       SewersTileSheet_71: 1632770477
       SewersTileSheet_398: 1971065200
-      SewersTileSheet_10: -1784012394
       SewersTileSheet_464: 1797580127
       SewersTileSheet_308: 2009092272
       SewersTileSheet_255: 1338168549
@@ -8995,7 +8911,6 @@ TextureImporter:
       SewersTileSheet_383: -950949718
       SewersTileSheet_31: 1102756594
       SewersTileSheet_262: -2050449463
-      SewersTileSheet_374: 1216356496
       SewersTileSheet_358: 1138184862
       SewersTileSheet_206: 154254621
       SewersTileSheet_58: -1818392492
@@ -9014,7 +8929,6 @@ TextureImporter:
       SewersTileSheet_226: -418483630
       SewersTileSheet_23: -2096145964
       SewersTileSheet_112: -1402252598
-      SewersTileSheet_373: 1613769859
       SewersTileSheet_379: 1127470517
       SewersTileSheet_430: 1047509824
       SewersTileSheet_83: -157087989
@@ -9052,12 +8966,12 @@ TextureImporter:
       SewersTileSheet_11: -635469823
       SewersTileSheet_257: 1075018428
       SewersTileSheet_501: 418325610
-      SewersTileSheet_465: -1747007609
       SewersTileSheet_85: -2058760393
       SewersTileSheet_66: -693527387
       SewersTileSheet_212: -300568232
       SewersTileSheet_331: 232388022
       SewersTileSheet_84: 223435600
+      pipe1: 1044123452
       SewersTileSheet_243: 1268451154
       SewersTileSheet_478: 741223229
       SewersTileSheet_114: 1561796292
@@ -9075,6 +8989,7 @@ TextureImporter:
       SewersTileSheet_152: 1373943362
       SewersTileSheet_75: -52403693
       SewersTileSheet_29: -503286302
+      pipe4: -1747007609
       SewersTileSheet_17: -1683302339
       SewersTileSheet_246: -849624506
       SewersTileSheet_78: -1484054292
@@ -9091,6 +9006,7 @@ TextureImporter:
       SewersTileSheet_140: 681565535
       SewersTileSheet_240: -28171181
       SewersTileSheet_458: -2009360699
+      pipe3: 1307357813
       SewersTileSheet_453: -163145593
       SewersTileSheet_141: 193863477
       SewersTileSheet_283: 1039263414
@@ -9108,6 +9024,7 @@ TextureImporter:
       SewersTileSheet_127: -341382460
       SewersTileSheet_106: -914499962
       SewersTileSheet_107: 1391847159
+      Door Back: -1784012394
       SewersTileSheet_446: -1757085678
       SewersTileSheet_507: -1199276205
       SewersTileSheet_67: -677008660
@@ -9126,21 +9043,20 @@ TextureImporter:
       SewersTileSheet_419: 1424594707
       SewersTileSheet_90: -636888679
       SewersTileSheet_356: -1977301127
-      SewersTileSheet_420: 1307357813
       SewersTileSheet_440: 1623391017
       SewersTileSheet_205: -140928648
-      SewersTileSheet_384: 986079774
       SewersTileSheet_314: 2002214685
+      SewersTileSheet_384: 986079774
       SewersTileSheet_36: -1906792980
       SewersTileSheet_454: 2104060269
       SewersTileSheet_28: -1448744239
       SewersTileSheet_162: -353659331
       SewersTileSheet_301: -706783784
+      wall pipe: 1613769859
       SewersTileSheet_179: -137533977
       SewersTileSheet_122: 1597164075
       SewersTileSheet_434: -1631761432
       SewersTileSheet_241: 757740936
-      SewersTileSheet_323: 1044123452
       SewersTileSheet_377: 350703836
       SewersTileSheet_2: -1526761027
       SewersTileSheet_147: -611655976
@@ -9295,6 +9211,7 @@ TextureImporter:
       SewersTileSheet_500: -60140271
       SewersTileSheet_418: 2060720521
       SewersTileSheet_503: -828335071
+      pipe2: 1216356496
       SewersTileSheet_94: -733484527
       SewersTileSheet_22: -504110555
       SewersTileSheet_79: -1461762388

@@ -16,6 +16,7 @@ using UnityEngine.InputSystem.Utilities;
 public class PlayerController : CharacterBehavior
 {
     [Header("Settings:")]
+    public Animator PlayerAnimator;
     public CharacterType CharacterData;
     public int PlayerNumber;
 
@@ -98,15 +99,24 @@ public class PlayerController : CharacterBehavior
     /// <summary>
     /// Moves the player when ReadMove is true
     /// </summary>
-    /// <returns></returns>
     public virtual IEnumerator MovePlayer()
     {
         while (ReadMove)
         {
+            Animate();
             if(!IgnoreMove)
                 MyRB.velocity = Move.ReadValue<Vector2>() * Speed;
 
             yield return null;
+        }
+    }
+
+    public void Animate()
+    {
+        if(PlayerAnimator != null)
+        {
+            PlayerAnimator.SetFloat("X Movement", MyRB.velocity.x);
+            PlayerAnimator.SetFloat("Y Movement", MyRB.velocity.y);
         }
     }
 
@@ -122,6 +132,22 @@ public class PlayerController : CharacterBehavior
     {
         base.Respawn();
         SetAttributes();
+    }
+
+    public override void KnockBack(GameObject target, Vector3 damageSourcePosition)
+    {
+        base.KnockBack(target, damageSourcePosition);
+        IgnoreMove = true;
+
+        StartCoroutine(NoMovementRoutine(0.1f));
+    }
+
+    public override void KnockBack(GameObject target, Vector3 damageSourcePosition, float Force)
+    {
+        base.KnockBack(target, damageSourcePosition, Force);
+        IgnoreMove = true;
+
+        StartCoroutine(NoMovementRoutine(0.1f));
     }
 
     /// <summary>
@@ -218,22 +244,7 @@ public class PlayerController : CharacterBehavior
 
     }
 
-    public override void KnockBack(GameObject target, Vector3 damageSourcePosition)
-    {
-        base.KnockBack(target, damageSourcePosition);
-        IgnoreMove = true;
-
-        StartCoroutine(NoMovementRoutine(0.1f));
-    }
-
-    public override void KnockBack(GameObject target, Vector3 damageSourcePosition, float Force)
-    {
-        base.KnockBack(target, damageSourcePosition, Force);
-        IgnoreMove = true;
-
-        StartCoroutine(NoMovementRoutine(0.1f));
-    }
-
+  
     private void OnDestroy()
     {
 

@@ -27,6 +27,10 @@ using UnityEngine.InputSystem;
 
 public class EnemyDetection : MonoBehaviour
 {
+    [Header("Unity")]
+    [Tooltip("Exclaimation point, leave null for no icon.")]
+    public GameObject Exclamation;
+
     [Header("Settings")]
     public LayerMask LM;
 
@@ -154,6 +158,7 @@ public class EnemyDetection : MonoBehaviour
     /// </summary>
     public IEnumerator PursueTarget()
     {
+        DrawExclamationPoint();
         yield return new WaitForSeconds(pursueDelay);
 
         while(CurrentTarget!=null)
@@ -195,6 +200,30 @@ public class EnemyDetection : MonoBehaviour
         unsightDistance = enemyData.UnsightDistance ;
         pursueDelay     = enemyData.PursueDelay     ;
         darkVision      = enemyData.NightVision     ;
+    }
+
+    /// <summary>
+    /// Makes exclamation point appear for a small amount of time.
+    /// this function should be called when enemy sees a player
+    /// TODO: add a sound?
+    /// </summary>
+    public void DrawExclamationPoint()
+    {
+        if(Exclamation != null)
+        {
+            Exclamation.SetActive(true);
+            StartCoroutine(DisableExclamationPoint());
+        }
+    }
+
+    /// <summary>
+    /// Disables exclamation point after some time.
+    /// time is 0.45 seconds.
+    /// </summary>
+    private IEnumerator DisableExclamationPoint()
+    {
+        yield return new WaitForSeconds(0.45f);
+        Exclamation.SetActive(false);
     }
 }
 

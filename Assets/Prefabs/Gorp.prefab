@@ -236,7 +236,7 @@ MonoBehaviour:
   m_ApplyToSortingLayers: 00000000
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
-  m_LightOrder: -2
+  m_LightOrder: -20
   m_OverlapOperation: 1
   m_NormalMapDistance: 15
   m_NormalMapQuality: 1
@@ -883,6 +883,7 @@ GameObject:
   - component: {fileID: 8678797230697677935}
   - component: {fileID: 8678797230697677934}
   - component: {fileID: 8678797230697677932}
+  - component: {fileID: 943948540627656240}
   m_Layer: 9
   m_Name: Gorp
   m_TagString: Player
@@ -1014,6 +1015,7 @@ MonoBehaviour:
   StunLength: 0
   MyRB: {fileID: 0}
   KnockbackForce: 7
+  PlayerAnimator: {fileID: 943948540627656240}
   CharacterData: {fileID: 11400000, guid: 7a5fbf452c3d09b4590c3c0ffed95971, type: 2}
   PlayerNumber: 0
   Rumble: 1
@@ -1185,4 +1187,24 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1
+  m_Radius: 0.58
+--- !u!95 &943948540627656240
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8678797230697677921}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: dc8a303abbe39a84091c9018908f57b5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
