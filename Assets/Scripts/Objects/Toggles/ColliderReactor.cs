@@ -1,6 +1,6 @@
 /*******************************************************************************
 // File Name :         SpikeReactor.cs
-// Author(s) :         Toby Schamberger
+// Author(s) :         Toby Schamberger; Sky Beal
 // Creation Date :     4/20/2023
 //
 // Brief Description : Can be activated or deactivated.
@@ -12,14 +12,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpikeReactor : ReactiveType
+public class ColliderReactor : ReactiveType
 {
+    private Collider2D collider;
+
+    /// <summary>
+    /// gets collider
+    /// </summary>
+    public void Start()
+    {
+        collider = GetComponent<Collider2D>();
+    }
+
     /// <summary>
     /// Gate goes up.
     /// </summary>
     public override void OnActivate()
     {
-        
+        collider.enabled = true;
     }
 
     /// <summary>
@@ -27,6 +37,6 @@ public class SpikeReactor : ReactiveType
     /// </summary>
     public override void OnDeactivate()
     {
-       
+        collider.enabled = false;
     }
 }
