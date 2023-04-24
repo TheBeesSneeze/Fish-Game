@@ -405,6 +405,7 @@ MonoBehaviour:
   StunLength: 0
   MyRB: {fileID: 0}
   KnockbackForce: 7
+  PlayerAnimator: {fileID: 0}
   CharacterData: {fileID: 11400000, guid: 7f175cdaa82c39e47abd86895c531c1c, type: 2}
   PlayerNumber: 0
   Rumble: 1
