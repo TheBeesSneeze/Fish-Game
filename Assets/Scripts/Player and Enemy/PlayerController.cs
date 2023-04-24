@@ -218,6 +218,12 @@ public class PlayerController : CharacterBehavior
         IgnoreMove = true;
         MyRB.AddForce(Move.ReadValue<Vector2>() * DashForce, ForceMode2D.Impulse);
 
+        //test
+        if (Rumble)
+        {
+            MyGamepad.SetMotorSpeeds(0.3f, 0.3f);
+        }
+
         StartCoroutine(NoMovementRoutine(0.2f));
     }
 
@@ -241,6 +247,12 @@ public class PlayerController : CharacterBehavior
 
         yield return new WaitForSeconds(Seconds);
         IgnoreMove = false;
+
+        //test
+        if (Rumble)
+        {
+            MyGamepad.SetMotorSpeeds(0f, 0f);
+        }
 
     }
 
