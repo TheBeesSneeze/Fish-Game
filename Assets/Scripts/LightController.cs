@@ -35,10 +35,17 @@ public class LightController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (LightSource == null)
+            try { LightSource = this.GetComponent<Light2D>(); } catch { }
+
+        if (LightTrigger == null)
+            try { LightTrigger = this.GetComponent<CircleCollider2D>(); } catch { }
+
         //just ironing things out...
         LightRadius = LightSource.pointLightOuterRadius;
 
         lightRadiusDescale = 1;
+
         if (LightTrigger != null)
         {
             lightRadiusDescale = LightTrigger.transform.parent.localScale.x;

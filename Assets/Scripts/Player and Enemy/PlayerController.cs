@@ -16,7 +16,11 @@ using UnityEngine.InputSystem.Utilities;
 public class PlayerController : CharacterBehavior
 {
     [Header("Settings:")]
+    public float InvincibleSeconds = 1.5f;
+    private bool invincible;
+    public Animator PlayerAnimator;
     public CharacterType CharacterData;
+    private SpriteRenderer spriteRenderer;
     public int PlayerNumber;
 
     private GameManager gameManager;
@@ -36,14 +40,7 @@ public class PlayerController : CharacterBehavior
     public  bool ReadMove;
     public float DashForce;
     public AudioClip Scream;
-    public AudioSource AS;
-
-    //public float dashForce = 40;
-
-    //public int PlayerNumber;
-
-    //public Gamepad playerGamepad;
-
+    public AudioSource MyAudioSource;
 
     /// <summary>
     /// Sets health and binds controls
@@ -54,6 +51,7 @@ public class PlayerController : CharacterBehavior
         SetAttributes();
 
         MyRB = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         gameManager = GameObject.FindObjectOfType<GameManager>();
 
         MyPlayerInput.actions.Enable();
@@ -74,13 +72,6 @@ public class PlayerController : CharacterBehavior
         if (MyGamepad == null) Rumble = false;
     }
 
-    /*
-    private void Dash_canceled(InputAction.CallbackContext obj)
-    {
-        throw new System.NotImplementedException();
-    }
-    */
-
     /// <summary>
     /// Sets variables to those in CharacterData
     /// </summary>
@@ -96,18 +87,110 @@ public class PlayerController : CharacterBehavior
     }
 
     /// <summary>
-    /// Moves the player when ReadMove is true
+    /// Moves the player when ReadMove is true.
     /// </summary>
-    /// <returns></returns>
     public virtual IEnumerator MovePlayer()
     {
         while (ReadMove)
         {
+            Animate();
             if(!IgnoreMove)
                 MyRB.velocity = Move.ReadValue<Vector2>() * Speed;
 
             yield return null;
         }
+    }
+
+    /// <summary>
+    /// Sends X / Y movement info to the animator.
+    /// </summary>
+    public void Animate()
+    {
+        if(PlayerAnimator != null)
+        {
+            PlayerAnimator.SetFloat("X Movement", MyRB.velocity.x);
+            PlayerAnimator.SetFloat("Y Movement", MyRB.velocity.y);
+        }
+    }
+
+    /// <summary>
+    /// Override for take damage, doesnt take damage if invincible
+    /// </summary>
+    /// <returns>True if player died</returns>
+    public override bool TakeDamage(float damage, Vector3 damageSourcePosition)
+    {
+        if (!invincible)
+        {
+            bool died = base.TakeDamage(damage, damageSourcePosition);
+
+            if (!died)
+                StartInvincibleFrames();
+
+            return died;
+        }
+        else
+            return false;
+    }
+
+    /// <summary>
+    /// Override for take damage, doesnt take damage if invincible
+    /// </summary>
+    /// <returns>True if player died</returns>
+    public override bool TakeDamage(float damage)
+    {
+        if (!invincible)
+        {
+            bool died = base.TakeDamage(damage);
+
+            if (!died)
+                StartInvincibleFrames();
+
+            return died;
+        }
+        else
+            return false;
+    }
+
+    /// <summary>
+    /// Starts coroutines that make player invincible
+    /// </summary>
+    public void StartInvincibleFrames()
+    {
+        invincible = true;
+        StartCoroutine(InvincibleFrames());
+        StartCoroutine(EndInvincibleFrames(InvincibleSeconds));
+    }
+
+    /// <summary>
+    /// Flickers the player between semi transparent and not
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator InvincibleFrames()
+    {
+        Color baseColor = spriteRenderer.color;
+        bool clear = true;
+
+        while(invincible)
+        {
+            if (clear)
+                spriteRenderer.color = new Color(baseColor.r, baseColor.g, baseColor.b,0.5f);
+            else
+                spriteRenderer.color = new Color(baseColor.r, baseColor.g, baseColor.b, 1);
+                //spriteRenderer.color = baseColor;
+
+            clear = !clear;
+            yield return new WaitForSeconds(0.05f);
+        }
+    }
+
+    /// <summary>
+    /// Makes the player vincible (invincible antonym) after Seconds.
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator EndInvincibleFrames(float Seconds)
+    {
+        yield return new WaitForSeconds(Seconds);
+        invincible = false;
     }
 
     /// <summary>
@@ -122,6 +205,40 @@ public class PlayerController : CharacterBehavior
     {
         base.Respawn();
         SetAttributes();
+    }
+
+    public override void KnockBack(GameObject target, Vector3 damageSourcePosition)
+    {
+        base.KnockBack(target, damageSourcePosition);
+        IgnoreMove = true;
+
+        StartCoroutine(NoMovementRoutine(0.1f));
+    }
+
+    public override void KnockBack(GameObject target, Vector3 damageSourcePosition, float Force)
+    {
+        base.KnockBack(target, damageSourcePosition, Force);
+        IgnoreMove = true;
+
+        StartCoroutine(NoMovementRoutine(0.1f));
+    }
+
+    public override void BeStunned()
+    {
+        base.BeStunned();
+        MyPlayerInput.actions.Disable();
+    }
+    public override void BeUnStunned()
+    {
+        base.BeUnStunned();
+        MyPlayerInput.actions.Enable();
+    }
+    public IEnumerator NoMovementRoutine(float Seconds)
+    {
+
+        yield return new WaitForSeconds(Seconds);
+        IgnoreMove = false;
+
     }
 
     /// <summary>
@@ -157,7 +274,7 @@ public class PlayerController : CharacterBehavior
         if (tag.Equals("Enemy"))
         {
             TakeDamage(1, collision.transform.position);
-            AS.Play();
+            MyAudioSource.Play();
         }
         if(tag.Equals("Player"))
         {
@@ -200,40 +317,9 @@ public class PlayerController : CharacterBehavior
 
         gameManager.SwapPlayers();
     }
-    public override void BeStunned()
-    {
-        base.BeStunned();
-        MyPlayerInput.actions.Disable();
-    }
-    public override void BeUnStunned()
-    {
-        base.BeUnStunned();
-        MyPlayerInput.actions.Enable();
-    }
-    public IEnumerator NoMovementRoutine(float Seconds)
-    {
+    
 
-        yield return new WaitForSeconds(Seconds);
-        IgnoreMove = false;
-
-    }
-
-    public override void KnockBack(GameObject target, Vector3 damageSourcePosition)
-    {
-        base.KnockBack(target, damageSourcePosition);
-        IgnoreMove = true;
-
-        StartCoroutine(NoMovementRoutine(0.1f));
-    }
-
-    public override void KnockBack(GameObject target, Vector3 damageSourcePosition, float Force)
-    {
-        base.KnockBack(target, damageSourcePosition, Force);
-        IgnoreMove = true;
-
-        StartCoroutine(NoMovementRoutine(0.1f));
-    }
-
+  
     private void OnDestroy()
     {
 
