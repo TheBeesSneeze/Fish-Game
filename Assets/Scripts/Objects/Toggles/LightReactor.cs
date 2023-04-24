@@ -17,13 +17,18 @@ public class LightReactor : ReactiveType
 {
     public Collider2D LightTrigger;
     public Light2D Light;
+    private Animator lightAnimator;
 
+    private void Start()
+    {
+        lightAnimator = GetComponent<Animator>();
+    }
     /// <summary>
     /// Light Turns on.
     /// </summary>
     public override void OnActivate()
     {
-        Debug.Log("Clap on!");
+        lightAnimator.SetBool("Enabled", true);
         LightTrigger.enabled = true;
         Light.enabled = true;
     }
@@ -33,7 +38,7 @@ public class LightReactor : ReactiveType
     /// </summary>
     public override void OnDeactivate()
     {
-        Debug.Log("Clap off!");
+        lightAnimator.SetBool("Enabled", false);
         LightTrigger.enabled = false;
         Light.enabled = false;
     }

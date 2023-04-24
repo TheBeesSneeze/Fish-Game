@@ -42,6 +42,9 @@ public class PlayerController : CharacterBehavior
     public AudioClip Scream;
     public AudioSource MyAudioSource;
 
+    //test
+    private bool dashActive = true;
+
     /// <summary>
     /// Sets health and binds controls
     /// </summary>
@@ -239,6 +242,12 @@ public class PlayerController : CharacterBehavior
         yield return new WaitForSeconds(Seconds);
         IgnoreMove = false;
 
+        //test
+        if (Rumble)
+        {
+            MyGamepad.SetMotorSpeeds(0f, 0f);
+        }
+
     }
 
     /// <summary>
@@ -306,10 +315,23 @@ public class PlayerController : CharacterBehavior
     public void DashInput(InputAction.CallbackContext obj)
     {
 
-        IgnoreMove = true;
-        MyRB.AddForce(Move.ReadValue<Vector2>() * DashForce, ForceMode2D.Impulse);
+        //test
+        if (dashActive)
+        {
 
-        StartCoroutine(NoMovementRoutine(0.2f));
+            IgnoreMove = true;
+            MyRB.AddForce(Move.ReadValue<Vector2>() * DashForce, ForceMode2D.Impulse);
+
+            //test
+            if (Rumble)
+            {
+                MyGamepad.SetMotorSpeeds(0.3f, 0.3f);
+            }
+
+            StartCoroutine(NoMovementRoutine(0.2f));
+
+        }
+       
     }
 
     public void SwapInput(InputAction.CallbackContext obj)

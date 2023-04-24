@@ -21,6 +21,8 @@ public class PauseBehaviour : MonoBehaviour
 
     void Start()
     {
+        //test
+        //GameObject [] playerControllers{ FindObjectOfType<PlayerController>};
 
         PlayerInputMenu.actions.Enable();
         Pause = PlayerInputMenu.actions.FindAction("Pause");
