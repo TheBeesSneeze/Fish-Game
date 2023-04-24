@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6317922719682552935}
   - component: {fileID: 6317922719682552928}
   - component: {fileID: 6317922719682552932}
+  - component: {fileID: 613935632}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -137,3 +138,28 @@ MonoBehaviour:
   CamDown: 0
   CamLeft: 0
   CamRight: 0
+--- !u!68 &613935632
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6317922719682552929}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 4.12, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -20.496021, y: 9.457581}
+  - {x: -20.385166, y: -11.473683}
+  - {x: 11.170623, y: -11.407507}
+  - {x: 11.149924, y: 9.638707}
+  - {x: -20.159904, y: 9.530787}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
