@@ -19,16 +19,21 @@ public class PauseBehaviour : MonoBehaviour
     public bool alreadyPaused;
     public GameObject PauseScreen;
 
+    public PlayerController gorp;
+    public PlayerController glob;
+
     void Start()
     {
-        //test
-        //GameObject [] playerControllers{ FindObjectOfType<PlayerController>};
+        
 
         PlayerInputMenu.actions.Enable();
         Pause = PlayerInputMenu.actions.FindAction("Pause");
 
         Pause.started += PauseFunction;
         alreadyPaused = false;
+
+        gorp = GameObject.Find("Gorp").GetComponent<PlayerController>();
+        glob = GameObject.Find("Globbington").GetComponent<PlayerController>();
 
     }
 
@@ -42,6 +47,9 @@ public class PauseBehaviour : MonoBehaviour
             alreadyPaused = true;
 
             Time.timeScale = 0;
+
+            gorp.DashActive = false;
+            glob.DashActive = false;
 
         }
         else if (alreadyPaused == true)
@@ -60,6 +68,9 @@ public class PauseBehaviour : MonoBehaviour
         alreadyPaused = false;
 
         Time.timeScale = 1;
+
+        gorp.DashActive = true;
+        glob.DashActive = true;
 
     }
 

@@ -44,7 +44,7 @@ public class PlayerController : CharacterBehavior
     public AudioSource MyAudioSource;
 
     //test
-    private bool dashActive = true;
+    public bool DashActive = true;
 
     /// <summary>
     /// Sets health and binds controls
@@ -321,7 +321,7 @@ public class PlayerController : CharacterBehavior
     {
 
         //test
-        if (dashActive)
+        if (DashActive)
         {
 
             IgnoreMove = true;
