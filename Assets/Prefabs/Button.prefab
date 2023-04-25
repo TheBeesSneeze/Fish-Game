@@ -101,4 +101,5 @@ MonoBehaviour:
   Delay: 0
   ActiveSprite: {fileID: 0}
   DeactiveSprite: {fileID: 0}
+  spriteRenderer: {fileID: 0}
   LinkedObjects: []

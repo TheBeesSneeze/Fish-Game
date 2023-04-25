@@ -19,23 +19,24 @@ public class ReactiveType : MonoBehaviour
     public bool ActivatedByDefault;
     [Tooltip("Seconds between changes")]
     public float Delay;
-
-    private SpriteRenderer spriteRenderer;
+   
     [Tooltip("Not recquired")]
     public Sprite ActiveSprite;
     [Tooltip("Not recquired")]
     public Sprite DeactiveSprite;
 
     [Header("Debug")]
+    public SpriteRenderer MySpriteRenderer;
     private bool _activated;
     private Coroutine activateCoroutine;
+    
 
     /// <summary>
     /// Sets this objects activation state to default
     /// </summary>
     public virtual void Awake()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        MySpriteRenderer = GetComponent<SpriteRenderer>();
 
         _activated = ActivatedByDefault;
 
@@ -80,14 +81,14 @@ public class ReactiveType : MonoBehaviour
         {
             OnActivate();
             if (ActiveSprite != null)
-                spriteRenderer.sprite = ActiveSprite;
+                MySpriteRenderer.sprite = ActiveSprite;
         }
 
         else
         {
             OnDeactivate();
             if(DeactiveSprite != null)
-                spriteRenderer.sprite = DeactiveSprite;
+                MySpriteRenderer.sprite = DeactiveSprite;
         }
 
         activateCoroutine = null;

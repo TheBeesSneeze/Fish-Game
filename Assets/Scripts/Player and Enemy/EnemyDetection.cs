@@ -80,7 +80,7 @@ public class EnemyDetection : MonoBehaviour
 
             yield return new WaitForSeconds(1.00f);
         }
-        Debug.Log("found nemo.");
+        //Debug.Log("found nemo.");
 
         //The main event!
         for (; ; )

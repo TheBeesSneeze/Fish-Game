@@ -36,6 +36,7 @@ public class PlayerController : CharacterBehavior
     public InputAction Dash;
     public InputAction Select;
     public InputAction Swap;
+    public InputAction Debug;
 
     public  bool ReadMove;
     public float DashForce;
@@ -62,6 +63,7 @@ public class PlayerController : CharacterBehavior
         Dash = MyPlayerInput.actions.FindAction("Dash");
         Select = MyPlayerInput.actions.FindAction("Select");
         Swap = MyPlayerInput.actions.FindAction("Swap");
+        Debug = MyPlayerInput.actions.FindAction("Dev Mode");
 
         //I believe this is adding the functions to the buttons...
         Move.started += Move_started;
@@ -70,6 +72,8 @@ public class PlayerController : CharacterBehavior
         Dash.started += DashInput;
 
         Swap.started += SwapInput;
+
+        Debug.started += DevMode;
 
         MyGamepad = MyPlayerInput.GetDevice<Gamepad>();
         if (MyGamepad == null) Rumble = false;
@@ -184,6 +188,7 @@ public class PlayerController : CharacterBehavior
             clear = !clear;
             yield return new WaitForSeconds(0.05f);
         }
+        spriteRenderer.color = new Color(baseColor.r, baseColor.g, baseColor.b, 1);
     }
 
     /// <summary>
@@ -261,7 +266,7 @@ public class PlayerController : CharacterBehavior
 
         PlayerController globbington = null;
         try { globbington = GameObject.Find("Globbington").GetComponent<PlayerController>(); }
-        catch { Debug.Log("no globbington!"); }
+        catch { /*Debug.Log("no globbington!");*/ }
 
         gorp.Respawn();
 
@@ -339,9 +344,36 @@ public class PlayerController : CharacterBehavior
 
         gameManager.SwapPlayers();
     }
-    
 
-  
+    /// <summary>
+    /// Disables the collider
+    /// </summary>
+    public void DevMode(InputAction.CallbackContext obj)
+    {
+        Collider2D c = gameObject.GetComponent<Collider2D>();
+        c.enabled = !c.enabled;
+
+        GameObject camera = GameObject.FindGameObjectWithTag("MainCamera");
+        camera.GetComponent<CameraController>().MoveCamera = false;
+
+        if (c.enabled)
+        {
+            MyRB.bodyType = RigidbodyType2D.Dynamic;
+            camera.transform.parent = null;
+        }
+        else
+        {
+            MyRB.bodyType = RigidbodyType2D.Kinematic;
+            camera.transform.parent = this.gameObject.transform;
+            camera.transform.localPosition = new Vector3(0, 0, camera.transform.position.z);
+        }
+
+        
+        
+        
+        
+    }
+
     private void OnDestroy()
     {
 

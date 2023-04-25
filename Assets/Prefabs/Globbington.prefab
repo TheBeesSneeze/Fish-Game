@@ -405,6 +405,7 @@ MonoBehaviour:
   StunLength: 0
   MyRB: {fileID: 0}
   KnockbackForce: 7
+  InvincibleSeconds: 1.5
   PlayerAnimator: {fileID: 0}
   CharacterData: {fileID: 11400000, guid: 7f175cdaa82c39e47abd86895c531c1c, type: 2}
   PlayerNumber: 0
@@ -447,10 +448,19 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
+  Debug:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 39de68db-3f26-40d0-9eba-b974e8300a4d
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
   ReadMove: 0
   DashForce: 40
   Scream: {fileID: 0}
-  AS: {fileID: 1605225974769828966}
+  MyAudioSource: {fileID: 0}
   AttackLength: 0.1
   Sword: {fileID: 1137317766113117558}
   RotatePoint: {fileID: 7118317646495259653}

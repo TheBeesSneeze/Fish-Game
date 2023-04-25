@@ -1015,6 +1015,7 @@ MonoBehaviour:
   StunLength: 0
   MyRB: {fileID: 0}
   KnockbackForce: 7
+  InvincibleSeconds: 1.5
   PlayerAnimator: {fileID: 943948540627656240}
   CharacterData: {fileID: 11400000, guid: 7a5fbf452c3d09b4590c3c0ffed95971, type: 2}
   PlayerNumber: 0
@@ -1053,6 +1054,15 @@ MonoBehaviour:
     m_Type: 0
     m_ExpectedControlType: 
     m_Id: 5acd7385-57f4-498e-93c4-968f1cfedadc
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  Debug:
+    m_Name: Debug
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: c924a93f-ba06-4d49-b0cf-9b8d6fd36ac9
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []

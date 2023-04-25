@@ -61,6 +61,22 @@ public class DoorBehaviour : MonoBehaviour
     }
 
     /// <summary>
+    /// Detects when either player comes in contact with the door, waits, and 
+    /// then teleports them both
+    /// </summary>
+    /// <param name="collision"></param>
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log("Hi");
+        ThisRoom.SetAllDoors();
+
+        if (Open)
+        {
+            OnTriggerEnter2D(collision.collider);
+        }
+    }
+
+    /// <summary>
     /// Teleports players to Brazil
     /// </summary>
     public void Kill()
@@ -82,7 +98,6 @@ public class DoorBehaviour : MonoBehaviour
 
         MyCollider.isTrigger = true;
      
-
         if (DoorAnimator != null)
             DoorAnimator.SetBool("Open", true);
     }
