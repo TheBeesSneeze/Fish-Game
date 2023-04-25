@@ -395,12 +395,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c949fa671513e914e9b82702ec377124, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DefaultPosition: {x: 0, y: 0, z: 0}
   LayersOfLight: 0
+  DespawnOnStart: 0
   Health: 0
   Speed: 10
   TakeKnockback: 0
   ImmuneToElectricity: 0
-  DefaultPosition: {x: 0, y: 0, z: 0}
   Stunned: 0
   StunLength: 0
   MyRB: {fileID: 0}
@@ -461,6 +462,7 @@ MonoBehaviour:
   DashForce: 40
   Scream: {fileID: 0}
   MyAudioSource: {fileID: 0}
+  DashActive: 1
   AttackLength: 0.1
   Sword: {fileID: 1137317766113117558}
   RotatePoint: {fileID: 7118317646495259653}
