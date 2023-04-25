@@ -44,6 +44,9 @@ public class GorpController : PlayerController
     private bool HoldingFlash;
     private Coroutine FlashCoroutine;
 
+    public GameManager LivesContainer;
+
+
     // Start is called before the first frame update
     public override void Start()
     {
@@ -84,8 +87,9 @@ public class GorpController : PlayerController
 
         DecreaseLight.started += DecreaseLight_started;
         DecreaseLight.canceled += DecreaseLight_canceled;
-        
 
+        LivesContainer = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        LivesContainer.GorpDisplay.SetActive(true);
     }
 
     /// <summary>
