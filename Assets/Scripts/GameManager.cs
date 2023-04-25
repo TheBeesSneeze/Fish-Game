@@ -31,6 +31,10 @@ public class GameManager : MonoBehaviour
     //public GameObject Instructions;
     //public GameObject StartText;
 
+    //test
+    public GameObject GorpDisplay;
+    public GameObject GlobDisplay;
+
     private void Start()
     {
         _camera = GameObject.FindGameObjectWithTag("MainCamera");
@@ -38,6 +42,12 @@ public class GameManager : MonoBehaviour
         //TEMPORARY
         //Instructions = GameObject.Find("Instructions");
         //Instructions.SetActive(false);
+
+        //test
+        GorpDisplay = GameObject.Find("GorpInfo");
+        GorpDisplay.SetActive(false);
+        GlobDisplay = GameObject.Find("GlobInfo");
+        GlobDisplay.SetActive(false);
 
     }
 

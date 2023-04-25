@@ -1,6 +1,6 @@
 /*******************************************************************************
 // File Name :         CharacterBehavior.cs
-// Author(s) :         Toby Schamberger, Sky Beal
+// Author(s) :         Toby Schamberger, Sky Beal, Jay Embry
 // Creation Date :     3/28/2023
 //
 // Brief Description : Basic code that is shared between players and enemies.
@@ -193,4 +193,6 @@ public class CharacterBehavior : MonoBehaviour
     {
         Stunned = false;
     }
+
+    
 }
