@@ -367,11 +367,6 @@ public class PlayerController : CharacterBehavior
             camera.transform.parent = this.gameObject.transform;
             camera.transform.localPosition = new Vector3(0, 0, camera.transform.position.z);
         }
-
-        
-        
-        
-        
     }
 
     private void OnDestroy()
