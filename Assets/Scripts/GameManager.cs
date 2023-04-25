@@ -27,28 +27,9 @@ public class GameManager : MonoBehaviour
     public RoomBehaviour CurrentRoom;
     public RoomBehaviour LastRoom;
 
-    //TEMPORARY
-    //public GameObject Instructions;
-    //public GameObject StartText;
-
-    //test
-    public GameObject GorpDisplay;
-    public GameObject GlobDisplay;
-
     private void Start()
     {
-        _camera = GameObject.FindGameObjectWithTag("MainCamera");
-
-        //TEMPORARY
-        //Instructions = GameObject.Find("Instructions");
-        //Instructions.SetActive(false);
-
-        //test
-        GorpDisplay = GameObject.Find("GorpInfo");
-        GorpDisplay.SetActive(false);
-        GlobDisplay = GameObject.Find("GlobInfo");
-        GlobDisplay.SetActive(false);
-
+        _camera = GameObject.FindGameObjectWithTag("MainCamera");    
     }
 
     /// <summary>

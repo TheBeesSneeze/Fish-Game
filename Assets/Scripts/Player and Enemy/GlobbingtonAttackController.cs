@@ -24,10 +24,6 @@ public class GlobbingtonAttackController : PlayerController
     [Header("Controls")]
     public InputAction Strike;
 
-    public GameManager LivesContainer;
-
-
-
     /// <summary>
     /// steals start from playercontoller and adapts it for globbington
     /// </summary>
@@ -42,11 +38,6 @@ public class GlobbingtonAttackController : PlayerController
 
         Strike.started += Strike_started;
         Dash.started += Strike_started;
-
-        LivesContainer = GameObject.Find("Game Manager").GetComponent<GameManager>();
-        LivesContainer.GlobDisplay.SetActive(true);
-
-
     }
 
     /// <summary>
@@ -64,7 +55,6 @@ public class GlobbingtonAttackController : PlayerController
             MyGamepad.SetMotorSpeeds(0.15f, 0.25f);
         }
         
-
         Invoke("StopAttack", AttackLength);
     }
 

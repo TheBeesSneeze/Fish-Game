@@ -25,6 +25,7 @@ public class PlayerController : CharacterBehavior
     public int PlayerNumber;
 
     private GameManager gameManager;
+    private HealthDisplay healthDisplay;
 
     [Header("Controller stuff:")]
 
@@ -44,17 +45,7 @@ public class PlayerController : CharacterBehavior
     public AudioClip Scream;
     public AudioSource MyAudioSource;
 
-    //test
     public bool DashActive = true;
-
-    //test
-    public GorpController GorpHealth;
-    public float GorpHealthCounter = 3;
-    public TMP_Text GorpLives;
-
-    public GlobbingtonAttackController GlobHealth;
-    public float GlobHealthCounter = 3;
-    public TMP_Text GlobLives;
 
     /// <summary>
     /// Sets health and binds controls
@@ -66,7 +57,8 @@ public class PlayerController : CharacterBehavior
 
         MyRB = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        gameManager = GameObject.FindObjectOfType<GameManager>();
+        gameManager   = GameObject.FindObjectOfType<GameManager>();
+        healthDisplay = GameObject.FindObjectOfType<HealthDisplay>();
 
         MyPlayerInput.actions.Enable();
         Move = MyPlayerInput.actions.FindAction("Move");
@@ -139,8 +131,7 @@ public class PlayerController : CharacterBehavior
         if (!invincible)
         {
             bool died = base.TakeDamage(damage, damageSourcePosition);
-            //test
-            UpdateHealth();
+            healthDisplay.UpdateHealth();
 
             if (!died)
                 StartInvincibleFrames();
@@ -160,6 +151,7 @@ public class PlayerController : CharacterBehavior
         if (!invincible)
         {
             bool died = base.TakeDamage(damage);
+            healthDisplay.UpdateHealth();
 
             if (!died)
                 StartInvincibleFrames();
@@ -388,22 +380,6 @@ public class PlayerController : CharacterBehavior
         Move.canceled -= Move_canceled;
 
         Dash.started -= DashInput;
-
-    }
-
-    public void UpdateHealth()
-    {
-
-        GorpHealth = GameObject.Find("Gorp").GetComponent<GorpController>();
-        GorpHealthCounter = GorpHealth.Health;
-        GorpLives = GameObject.Find("GorpLives").GetComponent<TMP_Text>();
-        GorpLives.text = GorpHealthCounter.ToString();
-
-
-        GlobHealth = GameObject.Find("Globbington").GetComponent<GlobbingtonAttackController>();
-        GlobHealthCounter = GlobHealth.Health;
-        GlobLives = GameObject.Find("GlobLives").GetComponent<TMP_Text>();
-        GlobLives.text = GlobHealthCounter.ToString();
 
     }
 }
