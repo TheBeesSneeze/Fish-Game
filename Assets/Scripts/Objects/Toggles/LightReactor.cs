@@ -30,6 +30,7 @@ public class LightReactor : ReactiveType
     {
         lightAnimator.SetBool("Enabled", true);
         LightTrigger.enabled = true;
+        Light.gameObject.SetActive(true);
         Light.enabled = true;
     }
 
@@ -40,6 +41,7 @@ public class LightReactor : ReactiveType
     {
         lightAnimator.SetBool("Enabled", false);
         LightTrigger.enabled = false;
+        Light.gameObject.SetActive(false);
         Light.enabled = false;
     }
 }
