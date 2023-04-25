@@ -85,6 +85,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Dev Mode",
+                    "type": "Button",
+                    "id": "ede7f993-f411-441b-a889-abb94b3e01b4",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -373,6 +382,17 @@
                     "action": "Flash",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ce153eaf-b151-4e0e-b70d-cd328c4f04bf",
+                    "path": "<Keyboard>/backquote",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Dev Mode",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -429,6 +449,15 @@
                     "name": "Select",
                     "type": "Button",
                     "id": "27f94ddd-9d36-4681-a4ca-7f9e8b69ca7f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Dev Mode",
+                    "type": "Button",
+                    "id": "708d230f-65c8-470e-b758-e4d45546ad30",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -653,6 +682,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Select",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e9ea2431-ef5d-447d-b7a5-f68e2b653c7d",
+                    "path": "<Keyboard>/backquote",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Dev Mode",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

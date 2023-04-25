@@ -12,15 +12,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GateReactor : ReactiveType
+public class GateReactor : ColliderReactor //Exact same behavior, just changes the layer
 {
+
     /// <summary>
     /// Gate goes up.
     /// </summary>
     public override void OnActivate()
     {
-        //literally just put code that activates some collider here
-        //maybe just change the color bc we dont have a sprite yet
+        MySpriteRenderer.sortingOrder = 5;
+        base.OnActivate();
+       
     }
 
     /// <summary>
@@ -28,6 +30,8 @@ public class GateReactor : ReactiveType
     /// </summary>
     public override void OnDeactivate()
     {
-        //literally just put code that deactivates some collider here
+        Debug.Log("he");
+        MySpriteRenderer.sortingOrder = -1;
+        base.OnDeactivate();
     }
 }

@@ -8735,6 +8735,98 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Gate Vertical Up
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 32
+        width: 16
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -5, y: 8}
+        - {x: -5, y: -24}
+        - {x: 4, y: -24}
+        - {x: 4, y: 8}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15baf27f82bb47a4e9d41852c6ff8767
+      internalID: -1553104497
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gate Vertical Down
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 32
+        width: 16
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e87d6b05f1ee8a49aaeecd9ee2d99da
+      internalID: -1740222182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gate Horizontal Up
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -16, y: -7}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: -7}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0710cf778179fbd419b1553b33843839
+      internalID: 1075563766
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gate Horizontal Down
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d4d10604c7e84348a79b4e101b78970
+      internalID: -1475497757
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -8887,6 +8979,7 @@ TextureImporter:
       SewersTileSheet_410: -2106943170
       SewersTileSheet_136: -1435917558
       SewersTileSheet_285: -2081296282
+      Gate Vertical Up: -1553104497
       SewersTileSheet_422: 1573853245
       SewersTileSheet_328: -806037325
       SewersTileSheet_12: -1065793775
@@ -8898,9 +8991,9 @@ TextureImporter:
       SewersTileSheet_49: 954661350
       SewersTileSheet_20: -824401003
       SewersTileSheet_143: -908929459
-      SewersTileSheet_156: -613797809
       SewersTileSheet_282: -383470835
       SewersTileSheet_276: 1577599303
+      SewersTileSheet_156: -613797809
       SewersTileSheet_284: 1326870355
       SewersTileSheet_380: -1389365958
       SewersTileSheet_412: -1386003587
@@ -8920,7 +9013,6 @@ TextureImporter:
       SewersTileSheet_310: -815566567
       SewersTileSheet_273: -110590810
       Important Dark Spot 2: 1457753773
-      SewersTileSheet_1: -756134164
       SewersTileSheet_235: 2110837814
       SewersTileSheet_95: -341095240
       SewersTileSheet_159: -1565621462
@@ -8960,6 +9052,7 @@ TextureImporter:
       SewersTileSheet_24: 1203471863
       SewersTileSheet_348: -1571424341
       SewersTileSheet_381: 840182371
+      Gate Horizontal Up: 1075563766
       SewersTileSheet_433: -1068375750
       SewersTileSheet_178: -385845891
       SewersTileSheet_111: 778628989
@@ -8980,6 +9073,7 @@ TextureImporter:
       SewersTileSheet_60: 242673777
       SewersTileSheet_414: 1625233494
       SewersTileSheet_87: 2122591336
+      Gate Vertical Down: -756134164
       SewersTileSheet_347: -1198325456
       SewersTileSheet_64: 1186283095
       Light1: -403293944
@@ -9175,6 +9269,7 @@ TextureImporter:
       SewersTileSheet_21: 220830573
       SewersTileSheet_244: -1551948361
       SewersTileSheet_421: -1155768357
+      Gate Horizontal Down: -1475497757
       SewersTileSheet_61: 1422729407
       SewersTileSheet_198: -1178928536
       SewersTileSheet_442: 2110568355
