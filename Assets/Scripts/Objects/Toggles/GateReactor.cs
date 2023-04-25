@@ -11,16 +11,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class GateReactor : ColliderReactor //Exact same behavior, just changes the layer
 {
+    ShadowCaster2D shadowCaster;
 
+    public override void Start()
+    {
+        base.Start();
+        shadowCaster = GetComponent<ShadowCaster2D>();
+    }
     /// <summary>
     /// Gate goes up.
     /// </summary>
     public override void OnActivate()
     {
         MySpriteRenderer.sortingOrder = 5;
+        shadowCaster.enabled =true;
         base.OnActivate();
        
     }
@@ -30,8 +38,8 @@ public class GateReactor : ColliderReactor //Exact same behavior, just changes t
     /// </summary>
     public override void OnDeactivate()
     {
-        Debug.Log("he");
         MySpriteRenderer.sortingOrder = -1;
+        shadowCaster.enabled = false;
         base.OnDeactivate();
     }
 }
