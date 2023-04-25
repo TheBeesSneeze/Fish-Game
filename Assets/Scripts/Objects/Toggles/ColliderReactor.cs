@@ -19,7 +19,7 @@ public class ColliderReactor : ReactiveType
     /// <summary>
     /// gets collider
     /// </summary>
-    public void Start()
+    public virtual void Start()
     {
         collider = GetComponent<Collider2D>();
     }

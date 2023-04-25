@@ -55,7 +55,6 @@ public class GlobbingtonAttackController : PlayerController
             MyGamepad.SetMotorSpeeds(0.15f, 0.25f);
         }
         
-
         Invoke("StopAttack", AttackLength);
     }
 

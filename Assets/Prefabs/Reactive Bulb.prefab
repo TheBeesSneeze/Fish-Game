@@ -138,6 +138,7 @@ GameObject:
   - component: {fileID: 6680939030073187734}
   - component: {fileID: 6680939030073187735}
   - component: {fileID: 6297965217468564953}
+  - component: {fileID: -4692021682175624567}
   m_Layer: 0
   m_Name: Reactive Bulb
   m_TagString: Untagged
@@ -231,3 +232,23 @@ MonoBehaviour:
   DeactiveSprite: {fileID: 590617790, guid: 622f3d102c49cd748aa6c0c50c3d1201, type: 3}
   LightTrigger: {fileID: 637147159022356795}
   Light: {fileID: 2264646124841096243}
+--- !u!95 &-4692021682175624567
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6680939030073187736}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3276ad034cacb044f87187f6f8278bda, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

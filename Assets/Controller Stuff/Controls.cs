@@ -107,6 +107,15 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Dev Mode"",
+                    ""type"": ""Button"",
+                    ""id"": ""ede7f993-f411-441b-a889-abb94b3e01b4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -395,6 +404,17 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""action"": ""Flash"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ce153eaf-b151-4e0e-b70d-cd328c4f04bf"",
+                    ""path"": ""<Keyboard>/backquote"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dev Mode"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -451,6 +471,15 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""name"": ""Select"",
                     ""type"": ""Button"",
                     ""id"": ""27f94ddd-9d36-4681-a4ca-7f9e8b69ca7f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Dev Mode"",
+                    ""type"": ""Button"",
+                    ""id"": ""708d230f-65c8-470e-b758-e4d45546ad30"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -677,6 +706,17 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""action"": ""Select"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e9ea2431-ef5d-447d-b7a5-f68e2b653c7d"",
+                    ""path"": ""<Keyboard>/backquote"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dev Mode"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -830,6 +870,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         m_FishControls_IncreaseLight = m_FishControls.FindAction("Increase Light", throwIfNotFound: true);
         m_FishControls_DecreaseLight = m_FishControls.FindAction("Decrease Light", throwIfNotFound: true);
         m_FishControls_Select = m_FishControls.FindAction("Select", throwIfNotFound: true);
+        m_FishControls_DevMode = m_FishControls.FindAction("Dev Mode", throwIfNotFound: true);
         // OctopusControls
         m_OctopusControls = asset.FindActionMap("OctopusControls", throwIfNotFound: true);
         m_OctopusControls_Move = m_OctopusControls.FindAction("Move", throwIfNotFound: true);
@@ -838,6 +879,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         m_OctopusControls_Swap = m_OctopusControls.FindAction("Swap", throwIfNotFound: true);
         m_OctopusControls_Pause = m_OctopusControls.FindAction("Pause", throwIfNotFound: true);
         m_OctopusControls_Select = m_OctopusControls.FindAction("Select", throwIfNotFound: true);
+        m_OctopusControls_DevMode = m_OctopusControls.FindAction("Dev Mode", throwIfNotFound: true);
         // MenuControls
         m_MenuControls = asset.FindActionMap("MenuControls", throwIfNotFound: true);
         m_MenuControls_Move = m_MenuControls.FindAction("Move", throwIfNotFound: true);
@@ -910,6 +952,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private readonly InputAction m_FishControls_IncreaseLight;
     private readonly InputAction m_FishControls_DecreaseLight;
     private readonly InputAction m_FishControls_Select;
+    private readonly InputAction m_FishControls_DevMode;
     public struct FishControlsActions
     {
         private @Controls m_Wrapper;
@@ -923,6 +966,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         public InputAction @IncreaseLight => m_Wrapper.m_FishControls_IncreaseLight;
         public InputAction @DecreaseLight => m_Wrapper.m_FishControls_DecreaseLight;
         public InputAction @Select => m_Wrapper.m_FishControls_Select;
+        public InputAction @DevMode => m_Wrapper.m_FishControls_DevMode;
         public InputActionMap Get() { return m_Wrapper.m_FishControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -959,6 +1003,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Select.started -= m_Wrapper.m_FishControlsActionsCallbackInterface.OnSelect;
                 @Select.performed -= m_Wrapper.m_FishControlsActionsCallbackInterface.OnSelect;
                 @Select.canceled -= m_Wrapper.m_FishControlsActionsCallbackInterface.OnSelect;
+                @DevMode.started -= m_Wrapper.m_FishControlsActionsCallbackInterface.OnDevMode;
+                @DevMode.performed -= m_Wrapper.m_FishControlsActionsCallbackInterface.OnDevMode;
+                @DevMode.canceled -= m_Wrapper.m_FishControlsActionsCallbackInterface.OnDevMode;
             }
             m_Wrapper.m_FishControlsActionsCallbackInterface = instance;
             if (instance != null)
@@ -990,6 +1037,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Select.started += instance.OnSelect;
                 @Select.performed += instance.OnSelect;
                 @Select.canceled += instance.OnSelect;
+                @DevMode.started += instance.OnDevMode;
+                @DevMode.performed += instance.OnDevMode;
+                @DevMode.canceled += instance.OnDevMode;
             }
         }
     }
@@ -1004,6 +1054,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private readonly InputAction m_OctopusControls_Swap;
     private readonly InputAction m_OctopusControls_Pause;
     private readonly InputAction m_OctopusControls_Select;
+    private readonly InputAction m_OctopusControls_DevMode;
     public struct OctopusControlsActions
     {
         private @Controls m_Wrapper;
@@ -1014,6 +1065,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         public InputAction @Swap => m_Wrapper.m_OctopusControls_Swap;
         public InputAction @Pause => m_Wrapper.m_OctopusControls_Pause;
         public InputAction @Select => m_Wrapper.m_OctopusControls_Select;
+        public InputAction @DevMode => m_Wrapper.m_OctopusControls_DevMode;
         public InputActionMap Get() { return m_Wrapper.m_OctopusControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1041,6 +1093,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Select.started -= m_Wrapper.m_OctopusControlsActionsCallbackInterface.OnSelect;
                 @Select.performed -= m_Wrapper.m_OctopusControlsActionsCallbackInterface.OnSelect;
                 @Select.canceled -= m_Wrapper.m_OctopusControlsActionsCallbackInterface.OnSelect;
+                @DevMode.started -= m_Wrapper.m_OctopusControlsActionsCallbackInterface.OnDevMode;
+                @DevMode.performed -= m_Wrapper.m_OctopusControlsActionsCallbackInterface.OnDevMode;
+                @DevMode.canceled -= m_Wrapper.m_OctopusControlsActionsCallbackInterface.OnDevMode;
             }
             m_Wrapper.m_OctopusControlsActionsCallbackInterface = instance;
             if (instance != null)
@@ -1063,6 +1118,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Select.started += instance.OnSelect;
                 @Select.performed += instance.OnSelect;
                 @Select.canceled += instance.OnSelect;
+                @DevMode.started += instance.OnDevMode;
+                @DevMode.performed += instance.OnDevMode;
+                @DevMode.canceled += instance.OnDevMode;
             }
         }
     }
@@ -1119,6 +1177,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         void OnIncreaseLight(InputAction.CallbackContext context);
         void OnDecreaseLight(InputAction.CallbackContext context);
         void OnSelect(InputAction.CallbackContext context);
+        void OnDevMode(InputAction.CallbackContext context);
     }
     public interface IOctopusControlsActions
     {
@@ -1128,6 +1187,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         void OnSwap(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
         void OnSelect(InputAction.CallbackContext context);
+        void OnDevMode(InputAction.CallbackContext context);
     }
     public interface IMenuControlsActions
     {

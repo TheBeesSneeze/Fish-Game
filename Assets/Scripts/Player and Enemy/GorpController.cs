@@ -84,8 +84,6 @@ public class GorpController : PlayerController
 
         DecreaseLight.started += DecreaseLight_started;
         DecreaseLight.canceled += DecreaseLight_canceled;
-        
-
     }
 
     /// <summary>

@@ -11,16 +11,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
-public class GateReactor : ReactiveType
+public class GateReactor : ColliderReactor //Exact same behavior, just changes the layer
 {
+    ShadowCaster2D shadowCaster;
+
+    public override void Start()
+    {
+        base.Start();
+        shadowCaster = GetComponent<ShadowCaster2D>();
+    }
     /// <summary>
     /// Gate goes up.
     /// </summary>
     public override void OnActivate()
     {
-        //literally just put code that activates some collider here
-        //maybe just change the color bc we dont have a sprite yet
+        MySpriteRenderer.sortingOrder = 5;
+        shadowCaster.enabled =true;
+        base.OnActivate();
+       
     }
 
     /// <summary>
@@ -28,6 +38,8 @@ public class GateReactor : ReactiveType
     /// </summary>
     public override void OnDeactivate()
     {
-        //literally just put code that deactivates some collider here
+        MySpriteRenderer.sortingOrder = -1;
+        shadowCaster.enabled = false;
+        base.OnDeactivate();
     }
 }
