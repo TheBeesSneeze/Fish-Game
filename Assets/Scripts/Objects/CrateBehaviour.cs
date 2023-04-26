@@ -12,7 +12,7 @@ using UnityEngine.InputSystem;
 // Prefabs can be placed inside crates!
 *****************************************************************************/
 
-public class CrateBehaviour : CharacterBehavior
+public class CrateBehaviour : ObjectType
 {
     [Header("Crate:")]
 
@@ -44,7 +44,7 @@ public class CrateBehaviour : CharacterBehavior
             try { surpriseOutside.GetComponent<EnemyBehavior>().DespawnOnStart=false; } catch { }
             StartCoroutine(WaitToSpawnEnemy());
 
-            this.gameObject.SetActive(false);
+            Despawn();
         }
     }
 

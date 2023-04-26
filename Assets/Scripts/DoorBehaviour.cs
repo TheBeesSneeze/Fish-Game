@@ -79,7 +79,7 @@ public class DoorBehaviour : MonoBehaviour
     /// <summary>
     /// Teleports players to Brazil
     /// </summary>
-    public void Kill()
+    public void RelocatePlayers()
     {
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
         foreach(GameObject player in players) 

@@ -3,9 +3,7 @@
 // Author(s) :         Toby Schamberger
 // Creation Date :     4/16/2023
 //
-// This code was made on a whim. Searches for gorp, when gorp is visible, it
-// searches for things affected by light (mirrors and enemies).
-// Apply EyeActivator to gameobject if you want the eye to be an activator.
+// Extends ObjectType. Looks at first player it can.
 *****************************************************************************/
 
 using System.Collections;
@@ -14,7 +12,7 @@ using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using static UnityEngine.UI.Image;
 
-public class EyeBehaviour : MonoBehaviour
+public class EyeBehaviour : ObjectType
 {
     [Header("Settings")]
 
@@ -39,11 +37,15 @@ public class EyeBehaviour : MonoBehaviour
     public GameObject[] visibleTargets = new GameObject[2];
     public bool Blinded;
     private Coroutine blindCoroutine;
+    private bool active;
     
     // Start is called before the first frame update
-    void Start()
+    public override void Start()
     {
-        StartCoroutine(SearchForPlayers());
+        base.Start();
+
+        if(this.gameObject.activeSelf)
+            StartCoroutine(SearchForPlayers());
 
         this.gameObject.TryGetComponent<ActivatorType>(out eyeActivator);
     }
@@ -58,7 +60,7 @@ public class EyeBehaviour : MonoBehaviour
     private IEnumerator SearchForPlayers()
     {
         LightAnchor.SetActive(true);
-        while(!Blinded) 
+        while(!Blinded && active) 
         {
             players = GameObject.FindGameObjectsWithTag("Player");
 
@@ -185,7 +187,19 @@ public class EyeBehaviour : MonoBehaviour
         StartCoroutine(SearchForPlayers());
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+
+    public override void Respawn()
+    {
+        base.Respawn();
+        StartCoroutine(SearchForPlayers());
+        active = true;
+    }
+    public override void Despawn()
+    {
+        base.Despawn();
+        active = false;
+    }
+    public override void OnTriggerEnter2D(Collider2D collision)
     {
         string tag = collision.tag;
 

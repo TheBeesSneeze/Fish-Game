@@ -210,7 +210,7 @@ public class PlayerController : CharacterBehavior
     /// <summary>
     /// When the player dies, the scene is reset.
     /// </summary>
-    public override void Die()
+    public override void Despawn()
     {
         ResetScene();
     }
