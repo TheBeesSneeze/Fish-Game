@@ -119,6 +119,8 @@ public class EyeBehaviour : ObjectType
                                 EyeActivator.DeactivationInput();
                         }
                     }
+                    else
+                        DisableLight();
                         
                 }
 
@@ -137,12 +139,14 @@ public class EyeBehaviour : ObjectType
         {
             StopCoroutine(gazing);
             gazing = null;
+
+            if (EyeActivator != null)
+                EyeActivator.ActivationInput();
         }
         
         LightAnchor.SetActive(false);
 
-        if (EyeActivator != null)
-            EyeActivator.ActivationInput();
+        
     }
 
     /// <summary>
