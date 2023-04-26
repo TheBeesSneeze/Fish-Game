@@ -109,7 +109,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.25}
@@ -142,3 +142,4 @@ MonoBehaviour:
   ActiveSprite: {fileID: 21300000, guid: aef731d64ca7dd1438d05530e5603efe, type: 3}
   DeactiveSprite: {fileID: 21300000, guid: f09eae8c0ea04254b90c5386a034a225, type: 3}
   MySpriteRenderer: {fileID: 0}
+  _activated: 0

@@ -23,4 +23,9 @@ public class SpikeBehaviour : MonoBehaviour
             collision.GetComponent<CharacterBehavior>().TakeDamage(1, this.transform.position);
         }
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        OnTriggerEnter2D(collision.collider);
+    }
 }

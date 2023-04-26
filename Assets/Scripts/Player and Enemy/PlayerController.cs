@@ -142,7 +142,10 @@ public class PlayerController : CharacterBehavior
             return died;
         }
         else
+        {
+            KnockBack(this.gameObject, damageSourcePosition);
             return false;
+        }
     }
 
     /// <summary>
@@ -162,7 +165,9 @@ public class PlayerController : CharacterBehavior
             return died;
         }
         else
+        {
             return false;
+        }
     }
 
     /// <summary>
@@ -218,8 +223,10 @@ public class PlayerController : CharacterBehavior
 
     public override void Respawn()
     {
-        base.Respawn();
+        invincible = false;
+        healthDisplay.UpdateHealth();
         SetAttributes();
+        base.Respawn();
     }
 
     public override void KnockBack(GameObject target, Vector3 damageSourcePosition)
