@@ -105,6 +105,7 @@ public class PlayerController : CharacterBehavior
         while (ReadMove)
         {
             Animate();
+
             if(!IgnoreMove)
                 MyRB.velocity = Move.ReadValue<Vector2>() * Speed;
 

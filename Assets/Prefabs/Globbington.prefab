@@ -285,6 +285,7 @@ GameObject:
   - component: {fileID: 5051481756267194680}
   - component: {fileID: 4302747830044685625}
   - component: {fileID: 4302747830044685628}
+  - component: {fileID: 8931580626729020645}
   m_Layer: 10
   m_Name: Globbington
   m_TagString: Player
@@ -352,7 +353,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -1967693347, guid: 2be67df37b123fd4f962e3e7a0faea49, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -408,7 +409,7 @@ MonoBehaviour:
   MyRB: {fileID: 0}
   KnockbackForce: 7
   InvincibleSeconds: 1.5
-  PlayerAnimator: {fileID: 0}
+  PlayerAnimator: {fileID: 8931580626729020645}
   CharacterData: {fileID: 11400000, guid: 7f175cdaa82c39e47abd86895c531c1c, type: 2}
   PlayerNumber: 0
   Rumble: 1
@@ -522,6 +523,26 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.57
+--- !u!95 &8931580626729020645
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4302747830044685618}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5588cefeeb09ffa4482ffaba536ca1fc, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6297316142590068911
 GameObject:
   m_ObjectHideFlags: 0

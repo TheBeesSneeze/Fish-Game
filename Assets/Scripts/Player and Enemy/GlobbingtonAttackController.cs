@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.DualShock;
 /*******************************************************************************
 // File Name :         GlobbingtonAttackController.cs
-// Author(s) :         Sky Beal, Jay Embry
+// Author(s) :         Sky Beal, Jay Embry, Toby Schamberger
 // Creation Date :     3/28/2023
 //
 // Brief Description : Code for Globbington swinging his sword! Also accounts 
@@ -74,7 +74,7 @@ public class GlobbingtonAttackController : PlayerController
     /// <summary>
     /// a bunch of math to rotate the sword around globbington
     /// </summary>
-    private void RotatePlayer()
+    private void RotateSword()
     {
         float angle = Mathf.Atan2(Move.ReadValue<Vector2>().y, Move.ReadValue<Vector2>().x) * Mathf.Rad2Deg;
         RotatePoint.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
@@ -91,7 +91,9 @@ public class GlobbingtonAttackController : PlayerController
             if (!IgnoreMove)
                 MyRB.velocity = Move.ReadValue<Vector2>() * Speed;
 
-            RotatePlayer();
+            Animate();
+
+            RotateSword();
             yield return null;
         }
     }
@@ -99,12 +101,11 @@ public class GlobbingtonAttackController : PlayerController
     public override void GetElectrified()
     {
         Stunned = true;
-        BeStunned();
+        BeStunned(1.5f);
     }
 
     private void OnDestroy()
     {
-
         Strike.started -= Strike_started;
 
     }

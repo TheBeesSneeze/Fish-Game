@@ -68,6 +68,7 @@ public class RoomBehaviour : MonoBehaviour
 
         if (GameMaster.LastRoom != null)
             GameMaster.LastRoom.DespawnObjects();
+
         RespawnAllObjects();
 
         //Putting this check right after respawning all enemies was very intentional
@@ -139,6 +140,7 @@ public class RoomBehaviour : MonoBehaviour
         foreach (ObjectType o in RoomObjects)
         {
             //if it should respawn enemies
+
             //if( ( !PreviouslyCleared && o.tag.Equals("Enemy") ) || !tag.Equals("Enemy"))
             if( !(PreviouslyCleared && o.tag.Equals("Enemy")) )
                 //I actually sat down with a pencil and paper to realize you could do this. this code is not as legible. but it removes one check. huge for gorp fans actually. i am going insane. the chokehold that computer scientists have on me is just dumbfounding. i fucking took a penicl and paper to optimize one fucking if check. are you kidding me. i reinvented boolean algrbra and for what. gorp game? jesus fuck.
