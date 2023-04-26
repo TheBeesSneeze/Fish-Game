@@ -152,8 +152,8 @@ public class RoomBehaviour : MonoBehaviour
     {
         foreach (ObjectType o in RoomObjects)
         {
-            ObjectType objectTypeInstance = o.GetComponent<ObjectType>();
-            objectTypeInstance.Despawn();
+            if(o.DespawnOnStart)
+                o.Despawn();
         }
     }
 

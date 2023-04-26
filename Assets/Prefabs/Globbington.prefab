@@ -398,6 +398,7 @@ MonoBehaviour:
   DefaultPosition: {x: 0, y: 0, z: 0}
   LayersOfLight: 0
   DespawnOnStart: 0
+  MyRoom: {fileID: 0}
   Health: 0
   Speed: 10
   TakeKnockback: 0
@@ -450,7 +451,7 @@ MonoBehaviour:
     m_SingletonActionBindings: []
     m_Flags: 0
   Debug:
-    m_Name: 
+    m_Name: Debug
     m_Type: 0
     m_ExpectedControlType: 
     m_Id: 39de68db-3f26-40d0-9eba-b974e8300a4d
