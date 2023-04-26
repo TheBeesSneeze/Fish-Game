@@ -18,7 +18,6 @@ public class EnemyBehavior : CharacterBehavior
     [Header("Attributes")]
 
     [Tooltip("If the enemy will despawn on start. Enemy should be spawning when enterring the room")]
-    public bool DespawnOnStart = true;
     public EnemyType EnemyData;
 
     [Header("Unity Jargain")]
@@ -51,8 +50,9 @@ public class EnemyBehavior : CharacterBehavior
     /// <summary>
     /// Kills the enemy! (Actually just SetActive(false)
     /// </summary>
-    public override void Die()
+    public override void Despawn()
     {
+        StartCoroutine(MyRoom.UpdateRoomStatus());
         this.gameObject.SetActive(false);
     }
 

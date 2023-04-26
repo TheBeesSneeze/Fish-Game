@@ -3,9 +3,7 @@
 // Author(s) :         Toby Schamberger
 // Creation Date :     4/16/2023
 //
-// This code was made on a whim. Searches for gorp, when gorp is visible, it
-// searches for things affected by light (mirrors and enemies).
-// Apply EyeActivator to gameobject if you want the eye to be an activator.
+// Extends ObjectType. Looks at first player it can.
 *****************************************************************************/
 
 using System.Collections;
@@ -14,7 +12,7 @@ using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using static UnityEngine.UI.Image;
 
-public class EyeBehaviour : MonoBehaviour
+public class EyeBehaviour : ObjectType
 {
     [Header("Settings")]
 
@@ -31,7 +29,7 @@ public class EyeBehaviour : MonoBehaviour
     [Header("Unity Stuff")]
     public Light2D Light;
     public GameObject LightAnchor;
-    public ActivatorType eyeActivator; //unity gets this guy automatically :D ;D
+    public ActivatorType EyeActivator; //unity gets this guy automatically :D ;D
 
     [Header("Debug")]
     private Coroutine gazing;
@@ -39,13 +37,18 @@ public class EyeBehaviour : MonoBehaviour
     public GameObject[] visibleTargets = new GameObject[2];
     public bool Blinded;
     private Coroutine blindCoroutine;
+    private bool active;
     
     // Start is called before the first frame update
-    void Start()
+    public override void Start()
     {
-        StartCoroutine(SearchForPlayers());
+        base.Start();
+        DisableLight();
 
-        this.gameObject.TryGetComponent<ActivatorType>(out eyeActivator);
+        if (this.gameObject.activeSelf)
+            StartCoroutine(SearchForPlayers());
+
+        this.gameObject.TryGetComponent<ActivatorType>(out EyeActivator);
     }
 
     /// <summary>
@@ -58,7 +61,7 @@ public class EyeBehaviour : MonoBehaviour
     private IEnumerator SearchForPlayers()
     {
         LightAnchor.SetActive(true);
-        while(!Blinded) 
+        while(!Blinded && active) 
         {
             players = GameObject.FindGameObjectsWithTag("Player");
 
@@ -73,23 +76,24 @@ public class EyeBehaviour : MonoBehaviour
                 var hit = Physics2D.Raycast(origin, direction, RayCastDistance, LM);
                 Debug.DrawLine(origin, hit.point, Color.green, 0.5f);
 
-                if(hit)
+                if (hit)
                 {
                     string tag = hit.collider.tag;
 
                     if (tag.Equals("Player"))
                     {
                         //this cant be an && statement because i am not feeling computer science-y today
-                        if(gazing == null)
+                        if (gazing == null)
                         {
                             visibleTargets[i] = players[i];
                             hit.collider.GetComponent<PlayerController>().LayersOfLight++;
 
                             gazing = StartCoroutine(CalculateGaze(players[i]));
+
+                            if (EyeActivator != null)
+                                EyeActivator.ActivationInput();
                         }
 
-                        if (eyeActivator != null)
-                            eyeActivator.ActivationInput();
                     }
 
                     //if it missed and the coroutine needs to stop now
@@ -108,13 +112,18 @@ public class EyeBehaviour : MonoBehaviour
                         //Redirecting gaze...
                         if (visibleTargets[j] != null)
                             StartCoroutine(CalculateGaze(visibleTargets[j]));
+
                         else
                         {
-                            if (eyeActivator != null)
-                                eyeActivator.DeactivationInput();
+                            if (EyeActivator != null)
+                                EyeActivator.DeactivationInput();
                         }
                     }
+                    else
+                        DisableLight();
+                        
                 }
+
             }
 
             yield return new WaitForSeconds(PlayerSearchDelay);
@@ -126,17 +135,22 @@ public class EyeBehaviour : MonoBehaviour
     /// </summary>
     private void DisableLight()
     {
-        if(gazing!= null)
+        if (gazing!= null)
         {
             StopCoroutine(gazing);
             gazing = null;
+
+            if (EyeActivator != null)
+                EyeActivator.ActivationInput();
         }
         
         LightAnchor.SetActive(false);
+
+        
     }
 
     /// <summary>
-    /// Constantly rotates the mirror to face away from the player. Like a real light bouncing off.
+    /// Constantly rotates the mir- eye to face away from the player. Like a real light bouncing off.
     /// Does a lot of cool math that I copied and pasted from online.
     /// </summary>
     private IEnumerator CalculateGaze(GameObject target)
@@ -185,7 +199,21 @@ public class EyeBehaviour : MonoBehaviour
         StartCoroutine(SearchForPlayers());
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+
+    public override void Respawn()
+    {
+        base.Respawn();
+        active = true;
+        StartCoroutine(SearchForPlayers());
+        
+    }
+    public override void Despawn()
+    {
+        base.Despawn();
+        StopAllCoroutines();
+        active = false;
+    }
+    public override void OnTriggerEnter2D(Collider2D collision)
     {
         string tag = collision.tag;
 

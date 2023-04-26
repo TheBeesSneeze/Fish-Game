@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: 1604243060, guid: e31f952edbaf49a4ab6cf5e29583e3fc, type: 3}
   m_Color: {r: 0.7490566, g: 1, b: 0.97497267, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -100,6 +100,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c050c6eff07ffc741a2db5d6d994cb27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DefaultPosition: {x: 0, y: 0, z: 0}
+  LayersOfLight: 0
+  DespawnOnStart: 1
+  MyRoom: {fileID: 0}
   SeeEnemies: 0
   LM:
     serializedVersion: 2
@@ -111,7 +115,7 @@ MonoBehaviour:
   BlindLength: 10
   Light: {fileID: 1395837169967976581}
   LightAnchor: {fileID: 1395837171067715834}
-  eyeActivator: {fileID: 0}
+  EyeActivator: {fileID: 0}
   visibleTargets:
   - {fileID: 0}
   - {fileID: 0}
@@ -132,6 +136,8 @@ MonoBehaviour:
   Delay: 0
   ActiveSprite: {fileID: 0}
   DeactiveSprite: {fileID: 0}
+  MySpriteRenderer: {fileID: 0}
+  _activated: 0
   LinkedObjects: []
 --- !u!58 &5495058516823332978
 CircleCollider2D:
@@ -174,7 +180,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1395837169967976583}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: -0, y: -0.34, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -198,13 +204,13 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.626
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.9
+  m_Intensity: 1.5
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: 00000000
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
-  m_LightOrder: 0
+  m_LightOrder: 9
   m_OverlapOperation: 1
   m_NormalMapDistance: 7.4
   m_NormalMapQuality: 0
@@ -245,8 +251,8 @@ MonoBehaviour:
   m_LocalBounds:
     m_Center: {x: 0, y: -0.00000011920929, z: 0}
     m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
-  m_PointLightInnerAngle: 30
-  m_PointLightOuterAngle: 62.21089
+  m_PointLightInnerAngle: 11.582542
+  m_PointLightOuterAngle: 19.236824
   m_PointLightInnerRadius: 81.73435
   m_PointLightOuterRadius: 117.82275
   m_ShapeLightParametricSides: 5
@@ -284,8 +290,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1395837170485936014}
   m_LocalRotation: {x: -0, y: -0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.18, z: 0}
-  m_LocalScale: {x: 0.49999988, y: 0.16666663, z: 1}
+  m_LocalPosition: {x: 0, y: 0.29, z: 0}
+  m_LocalScale: {x: 0.5, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1395837171067715835}
@@ -332,7 +338,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 7
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: 1011841424, guid: e31f952edbaf49a4ab6cf5e29583e3fc, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -477,7 +483,7 @@ Transform:
   m_GameObject: {fileID: 1395837171067715834}
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1395837170485936015}

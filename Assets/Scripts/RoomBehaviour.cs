@@ -30,7 +30,7 @@ public class RoomBehaviour : MonoBehaviour
     public Transform PlayerStartPosition;
 
     [Header("Drag Enemies into this list! Very important")]
-    public List<GameObject> RespawnObjects = new List<GameObject>();
+    public List<ObjectType> RoomObjects = new List<ObjectType>();
 
     [Header("Drag doors (that are connected to this room and lead into other rooms) into this list! Very important")]
     public List<DoorBehaviour> Doors = new List<DoorBehaviour>();
@@ -47,6 +47,11 @@ public class RoomBehaviour : MonoBehaviour
     {
         cameraControl = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraController>();
         GameMaster = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
+
+        foreach(ObjectType o in RoomObjects)
+        {
+            o.MyRoom = this;
+        }
     }
 
     /// <summary>
@@ -62,8 +67,8 @@ public class RoomBehaviour : MonoBehaviour
         StartCoroutine(GameMaster.SlideCamera());
 
         if (GameMaster.LastRoom != null)
-            GameMaster.LastRoom.DespawnEnemies();
-        RespawnEnemies();
+            GameMaster.LastRoom.DespawnObjects();
+        RespawnAllObjects();
 
         //Putting this check right after respawning all enemies was very intentional
         SetAllDoors(RoomCleared());
@@ -72,6 +77,17 @@ public class RoomBehaviour : MonoBehaviour
         Invoke("RespawnPlayers", GameMaster.CameraLerpSeconds + 0.1f);
 
 
+    }
+
+    /// <summary>
+    /// runs after 0.1 second for silly delay.
+    /// This function is called by enemies when they die.
+    /// opens doors or whatever.
+    /// </summary>
+    public IEnumerator UpdateRoomStatus()
+    {
+        yield return new WaitForSeconds(0.1f);
+        SetAllDoors(RoomCleared());
     }
 
     /// <summary>
@@ -86,14 +102,14 @@ public class RoomBehaviour : MonoBehaviour
         if (!RequireSweep || PreviouslyCleared)
             return true;
 
-        foreach (GameObject enemy in RespawnObjects)
+        foreach (ObjectType o in RoomObjects)
         {
             try
             {
-                EnemyBehavior enemyBehavior = enemy.GetComponent<EnemyBehavior>();
+                EnemyBehavior enemyBehavior = o.GetComponent<EnemyBehavior>();
 
                 // "If enemy is alive and it needs to not be alive"
-                if (enemy.activeSelf && enemyBehavior.EnemyData.RequiredToKill)
+                if (o.gameObject.activeSelf && enemyBehavior.EnemyData.RequiredToKill)
                     return false;
             }
             catch { } //bro why do i even need catch tbh
@@ -118,26 +134,32 @@ public class RoomBehaviour : MonoBehaviour
         cameraControl.UpdateCamera(CameraPosition.position, CamUp, CamDown, CamLeft, CamRight);
     }
 
-    public void RespawnEnemies()
+    public void RespawnAllObjects()
     {
-        foreach (GameObject enemy in RespawnObjects)
+        foreach (ObjectType o in RoomObjects)
         {
-            CharacterBehavior characterBehaviorInstance = enemy.GetComponent<CharacterBehavior>();
-            characterBehaviorInstance.Respawn();
+            //if it should respawn enemies
+            //if( ( !PreviouslyCleared && o.tag.Equals("Enemy") ) || !tag.Equals("Enemy"))
+            if( !(PreviouslyCleared && o.tag.Equals("Enemy")) )
+                //I actually sat down with a pencil and paper to realize you could do this. this code is not as legible. but it removes one check. huge for gorp fans actually. i am going insane. the chokehold that computer scientists have on me is just dumbfounding. i fucking took a penicl and paper to optimize one fucking if check. are you kidding me. i reinvented boolean algrbra and for what. gorp game? jesus fuck.
+            {
+                o.Respawn();
+            }
         }
     }
 
-    public void DespawnEnemies()
+    public void DespawnObjects()
     {
-        foreach (GameObject enemy in RespawnObjects)
+        foreach (ObjectType o in RoomObjects)
         {
-            enemy.SetActive(false);
+            if(o.DespawnOnStart)
+                o.Despawn();
         }
     }
 
     /// <summary>
-    /// Sets all doors to open or closed
-    /// true - open
+    /// Sets all doors to open or closed.
+    /// true - open;
     /// false - closed
     /// </summary>
     /// <param name="Open">if door should be Open</param>

@@ -14,14 +14,14 @@ using UnityEngine;
 
 public class ColliderReactor : ReactiveType
 {
-    private Collider2D collider;
+    private Collider2D myCollider;
 
     /// <summary>
     /// gets collider
     /// </summary>
     public virtual void Start()
     {
-        collider = GetComponent<Collider2D>();
+        myCollider = GetComponent<Collider2D>();
     }
 
     /// <summary>
@@ -29,7 +29,7 @@ public class ColliderReactor : ReactiveType
     /// </summary>
     public override void OnActivate()
     {
-        collider.enabled = true;
+        myCollider.enabled = true;
     }
 
     /// <summary>
@@ -37,6 +37,6 @@ public class ColliderReactor : ReactiveType
     /// </summary>
     public override void OnDeactivate()
     {
-        collider.enabled = false;
+        myCollider.enabled = false;
     }
 }

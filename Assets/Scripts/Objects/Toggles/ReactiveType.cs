@@ -27,7 +27,7 @@ public class ReactiveType : MonoBehaviour
 
     [Header("Debug")]
     public SpriteRenderer MySpriteRenderer;
-    private bool _activated;
+    public bool _activated;
     private Coroutine activateCoroutine;
     
 
@@ -50,16 +50,20 @@ public class ReactiveType : MonoBehaviour
     /// <param name="activated"></param>
     public void SetActivationState(bool activated)
     {
-        _activated = activated;
-
-        //cancels activation coroutine if its already happening
-        if(activateCoroutine != null ) 
+        if(activated != _activated) 
         {
-            StopCoroutine(activateCoroutine);
-            activateCoroutine = null;
-        }
+            _activated = activated;
 
-        activateCoroutine = StartCoroutine(SetState());
+            //cancels activation coroutine if its already happening
+            if (activateCoroutine != null)
+            {
+                StopCoroutine(activateCoroutine);
+                activateCoroutine = null;
+            }
+
+            activateCoroutine = StartCoroutine(SetState());
+        }
+        
     }
 
     /// <summary>

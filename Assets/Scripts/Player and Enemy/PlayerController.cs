@@ -79,6 +79,8 @@ public class PlayerController : CharacterBehavior
 
         MyGamepad = MyPlayerInput.GetDevice<Gamepad>();
         if (MyGamepad == null) Rumble = false;
+
+        gameManager.CurrentRoom.EnterRoom();
     }
 
     /// <summary>
@@ -208,7 +210,7 @@ public class PlayerController : CharacterBehavior
     /// <summary>
     /// When the player dies, the scene is reset.
     /// </summary>
-    public override void Die()
+    public override void Despawn()
     {
         ResetScene();
     }

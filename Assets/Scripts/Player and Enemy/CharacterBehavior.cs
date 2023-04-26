@@ -12,28 +12,25 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class CharacterBehavior : MonoBehaviour
+public class CharacterBehavior : ObjectType
 {    
-    [Header("Debug (don't touch in editor)")]
-
-    public int LayersOfLight;
     public float Health;
     public float Speed;
     public bool TakeKnockback;
     public bool ImmuneToElectricity;
     
-    public Vector3 DefaultPosition;
     public bool Stunned;
     public float StunLength;
     public Rigidbody2D MyRB;
     public float KnockbackForce;
 
+
     /// <summary>
-    /// Sets Health to the Default
+    /// Hot potato!
     /// </summary>
-    public virtual void Start()
+    public override void Start()
     {
-        DefaultPosition = this.transform.position;
+        base.Start();
     }
 
     /// <summary>
@@ -65,7 +62,7 @@ public class CharacterBehavior : MonoBehaviour
 
         if (Health <= 0)
         {
-            Die();
+            Despawn();
             return true;
         }
         return false;
@@ -94,18 +91,9 @@ public class CharacterBehavior : MonoBehaviour
         MyRB.AddForce(positionDifference * Force, ForceMode2D.Impulse);
     }
 
-    /// <summary>
-    /// Kills the enemy!
-    /// </summary>
-    public virtual void Die()
+    public override void Respawn()
     {
-        Debug.Log(this.gameObject.name + " has died! if youre reading this text, you will soon! override this function!");
-    }
-
-    public virtual void Respawn()
-    {
-        this.gameObject.SetActive(true);
-        this.transform.position = DefaultPosition;
+        base.Respawn();
         SetAttributes();
     }
 
@@ -131,7 +119,7 @@ public class CharacterBehavior : MonoBehaviour
         }
     }
 
-    public virtual void OnTriggerEnter2D(Collider2D collision)
+    public override void OnTriggerEnter2D(Collider2D collision)
     {
         string tag = collision.gameObject.tag;
 
@@ -147,40 +135,6 @@ public class CharacterBehavior : MonoBehaviour
         {
             BeStunned();
         }
-    }
-
-    public virtual void OnTriggerExit2D(Collider2D collision)
-    {
-        string tag = collision.gameObject.tag;
-        if (tag.Equals("Light"))
-        {
-            LayersOfLight--;
-        }
-    }
-
-    /// <summary>
-    /// Compares the position of every gameobject with tag to point.
-    /// </summary>
-    /// <returns>closest distance</returns>
-    public float GetDistanceOfClosestTag(Vector2 Point, string Tag)
-    {
-        GameObject[] objs = GameObject.FindGameObjectsWithTag(Tag);
-
-        float min = -1;
-
-        if(objs.Length > 0) // yk, javascript wouldnt make me do this
-        {
-            min = Vector2.Distance(Point, objs[0].transform.position);
-
-            for (int i = 0; i < objs.Length; i++)
-            {
-                float dist = Vector2.Distance(Point, objs[i].transform.position);
-
-                if (min > dist)
-                    min = dist;
-            }
-        }
-        return min;
     }
 
     public virtual void BeStunned()

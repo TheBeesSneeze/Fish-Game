@@ -24,6 +24,14 @@ public class ActivatorType : ReactiveType
     }
 
     /// <summary>
+    /// Call this function when the thing is what it is
+    /// </summary>
+    public virtual void SetActivationInput(bool Active)
+    {
+        SetState(Active);
+    }
+
+    /// <summary>
     /// Call this function when the thing is activated
     /// </summary>
     public virtual void ActivationInput()
