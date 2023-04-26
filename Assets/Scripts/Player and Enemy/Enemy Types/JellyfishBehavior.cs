@@ -34,6 +34,7 @@ public class JellyfishBehavior : EnemyBehavior
     public GameObject ElectrifyingTrigger;
     private LightController lightController;
     private Animator animator;
+    private ActivatorType activator;
 
     [Header("Debug")]
     public JellyfishState JellyState = JellyfishState.Passive;
@@ -53,6 +54,8 @@ public class JellyfishBehavior : EnemyBehavior
 
         if(gameObject.activeSelf)
             StartCoroutine(AdjustLight());
+
+        activator = GetComponent<ActivatorType>();
     }
 
     private void OnEnable()
@@ -80,11 +83,13 @@ public class JellyfishBehavior : EnemyBehavior
             case JellyfishState.Passive:
                 PassiveElectricityTrigger.SetActive(true);
                 ElectrifyingTrigger.SetActive(false);
+                activator.DeactivationInput();
                 break;
 
             case JellyfishState.Electrifying:
                 PassiveElectricityTrigger.SetActive(false);
                 ElectrifyingTrigger.SetActive(true);
+                activator.ActivationInput();
 
                 StartCoroutine( StopElectrifying() );
                 break;
@@ -92,6 +97,7 @@ public class JellyfishBehavior : EnemyBehavior
             case JellyfishState.Weakened:
                 PassiveElectricityTrigger.SetActive(false);
                 ElectrifyingTrigger.SetActive(false);
+                activator.ActivationInput();
 
                 StartCoroutine( StopBeingWeak() );
                 break;

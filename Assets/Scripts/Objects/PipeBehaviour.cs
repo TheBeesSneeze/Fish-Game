@@ -29,7 +29,7 @@ public class PipeBehaviour : MonoBehaviour
     /// Detects when Globbington interacts with pipe
     /// </summary>
     /// <param name="collision"></param>
-    public void OnCollisionEnter2D(Collision2D collision)
+    public void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.name=="Globbington")
         {

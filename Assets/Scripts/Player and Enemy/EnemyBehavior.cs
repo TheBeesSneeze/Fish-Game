@@ -52,7 +52,8 @@ public class EnemyBehavior : CharacterBehavior
     /// </summary>
     public override void Despawn()
     {
-        StartCoroutine(MyRoom.UpdateRoomStatus());
+        if(MyRoom!=null)
+            StartCoroutine(MyRoom.UpdateRoomStatus());
         this.gameObject.SetActive(false);
     }
 

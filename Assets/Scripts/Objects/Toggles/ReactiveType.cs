@@ -40,6 +40,7 @@ public class ReactiveType : MonoBehaviour
 
         _activated = ActivatedByDefault;
 
+        //activateCoroutine = StartCoroutine(SetState());
         SetActivationState(_activated);
     }
 
@@ -50,8 +51,8 @@ public class ReactiveType : MonoBehaviour
     /// <param name="activated"></param>
     public void SetActivationState(bool activated)
     {
-        if(activated != _activated) 
-        {
+        //if(activated != _activated) 
+        //{
             _activated = activated;
 
             //cancels activation coroutine if its already happening
@@ -62,7 +63,7 @@ public class ReactiveType : MonoBehaviour
             }
 
             activateCoroutine = StartCoroutine(SetState());
-        }
+        //}
         
     }
 
@@ -79,9 +80,10 @@ public class ReactiveType : MonoBehaviour
     /// </summary>
     private IEnumerator SetState()
     {
+        bool activated = _activated; //what if it changed
         yield return new WaitForSeconds(Delay);
 
-        if (_activated)
+        if (activated)
         {
             OnActivate();
             if (ActiveSprite != null)
