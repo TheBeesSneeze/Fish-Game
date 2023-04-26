@@ -27,7 +27,7 @@ public class ReactiveType : MonoBehaviour
 
     [Header("Debug")]
     public SpriteRenderer MySpriteRenderer;
-    private bool _activated;
+    public bool _activated;
     private Coroutine activateCoroutine;
     
 

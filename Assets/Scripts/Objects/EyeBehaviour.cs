@@ -29,7 +29,7 @@ public class EyeBehaviour : ObjectType
     [Header("Unity Stuff")]
     public Light2D Light;
     public GameObject LightAnchor;
-    public ActivatorType eyeActivator; //unity gets this guy automatically :D ;D
+    public ActivatorType EyeActivator; //unity gets this guy automatically :D ;D
 
     [Header("Debug")]
     private Coroutine gazing;
@@ -43,11 +43,12 @@ public class EyeBehaviour : ObjectType
     public override void Start()
     {
         base.Start();
+        DisableLight();
 
-        if(this.gameObject.activeSelf)
+        if (this.gameObject.activeSelf)
             StartCoroutine(SearchForPlayers());
 
-        this.gameObject.TryGetComponent<ActivatorType>(out eyeActivator);
+        this.gameObject.TryGetComponent<ActivatorType>(out EyeActivator);
     }
 
     /// <summary>
@@ -75,23 +76,24 @@ public class EyeBehaviour : ObjectType
                 var hit = Physics2D.Raycast(origin, direction, RayCastDistance, LM);
                 Debug.DrawLine(origin, hit.point, Color.green, 0.5f);
 
-                if(hit)
+                if (hit)
                 {
                     string tag = hit.collider.tag;
 
                     if (tag.Equals("Player"))
                     {
                         //this cant be an && statement because i am not feeling computer science-y today
-                        if(gazing == null)
+                        if (gazing == null)
                         {
                             visibleTargets[i] = players[i];
                             hit.collider.GetComponent<PlayerController>().LayersOfLight++;
 
                             gazing = StartCoroutine(CalculateGaze(players[i]));
+
+                            if (EyeActivator != null)
+                                EyeActivator.ActivationInput();
                         }
 
-                        if (eyeActivator != null)
-                            eyeActivator.ActivationInput();
                     }
 
                     //if it missed and the coroutine needs to stop now
@@ -110,13 +112,16 @@ public class EyeBehaviour : ObjectType
                         //Redirecting gaze...
                         if (visibleTargets[j] != null)
                             StartCoroutine(CalculateGaze(visibleTargets[j]));
+
                         else
                         {
-                            if (eyeActivator != null)
-                                eyeActivator.DeactivationInput();
+                            if (EyeActivator != null)
+                                EyeActivator.DeactivationInput();
                         }
                     }
+                        
                 }
+
             }
 
             yield return new WaitForSeconds(PlayerSearchDelay);
@@ -128,17 +133,20 @@ public class EyeBehaviour : ObjectType
     /// </summary>
     private void DisableLight()
     {
-        if(gazing!= null)
+        if (gazing!= null)
         {
             StopCoroutine(gazing);
             gazing = null;
         }
         
         LightAnchor.SetActive(false);
+
+        if (EyeActivator != null)
+            EyeActivator.ActivationInput();
     }
 
     /// <summary>
-    /// Constantly rotates the mirror to face away from the player. Like a real light bouncing off.
+    /// Constantly rotates the mir- eye to face away from the player. Like a real light bouncing off.
     /// Does a lot of cool math that I copied and pasted from online.
     /// </summary>
     private IEnumerator CalculateGaze(GameObject target)
@@ -191,12 +199,14 @@ public class EyeBehaviour : ObjectType
     public override void Respawn()
     {
         base.Respawn();
-        StartCoroutine(SearchForPlayers());
         active = true;
+        StartCoroutine(SearchForPlayers());
+        
     }
     public override void Despawn()
     {
         base.Despawn();
+        StopAllCoroutines();
         active = false;
     }
     public override void OnTriggerEnter2D(Collider2D collision)
