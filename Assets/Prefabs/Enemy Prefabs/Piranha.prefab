@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2129158401830367578}
   - component: {fileID: 2129158401830367577}
   - component: {fileID: 2129158401830367576}
-  m_Layer: 8
+  m_Layer: 16
   m_Name: Piranha
   m_TagString: Enemy
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
@@ -101,17 +101,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d26583894c5073045b211a3e613bc149, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DefaultPosition: {x: 0, y: 0, z: 0}
   LayersOfLight: 0
+  DespawnOnStart: 1
+  MyRoom: {fileID: 0}
   Health: 0
   Speed: 0
   TakeKnockback: 0
   ImmuneToElectricity: 0
-  DefaultPosition: {x: 0, y: 0, z: 0}
   Stunned: 0
   StunLength: 0
   MyRB: {fileID: 0}
   KnockbackForce: 0
-  DespawnOnStart: 1
   EnemyData: {fileID: 11400000, guid: ef2fe5bfa6e92814881cb156bf60a914, type: 2}
   Gorp: {fileID: 0}
   Globbington: {fileID: 0}
@@ -181,7 +182,7 @@ GameObject:
   m_Component:
   - component: {fileID: 417786392152982402}
   - component: {fileID: 4600233692027374292}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: icons_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}

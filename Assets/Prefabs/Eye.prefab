@@ -107,7 +107,7 @@ MonoBehaviour:
   SeeEnemies: 0
   LM:
     serializedVersion: 2
-    m_Bits: 1984
+    m_Bits: 75712
   RayCastDistance: 20
   AngleRecalculationDelay: 0.05
   PlayerSearchDelay: 0.25
