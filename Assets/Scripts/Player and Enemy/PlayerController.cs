@@ -79,6 +79,8 @@ public class PlayerController : CharacterBehavior
 
         MyGamepad = MyPlayerInput.GetDevice<Gamepad>();
         if (MyGamepad == null) Rumble = false;
+
+        gameManager.CurrentRoom.EnterRoom();
     }
 
     /// <summary>
