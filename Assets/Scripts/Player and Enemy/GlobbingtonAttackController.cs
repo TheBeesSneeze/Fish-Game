@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.DualShock;
+
 /*******************************************************************************
 // File Name :         GlobbingtonAttackController.cs
 // Author(s) :         Sky Beal, Jay Embry, Toby Schamberger
@@ -14,8 +14,9 @@ using UnityEngine.InputSystem.DualShock;
 
 public class GlobbingtonAttackController : PlayerController
 {
-    [Header("Crate")]
+    [Header("Settings")]
     public float AttackLength;
+    public float StrikeFrames = 30;
 
     [Header("Unity Stuff")]
     public Collider2D Sword;
@@ -23,6 +24,7 @@ public class GlobbingtonAttackController : PlayerController
 
     [Header("Controls")]
     public InputAction Strike;
+   
 
     /// <summary>
     /// steals start from playercontoller and adapts it for globbington
@@ -48,6 +50,8 @@ public class GlobbingtonAttackController : PlayerController
     {
         Sword.enabled = true;
 
+        StartCoroutine(SwingSword());
+        Invoke("StopAttack", AttackLength);
 
         if (Rumble)
         {
@@ -55,7 +59,24 @@ public class GlobbingtonAttackController : PlayerController
             MyGamepad.SetMotorSpeeds(0.15f, 0.25f);
         }
         
-        Invoke("StopAttack", AttackLength);
+        
+    }
+
+    private IEnumerator SwingSword()
+    {
+        Vector3 startAngle = RotatePoint.rotation.eulerAngles;
+        startAngle.z += 45;
+        Vector3 endAngle = RotatePoint.rotation.eulerAngles;
+        endAngle.z += -45;
+
+        for (int i = 0; i < StrikeFrames; i++)
+        {
+            Vector3 target = Vector3.Lerp(startAngle, endAngle, i / StrikeFrames);
+            RotatePoint.transform.eulerAngles = target;
+
+            yield return new WaitForSeconds(AttackLength / StrikeFrames);
+        }
+        
     }
 
     /// <summary>
@@ -63,12 +84,12 @@ public class GlobbingtonAttackController : PlayerController
     /// </summary>
     private void StopAttack()
     {
-        
         if (Rumble)
             MyGamepad.SetMotorSpeeds(0, 0);
         
 
         Sword.enabled = false;
+        RotateSword();
     }
 
     /// <summary>
@@ -76,8 +97,11 @@ public class GlobbingtonAttackController : PlayerController
     /// </summary>
     private void RotateSword()
     {
-        float angle = Mathf.Atan2(Move.ReadValue<Vector2>().y, Move.ReadValue<Vector2>().x) * Mathf.Rad2Deg;
-        RotatePoint.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        if(!Sword.enabled)
+        {
+            float angle = Mathf.Atan2(Move.ReadValue<Vector2>().y, Move.ReadValue<Vector2>().x) * Mathf.Rad2Deg;
+            RotatePoint.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        }
     }
 
     /// <summary>
