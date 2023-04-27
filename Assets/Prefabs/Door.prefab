@@ -168,6 +168,7 @@ MonoBehaviour:
   ThisRoom: {fileID: 0}
   OutputRoom: {fileID: 0}
   Open: 0
+  MyCollider: {fileID: 5564036600995312022}
   DoorAnimator: {fileID: 6830106694395074860}
 --- !u!95 &6830106694395074860
 Animator:

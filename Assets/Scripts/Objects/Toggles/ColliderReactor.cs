@@ -21,7 +21,8 @@ public class ColliderReactor : ReactiveType
     /// </summary>
     public virtual void Start()
     {
-        myCollider = GetComponent<Collider2D>();
+        myCollider = this.GetComponent<Collider2D>();
+        SetActivationState(GetActivationState());
     }
 
     /// <summary>

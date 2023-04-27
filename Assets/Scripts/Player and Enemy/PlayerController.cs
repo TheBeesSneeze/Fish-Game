@@ -294,7 +294,8 @@ public class PlayerController : CharacterBehavior
         if (tag.Equals("Enemy"))
         {
             TakeDamage(1, collision.transform.position);
-            MyAudioSource.Play();
+            if(MyAudioSource!=null)
+                MyAudioSource.Play();
         }
         if(tag.Equals("Player"))
         {

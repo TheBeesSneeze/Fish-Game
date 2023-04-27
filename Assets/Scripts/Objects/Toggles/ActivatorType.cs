@@ -63,10 +63,7 @@ public class ActivatorType : ReactiveType
     {
         foreach (ReactiveType item in LinkedObjects)
         {
-            if(item.ActivatedByDefault == this.ActivatedByDefault)
-                item.SetActivationState(  state );
-            else
-                item.SetActivationState( !state );
+            item.SetActivationState(  state );
         }
         this.SetActivationState(state);
     }

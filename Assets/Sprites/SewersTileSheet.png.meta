@@ -8827,6 +8827,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Pipe Closed
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8e2474db4b1a0d46b05cfe57030cfd0
+      internalID: -1101151200
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -8935,6 +8956,7 @@ TextureImporter:
       SewersTileSheet_32: 283455806
       SewersTileSheet_466: -782184415
       SewersTileSheet_8: 668393446
+      Pipe Closed: -1101151200
       SewersTileSheet_138: 241511581
       SewersTileSheet_395: 1986298614
       SewersTileSheet_174: -1147182968
