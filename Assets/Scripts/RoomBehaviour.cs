@@ -83,9 +83,8 @@ public class RoomBehaviour : MonoBehaviour
     /// This function is called by enemies when they die.
     /// opens doors or whatever.
     /// </summary>
-    public IEnumerator UpdateRoomStatus()
+    public void UpdateRoomStatus()
     {
-        yield return new WaitForSeconds(0.1f);
         SetAllDoors(RoomCleared());
     }
 
@@ -97,6 +96,7 @@ public class RoomBehaviour : MonoBehaviour
     /// <returns>true if the room is okay to leave</returns>
     public bool RoomCleared()
     {
+        Debug.Log("trying to open");
         //if checking if dead even matters
         if (!RequireSweep || PreviouslyCleared)
             return true;
@@ -108,12 +108,15 @@ public class RoomBehaviour : MonoBehaviour
                 EnemyBehavior enemyBehavior = o.GetComponent<EnemyBehavior>();
 
                 // "If enemy is alive and it needs to not be alive"
-                if (o.gameObject.activeSelf && enemyBehavior.EnemyData.RequiredToKill)
+                if ((o.gameObject.activeSelf || !enemyBehavior.Dead) && enemyBehavior.EnemyData.RequiredToKill) 
+                {
                     return false;
+                }
             }
             catch { } //bro why do i even need catch tbh
-        }
 
+        }
+        Debug.Log("It worked!");
         return true;
     }
 

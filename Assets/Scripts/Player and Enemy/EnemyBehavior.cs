@@ -27,6 +27,7 @@ public class EnemyBehavior : CharacterBehavior
     [Header("You don't need to touch this:")]
     public GameObject Gorp;
     public GameObject Globbington;
+    public bool Dead;
     private float lightDPS;
 
     /// <summary>
@@ -44,6 +45,7 @@ public class EnemyBehavior : CharacterBehavior
         Gorp        = GameObject.Find("Gorp");
         Globbington = GameObject.Find("Globbington");
 
+        Dead = DespawnOnStart;
         this.gameObject.SetActive(!DespawnOnStart);
     }
 
@@ -52,9 +54,15 @@ public class EnemyBehavior : CharacterBehavior
     /// </summary>
     public override void Despawn()
     {
-        if(MyRoom!=null)
-            StartCoroutine(MyRoom.UpdateRoomStatus());
+        Dead = true;
+
+        
+
         this.gameObject.SetActive(false);
+
+        if (MyRoom != null)
+            MyRoom.UpdateRoomStatus();
+
     }
 
     /// <summary>
@@ -63,6 +71,8 @@ public class EnemyBehavior : CharacterBehavior
     public override void Respawn()
     {
         base.Respawn();
+
+        Dead = false;
         SetAttributes();
 
         Gorp = GameObject.Find("Gorp");
