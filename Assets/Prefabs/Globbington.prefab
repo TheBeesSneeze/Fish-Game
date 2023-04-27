@@ -466,7 +466,7 @@ MonoBehaviour:
   MyAudioSource: {fileID: 0}
   DashActive: 1
   AttackLength: 0.1
-  StrikeFrames: 30
+  StrikeFrames: 15
   Sword: {fileID: 1137317766113117558}
   RotatePoint: {fileID: 7118317646495259653}
   Strike:

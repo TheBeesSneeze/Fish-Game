@@ -22,6 +22,7 @@ public class DoorBehaviour : MonoBehaviour
     private GameManager gameMaster;
     private bool canEnter=true; //canEnter is just there to fix timing and prevents two players from enterring door and fucking things up. its seperate from Open
     public Collider2D MyCollider;
+    public LightController DoorLight;
 
     [Header("Animations")]
     public Animator DoorAnimator;
@@ -35,6 +36,10 @@ public class DoorBehaviour : MonoBehaviour
             OpenDoor();
         else
             CloseDoor();
+
+        bool previouslyOpen = Open;
+        CloseDoor();
+        Open = previouslyOpen;
 
         gameMaster = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
     }
@@ -93,8 +98,9 @@ public class DoorBehaviour : MonoBehaviour
         yield return new WaitForSeconds(0.25f);
 
         //Close door:
-        if (DoorAnimator != null)
-            DoorAnimator.SetBool("Open", false);
+        bool previouslyOpen = Open;
+        CloseDoor();
+        Open = previouslyOpen;
 
         yield return new WaitForSeconds(gameMaster.DoorEnterTime);
 
@@ -126,6 +132,13 @@ public class DoorBehaviour : MonoBehaviour
      
         if (DoorAnimator != null)
             DoorAnimator.SetBool("Open", true);
+
+        if (DoorLight != null)
+        {
+            DoorLight.LightRadius = 5f;
+            DoorLight.enabled = true;
+            DoorLight.UpdateLightRadius(1f,true);
+        }
     }
 
     /// <summary>
@@ -139,5 +152,12 @@ public class DoorBehaviour : MonoBehaviour
 
         if (DoorAnimator != null)
             DoorAnimator.SetBool("Open", false);
+
+        if (DoorLight != null)
+        {
+            DoorLight.LightRadius = 0f;
+            DoorLight.enabled = false;
+            DoorLight.UpdateLightRadius(1f);
+        }
     }
 }

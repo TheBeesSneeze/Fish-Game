@@ -41,7 +41,6 @@ public class GlobbingtonAttackController : PlayerController
         Strike = MyPlayerInput.actions.FindAction("Strike");
 
         Strike.started += Strike_started;
-        Dash.started += Strike_started;
     }
 
     /// <summary>
@@ -83,7 +82,8 @@ public class GlobbingtonAttackController : PlayerController
             yield return new WaitForSeconds(AttackLength / StrikeFrames);
         }
 
-        RotatePoint.transform.eulerAngles = originalPoint;
+        //RotatePoint.transform.eulerAngles = originalPoint;
+        RotatePoint.rotation = swordRotation;
 
         StopAttack();
     }
@@ -104,10 +104,10 @@ public class GlobbingtonAttackController : PlayerController
     /// </summary>
     private void RotateSword()
     {
-        if(!Sword.enabled)
+        float angle = Mathf.Atan2(Move.ReadValue<Vector2>().y, Move.ReadValue<Vector2>().x) * Mathf.Rad2Deg;
+        swordRotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        if (!Sword.enabled)
         {
-            float angle = Mathf.Atan2(Move.ReadValue<Vector2>().y, Move.ReadValue<Vector2>().x) * Mathf.Rad2Deg;
-            swordRotation = Quaternion.AngleAxis(angle, Vector3.forward);
             RotatePoint.rotation = swordRotation;
         }
     }

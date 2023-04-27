@@ -85,7 +85,7 @@ public class LightController : MonoBehaviour
         //Clap off!
         else
         {
-            gameObject.SetActive(true);
+            //gameObject.SetActive(true);
 
             lightLerpCoroutine = StartCoroutine(LightLerp(oldRadius, 0, seconds));
 
