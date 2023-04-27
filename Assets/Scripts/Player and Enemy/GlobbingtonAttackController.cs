@@ -53,7 +53,6 @@ public class GlobbingtonAttackController : PlayerController
         Sword.enabled = true;
 
         StartCoroutine(SwingSword());
-        Invoke("StopAttack", AttackLength);
 
         if (Rumble)
         {
@@ -65,7 +64,7 @@ public class GlobbingtonAttackController : PlayerController
 
     private IEnumerator SwingSword()
     {
-        Vector3 originalPoint = RotatePoint.position;
+        Vector3 originalPoint = RotatePoint.rotation.eulerAngles;
         Vector3 startAngle = RotatePoint.rotation.eulerAngles;
         startAngle.z += 45;
         Vector3 endAngle = RotatePoint.rotation.eulerAngles;
@@ -78,7 +77,10 @@ public class GlobbingtonAttackController : PlayerController
 
             yield return new WaitForSeconds(AttackLength / StrikeFrames);
         }
-        RotatePoint.rotation = swordRotation;
+
+        RotatePoint.transform.eulerAngles = originalPoint;
+
+        StopAttack();
     }
 
     /// <summary>
@@ -88,10 +90,8 @@ public class GlobbingtonAttackController : PlayerController
     {
         if (Rumble)
             MyGamepad.SetMotorSpeeds(0, 0);
-        
 
         Sword.enabled = false;
-        RotateSword();
     }
 
     /// <summary>
