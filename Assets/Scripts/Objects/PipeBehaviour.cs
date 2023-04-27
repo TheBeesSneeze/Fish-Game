@@ -24,7 +24,6 @@ public class PipeBehaviour : MonoBehaviour
 
     GameObject globbington;
 
-
     /// <summary>
     /// Detects when Globbington interacts with pipe
     /// </summary>
@@ -38,6 +37,11 @@ public class PipeBehaviour : MonoBehaviour
             globbington.transform.position = new Vector2(9999, 9999);
             Invoke("Transportation", TransportationSpeed);
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        OnTriggerEnter2D(collision.collider);
     }
 
     /// <summary>

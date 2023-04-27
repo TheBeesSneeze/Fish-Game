@@ -75,9 +75,7 @@ public class RoomBehaviour : MonoBehaviour
         SetAllDoors(RoomCleared());
 
         //Players will respawn after these messages!
-        Invoke("RespawnPlayers", GameMaster.CameraLerpSeconds + 0.1f);
-
-
+        Invoke("RespawnPlayers", GameMaster.CameraLerpSeconds + 0.25f);
     }
 
     /// <summary>

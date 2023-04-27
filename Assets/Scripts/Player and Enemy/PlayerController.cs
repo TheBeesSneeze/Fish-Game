@@ -296,6 +296,20 @@ public class PlayerController : CharacterBehavior
         }
     }
 
+    public override void OnTriggerEnter2D(Collider2D collision)
+    {
+        string tag = collision.gameObject.tag;
+
+        if (tag.Equals("Light"))
+        {
+            LayersOfLight++;
+        }
+        if (tag.Equals("Electricity") && !ImmuneToElectricity)
+        {
+            GetElectrified();
+        }
+    }
+
     public void OnCollisionEnter2D(Collision2D collision)
     {
         string tag = collision.gameObject.tag;

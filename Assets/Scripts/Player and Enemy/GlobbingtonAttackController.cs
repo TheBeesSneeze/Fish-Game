@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEngine.GraphicsBuffer;
 
 /*******************************************************************************
 // File Name :         GlobbingtonAttackController.cs
@@ -24,6 +25,7 @@ public class GlobbingtonAttackController : PlayerController
 
     [Header("Controls")]
     public InputAction Strike;
+    private Quaternion swordRotation;
    
 
     /// <summary>
@@ -58,12 +60,12 @@ public class GlobbingtonAttackController : PlayerController
             //InputDevice a = MyPlayerInput.devices[0];
             MyGamepad.SetMotorSpeeds(0.15f, 0.25f);
         }
-        
-        
+      
     }
 
     private IEnumerator SwingSword()
     {
+        Vector3 originalPoint = RotatePoint.position;
         Vector3 startAngle = RotatePoint.rotation.eulerAngles;
         startAngle.z += 45;
         Vector3 endAngle = RotatePoint.rotation.eulerAngles;
@@ -76,7 +78,7 @@ public class GlobbingtonAttackController : PlayerController
 
             yield return new WaitForSeconds(AttackLength / StrikeFrames);
         }
-        
+        RotatePoint.rotation = swordRotation;
     }
 
     /// <summary>
@@ -100,7 +102,8 @@ public class GlobbingtonAttackController : PlayerController
         if(!Sword.enabled)
         {
             float angle = Mathf.Atan2(Move.ReadValue<Vector2>().y, Move.ReadValue<Vector2>().x) * Mathf.Rad2Deg;
-            RotatePoint.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            swordRotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            RotatePoint.rotation = swordRotation;
         }
     }
 
@@ -131,6 +134,5 @@ public class GlobbingtonAttackController : PlayerController
     private void OnDestroy()
     {
         Strike.started -= Strike_started;
-
     }
 }

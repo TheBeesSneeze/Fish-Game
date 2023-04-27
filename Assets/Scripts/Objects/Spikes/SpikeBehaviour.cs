@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 /*******************************************************************************
 // File Name :         SpikeBehavior.cs
-// Author(s) :         Sky Beal
+// Author(s) :         Sky Beal, Toby Schamberger
 // Creation Date :     4/11/2023
 //
 // Brief Description : Basic behaviour for spikes.
