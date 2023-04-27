@@ -85,7 +85,7 @@ public class DoorBehaviour : MonoBehaviour
         //Make sure this function doesnt happen again, and wait
         canEnter = false;
 
-        yield return new WaitForSeconds(gameMaster.DoorEnterTime);
+        yield return new WaitForSeconds(gameMaster.DoorEnterTime/2);
 
         //Teleport both players
         RelocatePlayers();
@@ -96,7 +96,7 @@ public class DoorBehaviour : MonoBehaviour
         if (DoorAnimator != null)
             DoorAnimator.SetBool("Open", false);
 
-        yield return new WaitForSeconds(gameMaster.DoorEnterTime/2);
+        yield return new WaitForSeconds(gameMaster.DoorEnterTime);
 
         //Transition rooms
         OutputRoom.EnterRoom();

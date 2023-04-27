@@ -50,15 +50,20 @@ public class GlobbingtonAttackController : PlayerController
     /// <param name="obj"></param>
     private void Strike_started(InputAction.CallbackContext obj)
     {
-        Sword.enabled = true;
-
-        StartCoroutine(SwingSword());
-
-        if (Rumble)
+        //if not already attacking
+        if( !Sword.enabled ) 
         {
-            //InputDevice a = MyPlayerInput.devices[0];
-            MyGamepad.SetMotorSpeeds(0.15f, 0.25f);
+            Sword.enabled = true;
+
+            StartCoroutine(SwingSword());
+
+            if (Rumble)
+            {
+                //InputDevice a = MyPlayerInput.devices[0];
+                MyGamepad.SetMotorSpeeds(0.15f, 0.25f);
+            }
         }
+        
       
     }
 
