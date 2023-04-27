@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2129158401830367578}
   - component: {fileID: 2129158401830367577}
   - component: {fileID: 2129158401830367576}
-  m_Layer: 8
+  m_Layer: 16
   m_Name: Piranha
   m_TagString: Enemy
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
@@ -182,7 +182,7 @@ GameObject:
   m_Component:
   - component: {fileID: 417786392152982402}
   - component: {fileID: 4600233692027374292}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: icons_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}

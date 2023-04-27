@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.DualShock;
+using static UnityEngine.GraphicsBuffer;
+
 /*******************************************************************************
 // File Name :         GlobbingtonAttackController.cs
-// Author(s) :         Sky Beal, Jay Embry
+// Author(s) :         Sky Beal, Jay Embry, Toby Schamberger
 // Creation Date :     3/28/2023
 //
 // Brief Description : Code for Globbington swinging his sword! Also accounts 
@@ -14,8 +15,9 @@ using UnityEngine.InputSystem.DualShock;
 
 public class GlobbingtonAttackController : PlayerController
 {
-    [Header("Crate")]
+    [Header("Settings")]
     public float AttackLength;
+    public float StrikeFrames = 30;
 
     [Header("Unity Stuff")]
     public Collider2D Sword;
@@ -23,6 +25,8 @@ public class GlobbingtonAttackController : PlayerController
 
     [Header("Controls")]
     public InputAction Strike;
+    private Quaternion swordRotation;
+   
 
     /// <summary>
     /// steals start from playercontoller and adapts it for globbington
@@ -46,16 +50,42 @@ public class GlobbingtonAttackController : PlayerController
     /// <param name="obj"></param>
     private void Strike_started(InputAction.CallbackContext obj)
     {
-        Sword.enabled = true;
-
-
-        if (Rumble)
+        //if not already attacking
+        if( !Sword.enabled ) 
         {
-            //InputDevice a = MyPlayerInput.devices[0];
-            MyGamepad.SetMotorSpeeds(0.15f, 0.25f);
+            Sword.enabled = true;
+
+            StartCoroutine(SwingSword());
+
+            if (Rumble)
+            {
+                //InputDevice a = MyPlayerInput.devices[0];
+                MyGamepad.SetMotorSpeeds(0.15f, 0.25f);
+            }
         }
         
-        Invoke("StopAttack", AttackLength);
+      
+    }
+
+    private IEnumerator SwingSword()
+    {
+        Vector3 originalPoint = RotatePoint.rotation.eulerAngles;
+        Vector3 startAngle = RotatePoint.rotation.eulerAngles;
+        startAngle.z += 45;
+        Vector3 endAngle = RotatePoint.rotation.eulerAngles;
+        endAngle.z += -45;
+
+        for (int i = 0; i < StrikeFrames; i++)
+        {
+            Vector3 target = Vector3.Lerp(startAngle, endAngle, i / StrikeFrames);
+            RotatePoint.transform.eulerAngles = target;
+
+            yield return new WaitForSeconds(AttackLength / StrikeFrames);
+        }
+
+        RotatePoint.transform.eulerAngles = originalPoint;
+
+        StopAttack();
     }
 
     /// <summary>
@@ -63,10 +93,8 @@ public class GlobbingtonAttackController : PlayerController
     /// </summary>
     private void StopAttack()
     {
-        
         if (Rumble)
             MyGamepad.SetMotorSpeeds(0, 0);
-        
 
         Sword.enabled = false;
     }
@@ -74,10 +102,14 @@ public class GlobbingtonAttackController : PlayerController
     /// <summary>
     /// a bunch of math to rotate the sword around globbington
     /// </summary>
-    private void RotatePlayer()
+    private void RotateSword()
     {
-        float angle = Mathf.Atan2(Move.ReadValue<Vector2>().y, Move.ReadValue<Vector2>().x) * Mathf.Rad2Deg;
-        RotatePoint.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        if(!Sword.enabled)
+        {
+            float angle = Mathf.Atan2(Move.ReadValue<Vector2>().y, Move.ReadValue<Vector2>().x) * Mathf.Rad2Deg;
+            swordRotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            RotatePoint.rotation = swordRotation;
+        }
     }
 
     /// <summary>
@@ -91,7 +123,9 @@ public class GlobbingtonAttackController : PlayerController
             if (!IgnoreMove)
                 MyRB.velocity = Move.ReadValue<Vector2>() * Speed;
 
-            RotatePlayer();
+            Animate();
+
+            RotateSword();
             yield return null;
         }
     }
@@ -99,13 +133,11 @@ public class GlobbingtonAttackController : PlayerController
     public override void GetElectrified()
     {
         Stunned = true;
-        BeStunned();
+        BeStunned(1.5f);
     }
 
     private void OnDestroy()
     {
-
         Strike.started -= Strike_started;
-
     }
 }

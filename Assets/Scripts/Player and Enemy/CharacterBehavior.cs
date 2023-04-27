@@ -111,7 +111,16 @@ public class CharacterBehavior : ObjectType
     /// </summary>
     public virtual void GetElectrified()
     {
-        if( ! ImmuneToElectricity ) 
+        GetElectrified(StunLength);
+    }
+
+    /// <summary>
+    /// Electricity override that configures time stunned
+    /// </summary>
+    /// <param name="Seconds">Time stunned</param>
+    public virtual void GetElectrified(float Seconds)
+    {
+        if (!ImmuneToElectricity)
         {
             Stunned = true;
             BeStunned();
@@ -137,10 +146,22 @@ public class CharacterBehavior : ObjectType
         }
     }
 
+    /// <summary>
+    /// Stuns character for their StunLength
+    /// </summary>
     public virtual void BeStunned()
     {
+        BeStunned(StunLength);
+    }
+
+    /// <summary>
+    /// Stuns character for Seconds
+    /// </summary>
+    /// <param name="Seconds">Seconds to be stunned</param>
+    public virtual void BeStunned(float Seconds)
+    {
         Stunned = true;
-        Invoke("BeUnStunned", StunLength);
+        Invoke("BeUnStunned", Seconds);
     }
 
     public virtual void BeUnStunned()

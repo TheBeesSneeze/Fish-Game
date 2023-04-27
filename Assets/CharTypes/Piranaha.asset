@@ -24,7 +24,7 @@ MonoBehaviour:
   StunnedByFlash: 1
   HurtByFlash: 0
   LightDamagePerSec: 0
-  SightDistance: 13
+  SightDistance: 7
   UnsightDistance: 15
   PursueDelay: 0.1
   NightVision: 0

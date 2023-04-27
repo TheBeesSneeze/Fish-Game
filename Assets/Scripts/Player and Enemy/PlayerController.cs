@@ -105,6 +105,7 @@ public class PlayerController : CharacterBehavior
         while (ReadMove)
         {
             Animate();
+
             if(!IgnoreMove)
                 MyRB.velocity = Move.ReadValue<Vector2>() * Speed;
 
@@ -141,7 +142,10 @@ public class PlayerController : CharacterBehavior
             return died;
         }
         else
+        {
+            KnockBack(this.gameObject, damageSourcePosition);
             return false;
+        }
     }
 
     /// <summary>
@@ -161,7 +165,9 @@ public class PlayerController : CharacterBehavior
             return died;
         }
         else
+        {
             return false;
+        }
     }
 
     /// <summary>
@@ -217,8 +223,10 @@ public class PlayerController : CharacterBehavior
 
     public override void Respawn()
     {
-        base.Respawn();
+        invincible = false;
+        healthDisplay.UpdateHealth();
         SetAttributes();
+        base.Respawn();
     }
 
     public override void KnockBack(GameObject target, Vector3 damageSourcePosition)
@@ -285,6 +293,20 @@ public class PlayerController : CharacterBehavior
         { 
             //Debug.Log(enemy.name);
             enemy.GetComponent<EnemyBehavior>().Respawn();
+        }
+    }
+
+    public override void OnTriggerEnter2D(Collider2D collision)
+    {
+        string tag = collision.gameObject.tag;
+
+        if (tag.Equals("Light"))
+        {
+            LayersOfLight++;
+        }
+        if (tag.Equals("Electricity") && !ImmuneToElectricity)
+        {
+            GetElectrified();
         }
     }
 

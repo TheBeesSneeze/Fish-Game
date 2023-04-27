@@ -37,7 +37,6 @@ public class DoorBehaviour : MonoBehaviour
             CloseDoor();
 
         gameMaster = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
-        //myCollider = this.gameObject.GetComponent<BoxCollider2D>();
     }
 
     /// <summary>
@@ -49,13 +48,13 @@ public class DoorBehaviour : MonoBehaviour
     {
         if(collision.gameObject.tag=="Player")
         {
-            if( canEnter && ThisRoom.RoomCleared() && Open)
+            if(ThisRoom.RoomCleared() && Open)
             {
-                canEnter = false;
+                //teleport any player that touches
                 collision.gameObject.transform.position = new Vector3(9999, 9999, 0); //send one player to brazil
 
-                Invoke("Kill", gameMaster.DoorEnterTime);
-                OutputRoom.Invoke("EnterRoom", gameMaster.DoorEnterTime);             
+                if(canEnter) //this prevents the door transition from happening once
+                    StartCoroutine(EnterDoorAnimation());
             }
         }
     }
@@ -77,7 +76,34 @@ public class DoorBehaviour : MonoBehaviour
     }
 
     /// <summary>
-    /// Teleports players to Brazil
+    /// Smooth transition between rooms. first player dissappears. other player dissapears,
+    /// Door closes. transition rooms.
+    /// </summary>
+    /// <param name="FirstPlayer"></param>
+    private IEnumerator EnterDoorAnimation()
+    {
+        //Make sure this function doesnt happen again, and wait
+        canEnter = false;
+
+        yield return new WaitForSeconds(gameMaster.DoorEnterTime/2);
+
+        //Teleport both players
+        RelocatePlayers();
+
+        yield return new WaitForSeconds(0.25f);
+
+        //Close door:
+        if (DoorAnimator != null)
+            DoorAnimator.SetBool("Open", false);
+
+        yield return new WaitForSeconds(gameMaster.DoorEnterTime);
+
+        //Transition rooms
+        OutputRoom.EnterRoom();
+    }
+
+    /// <summary>
+    /// Teleports all players to Brazil
     /// </summary>
     public void RelocatePlayers()
     {

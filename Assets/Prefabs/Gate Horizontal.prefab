@@ -139,7 +139,7 @@ MonoBehaviour:
   - {x: 1, y: -1, z: 0}
   m_ShapePathHash: 1270147661
   m_Mesh: {fileID: 0}
-  m_InstanceId: -270920
+  m_InstanceId: 32110
 --- !u!114 &5773042026085579341
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -157,3 +157,4 @@ MonoBehaviour:
   ActiveSprite: {fileID: 1075563766, guid: 622f3d102c49cd748aa6c0c50c3d1201, type: 3}
   DeactiveSprite: {fileID: -1475497757, guid: 622f3d102c49cd748aa6c0c50c3d1201, type: 3}
   MySpriteRenderer: {fileID: 0}
+  _activated: 0

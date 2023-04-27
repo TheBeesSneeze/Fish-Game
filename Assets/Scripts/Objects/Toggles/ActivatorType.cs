@@ -20,7 +20,7 @@ public class ActivatorType : ReactiveType
 
     public virtual void Start()
     {
-        this.SetActivationState(GetActivationState());
+        //this.SetActivationState(GetActivationState());
     }
 
     /// <summary>
@@ -28,7 +28,7 @@ public class ActivatorType : ReactiveType
     /// </summary>
     public virtual void SetActivationInput(bool Active)
     {
-        SetState(Active);
+        SetStateOfObjects(Active);
     }
 
     /// <summary>
@@ -36,7 +36,7 @@ public class ActivatorType : ReactiveType
     /// </summary>
     public virtual void ActivationInput()
     {
-        SetState(true);
+        SetStateOfObjects(true);
     }
 
     /// <summary>
@@ -44,7 +44,7 @@ public class ActivatorType : ReactiveType
     /// </summary>
     public virtual void DeactivationInput()
     {
-        SetState(false);
+        SetStateOfObjects(false);
     }
 
     /// <summary>
@@ -52,14 +52,19 @@ public class ActivatorType : ReactiveType
     /// </summary>
     public virtual void ToggleInput()
     {
-        SetState( ! GetActivationState() );
+        foreach (ReactiveType item in LinkedObjects)
+        {
+            item.SetActivationState(!GetActivationState());
+        }
+        this.SetActivationState(!GetActivationState());
+        //SetStateOfObjects( ! GetActivationState() );
     }
 
     /// <summary>
     /// Sets the Activation state of this ReactionType and all items
     /// </summary>
     /// <param name="state"></param>
-    private void SetState(bool state) 
+    private void SetStateOfObjects(bool state) 
     {
         foreach (ReactiveType item in LinkedObjects)
         {
