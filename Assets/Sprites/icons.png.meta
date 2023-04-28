@@ -124,7 +124,7 @@ TextureImporter:
         width: 8
         height: 12
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -145,7 +145,7 @@ TextureImporter:
         width: 8
         height: 12
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -153,6 +153,27 @@ TextureImporter:
       bones: []
       spriteID: 2256163ad73aa4d43a488dd435413684
       internalID: -1856601973
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: A button
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 4
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 178204de745d54340bfa2dc5e31e4674
+      internalID: 2143543460
       vertices: []
       indices: 
       edges: []
@@ -169,6 +190,7 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       icons_0: -86533443
+      A button: 2143543460
       icons_1: -1856601973
   spritePackingTag: 
   pSDRemoveMatte: 0

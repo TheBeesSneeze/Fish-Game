@@ -460,6 +460,15 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
+  Pause:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: ed5d376c-7f8a-445a-bc40-e843ae6b2108
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
   ReadMove: 0
   DashForce: 40
   Scream: {fileID: 0}
@@ -652,7 +661,7 @@ MonoBehaviour:
   m_ApplyToSortingLayers: 00000000
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
-  m_LightOrder: -2
+  m_LightOrder: -51
   m_OverlapOperation: 1
   m_NormalMapDistance: 15
   m_NormalMapQuality: 1

@@ -39,6 +39,11 @@ public class SceneProgressor : MonoBehaviour
         }
     }
 
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        OnTriggerEnter2D(collision.collider);
+    }
+
     /// <summary>
     /// Silly animation that delays scene load
     /// </summary>
