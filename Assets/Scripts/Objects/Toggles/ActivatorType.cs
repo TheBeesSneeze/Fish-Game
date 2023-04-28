@@ -54,7 +54,7 @@ public class ActivatorType : ReactiveType
     {
         foreach (ReactiveType item in LinkedObjects)
         {
-            item.SetActivationState(!GetActivationState());
+            item.SetActivationState(!item.GetActivationState());
         }
         this.SetActivationState(!GetActivationState());
         //SetStateOfObjects( ! GetActivationState() );
