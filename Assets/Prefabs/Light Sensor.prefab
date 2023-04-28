@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 657012409180650492}
   - component: {fileID: 657012409180650483}
   - component: {fileID: 657012409180650494}
+  - component: {fileID: 1787261824845308725}
   m_Layer: 0
   m_Name: Light Sensor
   m_TagString: Untagged
@@ -102,6 +103,8 @@ MonoBehaviour:
   Delay: 0
   ActiveSprite: {fileID: 0}
   DeactiveSprite: {fileID: 0}
+  MySpriteRenderer: {fileID: 0}
+  _activated: 0
   LinkedObjects:
   - {fileID: 0}
   LayersOfLight: 0
@@ -131,3 +134,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1787261824845308725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 657012409180650482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5817dc81822a2c443a0bce5ecbd1740e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ActivatedByDefault: 0
+  Delay: 0
+  ActiveSprite: {fileID: 0}
+  DeactiveSprite: {fileID: 0}
+  MySpriteRenderer: {fileID: 0}
+  _activated: 0
+  LinkedObjects: []
+  LayersOfLight: 0

@@ -75,6 +75,11 @@ public class ReactiveType : MonoBehaviour
         return _activated;
     }
 
+    public void ToggleState()
+    {
+        SetActivationState(!_activated);
+    }
+
     /// <summary>
     /// Calls appropriate active / deactive functions after delay.
     /// </summary>

@@ -258,7 +258,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.08166605, y: -0.34027815}
+  m_Offset: {x: -0.06633735, y: -0.51787853}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -269,7 +269,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.9111105, y: 3.4246316}
+  m_Size: {x: 0.48192978, y: 3.0694308}
   m_EdgeRadius: 0
 --- !u!1 &4302747830044685618
 GameObject:
@@ -411,7 +411,7 @@ MonoBehaviour:
   InvincibleSeconds: 1.5
   PlayerAnimator: {fileID: 8931580626729020645}
   CharacterData: {fileID: 11400000, guid: 7f175cdaa82c39e47abd86895c531c1c, type: 2}
-  PlayerNumber: 0
+  PlayerNumber: 1
   Rumble: 1
   IgnoreMove: 0
   MyPlayerInput: {fileID: 4302747830044685625}
