@@ -402,7 +402,7 @@ public class PlayerController : CharacterBehavior
         }
     }
 
-    private void OnDestroy()
+    public virtual void OnDestroy()
     {
 
         Move.started -= Move_started;
@@ -410,5 +410,10 @@ public class PlayerController : CharacterBehavior
 
         Dash.started -= DashInput;
 
+        Swap.started -= SwapInput;
+
+        Debug.started -= DevMode;
+
+        MyPlayerInput.actions.Disable();
     }
 }
