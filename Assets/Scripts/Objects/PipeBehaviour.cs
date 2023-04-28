@@ -21,8 +21,15 @@ public class PipeBehaviour : MonoBehaviour
     public Transform OutputPosition;
     [Tooltip("Seconds until globby is spat back out")]
     public float TransportationSpeed;
+    private CameraController cam;
+    private bool couldMoveCamera;
 
     GameObject globbington;
+
+    private void Start()
+    {
+        cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraController>();
+    }
 
     /// <summary>
     /// Detects when Globbington interacts with pipe
@@ -32,6 +39,8 @@ public class PipeBehaviour : MonoBehaviour
     {
         if(collision.gameObject.name=="Globbington")
         {
+            couldMoveCamera = cam.MoveCamera;
+            cam.MoveCamera = false;
             globbington = collision.gameObject;
 
             globbington.transform.position = new Vector2(9999, 9999);
@@ -50,5 +59,6 @@ public class PipeBehaviour : MonoBehaviour
     public void Transportation()
     {
         globbington.transform.position = OutputPosition.position;
+        cam.MoveCamera = couldMoveCamera;
     }
 }

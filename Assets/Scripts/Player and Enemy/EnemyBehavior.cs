@@ -56,8 +56,6 @@ public class EnemyBehavior : CharacterBehavior
     {
         Dead = true;
 
-        
-
         this.gameObject.SetActive(false);
 
         if (MyRoom != null)

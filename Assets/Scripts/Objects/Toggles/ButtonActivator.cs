@@ -17,7 +17,7 @@ public class ButtonActivator : ActivatorType
     {
         if (collider.gameObject.name == "Globbington")
         {
-            ActivationInput();
+            DeactivationInput();
         }
     }
 
@@ -25,7 +25,8 @@ public class ButtonActivator : ActivatorType
     {
         if (collider.gameObject.name == "Globbington")
         {
-            DeactivationInput();
+            
+            ActivationInput();
         }
     }
 }

@@ -96,7 +96,6 @@ public class RoomBehaviour : MonoBehaviour
     /// <returns>true if the room is okay to leave</returns>
     public bool RoomCleared()
     {
-        Debug.Log("trying to open");
         //if checking if dead even matters
         if (!RequireSweep || PreviouslyCleared)
             return true;
@@ -116,7 +115,6 @@ public class RoomBehaviour : MonoBehaviour
             catch { } //bro why do i even need catch tbh
 
         }
-        Debug.Log("It worked!");
         return true;
     }
 
