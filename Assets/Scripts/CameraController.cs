@@ -61,6 +61,11 @@ public class CameraController : MonoBehaviour
         StartCoroutine(AdjustCameraPosition());
     }
 
+    public void UpdateCamera()
+    {
+        StartCoroutine(AdjustCameraPosition());
+    }
+
     /// <summary>
     /// Updates camera so that is in the middle of both players.
     /// Prioritizes sticking within bounds however.

@@ -1,6 +1,6 @@
 /*******************************************************************************
 // File Name :         PipeTransportation.cs
-// Author(s) :         Jay Embry, Toby Schamberger
+// Author(s) :         Jay Embry, Toby Schamberger, Sky Beal
 // Creation Date :     3/28/2023
 //
 // Brief Description : Code that detects when Globbington interacts with a pipe
@@ -60,5 +60,6 @@ public class PipeBehaviour : MonoBehaviour
     {
         globbington.transform.position = OutputPosition.position;
         cam.MoveCamera = couldMoveCamera;
+        cam.UpdateCamera();
     }
 }
