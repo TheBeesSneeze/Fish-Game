@@ -10,7 +10,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
-using Unity.VisualScripting;
+
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
@@ -61,41 +61,44 @@ public class LightController : MonoBehaviour
     /// </summary>
     public void UpdateLightRadius(float seconds, bool startfromZero)
     {
-        float oldRadius = LightSource.pointLightOuterRadius;
-
-        if (LightTrigger != null)
-            LightTrigger.enabled = LightEnabled;
-
-        if (lightLerpCoroutine != null)
-            StopCoroutine(lightLerpCoroutine);
-
-        //Clap on!
-        if (LightEnabled)
+        if (LightSource != null)
         {
-            if (startfromZero)
-                lightLerpCoroutine = StartCoroutine(LightLerp(0, LightRadius, seconds));
-            //regular mode
-            else
-                lightLerpCoroutine = StartCoroutine(LightLerp(oldRadius, LightRadius, seconds));
-
-            if(LightTrigger!= null)
-                LightTrigger.radius = LightRadius / lightRadiusDescale;
-
-        }
-        //Clap off!
-        else
-        {
-            //gameObject.SetActive(true);
-
-            lightLerpCoroutine = StartCoroutine(LightLerp(oldRadius, 0, seconds));
+            float oldRadius = LightSource.pointLightOuterRadius;
 
             if (LightTrigger != null)
+                LightTrigger.enabled = LightEnabled;
+
+            if (lightLerpCoroutine != null)
+                StopCoroutine(lightLerpCoroutine);
+
+            //Clap on!
+            if (LightEnabled)
             {
-                LightTrigger.radius = 0;
+                if (startfromZero)
+                    lightLerpCoroutine = StartCoroutine(LightLerp(0, LightRadius, seconds));
+                //regular mode
+                else
+                    lightLerpCoroutine = StartCoroutine(LightLerp(oldRadius, LightRadius, seconds));
+
+                if (LightTrigger != null)
+                    LightTrigger.radius = LightRadius / lightRadiusDescale;
+
             }
-                
+            //Clap off!
+            else
+            {
+                //gameObject.SetActive(true);
+
+                lightLerpCoroutine = StartCoroutine(LightLerp(oldRadius, 0, seconds));
+
+                if (LightTrigger != null)
+                {
+                    LightTrigger.radius = 0;
+                }
+
+            }
+            //The clapper!
         }
-        //The clapper!
     }
 
     /// <summary>
