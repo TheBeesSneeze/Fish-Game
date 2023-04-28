@@ -1,6 +1,6 @@
 /*******************************************************************************
 // File Name :         PauseBehaviour.cs
-// Author(s) :         Jay Embry
+// Author(s) :         Jay Embry, Toby Schamberger
 // Creation Date :     4/9/2023
 //
 // Brief Description :Code that manages the menu function of the game
@@ -14,9 +14,9 @@ using UnityEngine.SceneManagement;
 
 public class PauseBehaviour : MonoBehaviour
 {
-    public PlayerInput PlayerInputMenu;
-    public InputAction Pause;
-    public bool alreadyPaused;
+    //public PlayerInput PlayerInputMenu;
+    //public InputAction Pause;
+    public bool Paused;
     public GameObject PauseScreen;
 
     public PlayerController gorp;
@@ -24,53 +24,72 @@ public class PauseBehaviour : MonoBehaviour
 
     void Start()
     {
-        
+        //PlayerInputMenu.actions.Enable();
+        //Pause = PlayerInputMenu.actions.FindAction("Pause");
 
-        PlayerInputMenu.actions.Enable();
-        Pause = PlayerInputMenu.actions.FindAction("Pause");
+        //Pause.started += PauseFunction;
+        Paused = false;
 
-        Pause.started += PauseFunction;
-        alreadyPaused = false;
-
-        gorp = GameObject.Find("Gorp").GetComponent<PlayerController>();
-        glob = GameObject.Find("Globbington").GetComponent<PlayerController>();
-
+        StartCoroutine(FindPlayers());
     }
 
-    private void PauseFunction(InputAction.CallbackContext obj)
+    private IEnumerator FindPlayers()
     {
-
-        if (alreadyPaused == false)
+        while (gorp == null)
         {
-
-            PauseScreen.SetActive(true);
-            alreadyPaused = true;
-
-            Time.timeScale = 0;
-
-            gorp.DashActive = false;
-            glob.DashActive = false;
-
+            try { gorp = GameObject.Find("Gorp").GetComponent<PlayerController>(); } catch { }
+            yield return new WaitForSeconds(0.25f);
         }
-        else if (alreadyPaused == true)
-        {
 
+        gorp.Pause.started += PauseFunction;
+
+        while(glob == null)
+        {
+            try { glob = GameObject.Find("Globbington").GetComponent<PlayerController>(); } catch { }
+            yield return new WaitForSeconds(0.25f);
+        }
+
+        glob.Pause.started += PauseFunction;
+    }
+
+    /// <summary>
+    /// does the pause thing
+    /// </summary>
+    public void PauseFunction(InputAction.CallbackContext obj)
+    {
+        Paused = !Paused;
+
+        if ( ! Paused )
+        {
+            PauseGame();
+        }
+        if (Paused )
+        {
             ResumeGame();
-
         }
 
     }
 
-    public void ResumeGame()
+    private void PauseGame()
     {
+        PauseScreen.SetActive(true);
 
+        Time.timeScale = 0;
+
+        gorp.DashActive = false;
+        if(glob != null)
+            glob.DashActive = false;
+    }
+
+    private void ResumeGame()
+    {
         PauseScreen.SetActive(false);
-        alreadyPaused = false;
 
         Time.timeScale = 1;
 
         gorp.DashActive = true;
-        glob.DashActive = true;
+        if (glob != null)
+            glob.DashActive = true;
 
     }
 
@@ -83,7 +102,6 @@ public class PauseBehaviour : MonoBehaviour
 
     public void QuitGame()
     {
-
         Application.Quit();
 
     }

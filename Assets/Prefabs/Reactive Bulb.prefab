@@ -182,7 +182,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -230,6 +230,8 @@ MonoBehaviour:
   Delay: 0.05
   ActiveSprite: {fileID: -403293944, guid: 622f3d102c49cd748aa6c0c50c3d1201, type: 3}
   DeactiveSprite: {fileID: 590617790, guid: 622f3d102c49cd748aa6c0c50c3d1201, type: 3}
+  MySpriteRenderer: {fileID: 0}
+  _activated: 0
   LightTrigger: {fileID: 637147159022356795}
   Light: {fileID: 2264646124841096243}
 --- !u!95 &-4692021682175624567
