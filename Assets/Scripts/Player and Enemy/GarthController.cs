@@ -24,6 +24,7 @@ public class GarthController : MonoBehaviour
     private PlayerController gorp;
     private bool typing;
     public GameObject TextBox;
+    public GameObject Speak;
 
     /// <summary>
     /// when on speaking box, can start text
@@ -36,6 +37,8 @@ public class GarthController : MonoBehaviour
         {
             gorp = collision.GetComponent<PlayerController>();
             gorp.Select.started += ActivateSpeech;
+
+            Speak.SetActive(true);
         }
     }
 
@@ -51,6 +54,8 @@ public class GarthController : MonoBehaviour
         {
             gorp = collision.GetComponent<PlayerController>();
             gorp.Select.started -= ActivateSpeech;
+
+            Speak.SetActive(false);
         }
 
         TextBox.SetActive(false);
