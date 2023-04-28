@@ -77,6 +77,7 @@ GameObject:
   - component: {fileID: 8404659121427470057}
   - component: {fileID: 6830106694395074860}
   - component: {fileID: 5564036600995312022}
+  - component: {fileID: -5167098640523400906}
   m_Layer: 6
   m_Name: Scene Progressor
   m_TagString: Wall
@@ -198,3 +199,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.63, y: 2.13}
   m_EdgeRadius: 0
+--- !u!114 &-5167098640523400906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8404659121427470055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb045d32c519934288b9355c88e9dcf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SceneToLoadName: Main Level
