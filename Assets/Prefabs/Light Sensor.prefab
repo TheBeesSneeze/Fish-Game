@@ -100,14 +100,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ActivatedByDefault: 0
-  Delay: 0
+  Delay: 0.3
   ActiveSprite: {fileID: 0}
   DeactiveSprite: {fileID: 0}
   MySpriteRenderer: {fileID: 0}
   _activated: 0
-  LinkedObjects:
-  - {fileID: 0}
+  LinkedObjects: []
   LayersOfLight: 0
+  LM:
+    serializedVersion: 2
+    m_Bits: 704
+  GorpVisible: 0
 --- !u!61 &657012409180650494
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -154,3 +157,7 @@ MonoBehaviour:
   _activated: 0
   LinkedObjects: []
   LayersOfLight: 0
+  LM:
+    serializedVersion: 2
+    m_Bits: 0
+  GorpVisible: 0
