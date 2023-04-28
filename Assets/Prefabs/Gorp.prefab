@@ -1068,6 +1068,15 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
+  Pause:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 94b7bd66-5048-4a84-bdf4-f38d6aff52ab
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
   ReadMove: 0
   DashForce: 50
   Scream: {fileID: 8300000, guid: 2559a8eb7d0cb6a4eb22dd33a7cd9894, type: 3}
