@@ -155,7 +155,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6697862178388370592}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4fe25aef64f3bbd45b5528352b0582da, type: 3}
   m_Name: 
@@ -166,9 +166,7 @@ MonoBehaviour:
   DeactiveSprite: {fileID: 0}
   MySpriteRenderer: {fileID: 0}
   _activated: 0
-  LinkedObjects:
-  - {fileID: 0}
-  - {fileID: 0}
+  LinkedObjects: []
 --- !u!58 &6697862178388370599
 CircleCollider2D:
   m_ObjectHideFlags: 0
