@@ -84,8 +84,7 @@ public class DoorBehaviour : MonoBehaviour
     /// Smooth transition between rooms. first player dissappears. other player dissapears,
     /// Door closes. transition rooms.
     /// </summary>
-    /// <param name="FirstPlayer"></param>
-    private IEnumerator EnterDoorAnimation()
+    public IEnumerator EnterDoorAnimation()
     {
         //Make sure this function doesnt happen again, and wait
         canEnter = false;
