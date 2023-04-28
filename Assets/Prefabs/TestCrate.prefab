@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: 7b9ec9d5a93bef341a7c9ed3601cd581, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.5321823, g: 0.74942756, b: 0.9339623, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -99,16 +99,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 192cec690a7ce9843a2797c2f93a154a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LayersOfLight: 0
-  Health: 0
-  Speed: 0
-  TakeKnockback: 0
-  ImmuneToElectricity: 0
   DefaultPosition: {x: 0, y: 0, z: 0}
-  Stunned: 0
-  StunLength: 0
-  MyRB: {fileID: 0}
-  KnockbackForce: 0
+  LayersOfLight: 0
+  DespawnOnStart: 1
+  MyRoom: {fileID: 0}
   SurpriseInside: {fileID: 0}
 --- !u!61 &9139209994334790456
 BoxCollider2D:

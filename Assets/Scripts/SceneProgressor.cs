@@ -14,7 +14,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneProgressor : MonoBehaviour
 {
-    public Scene SceneToLoad;
+    public string SceneToLoadName;
     private Animator animator;
 
     /// <summary>
@@ -39,6 +39,11 @@ public class SceneProgressor : MonoBehaviour
         }
     }
 
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        OnTriggerEnter2D(collision.collider);
+    }
+
     /// <summary>
     /// Silly animation that delays scene load
     /// </summary>
@@ -46,6 +51,6 @@ public class SceneProgressor : MonoBehaviour
     {
         animator.SetBool("Open", false);
         yield return new WaitForSeconds(1);
-        SceneManager.LoadScene(SceneToLoad.name); //converting scene => name to avoid typos. no idea if i can just load a scene from the variable lol
+        SceneManager.LoadScene(SceneToLoadName); //converting scene => name to avoid typos. no idea if i can just load a scene from the variable lol
     }
 }
