@@ -16,7 +16,6 @@ using UnityEngine.Rendering.Universal;
 [RequireComponent(typeof(CompositeCollider2D))]
 public class ShadowCaster2DCreator : MonoBehaviour
 {
-	/*
 	[SerializeField]
 	private bool selfShadows = true;
 
@@ -96,5 +95,4 @@ public class ShadowCaster2DTileMapEditor : Editor
 		}
 		EditorGUILayout.EndHorizontal();
 	}
-	*/
 }

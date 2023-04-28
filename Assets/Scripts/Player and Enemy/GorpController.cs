@@ -86,6 +86,12 @@ public class GorpController : PlayerController
         DecreaseLight.canceled += DecreaseLight_canceled;
     }
 
+    public override void Respawn()
+    {
+        base.Respawn();
+        GameMasterInstance.CurrentRoom.RespawnAllObjects();
+    }
+
     /// <summary>
     /// Sets LightEnabled on LightCtrl = Enabled.
     /// Makes checks that account for LayersOfLight and increments as necessary.

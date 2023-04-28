@@ -24,7 +24,6 @@ public class PlayerController : CharacterBehavior
     private SpriteRenderer spriteRenderer;
     public int PlayerNumber;
 
-    private GameManager gameManager;
     private HealthDisplay healthDisplay;
 
     [Header("Controller stuff:")]
@@ -46,8 +45,9 @@ public class PlayerController : CharacterBehavior
     public AudioClip Scream;
     public AudioSource MyAudioSource;
 
-    [Tooltip("Debug, if player can dash")]
+    [Tooltip("Debug")]
     public bool DashActive = true;
+    public GameManager GameMasterInstance;
 
     /// <summary>
     /// Sets health and binds controls
@@ -59,7 +59,7 @@ public class PlayerController : CharacterBehavior
 
         MyRB = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        gameManager   = GameObject.FindObjectOfType<GameManager>();
+        GameMasterInstance   = GameObject.FindObjectOfType<GameManager>();
         healthDisplay = GameObject.FindObjectOfType<HealthDisplay>();
 
         MyPlayerInput.actions.Enable();
@@ -83,8 +83,8 @@ public class PlayerController : CharacterBehavior
         MyGamepad = MyPlayerInput.GetDevice<Gamepad>();
         if (MyGamepad == null) Rumble = false;
 
-        if(gameManager.CurrentRoom != null)
-            gameManager.CurrentRoom.EnterRoom();
+        if(GameMasterInstance.CurrentRoom != null)
+            GameMasterInstance.CurrentRoom.EnterRoom();
     }
 
     /// <summary>
@@ -291,6 +291,7 @@ public class PlayerController : CharacterBehavior
         if(globbington!=null)
             globbington.Respawn();
 
+        /*
         //Reset enemies:
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         foreach(GameObject enemy in enemies) 
@@ -298,6 +299,7 @@ public class PlayerController : CharacterBehavior
             //Debug.Log(enemy.name);
             enemy.GetComponent<EnemyBehavior>().Respawn();
         }
+        */
     }
 
     public override void OnTriggerEnter2D(Collider2D collision)
@@ -375,7 +377,7 @@ public class PlayerController : CharacterBehavior
     public void SwapInput(InputAction.CallbackContext obj)
     {
 
-        gameManager.SwapPlayers();
+        GameMasterInstance.SwapPlayers();
     }
 
     /// <summary>

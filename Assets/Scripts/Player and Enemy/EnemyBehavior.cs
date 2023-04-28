@@ -68,6 +68,7 @@ public class EnemyBehavior : CharacterBehavior
     /// </summary>
     public override void Respawn()
     {
+        this.gameObject.SetActive(true);
         base.Respawn();
 
         Dead = false;
