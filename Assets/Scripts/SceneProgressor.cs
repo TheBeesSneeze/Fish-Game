@@ -22,6 +22,7 @@ public class SceneProgressor : MonoBehaviour
     /// </summary>
     void Start()
     {
+        //Open = true;
         animator = GetComponent<Animator>();
         animator.SetBool("Open", true);
     }
@@ -29,8 +30,7 @@ public class SceneProgressor : MonoBehaviour
     /// <summary>
     /// Starts coroutine that loads scene animation
     /// </summary>
-    /// <param name="collision"></param>
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void OnTriggerEnter2D(Collider2D collision)
     {
         string tag = collision.tag;
         if(tag.Equals("Player"))

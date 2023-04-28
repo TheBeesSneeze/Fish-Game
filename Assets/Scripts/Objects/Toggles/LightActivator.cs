@@ -38,4 +38,16 @@ public class LightActivator : ActivatorType
             
         }
     }
+
+    public override void ActivationInput()
+    {
+        base.ActivationInput();
+        this.MySpriteRenderer.color = Color.blue;
+    }
+
+    public override void DeactivationInput()
+    {
+        base.DeactivationInput();
+        this.MySpriteRenderer.color = Color.grey;
+    }
 }

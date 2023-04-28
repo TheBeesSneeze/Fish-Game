@@ -20,7 +20,7 @@ public class ActivatorType : ReactiveType
 
     public virtual void Start()
     {
-        //this.SetActivationState(GetActivationState());
+        this.SetActivationState(GetActivationState());
     }
 
     /// <summary>
@@ -66,10 +66,16 @@ public class ActivatorType : ReactiveType
     /// <param name="state"></param>
     private void SetStateOfObjects(bool state) 
     {
-        foreach (ReactiveType item in LinkedObjects)
+        bool stateChanged = state != this.GetActivationState();
+
+        if(stateChanged) 
         {
-            item.SetActivationState(  state );
+            foreach (ReactiveType item in LinkedObjects)
+            {
+                item.ToggleState();
+            }
+            this.SetActivationState(state);
         }
-        this.SetActivationState(state);
+        
     }
 }
