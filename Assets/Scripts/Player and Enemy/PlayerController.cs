@@ -39,12 +39,14 @@ public class PlayerController : CharacterBehavior
     public InputAction Select;
     public InputAction Swap;
     public InputAction Debug;
+    public InputAction Pause;
 
     public  bool ReadMove;
     public float DashForce;
     public AudioClip Scream;
     public AudioSource MyAudioSource;
 
+    [Tooltip("Debug, if player can dash")]
     public bool DashActive = true;
 
     /// <summary>
@@ -66,6 +68,7 @@ public class PlayerController : CharacterBehavior
         Select = MyPlayerInput.actions.FindAction("Select");
         Swap = MyPlayerInput.actions.FindAction("Swap");
         Debug = MyPlayerInput.actions.FindAction("Dev Mode");
+        Pause = MyPlayerInput.actions.FindAction("Pause");
 
         //I believe this is adding the functions to the buttons...
         Move.started += Move_started;
