@@ -296,8 +296,10 @@ public class GorpController : PlayerController
             MyGamepad.SetMotorSpeeds(0f, 0f);
     }
 
-    private void OnDestroy()
+    public override void OnDestroy()
     {
+        
+
         ToggleLightAction.started -= Toggle_started;
         ToggleLightAction.canceled -= Toggle_canceled;
 
@@ -306,6 +308,12 @@ public class GorpController : PlayerController
 
         DecreaseLight.started -= DecreaseLight_started;
         DecreaseLight.canceled -= DecreaseLight_canceled;
+
+        FlashAction.started -= Flash_started;
+        FlashAction.canceled -= Flash_canceled;
+
+        base.OnDestroy();
+
     }
 
     
