@@ -136,8 +136,10 @@ public class GlobbingtonAttackController : PlayerController
         BeStunned(1.5f);
     }
 
-    private void OnDestroy()
+    public override void OnDestroy()
     {
         Strike.started -= Strike_started;
+
+        base.OnDestroy();
     }
 }
