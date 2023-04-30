@@ -162,6 +162,8 @@ public class PlayerController : CharacterBehavior
         {
             bool died = base.TakeDamage(damage);
             healthDisplay.UpdateHealth();
+            if (MyAudioSource != null)
+                MyAudioSource.Play();
 
             if (!died)
                 StartInvincibleFrames();
@@ -322,8 +324,7 @@ public class PlayerController : CharacterBehavior
         if (tag.Equals("Enemy"))
         {
             TakeDamage(1, collision.transform.position);
-            if(MyAudioSource!=null)
-                MyAudioSource.Play();
+            
         }
         if(tag.Equals("Player"))
         {
