@@ -70,6 +70,10 @@ public class ReactiveType : MonoBehaviour
     /// <summary>
     /// a GETTER????
     /// </summary>
+    /// 
+    /* Zach Note
+    * gross...but ig good job
+    */
     public bool GetActivationState()
     {
         return _activated;
@@ -104,7 +108,9 @@ public class ReactiveType : MonoBehaviour
 
         activateCoroutine = null;
     }
-
+    /* Zach Note
+  * Great work here with realizing keeping these in here, even if they have no base functionality, is a SOLID architectual design choice. 
+  */
     /// <summary>
     /// Overwrite me!!!
     /// </summary>

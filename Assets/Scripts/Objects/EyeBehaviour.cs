@@ -58,6 +58,11 @@ public class EyeBehaviour : ObjectType
     /// does not run very frequently
     /// </summary>
     /// <returns></returns>
+    /// 
+    /* Zach Note
+    * Grinned ear to ear seeing this EXCELLENT bit of code. Very good work. Remind me to show you this extension I made for 
+    * Vector2. 
+    */
     private IEnumerator SearchForPlayers()
     {
         LightAnchor.SetActive(true);

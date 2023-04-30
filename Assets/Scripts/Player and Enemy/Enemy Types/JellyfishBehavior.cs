@@ -44,7 +44,10 @@ public class JellyfishBehavior : EnemyBehavior
         Electrifying, // zip zap                                1
         Weakened,     // After electrified (open for attack)    2
     }
-
+    /* Zach Note
+  * OKAY DESIGN NOTE: put some graffiti in there or drop Garth in to explain the above. I had to come here 
+  * to understand it. 
+  */
     public override void Start()
     {
         base.Start();

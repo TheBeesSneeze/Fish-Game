@@ -11,7 +11,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/* Zach Note
+  * Interface is a weird term for this. That's a whole thing so just a vocab thing to look out for. That 
+  * being said, this is cool as heck. 
+  */
 public class ActivatorType : ReactiveType
 {
     [Header("Settings")]

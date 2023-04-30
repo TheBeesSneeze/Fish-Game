@@ -70,6 +70,12 @@ public class PressureSpikeBehaviour : MonoBehaviour
     /// coroutine to turn spike on and off
     /// </summary>
     /// <returns></returns>
+    /// 
+    /* Zach Note
+    * Nothing wrong with it at all, but i think its so weird how you guys use multiple yield statements in your 
+    * coroutines. This one is called TurnONSpike, would it be cleaner to have another one for TurnOFFSpike? Or give it some parameters
+    * called TOGGLESpike? Don't NEED to change it but just something to reflect on. Personally like functions/coroutines to do 1 thing only. 
+    */
     public IEnumerator TurnOnSpike()
     {
         if(Activator == ActivationType.Character)

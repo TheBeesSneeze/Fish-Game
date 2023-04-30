@@ -28,6 +28,13 @@ public class CrateBehaviour : ObjectType
     /// if sword swing hits it BOOM dead
     /// </summary>
     /// <param name="collision"></param>
+    /// 
+    /* Zach Note
+    * okay so I tend to try and avoid the try / catch scenario. General code guidelines say you should only use it 
+    * when you expect the catch to hit sometimes and need to do something in that case. It's a bit more resource intensive and 
+    * just kinda industry standard to use if/else checks instead here. Not a bad thing at all, but i'd avoid in the future. Excellent job 
+    * using something like this though as your building your toolset skills. 
+    */
     public override void OnTriggerEnter2D(Collider2D collision)
     {
         string tag = collision.gameObject.tag;

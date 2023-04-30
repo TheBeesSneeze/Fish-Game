@@ -12,6 +12,11 @@ using UnityEngine;
 
 public class HealthDisplay : MonoBehaviour
 {
+
+    /* Zach Note
+  * I did Unity UI for years in Industry. You guys need to make your canvases Scale with screen size, and pin your 
+  * assets appropriately. If you need help come talk to me. Unity UI is batshit. 
+  */
     private PlayerController gorp;
     private PlayerController glob;
 

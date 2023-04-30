@@ -38,6 +38,9 @@ public class GorpController : PlayerController
     private float secretIncrement;
     private Coroutine incrementCoroutine;
     private Coroutine decrementCoroutine; // i added a lot of unneccessary variables for a simple problem that was already working okay. but i want this game to be good man -Toby
+    /* Zach Note
+  * better to have them and not need them than have to add them last minute and lose track. Good job. 
+  */
     private LightController lightController;
     public LightController FishChargeLight;
 
