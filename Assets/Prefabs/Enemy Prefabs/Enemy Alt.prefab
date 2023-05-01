@@ -197,7 +197,7 @@ MonoBehaviour:
   StunLength: 0
   MyRB: {fileID: 0}
   KnockbackForce: 20
-  EnemyData: {fileID: 11400000, guid: d05126ff53fcb994b91ba4424d03b09d, type: 2}
+  EnemyData: {fileID: 11400000, guid: 39bf57b17d66d394b91f1831a00f9359, type: 2}
   Gorp: {fileID: 0}
   Globbington: {fileID: 0}
   Dead: 0
