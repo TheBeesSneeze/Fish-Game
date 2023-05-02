@@ -106,6 +106,10 @@ MonoBehaviour:
   _activated: 0
   LinkedObjects:
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!61 &1265128928390629744
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -40,7 +40,8 @@ public class GateReactor : ColliderReactor //Exact same behavior, just changes t
     public override void OnDeactivate()
     {
         MySpriteRenderer.sortingOrder = -1;
-        shadowCaster.enabled = false;
+        if (shadowCaster != null)
+            shadowCaster.enabled = false;
         base.OnDeactivate();
     }
 }
