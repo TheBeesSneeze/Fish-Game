@@ -24,9 +24,9 @@ public class SettingsBehavior : MonoBehaviour
     public Button MusicButton;
     public Button SFXButton;
 
-    private TextMeshPro rumbleText;
-    private TextMeshPro musicText;
-    private TextMeshPro sfxText;
+    public TextMeshProUGUI rumbleText;
+    public TextMeshProUGUI musicText;
+    public TextMeshProUGUI sfxText;
 
     public PauseBehaviour PauseScreen;
     private GameManager gameManager;
@@ -34,14 +34,18 @@ public class SettingsBehavior : MonoBehaviour
     /// <summary>
     /// Gets buttons texts
     /// </summary>
-    private void Start()
+    public void Start()
     {
-        rumbleText = RumbleButton.GetComponentInChildren<TextMeshPro>();
-        musicText = MusicButton.GetComponentInChildren<TextMeshPro>();
-        sfxText = SFXButton.GetComponentInChildren<TextMeshPro>();
-
+        
+        rumbleText = RumbleButton.GetComponentInChildren<TextMeshProUGUI>();
+        musicText = MusicButton.GetComponentInChildren<TextMeshProUGUI>();
+        sfxText = SFXButton.GetComponentInChildren<TextMeshProUGUI>();
+        
         gameManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
     }
+
+
+
     /// <summary>
     /// Toggles rumble. Updates Playercontrollers and GameManager.
     /// </summary>
@@ -101,5 +105,12 @@ public class SettingsBehavior : MonoBehaviour
         {
             sfxText.text = "SFX OFF";
         }
+    }
+
+    public void BackButton()
+    {
+        PauseScreen.PauseScreen.SetActive(true);
+        PauseScreen.MenuNavigator.SetSelectedGameObject(PauseScreen.TopButton);
+        gameObject.SetActive(false);
     }
 }
