@@ -128,7 +128,7 @@ public class GorpController : PlayerController
 
         lightController.UpdateLightRadius(ToggleLightTime, false);
 
-        if (Rumble)
+        if (Rumble && MyGamepad!=null)
             MyGamepad.SetMotorSpeeds(0.20f, 0.25f);
     }
 
@@ -137,7 +137,7 @@ public class GorpController : PlayerController
     /// </summary>
     private void Toggle_canceled(InputAction.CallbackContext obj)
     {
-        if (Rumble)
+        if (Rumble && MyGamepad!= null)
             MyGamepad.SetMotorSpeeds(0f, 0f);
     }
 

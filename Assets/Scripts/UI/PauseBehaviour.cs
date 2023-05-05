@@ -9,6 +9,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
@@ -18,7 +19,12 @@ public class PauseBehaviour : MonoBehaviour
     //public InputAction Pause;
     public bool Paused;
     public GameObject PauseScreen;
+    public GameObject SettingsGameObject;
     public SettingsBehavior SettingsScreen;
+    [Tooltip("The first button that is selected")]
+    public GameObject TopButton;
+
+    public EventSystem MenuNavigator;
     private GameManager gameManager;
 
     public PlayerController Gorp;
@@ -29,7 +35,6 @@ public class PauseBehaviour : MonoBehaviour
     /// </summary>
     void Start()
     {
-        
         Paused = false;
 
         StartCoroutine(FindPlayers());
@@ -68,11 +73,11 @@ public class PauseBehaviour : MonoBehaviour
     {
         Paused = !Paused;
 
-        if ( ! Paused )
+        if ( Paused )
         {
             PauseGame();
         }
-        if (Paused )
+        if ( ! Paused )
         {
             ResumeGame();
         }
@@ -84,6 +89,7 @@ public class PauseBehaviour : MonoBehaviour
     private void PauseGame()
     {
         PauseScreen.SetActive(true);
+        MenuNavigator.SetSelectedGameObject(TopButton);
 
         Time.timeScale = 0;
 
@@ -111,7 +117,9 @@ public class PauseBehaviour : MonoBehaviour
     public void SettingsButton()
     {
         PauseScreen.SetActive(false);
-        SettingsScreen.gameObject.SetActive(true);
+        SettingsGameObject.SetActive(true);
+
+        MenuNavigator.SetSelectedGameObject(SettingsScreen.RumbleButton.gameObject);
     }
 
     /// <summary>
