@@ -268,7 +268,7 @@ public class PlayerController : CharacterBehavior
         IgnoreMove = false;
 
         //test
-        if (Rumble)
+        if (Rumble && MyGamepad != null)
         {
             MyGamepad.SetMotorSpeeds(0f, 0f);
         }
@@ -364,7 +364,7 @@ public class PlayerController : CharacterBehavior
             MyRB.AddForce(Move.ReadValue<Vector2>() * DashForce, ForceMode2D.Impulse);
 
             //test
-            if (Rumble)
+            if (Rumble && MyGamepad!= null)
             {
                 MyGamepad.SetMotorSpeeds(0.3f, 0.3f);
             }
