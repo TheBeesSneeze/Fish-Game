@@ -22,6 +22,11 @@ public class GameManager : MonoBehaviour
     public float DoorEnterTime;
     public float DoorTransitionTime;
 
+    [Header("Player Defined Settings")]
+    public bool Rumble = true;
+    public bool Music = true;
+    public bool SFX = true;
+
     [Header("Unity Stuff")]
     private GameObject _camera;
     public RoomBehaviour CurrentRoom;

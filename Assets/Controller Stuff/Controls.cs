@@ -741,6 +741,15 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Go Back"",
+                    ""type"": ""Button"",
+                    ""id"": ""e36f4217-4870-4afe-a760-54a70ca5ca88"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -831,6 +840,28 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""action"": ""Select"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""816879ad-5304-47c0-bdc0-8b3d73aa6295"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Go Back"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""406765e7-bab9-42d9-a433-9ed4a7cf6fad"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Go Back"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -862,6 +893,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         m_MenuControls = asset.FindActionMap("MenuControls", throwIfNotFound: true);
         m_MenuControls_Move = m_MenuControls.FindAction("Move", throwIfNotFound: true);
         m_MenuControls_Select = m_MenuControls.FindAction("Select", throwIfNotFound: true);
+        m_MenuControls_GoBack = m_MenuControls.FindAction("Go Back", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1109,12 +1141,14 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private IMenuControlsActions m_MenuControlsActionsCallbackInterface;
     private readonly InputAction m_MenuControls_Move;
     private readonly InputAction m_MenuControls_Select;
+    private readonly InputAction m_MenuControls_GoBack;
     public struct MenuControlsActions
     {
         private @Controls m_Wrapper;
         public MenuControlsActions(@Controls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_MenuControls_Move;
         public InputAction @Select => m_Wrapper.m_MenuControls_Select;
+        public InputAction @GoBack => m_Wrapper.m_MenuControls_GoBack;
         public InputActionMap Get() { return m_Wrapper.m_MenuControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1130,6 +1164,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Select.started -= m_Wrapper.m_MenuControlsActionsCallbackInterface.OnSelect;
                 @Select.performed -= m_Wrapper.m_MenuControlsActionsCallbackInterface.OnSelect;
                 @Select.canceled -= m_Wrapper.m_MenuControlsActionsCallbackInterface.OnSelect;
+                @GoBack.started -= m_Wrapper.m_MenuControlsActionsCallbackInterface.OnGoBack;
+                @GoBack.performed -= m_Wrapper.m_MenuControlsActionsCallbackInterface.OnGoBack;
+                @GoBack.canceled -= m_Wrapper.m_MenuControlsActionsCallbackInterface.OnGoBack;
             }
             m_Wrapper.m_MenuControlsActionsCallbackInterface = instance;
             if (instance != null)
@@ -1140,6 +1177,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Select.started += instance.OnSelect;
                 @Select.performed += instance.OnSelect;
                 @Select.canceled += instance.OnSelect;
+                @GoBack.started += instance.OnGoBack;
+                @GoBack.performed += instance.OnGoBack;
+                @GoBack.canceled += instance.OnGoBack;
             }
         }
     }
@@ -1171,5 +1211,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     {
         void OnMove(InputAction.CallbackContext context);
         void OnSelect(InputAction.CallbackContext context);
+        void OnGoBack(InputAction.CallbackContext context);
     }
 }
