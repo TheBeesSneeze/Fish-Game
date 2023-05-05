@@ -111,6 +111,6 @@ public class SettingsBehavior : MonoBehaviour
     {
         PauseScreen.PauseScreen.SetActive(true);
         PauseScreen.MenuNavigator.SetSelectedGameObject(PauseScreen.TopButton);
-        gameObject.SetActive(false);
+        PauseScreen.SettingsGameObject.SetActive(false);
     }
 }

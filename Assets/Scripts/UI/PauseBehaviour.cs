@@ -114,6 +114,9 @@ public class PauseBehaviour : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// opens settings menu
+    /// </summary>
     public void SettingsButton()
     {
         PauseScreen.SetActive(false);
