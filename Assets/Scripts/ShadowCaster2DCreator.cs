@@ -5,6 +5,9 @@
 //
 // NO ONE ON GORP TEAM WROTE THIS CODE!
 // This code creates little colliders for light to project from for tilemaps! :D
+//
+// COMMENT OUT THIS ENTIRE SCRIPT BEFORE A BUILD. IT WILL CAUSE A MILLION JILLION 
+// ERRORS FOR NO FUCKING REASON.
 *****************************************************************************/
 
 using System.Linq;
@@ -16,7 +19,7 @@ using UnityEngine.Rendering.Universal;
 [RequireComponent(typeof(CompositeCollider2D))]
 public class ShadowCaster2DCreator : MonoBehaviour
 {
-	/*
+	
 	[SerializeField]
 	private bool selfShadows = true;
 
@@ -96,5 +99,5 @@ public class ShadowCaster2DTileMapEditor : Editor
 		}
 		EditorGUILayout.EndHorizontal();
 	}
-	*/
+	
 }
