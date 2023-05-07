@@ -1130,6 +1130,7 @@ MonoBehaviour:
     m_Flags: 0
   FishChargeLight: {fileID: 4851970326703520874}
   WetSlap: {fileID: 8300000, guid: 9121826cc516ce847a8e1a59aec34bc2, type: 3}
+  LightClick: {fileID: 0}
   GorpSource: {fileID: 7848330971370274510}
 --- !u!114 &5052205749001080560
 MonoBehaviour:
@@ -1217,7 +1218,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
