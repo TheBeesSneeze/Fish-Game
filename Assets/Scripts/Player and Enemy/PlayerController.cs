@@ -28,7 +28,6 @@ public class PlayerController : CharacterBehavior
 
     [Header("Controller stuff:")]
 
-    public bool Rumble;
     public bool IgnoreMove;
     public Gamepad MyGamepad;
 
@@ -81,7 +80,6 @@ public class PlayerController : CharacterBehavior
         Debug.started += DevMode;
 
         MyGamepad = MyPlayerInput.GetDevice<Gamepad>();
-        if (MyGamepad == null) Rumble = false;
 
         if(GameMasterInstance.CurrentRoom != null)
             GameMasterInstance.CurrentRoom.EnterRoom();
@@ -268,7 +266,7 @@ public class PlayerController : CharacterBehavior
         IgnoreMove = false;
 
         //test
-        if (Rumble && MyGamepad != null)
+        if (GameMasterInstance.Rumble && MyGamepad != null)
         {
             MyGamepad.SetMotorSpeeds(0f, 0f);
         }
@@ -364,7 +362,7 @@ public class PlayerController : CharacterBehavior
             MyRB.AddForce(Move.ReadValue<Vector2>() * DashForce, ForceMode2D.Impulse);
 
             //test
-            if (Rumble && MyGamepad!= null)
+            if (GameMasterInstance.Rumble && MyGamepad!= null)
             {
                 MyGamepad.SetMotorSpeeds(0.3f, 0.3f);
             }

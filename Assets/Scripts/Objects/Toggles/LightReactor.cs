@@ -29,9 +29,11 @@ public class LightReactor : ReactiveType
     public override void OnActivate()
     {
         lightAnimator.SetBool("Enabled", true);
-        LightTrigger.enabled = true;
         Light.gameObject.SetActive(true);
         Light.enabled = true;
+
+        if (LightTrigger != null)
+            LightTrigger.enabled = true;
     }
 
     /// <summary>
@@ -40,8 +42,10 @@ public class LightReactor : ReactiveType
     public override void OnDeactivate()
     {
         lightAnimator.SetBool("Enabled", false);
-        LightTrigger.enabled = false;
         Light.gameObject.SetActive(false);
         Light.enabled = false;
+
+        if (LightTrigger != null)
+            LightTrigger.enabled = false;
     }
 }

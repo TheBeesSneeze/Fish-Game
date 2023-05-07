@@ -35,7 +35,6 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         _camera = GameObject.FindGameObjectWithTag("MainCamera");
-
     }
 
     /// <summary>

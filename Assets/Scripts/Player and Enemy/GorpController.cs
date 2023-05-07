@@ -114,7 +114,7 @@ public class GorpController : PlayerController
     private IEnumerator SetRumble(float min, float max, float seconds)
     {
         yield return new WaitForSeconds(seconds);
-        if (Rumble)
+        if (GameMasterInstance.Rumble && MyGamepad != null)
             MyGamepad.SetMotorSpeeds(min, max);
     }
 
@@ -128,7 +128,7 @@ public class GorpController : PlayerController
 
         lightController.UpdateLightRadius(ToggleLightTime, false);
 
-        if (Rumble && MyGamepad!=null)
+        if (GameMasterInstance.Rumble && MyGamepad!=null)
             MyGamepad.SetMotorSpeeds(0.20f, 0.25f);
     }
 
@@ -137,7 +137,7 @@ public class GorpController : PlayerController
     /// </summary>
     private void Toggle_canceled(InputAction.CallbackContext obj)
     {
-        if (Rumble && MyGamepad!= null)
+        if (GameMasterInstance.Rumble && MyGamepad!= null)
             MyGamepad.SetMotorSpeeds(0f, 0f);
     }
 
@@ -209,7 +209,7 @@ public class GorpController : PlayerController
         FlashTrigger.SetActive(true);
         FlashTrigger.GetComponent<Collider2D>().enabled = true;
 
-        if (Rumble)
+        if (GameMasterInstance.Rumble && MyGamepad != null)
         {
             //InputDevice a = MyPlayerInput.devices[0];
             MyGamepad.SetMotorSpeeds(0.20f, 0.30f);
@@ -262,7 +262,7 @@ public class GorpController : PlayerController
             StopCoroutine(incrementCoroutine);
         incrementCoroutine = StartCoroutine(AdjustLight());
 
-        if (Rumble)
+        if (GameMasterInstance.Rumble)
             MyGamepad.SetMotorSpeeds(0.1f, 0.15f);
     }
 
@@ -276,7 +276,7 @@ public class GorpController : PlayerController
 
         decrementCoroutine = StartCoroutine(AdjustLight());
 
-        if (Rumble)
+        if (GameMasterInstance.Rumble)
             MyGamepad.SetMotorSpeeds(0.1f, 0.15f);
     }
 
@@ -287,7 +287,7 @@ public class GorpController : PlayerController
 
         currentlyIncrementing = false;
 
-        if (Rumble)
+        if (GameMasterInstance.Rumble)
             MyGamepad.SetMotorSpeeds(0f, 0f);
     }
 
@@ -298,7 +298,7 @@ public class GorpController : PlayerController
 
         currentlyIncrementing = false;
 
-        if (Rumble)
+        if (GameMasterInstance.Rumble)
             MyGamepad.SetMotorSpeeds(0f, 0f);
     }
 

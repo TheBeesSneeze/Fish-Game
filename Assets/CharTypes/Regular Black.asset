@@ -15,9 +15,9 @@ MonoBehaviour:
   Health: 5
   Speed: 12
   TakeKnockback: 1
+  KnockBackForce: 20
   ImmuneToElectricity: 0
   StunDuration: 6
-  KnockBackForce: 10
   DashForce: 0
   RequiredToKill: 1
   ProtectedUntilFlash: 1

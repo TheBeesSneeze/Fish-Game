@@ -55,22 +55,6 @@ public class SettingsBehavior : MonoBehaviour
         Rumble = ! gameManager.Rumble;
         gameManager.Rumble = !gameManager.Rumble;
 
-        if (PauseScreen.Gorp != null)
-        {
-            if(PauseScreen.Gorp.MyGamepad == null)
-                PauseScreen.Gorp.Rumble = false;
-            else
-                PauseScreen.Gorp.Rumble = Rumble;
-        }
-
-        if (PauseScreen.Glob != null)
-        {
-            if (PauseScreen.Glob.MyGamepad == null)
-                PauseScreen.Glob.Rumble = false;
-            else
-                PauseScreen.Glob.Rumble = Rumble;
-        }
-
         if (Rumble)
             rumbleText.text = "Rumble ON";
         else
