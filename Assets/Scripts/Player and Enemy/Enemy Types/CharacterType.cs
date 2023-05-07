@@ -23,12 +23,12 @@ public class CharacterType : ScriptableObject
     public float Speed;
     [Tooltip("If damage knocks character back")]
     public bool TakeKnockback;
+    [Tooltip("How much to multiply knockback by. (Knockback applied to this character)")]
+    public float KnockBackForce;
     [Tooltip("If the character takes damage from electricity")]
     public bool ImmuneToElectricity; //TODO*
     [Tooltip("How long character will be stunned for")]
     public float StunDuration;
-    [Tooltip("How much to multiply knockback by")]
-    public float KnockBackForce;
     [Tooltip("PLAYER EXCLUSIVE How much to multiply dash by")]
     public float DashForce; 
 }

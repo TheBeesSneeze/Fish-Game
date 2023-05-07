@@ -56,7 +56,7 @@ public class GlobbingtonAttackController : PlayerController
 
             StartCoroutine(SwingSword());
 
-            if (Rumble)
+            if (GameMasterInstance.Rumble)
             {
                 //InputDevice a = MyPlayerInput.devices[0];
                 MyGamepad.SetMotorSpeeds(0.15f, 0.25f);
@@ -93,7 +93,7 @@ public class GlobbingtonAttackController : PlayerController
     /// </summary>
     private void StopAttack()
     {
-        if (Rumble)
+        if (GameMasterInstance.Rumble)
             MyGamepad.SetMotorSpeeds(0, 0);
 
         Sword.enabled = false;

@@ -54,7 +54,6 @@ public class PauseBehaviour : MonoBehaviour
         }
 
         Gorp.Pause.started += PauseFunction;
-        Gorp.Rumble = SettingsScreen.Rumble;
 
         while(Glob == null)
         {
@@ -63,7 +62,6 @@ public class PauseBehaviour : MonoBehaviour
         }
 
         Glob.Pause.started += PauseFunction;
-        Gorp.Rumble = SettingsScreen.Rumble;
     }
 
     /// <summary>
@@ -114,6 +112,9 @@ public class PauseBehaviour : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// opens settings menu
+    /// </summary>
     public void SettingsButton()
     {
         PauseScreen.SetActive(false);
