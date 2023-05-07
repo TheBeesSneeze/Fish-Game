@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 /*******************************************************************************
 // File Name :         CrateBehaviour.cs
-// Author(s) :         Sky Beal, Toby Schamberger
+// Author(s) :         Sky Beal, Toby Schamberger, Jay Embry
 // Creation Date :     4/5/2023
 //
 // Brief Description : Code for crate break !! Crates extend CharacterBehavior because they need to respawn
@@ -19,6 +19,8 @@ public class CrateBehaviour : ObjectType
     [Tooltip("PREFAB to instantiate when crate is destroyed")]
     public GameObject SurpriseInside;
     private GameObject surpriseOutside;
+    public AudioClip BreakCrate;
+    public AudioSource CrateSource;
 
     public override void Start()
     {
@@ -38,6 +40,13 @@ public class CrateBehaviour : ObjectType
                 surpriseOutside = Instantiate(SurpriseInside, DefaultPosition, Quaternion.identity);
 
                 Debug.Log(surpriseOutside.name);
+            }
+
+            if (CrateSource != null)
+            {
+
+                CrateSource.Play();
+
             }
 
             try { surpriseOutside.GetComponent<CharacterBehavior>().Health++; } catch { }

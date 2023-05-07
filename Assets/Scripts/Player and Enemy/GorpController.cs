@@ -44,6 +44,10 @@ public class GorpController : PlayerController
     private bool HoldingFlash;
     private Coroutine FlashCoroutine;
 
+    public AudioClip WetSlap;
+    public AudioClip LightClick;
+    public AudioSource GorpSource;
+
     // Start is called before the first frame update
     public override void Start()
     {
@@ -124,6 +128,14 @@ public class GorpController : PlayerController
     /// </summary>
     private void Toggle_started(InputAction.CallbackContext obj)
     {
+        if(GorpSource != null)
+        {
+
+            GetComponent<AudioSource>().clip = LightClick;
+            GorpSource.Play();
+
+        }
+
         UpdateLightEnabled(lightController, !lightController.LightEnabled);
 
         lightController.UpdateLightRadius(ToggleLightTime, false);
@@ -300,6 +312,19 @@ public class GorpController : PlayerController
 
         if (GameMasterInstance.Rumble)
             MyGamepad.SetMotorSpeeds(0f, 0f);
+    }
+
+    public void GorpSlap()
+    {
+
+        if (GorpSource != null)
+        {
+
+            GetComponent<AudioSource>().clip = WetSlap;
+            GorpSource.Play();
+
+        }
+
     }
 
     public override void OnDestroy()

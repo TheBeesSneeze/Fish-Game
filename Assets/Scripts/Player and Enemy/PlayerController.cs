@@ -48,6 +48,8 @@ public class PlayerController : CharacterBehavior
     public bool DashActive = true;
     public GameManager GameMasterInstance;
 
+    public GorpController GorpControllerInstance;
+
     /// <summary>
     /// Sets health and binds controls
     /// </summary>
@@ -68,6 +70,8 @@ public class PlayerController : CharacterBehavior
         Swap = MyPlayerInput.actions.FindAction("Swap");
         Debug = MyPlayerInput.actions.FindAction("Dev Mode");
         Pause = MyPlayerInput.actions.FindAction("Pause");
+
+        GorpControllerInstance = GameObject.FindObjectOfType<GorpController>();
 
         //I believe this is adding the functions to the buttons...
         Move.started += Move_started;
@@ -327,6 +331,8 @@ public class PlayerController : CharacterBehavior
         if(tag.Equals("Player"))
         {
             KnockBack(this.gameObject, collision.transform.position,2);
+            
+            GorpControllerInstance.GorpSlap();
         }
         if(tag.Equals("Eye"))
         {

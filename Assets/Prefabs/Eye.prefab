@@ -104,21 +104,18 @@ MonoBehaviour:
   LayersOfLight: 0
   DespawnOnStart: 1
   MyRoom: {fileID: 0}
-  SeeEnemies: 0
   LM:
     serializedVersion: 2
     m_Bits: 75712
   RayCastDistance: 20
   AngleRecalculationDelay: 0.05
-  PlayerSearchDelay: 0.25
+  PlayerSearchDelay: 0.15
   RotateSpeed: 5
-  BlindLength: 10
+  BlindLength: 6
   Light: {fileID: 1395837169967976581}
   LightAnchor: {fileID: 1395837171067715834}
   EyeActivator: {fileID: 0}
-  visibleTargets:
-  - {fileID: 0}
-  - {fileID: 0}
+  CurrentTarget: {fileID: 0}
   Blinded: 0
 --- !u!114 &8125384394801042991
 MonoBehaviour:
