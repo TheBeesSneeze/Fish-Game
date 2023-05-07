@@ -64,7 +64,7 @@ public class PlayerManager : MonoBehaviour
         while(players.Length<2)
         {
             players = GameObject.FindGameObjectsWithTag("Player");
-            yield return new WaitForSeconds(0.2f);
+            yield return null;
         }
 
         //AssignController();
