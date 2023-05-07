@@ -37,6 +37,13 @@ public class ButtonActivator : ActivatorType
         {
             
             ActivationInput();
+
+            if (ButtonAudio != null)
+            {
+
+                ButtonAudio.Play();
+
+            }
         }
     }
 }
