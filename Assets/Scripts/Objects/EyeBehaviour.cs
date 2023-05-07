@@ -17,7 +17,6 @@ public class EyeBehaviour : ObjectType
     [Header("Settings")]
 
     [Tooltip("i dont remeber if this works")]
-    public bool SeeEnemies;
     public LayerMask LM;
     public float RayCastDistance;
     public float AngleRecalculationDelay = 0.2f;
@@ -33,8 +32,9 @@ public class EyeBehaviour : ObjectType
 
     [Header("Debug")]
     private Coroutine gazing;
+    public GameObject CurrentTarget;
     private GameObject[] players;
-    public GameObject[] visibleTargets = new GameObject[2];
+    private GameObject[] visibleTargets = new GameObject[2];
     public bool Blinded;
     private Coroutine blindCoroutine;
     private bool active;
@@ -45,6 +45,8 @@ public class EyeBehaviour : ObjectType
         base.Start();
         DisableLight();
 
+        players = new GameObject[0];
+
         if (this.gameObject.activeSelf)
             StartCoroutine(SearchForPlayers());
 
@@ -52,27 +54,38 @@ public class EyeBehaviour : ObjectType
     }
 
     /// <summary>
-    /// Iterates through both players and looks for them. What a stalker!
+    /// First looks checks if CurrentTarget can still be seen. if not,
+    /// it looks for a new target.
     /// </summary>
-    /// <returns></returns>
     private IEnumerator SearchForPlayers()
     {
         LightAnchor.SetActive(true);
 
         //dont start *Really* looking until both players are present
-        while (players.Length <2) 
+        while (players.Length < 2) 
         {
             players = GameObject.FindGameObjectsWithTag("Player");
             yield return new WaitForSeconds(1);
         }
 
-        while(!Blinded && active) 
+        while(active) 
         {
-            //Raycast visibility
-            for (int i = players.Length-1; i>=0; i--)
-            { // starts at end of list to prioritize globbington
+            if(!Blinded)
+            {
+                //check that CurrentTarget is still there
+                if(CurrentTarget != null)
+                {
+                    GameObject temp = LookForPlayer(CurrentTarget); //this can be null 
+                    if(temp == null)
+                        CurrentTarget.GetComponent<PlayerController>().LayersOfLight--;
 
-                LookForPlayer(players[i], i);
+                    CurrentTarget = temp;
+                }
+                
+                if (CurrentTarget == null)
+                {
+                    FindNewTarget();
+                }
             }
 
             yield return new WaitForSeconds(PlayerSearchDelay);
@@ -80,15 +93,63 @@ public class EyeBehaviour : ObjectType
     }
 
     /// <summary>
-    /// Sends raycast to all players present.
-    /// If any are found, starts gazing coroutine.
-    /// This function is only checking if players are visible, so it
-    /// does not run very frequently
+    /// looks for both players and chooses whichever one it sees first.
+    /// only call this function if CurrentTarget is null
+    /// </summary>
+    private void FindNewTarget()
+    {
+        GameObject player1 = LookForPlayer(players[0]);
+        GameObject player2 = LookForPlayer(players[1]);
+
+        //whoops i gues no one was found
+        if (player1 == null && player2 == null)
+        {
+            // I LOVE NULL CHECKS!!!!!!!
+
+            if(CurrentTarget != null)
+            {
+                CurrentTarget.GetComponent<PlayerController>().LayersOfLight--;
+                CurrentTarget = null;
+            }
+                
+            if (EyeActivator != null)
+                EyeActivator.DeactivationInput();
+        }
+
+        // if at least one player is visible
+        // if its already looking, dont worry about it
+        if (player1 != null || player2 != null)
+        {
+            //okay so it is possible for both players to be in view at the same time. in that case,
+            // the eye prioritizes (i think) gorp.
+            if (player1 != null)
+            {
+                CurrentTarget = player1;
+            }
+
+            else if (player2 != null)
+            {
+                CurrentTarget = player2;
+            }
+
+            gazing = StartCoroutine(CalculateGaze());
+            CurrentTarget.GetComponent<PlayerController>().LayersOfLight++;
+
+            if (EyeActivator != null)
+                EyeActivator.ActivationInput();
+        }
+    }
+
+    /// <summary>
+    /// Shoots a raycast to player. returns the player gameobject
+    /// if it can be seen
     /// </summary>
     /// <param name="player"></param>
-    /// <param name="i"></param>
-    private void LookForPlayer(GameObject player, int i)
+    private GameObject LookForPlayer(GameObject player)
     {
+        if(player == null)
+            return null;
+
         Vector3 sourcePosition = player.transform.position;
         Vector3 origin = LightAnchor.transform.position;
         Vector3 direction = sourcePosition - origin;
@@ -102,47 +163,10 @@ public class EyeBehaviour : ObjectType
 
             if (tag.Equals("Player"))
             {
-                //this cant be an && statement because i am not feeling computer science-y today
-                if (gazing == null)
-                {
-                    visibleTargets[i] = player;
-                    hit.collider.GetComponent<PlayerController>().LayersOfLight++;
-
-                    gazing = StartCoroutine(CalculateGaze(player));
-
-                    if (EyeActivator != null)
-                        EyeActivator.ActivationInput();
-                }
-
+                return hit.collider.gameObject;
             }
-
-            //if it missed and the coroutine needs to stop now
-            else if (visibleTargets[i] != null)
-            {
-                DisableLight();
-
-                visibleTargets[i].GetComponent<PlayerController>().LayersOfLight--;
-                visibleTargets[i] = null;
-
-                //other player index
-                int j;
-                if (i == 0) j = 1;
-                else j = 0;
-
-                //Redirecting gaze...
-                if (visibleTargets[j] != null)
-                    StartCoroutine(CalculateGaze(visibleTargets[j]));
-
-                else
-                {
-                    if (EyeActivator != null)
-                        EyeActivator.DeactivationInput();
-                }
-            }
-            else
-                DisableLight();
-
         }
+        return null;
     }
 
     /// <summary>
@@ -150,36 +174,33 @@ public class EyeBehaviour : ObjectType
     /// </summary>
     private void DisableLight()
     {
-        if (gazing!= null)
+        if (gazing != null)
         {
             StopCoroutine(gazing);
             gazing = null;
-
-            if (EyeActivator != null)
-                EyeActivator.ActivationInput();
         }
-        
-        LightAnchor.SetActive(false);
+        if (EyeActivator != null)
+            EyeActivator.DeactivationInput();
 
-        
+        LightAnchor.SetActive(false);
     }
 
     /// <summary>
     /// Constantly rotates the mir- eye to face away from the player. Like a real light bouncing off.
     /// Does a lot of cool math that I copied and pasted from online.
     /// </summary>
-    private IEnumerator CalculateGaze(GameObject target)
+    private IEnumerator CalculateGaze()
     {
         LightAnchor.SetActive(true);
         Vector3 sourcePosition = Vector3.zero;
 
-        while (true)
+        while (CurrentTarget != null)
         {
             //only recalculates gaze if it needs too!
             //this is efficient and it 
-            if(sourcePosition != target.transform.position)
+            if (sourcePosition != CurrentTarget.transform.position)
             {
-                sourcePosition = target.transform.position;
+                sourcePosition = CurrentTarget.transform.position;
 
                 //vector between two points
                 Vector2 Direction = transform.position - sourcePosition;
@@ -188,33 +209,43 @@ public class EyeBehaviour : ObjectType
                 Vector3 TargetRotation = new Vector3(0, 0, angle);
                 LightAnchor.transform.rotation = Quaternion.RotateTowards(LightAnchor.transform.rotation, Quaternion.Euler(TargetRotation), RotateSpeed);
             }
-            
 
             yield return new WaitForSeconds(AngleRecalculationDelay);
         }
+
+        //Cant see anymore, pack it up boys
+        DisableLight();
     }
 
     /// <summary>
-    /// stops the light.
+    /// ooooo im blinded by the light.
+    /// deactivates activator if applicable.
     /// </summary>
     public void BecomeBlind()
     {
         Blinded = true;
         DisableLight();
+
+        CurrentTarget = null;
+
+        if (EyeActivator != null)
+            EyeActivator.DeactivationInput();
     }
 
     /// <summary>
-    /// Runs after being blind. Waits for a delay
+    /// Runs after being blind. Waits for a delay. 
+    /// 
     /// </summary>
     /// <returns></returns>
-    private IEnumerator BecomeUnblind()
+    private IEnumerator BecomeUnblind(float Seconds)
     {
-        yield return new WaitForSeconds(BlindLength);
-        blindCoroutine = null;
+        yield return new WaitForSeconds(Seconds);
 
         Blinded = false;
 
-        StartCoroutine(SearchForPlayers());
+        //StartCoroutine(SearchForPlayers());
+
+        blindCoroutine = null;
     }
 
     /// <summary>
@@ -234,9 +265,12 @@ public class EyeBehaviour : ObjectType
     public override void Despawn()
     {
         base.Despawn();
-        StopAllCoroutines();
         active = false;
     }
+
+    /// <summary>
+    /// gets blinded by flashes
+    /// </summary>
     public override void OnTriggerEnter2D(Collider2D collision)
     {
         string tag = collision.tag;
@@ -250,9 +284,20 @@ public class EyeBehaviour : ObjectType
             }
 
             BecomeBlind();
-            blindCoroutine = StartCoroutine(BecomeUnblind());
+            blindCoroutine = StartCoroutine(BecomeUnblind(BlindLength));
         }
-        
+
+        if (tag.Equals("Attack"))
+        {
+            if (blindCoroutine != null)
+            {
+                StopCoroutine(blindCoroutine);
+                blindCoroutine = null;
+            }
+
+            BecomeBlind();
+            blindCoroutine = StartCoroutine(BecomeUnblind(0.25f));
+        }
     }
 
 }
