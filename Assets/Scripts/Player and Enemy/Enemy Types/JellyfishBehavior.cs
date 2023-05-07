@@ -45,6 +45,9 @@ public class JellyfishBehavior : EnemyBehavior
         Weakened,     // After electrified (open for attack)    2
     }
 
+    /// <summary>
+    /// get variables at start
+    /// </summary>
     public override void Start()
     {
         base.Start();
@@ -58,6 +61,9 @@ public class JellyfishBehavior : EnemyBehavior
         activator = GetComponent<ActivatorType>();
     }
 
+    /// <summary>
+    /// sets jellyfish to passive
+    /// </summary>
     private void OnEnable()
     {
         SetState(JellyfishState.Passive);
@@ -104,12 +110,21 @@ public class JellyfishBehavior : EnemyBehavior
         }
     }
 
+    /// <summary>
+    /// sets jellyfish state
+    /// </summary>
+    /// <param name="state"></param>
+    /// <returns></returns>
     public IEnumerator SetState(JellyfishState state)
     {
         StartCoroutine(SetState(state, 0));
         yield return null;
     }
 
+    /// <summary>
+    /// adjusts light
+    /// </summary>
+    /// <returns></returns>
     public IEnumerator AdjustLight()
     {
         while(true)
@@ -189,6 +204,9 @@ public class JellyfishBehavior : EnemyBehavior
         StartCoroutine(SetState(JellyfishState.Passive));
     }
 
+    /// <summary>
+    /// sets jellyfish as passive on respawn
+    /// </summary>
     public  override void Respawn()
     {
         base.Respawn();

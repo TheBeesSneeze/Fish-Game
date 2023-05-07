@@ -58,16 +58,26 @@ public class ObjectType : MonoBehaviour
         return min;
     }
 
+    /// <summary>
+    /// respawns the object
+    /// </summary>
     public virtual void Respawn()
     {
         this.gameObject.SetActive(true);
         this.transform.position = DefaultPosition;
     }
+    /// <summary>
+    /// despawns the object
+    /// </summary>
     public virtual void Despawn()
     {
         this.gameObject.SetActive(false);
     }
 
+    /// <summary>
+    /// if it's in light
+    /// </summary>
+    /// <param name="collision"></param>
     public virtual void OnTriggerEnter2D(Collider2D collision)
     {
         string tag = collision.gameObject.tag;
@@ -77,6 +87,11 @@ public class ObjectType : MonoBehaviour
             LayersOfLight++;
         }
     }
+
+    /// <summary>
+    /// less light
+    /// </summary>
+    /// <param name="collision"></param>
     public virtual void OnTriggerExit2D(Collider2D collision)
     {
         string tag = collision.gameObject.tag;

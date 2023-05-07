@@ -13,32 +13,35 @@ using UnityEngine.SceneManagement;
 
 public class MenuBehaviour : MonoBehaviour
 {
-
+    /// <summary>
+    /// target frame rate !
+    /// </summary>
     public void Start()
     {
-
         Application.targetFrameRate = 60;
-
     }
+
+    /// <summary>
+    /// load first scene
+    /// </summary>
     public void StartGame()
     {
-
         SceneManager.LoadScene(1);
-
     }
 
+    /// <summary>
+    /// resets game
+    /// </summary>
     public void ResetGame()
     {
-
         SceneManager.LoadScene(0);
-
     }
 
+    /// <summary>
+    /// quits game
+    /// </summary>
     public void QuitGame()
     {
-
         Application.Quit();
-
     }
-
 }

@@ -21,6 +21,9 @@ public class HealthDisplay : MonoBehaviour
     public TMP_Text GorpDisplay;
     public TMP_Text GlobDisplay;
 
+    /// <summary>
+    /// searches for gorp and glob at start
+    /// </summary>
     void Start()
     {
         StartCoroutine(SearchForGorp());

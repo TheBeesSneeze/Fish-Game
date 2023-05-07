@@ -14,6 +14,8 @@ using UnityEngine.UI;
 
 public class SettingsBehavior : MonoBehaviour
 {
+    public AudioSource BackgroundMusic;
+
     [Header("Debug")]
     public bool Rumble = true;
     public bool Music = true;
@@ -70,12 +72,18 @@ public class SettingsBehavior : MonoBehaviour
         Music = !gameManager.Music;
         gameManager.Music = !gameManager.Music;
 
+        if(BackgroundMusic!= null)
+            BackgroundMusic.enabled = gameManager.Music;
+
         if (Music)
             musicText.text = "Music ON";
         else
             musicText.text = "Music OFF";
     }
 
+    /// <summary>
+    /// toggles sfx
+    /// </summary>
     public void ToggleSFX()
     {
         SFX = !gameManager.SFX;
@@ -91,6 +99,9 @@ public class SettingsBehavior : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// closes settings and opens pause menu
+    /// </summary>
     public void BackButton()
     {
         PauseScreen.PauseScreen.SetActive(true);

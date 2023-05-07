@@ -75,6 +75,9 @@ public class ReactiveType : MonoBehaviour
         return _activated;
     }
 
+    /// <summary>
+    /// activation state
+    /// </summary>
     public void ToggleState()
     {
         SetActivationState(!_activated);

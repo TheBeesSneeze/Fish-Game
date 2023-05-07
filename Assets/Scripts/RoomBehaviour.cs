@@ -134,7 +134,9 @@ public class RoomBehaviour : MonoBehaviour
 
         cameraControl.UpdateCamera(CameraPosition.position, CamUp, CamDown, CamLeft, CamRight);
     }
-
+    /// <summary>
+    /// respawns all objects lol
+    /// </summary>
     public void RespawnAllObjects()
     {
         foreach (ObjectType o in RoomObjects)
@@ -143,7 +145,7 @@ public class RoomBehaviour : MonoBehaviour
 
             //if( ( !PreviouslyCleared && o.tag.Equals("Enemy") ) || !tag.Equals("Enemy"))
             if( !(PreviouslyCleared && o.tag.Equals("Enemy")) )
-                //I actually sat down with a pencil and paper to realize you could do this. this code is not as legible. but it removes one check. huge for gorp fans actually. i am going insane. the chokehold that computer scientists have on me is just dumbfounding. i fucking took a penicl and paper to optimize one fucking if check. are you kidding me. i reinvented boolean algrbra and for what. gorp game? jesus fuck.
+                //I actually sat down with a pencil and paper to realize you could do this. this code is not as legible. but it removes one check. huge for gorp fans actually. i am going insane. the chokehold that computer scientists have on me is just dumbfounding. i fucking took a pencil and paper to optimize one fucking if check. are you kidding me. i reinvented boolean algebra and for what. gorp game? jesus fuck.
             {
                 o.gameObject.SetActive(true);
                 o.Respawn();
@@ -151,6 +153,9 @@ public class RoomBehaviour : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// despawns all objects lol
+    /// </summary>
     public void DespawnObjects()
     {
         foreach (ObjectType o in RoomObjects)
@@ -176,7 +181,9 @@ public class RoomBehaviour : MonoBehaviour
                 door.CloseDoor();
         }
     }
-
+    /// <summary>
+    /// sets all doors open / closed
+    /// </summary>
     public void SetAllDoors()
     {
         SetAllDoors(RoomCleared());

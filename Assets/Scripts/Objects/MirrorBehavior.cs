@@ -7,6 +7,8 @@
 // searches for things affected by light (mirrors and enemies)
 *****************************************************************************/
 
+//so this is never uses in game but toby wanted mirrors
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

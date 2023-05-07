@@ -61,6 +61,9 @@ public class CameraController : MonoBehaviour
         StartCoroutine(AdjustCameraPosition());
     }
 
+    /// <summary>
+    /// updates the camera position
+    /// </summary>
     public void UpdateCamera()
     {
         StartCoroutine(AdjustCameraPosition());

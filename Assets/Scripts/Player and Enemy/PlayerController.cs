@@ -229,6 +229,9 @@ public class PlayerController : CharacterBehavior
         ResetScene();
     }
 
+    /// <summary>
+    /// on respawn do this
+    /// </summary>
     public override void Respawn()
     {
         invincible = false;
@@ -237,6 +240,11 @@ public class PlayerController : CharacterBehavior
         base.Respawn();
     }
 
+    /// <summary>
+    /// knockback !!
+    /// </summary>
+    /// <param name="target"></param>
+    /// <param name="damageSourcePosition"></param>
     public override void KnockBack(GameObject target, Vector3 damageSourcePosition)
     {
         base.KnockBack(target, damageSourcePosition);
@@ -245,6 +253,12 @@ public class PlayerController : CharacterBehavior
         StartCoroutine(NoMovementRoutine(0.1f));
     }
 
+    /// <summary>
+    /// knockback but for not players
+    /// </summary>
+    /// <param name="target"></param>
+    /// <param name="damageSourcePosition"></param>
+    /// <param name="Force"></param>
     public override void KnockBack(GameObject target, Vector3 damageSourcePosition, float Force)
     {
         base.KnockBack(target, damageSourcePosition, Force);
@@ -253,16 +267,29 @@ public class PlayerController : CharacterBehavior
         StartCoroutine(NoMovementRoutine(0.1f));
     }
 
+    /// <summary>
+    /// be stunned loser
+    /// </summary>
     public override void BeStunned()
     {
         base.BeStunned();
         MyPlayerInput.actions.Disable();
     }
+
+    /// <summary>
+    /// ok fine be un stunned
+    /// </summary>
     public override void BeUnStunned()
     {
         base.BeUnStunned();
         MyPlayerInput.actions.Enable();
     }
+
+    /// <summary>
+    /// no movement for dash reasons
+    /// </summary>
+    /// <param name="Seconds"></param>
+    /// <returns></returns>
     public IEnumerator NoMovementRoutine(float Seconds)
     {
 
@@ -306,6 +333,10 @@ public class PlayerController : CharacterBehavior
         */
     }
 
+    /// <summary>
+    /// player reactions to light and electricity ohooho
+    /// </summary>
+    /// <param name="collision"></param>
     public override void OnTriggerEnter2D(Collider2D collision)
     {
         string tag = collision.gameObject.tag;
@@ -320,6 +351,10 @@ public class PlayerController : CharacterBehavior
         }
     }
 
+    /// <summary>
+    /// collisions and such
+    /// </summary>
+    /// <param name="collision"></param>
     public void OnCollisionEnter2D(Collision2D collision)
     {
         string tag = collision.gameObject.tag;
@@ -340,12 +375,20 @@ public class PlayerController : CharacterBehavior
         }
     }
 
+    /// <summary>
+    /// movin
+    /// </summary>
+    /// <param name="obj"></param>
     private void Move_started(InputAction.CallbackContext obj)
     {
         ReadMove = true;
         StartCoroutine(MovePlayer());
     }
-
+    
+    /// <summary>
+    /// no movin
+    /// </summary>
+    /// <param name="obj"></param>
     private void Move_canceled(InputAction.CallbackContext obj)
     {
         ReadMove = false;
@@ -379,6 +422,10 @@ public class PlayerController : CharacterBehavior
        
     }
 
+    /// <summary>
+    /// die *swaps your controllers*
+    /// </summary>
+    /// <param name="obj"></param>
     public void SwapInput(InputAction.CallbackContext obj)
     {
 
@@ -409,6 +456,9 @@ public class PlayerController : CharacterBehavior
         }
     }
 
+    /// <summary>
+    /// no more all of these
+    /// </summary>
     public virtual void OnDestroy()
     {
 

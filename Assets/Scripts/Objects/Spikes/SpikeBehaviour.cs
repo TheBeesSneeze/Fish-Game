@@ -24,6 +24,10 @@ public class SpikeBehaviour : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// collide with spike
+    /// </summary>
+    /// <param name="collision"></param>
     private void OnCollisionEnter2D(Collision2D collision)
     {
         OnTriggerEnter2D(collision.collider);

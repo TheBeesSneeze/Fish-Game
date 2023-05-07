@@ -39,7 +39,9 @@ public class EyeBehaviour : ObjectType
     private Coroutine blindCoroutine;
     private bool active;
     
-    // Start is called before the first frame update
+    /// <summary>
+    /// starts coroutines
+    /// </summary>
     public override void Start()
     {
         base.Start();

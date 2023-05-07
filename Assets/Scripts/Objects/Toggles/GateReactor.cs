@@ -17,6 +17,9 @@ public class GateReactor : ColliderReactor //Exact same behavior, just changes t
 {
     ShadowCaster2D shadowCaster;
 
+    /// <summary>
+    /// shadow caster heheh
+    /// </summary>
     public override void Start()
     {
         base.Start();

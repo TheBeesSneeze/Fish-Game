@@ -89,6 +89,10 @@ public class EnemyBehavior : CharacterBehavior
         try { this.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero; } catch { }
     }
 
+    /// <summary>
+    /// triggers for enemies
+    /// </summary>
+    /// <param name="collision"></param>
     public override void OnTriggerEnter2D(Collider2D collision)
     {
         string tag = collision.gameObject.tag;
@@ -115,6 +119,10 @@ public class EnemyBehavior : CharacterBehavior
         }
     }
 
+    /// <summary>
+    /// exiting light
+    /// </summary>
+    /// <param name="collision"></param>
     public override void OnTriggerExit2D(Collider2D collision)
     {
         string tag = collision.gameObject.tag;
@@ -134,6 +142,9 @@ public class EnemyBehavior : CharacterBehavior
         }
     }
 
+    /// <summary>
+    /// become stunned
+    /// </summary>
     public override void BeStunned()
     {
         base.BeStunned();
@@ -141,6 +152,9 @@ public class EnemyBehavior : CharacterBehavior
         Speed = 0;
         //enemyCollider.enabled = false;
     }
+    /// <summary>
+    /// become UN stunned
+    /// </summary>
     public override void BeUnStunned()
     {
         Stunned = false;

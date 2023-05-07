@@ -45,6 +45,10 @@ public class PressureSpikeBehaviour : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// turn the light on after light
+    /// </summary>
+    /// <param name="collision"></param>
     private void OnTriggerExit2D(Collider2D collision)
     {
         string tag = collision.gameObject.tag;

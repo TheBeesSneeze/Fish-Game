@@ -32,6 +32,9 @@ public class GameManager : MonoBehaviour
     public RoomBehaviour CurrentRoom;
     public RoomBehaviour LastRoom;
 
+    /// <summary>
+    /// finds camera on start
+    /// </summary>
     private void Start()
     {
         _camera = GameObject.FindGameObjectWithTag("MainCamera");

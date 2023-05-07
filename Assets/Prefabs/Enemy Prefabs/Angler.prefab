@@ -191,9 +191,9 @@ GameObject:
   - component: {fileID: 8424242787238129920}
   - component: {fileID: 8424242787238129921}
   - component: {fileID: 8424242787238129982}
-  - component: {fileID: 8424242787238129983}
   - component: {fileID: 1330445948128464973}
   - component: {fileID: 8896017745524137606}
+  - component: {fileID: 853500137557266100}
   m_Layer: 8
   m_Name: Angler
   m_TagString: Enemy
@@ -287,33 +287,6 @@ MonoBehaviour:
   LightTrigger: {fileID: 8424242786050448918}
   LightSource: {fileID: 8424242786050448916}
   TransitionFrames: 20
---- !u!114 &8424242787238129983
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8424242787238129922}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70a7ff42c45998049ac5c742113953ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DefaultPosition: {x: 0, y: 0, z: 0}
-  LayersOfLight: 0
-  DespawnOnStart: 1
-  MyRoom: {fileID: 0}
-  Health: 0
-  Speed: 0
-  TakeKnockback: 0
-  ImmuneToElectricity: 0
-  Stunned: 0
-  StunLength: 0
-  MyRB: {fileID: 0}
-  KnockbackForce: 5
-  EnemyData: {fileID: 11400000, guid: f6faf0377237e1b4ea33341bd2fb2176, type: 2}
-  Gorp: {fileID: 0}
-  Globbington: {fileID: 0}
 --- !u!58 &1330445948128464973
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -350,3 +323,31 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &853500137557266100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8424242787238129922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d26583894c5073045b211a3e613bc149, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DefaultPosition: {x: 0, y: 0, z: 0}
+  LayersOfLight: 0
+  DespawnOnStart: 1
+  MyRoom: {fileID: 0}
+  Health: 0
+  Speed: 0
+  TakeKnockback: 0
+  ImmuneToElectricity: 0
+  Stunned: 0
+  StunLength: 0
+  MyRB: {fileID: 0}
+  KnockbackForce: 0
+  EnemyData: {fileID: 11400000, guid: f6faf0377237e1b4ea33341bd2fb2176, type: 2}
+  Gorp: {fileID: 0}
+  Globbington: {fileID: 0}
+  Dead: 0

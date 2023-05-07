@@ -13,9 +13,13 @@ using UnityEngine;
 
 public class ButtonActivator : ActivatorType
 {
-
     public AudioClip Button;
     public AudioSource ButtonAudio;
+
+    /// <summary>
+    /// button go down
+    /// </summary>
+    /// <param name="collider"></param>
     private void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.gameObject.name == "Globbington")
@@ -31,6 +35,10 @@ public class ButtonActivator : ActivatorType
         }
     }
 
+    /// <summary>
+    /// button go up
+    /// </summary>
+    /// <param name="collider"></param>
     private void OnTriggerExit2D(Collider2D collider)
     {
         if (collider.gameObject.name == "Globbington")

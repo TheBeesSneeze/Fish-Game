@@ -26,6 +26,9 @@ public class PipeBehaviour : MonoBehaviour
 
     GameObject globbington;
 
+    /// <summary>
+    /// gets the camera wow
+    /// </summary>
     private void Start()
     {
         cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraController>();
@@ -48,6 +51,10 @@ public class PipeBehaviour : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// when touch pipe
+    /// </summary>
+    /// <param name="collision"></param>
     private void OnCollisionEnter2D(Collision2D collision)
     {
         OnTriggerEnter2D(collision.collider);

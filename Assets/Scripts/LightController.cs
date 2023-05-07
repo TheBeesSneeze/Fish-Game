@@ -32,7 +32,9 @@ public class LightController : MonoBehaviour
     private Coroutine lightLerpCoroutine;
 
 
-    // Start is called before the first frame update
+    /// <summary>
+    /// light stuff on first frame
+    /// </summary>
     void Start()
     {
         if (LightSource == null)

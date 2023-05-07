@@ -22,6 +22,9 @@ public class CrateBehaviour : ObjectType
     public AudioClip BreakCrate;
     public AudioSource CrateSource;
 
+    /// <summary>
+    /// wow do the start stuff from objecttype
+    /// </summary>
     public override void Start()
     {
         base.Start();
@@ -80,6 +83,10 @@ public class CrateBehaviour : ObjectType
         surpriseOutside = null;
     }
 
+    /// <summary>
+    /// surprise !!
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator WaitToSpawnEnemy()
     {
         yield return new WaitForSeconds(0.05f);

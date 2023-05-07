@@ -90,6 +90,9 @@ public class CharacterBehavior : ObjectType
         MyRB.AddForce(positionDifference * Force, ForceMode2D.Impulse);
     }
 
+    /// <summary>
+    /// sets attributes on respawn
+    /// </summary>
     public override void Respawn()
     {
         base.Respawn();
@@ -126,7 +129,10 @@ public class CharacterBehavior : ObjectType
             TakeDamage(1);
         }
     }
-
+    /// <summary>
+    /// collisions for the characters
+    /// </summary>
+    /// <param name="collision"></param>
     public override void OnTriggerEnter2D(Collider2D collision)
     {
         string tag = collision.gameObject.tag;
@@ -163,6 +169,9 @@ public class CharacterBehavior : ObjectType
         Invoke("BeUnStunned", Seconds);
     }
 
+    /// <summary>
+    /// become unstunned
+    /// </summary>
     public virtual void BeUnStunned()
     {
         Stunned = false;

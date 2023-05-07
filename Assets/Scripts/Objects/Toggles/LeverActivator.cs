@@ -16,6 +16,11 @@ public class LeverActivator : ActivatorType
 
     public AudioClip LeverSound;
     public AudioSource LeverSource;
+
+    /// <summary>
+    /// toggle lever
+    /// </summary>
+    /// <param name="collider"></param>
     private void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.gameObject.tag.Equals("Attack") )

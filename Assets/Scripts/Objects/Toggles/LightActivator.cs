@@ -19,6 +19,10 @@ public class LightActivator : ActivatorType
     private GameObject gorp;
     public bool GorpVisible;
 
+    /// <summary>
+    /// light activator detect gorp
+    /// </summary>
+    /// <param name="collider"></param>
     private void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.gameObject.tag.Equals("Light"))
@@ -30,6 +34,10 @@ public class LightActivator : ActivatorType
         }
     }
 
+    /// <summary>
+    /// no detect gorp
+    /// </summary>
+    /// <param name="collider"></param>
     private void OnTriggerExit2D(Collider2D collider)
     {
         if (collider.gameObject.tag.Equals("Light"))
@@ -44,6 +52,10 @@ public class LightActivator : ActivatorType
         }
     }
 
+    /// <summary>
+    /// checking for gorp
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator CheckForGorpVisibility ()
     {
         while (gorp == null)
@@ -94,12 +106,18 @@ public class LightActivator : ActivatorType
         }
     }
 
+    /// <summary>
+    /// activate
+    /// </summary>
     public override void ActivationInput()
     {
         base.ActivationInput();
         this.MySpriteRenderer.color = Color.blue;
     }
 
+    /// <summary>
+    /// deactivate
+    /// </summary>
     public override void DeactivationInput()
     {
         base.DeactivationInput();

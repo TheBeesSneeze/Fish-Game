@@ -30,6 +30,9 @@ public class DoorBehaviour : MonoBehaviour
     //public Animation ClosedAnimation;
     //public Animation OpeningAnimation;
 
+    /// <summary>
+    /// opens or closes door on start
+    /// </summary>
     private void Start()
     {
         if (Open)

@@ -39,6 +39,10 @@ public class SceneProgressor : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// but what if toby changes his mind
+    /// </summary>
+    /// <param name="collision"></param>
     public void OnCollisionEnter2D(Collision2D collision)
     {
         OnTriggerEnter2D(collision.collider);

@@ -66,6 +66,10 @@ public class GlobbingtonAttackController : PlayerController
       
     }
 
+    /// <summary>
+    /// swings sword all sword like
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator SwingSword()
     {
         Vector3 originalPoint = RotatePoint.rotation.eulerAngles;
@@ -130,12 +134,18 @@ public class GlobbingtonAttackController : PlayerController
         }
     }
 
+    /// <summary>
+    /// stuns glob when electrified
+    /// </summary>
     public override void GetElectrified()
     {
         Stunned = true;
         BeStunned(1.5f);
     }
 
+    /// <summary>
+    /// stop strike
+    /// </summary>
     public override void OnDestroy()
     {
         Strike.started -= Strike_started;

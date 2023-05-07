@@ -48,7 +48,9 @@ public class GorpController : PlayerController
     public AudioClip LightClick;
     public AudioSource GorpSource;
 
-    // Start is called before the first frame update
+    /// <summary>
+    /// does so much on start
+    /// </summary>
     public override void Start()
     {
         base.Start();
@@ -90,6 +92,9 @@ public class GorpController : PlayerController
         DecreaseLight.canceled += DecreaseLight_canceled;
     }
 
+    /// <summary>
+    /// respawns gorp
+    /// </summary>
     public override void Respawn()
     {
         base.Respawn();
@@ -170,6 +175,10 @@ public class GorpController : PlayerController
         FlashCoroutine = StartCoroutine(AttemptFlash());    
     }
 
+    /// <summary>
+    /// no more flash
+    /// </summary>
+    /// <param name="obj"></param>
     private void Flash_canceled(InputAction.CallbackContext obj)
     {
         if(FlashCoroutine != null)
@@ -247,6 +256,10 @@ public class GorpController : PlayerController
         FishChargeLight.UpdateLightRadius(0, true);
     }
 
+    /// <summary>
+    /// adjusts light
+    /// </summary>
+    /// <returns></returns>
     public IEnumerator AdjustLight()
     {
         while (currentlyIncrementing)
@@ -278,6 +291,10 @@ public class GorpController : PlayerController
             MyGamepad.SetMotorSpeeds(0.1f, 0.15f);
     }
 
+    /// <summary>
+    /// increase light but continued
+    /// </summary>
+    /// <param name="obj"></param>
     private void DecreaseLight_started(InputAction.CallbackContext obj)
     {
         currentlyIncrementing = true;
@@ -292,6 +309,10 @@ public class GorpController : PlayerController
             MyGamepad.SetMotorSpeeds(0.1f, 0.15f);
     }
 
+    /// <summary>
+    /// no more increase light
+    /// </summary>
+    /// <param name="obj"></param>
     private void IncreaseLight_canceled(InputAction.CallbackContext obj)
     {
         if (incrementCoroutine != null)
@@ -303,6 +324,10 @@ public class GorpController : PlayerController
             MyGamepad.SetMotorSpeeds(0f, 0f);
     }
 
+    /// <summary>
+    /// no more decrease light
+    /// </summary>
+    /// <param name="obj"></param>
     private void DecreaseLight_canceled(InputAction.CallbackContext obj)
     {
         if (decrementCoroutine != null)
@@ -314,10 +339,13 @@ public class GorpController : PlayerController
             MyGamepad.SetMotorSpeeds(0f, 0f);
     }
 
+    /// <summary>
+    /// play wet slap when gorp and globby kiss
+    /// </summary>
     public void GorpSlap()
     {
 
-        if (GorpSource != null)
+        if (GorpSource != null && GameMasterInstance.SFX)
         {
 
             GetComponent<AudioSource>().clip = WetSlap;
@@ -327,6 +355,9 @@ public class GorpController : PlayerController
 
     }
 
+    /// <summary>
+    /// wow oh wow start and cancel these guys
+    /// </summary>
     public override void OnDestroy()
     {
         

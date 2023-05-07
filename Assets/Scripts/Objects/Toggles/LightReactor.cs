@@ -19,10 +19,14 @@ public class LightReactor : ReactiveType
     public Light2D Light;
     private Animator lightAnimator;
 
+    /// <summary>
+    /// gets light animator
+    /// </summary>
     private void Start()
     {
         lightAnimator = GetComponent<Animator>();
     }
+
     /// <summary>
     /// Light Turns on.
     /// </summary>
