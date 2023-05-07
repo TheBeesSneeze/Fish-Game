@@ -52,81 +52,96 @@ public class EyeBehaviour : ObjectType
     }
 
     /// <summary>
-    /// Sends raycast to all players present.
-    /// If any are found, starts gazing coroutine.
-    /// This function is only checking if players are visible, so it
-    /// does not run very frequently
+    /// Iterates through both players and looks for them. What a stalker!
     /// </summary>
     /// <returns></returns>
     private IEnumerator SearchForPlayers()
     {
         LightAnchor.SetActive(true);
-        while(!Blinded && active) 
+
+        //dont start *Really* looking until both players are present
+        while (players.Length <2) 
         {
             players = GameObject.FindGameObjectsWithTag("Player");
+            yield return new WaitForSeconds(1);
+        }
 
+        while(!Blinded && active) 
+        {
             //Raycast visibility
             for (int i = players.Length-1; i>=0; i--)
             { // starts at end of list to prioritize globbington
 
-                Vector3 sourcePosition = players[i].transform.position;
-                Vector3 origin = LightAnchor.transform.position;
-                Vector3 direction = sourcePosition - origin;
+                LookForPlayer(players[i], i);
+            }
 
-                var hit = Physics2D.Raycast(origin, direction, RayCastDistance, LM);
-                Debug.DrawLine(origin, hit.point, Color.green, 0.5f);
+            yield return new WaitForSeconds(PlayerSearchDelay);
+        }
+    }
 
-                if (hit)
+    /// <summary>
+    /// Sends raycast to all players present.
+    /// If any are found, starts gazing coroutine.
+    /// This function is only checking if players are visible, so it
+    /// does not run very frequently
+    /// </summary>
+    /// <param name="player"></param>
+    /// <param name="i"></param>
+    private void LookForPlayer(GameObject player, int i)
+    {
+        Vector3 sourcePosition = player.transform.position;
+        Vector3 origin = LightAnchor.transform.position;
+        Vector3 direction = sourcePosition - origin;
+
+        var hit = Physics2D.Raycast(origin, direction, RayCastDistance, LM);
+        Debug.DrawLine(origin, hit.point, Color.green, 0.5f);
+
+        if (hit)
+        {
+            string tag = hit.collider.tag;
+
+            if (tag.Equals("Player"))
+            {
+                //this cant be an && statement because i am not feeling computer science-y today
+                if (gazing == null)
                 {
-                    string tag = hit.collider.tag;
+                    visibleTargets[i] = player;
+                    hit.collider.GetComponent<PlayerController>().LayersOfLight++;
 
-                    if (tag.Equals("Player"))
-                    {
-                        //this cant be an && statement because i am not feeling computer science-y today
-                        if (gazing == null)
-                        {
-                            visibleTargets[i] = players[i];
-                            hit.collider.GetComponent<PlayerController>().LayersOfLight++;
+                    gazing = StartCoroutine(CalculateGaze(player));
 
-                            gazing = StartCoroutine(CalculateGaze(players[i]));
-
-                            if (EyeActivator != null)
-                                EyeActivator.ActivationInput();
-                        }
-
-                    }
-
-                    //if it missed and the coroutine needs to stop now
-                    else if (visibleTargets[i] != null)
-                    {
-                        DisableLight();
-
-                        visibleTargets[i].GetComponent<PlayerController>().LayersOfLight--;
-                        visibleTargets[i] = null;
-
-                        //other player index
-                        int j;
-                        if (i == 0) j = 1;
-                        else        j = 0;
-
-                        //Redirecting gaze...
-                        if (visibleTargets[j] != null)
-                            StartCoroutine(CalculateGaze(visibleTargets[j]));
-
-                        else
-                        {
-                            if (EyeActivator != null)
-                                EyeActivator.DeactivationInput();
-                        }
-                    }
-                    else
-                        DisableLight();
-                        
+                    if (EyeActivator != null)
+                        EyeActivator.ActivationInput();
                 }
 
             }
 
-            yield return new WaitForSeconds(PlayerSearchDelay);
+            //if it missed and the coroutine needs to stop now
+            else if (visibleTargets[i] != null)
+            {
+                DisableLight();
+
+                visibleTargets[i].GetComponent<PlayerController>().LayersOfLight--;
+                visibleTargets[i] = null;
+
+                //other player index
+                int j;
+                if (i == 0) j = 1;
+                else j = 0;
+
+                //Redirecting gaze...
+                if (visibleTargets[j] != null)
+                    StartCoroutine(CalculateGaze(visibleTargets[j]));
+
+                else
+                {
+                    if (EyeActivator != null)
+                        EyeActivator.DeactivationInput();
+                }
+            }
+            else
+                DisableLight();
+
         }
     }
 
@@ -179,6 +194,9 @@ public class EyeBehaviour : ObjectType
         }
     }
 
+    /// <summary>
+    /// stops the light.
+    /// </summary>
     public void BecomeBlind()
     {
         Blinded = true;
@@ -199,7 +217,9 @@ public class EyeBehaviour : ObjectType
         StartCoroutine(SearchForPlayers());
     }
 
-
+    /// <summary>
+    /// Activates light
+    /// </summary>
     public override void Respawn()
     {
         base.Respawn();
@@ -207,6 +227,10 @@ public class EyeBehaviour : ObjectType
         StartCoroutine(SearchForPlayers());
         
     }
+
+    /// <summary>
+    /// deactivates the light
+    /// </summary>
     public override void Despawn()
     {
         base.Despawn();
