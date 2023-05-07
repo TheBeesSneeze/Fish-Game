@@ -1020,7 +1020,6 @@ MonoBehaviour:
   PlayerAnimator: {fileID: 943948540627656240}
   CharacterData: {fileID: 11400000, guid: 7a5fbf452c3d09b4590c3c0ffed95971, type: 2}
   PlayerNumber: 0
-  Rumble: 1
   IgnoreMove: 0
   MyPlayerInput: {fileID: 8678797230697677920}
   Move:
@@ -1069,7 +1068,7 @@ MonoBehaviour:
     m_SingletonActionBindings: []
     m_Flags: 0
   Pause:
-    m_Name: 
+    m_Name: Pause
     m_Type: 0
     m_ExpectedControlType: 
     m_Id: 94b7bd66-5048-4a84-bdf4-f38d6aff52ab
@@ -1082,6 +1081,7 @@ MonoBehaviour:
   Scream: {fileID: 8300000, guid: 2559a8eb7d0cb6a4eb22dd33a7cd9894, type: 3}
   MyAudioSource: {fileID: 3761592909301609809}
   DashActive: 1
+  GameMasterInstance: {fileID: 0}
   FlashTrigger: {fileID: 4950820922443560528}
   FlashChargeTime: 0.3
   FlashLength: 0.4

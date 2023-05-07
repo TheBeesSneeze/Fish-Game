@@ -13,11 +13,21 @@ using UnityEngine;
 
 public class ButtonActivator : ActivatorType
 {
+
+    public AudioClip Button;
+    public AudioSource ButtonAudio;
     private void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.gameObject.name == "Globbington")
         {
             DeactivationInput();
+
+            if(ButtonAudio != null)
+            {
+
+                ButtonAudio.Play();
+
+            }
         }
     }
 
