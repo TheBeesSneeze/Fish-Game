@@ -38,6 +38,8 @@ public class DoorBehaviour : MonoBehaviour
     /// </summary>
     private void Start()
     {
+        gameMaster = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
+
         if (Open)
             OpenDoor();
         else
@@ -46,8 +48,6 @@ public class DoorBehaviour : MonoBehaviour
         bool previouslyOpen = Open;
         CloseDoor();
         Open = previouslyOpen;
-
-        gameMaster = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
     }
 
     /// <summary>
