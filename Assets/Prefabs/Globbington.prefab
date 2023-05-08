@@ -396,6 +396,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c949fa671513e914e9b82702ec377124, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MyAudioSource: {fileID: 5989629464830974195}
   DefaultPosition: {x: 0, y: 0, z: 0}
   LayersOfLight: 0
   DespawnOnStart: 0
@@ -412,7 +413,6 @@ MonoBehaviour:
   PlayerAnimator: {fileID: 8931580626729020645}
   CharacterData: {fileID: 11400000, guid: 7f175cdaa82c39e47abd86895c531c1c, type: 2}
   PlayerNumber: 1
-  Rumble: 1
   IgnoreMove: 0
   MyPlayerInput: {fileID: 4302747830044685625}
   Move:
@@ -475,6 +475,7 @@ MonoBehaviour:
   MyAudioSource: {fileID: 5989629464830974195}
   DashActive: 1
   GameMasterInstance: {fileID: 0}
+  GorpControllerInstance: {fileID: 0}
   AttackLength: 0.1
   StrikeFrames: 15
   Sword: {fileID: 1137317766113117558}
@@ -488,6 +489,7 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
+  GlobSwing: {fileID: 8300000, guid: 5c083294dc3e15b4b99fc36d8c1ad6ca, type: 3}
 --- !u!114 &4302747830044685625
 MonoBehaviour:
   m_ObjectHideFlags: 0
