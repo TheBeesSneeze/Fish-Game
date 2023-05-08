@@ -105,7 +105,9 @@ public class ReactiveType : MonoBehaviour
 
             if (ActivateSound != null && MyAudioSource != null && gameManagerInstance.SFX && firstSound)
             {
+                MyAudioSource.Stop();
                 MyAudioSource.clip = ActivateSound;
+                MyAudioSource.Play();
             }
         }
 
@@ -117,7 +119,9 @@ public class ReactiveType : MonoBehaviour
 
             if(DeactivateSound != null && MyAudioSource != null && gameManagerInstance.SFX && firstSound)
             {
-                MyAudioSource.clip = DeactivateSound;
+                MyAudioSource.Stop();
+                MyAudioSource.clip = ActivateSound;
+                MyAudioSource.Play();
             }
 
         }
