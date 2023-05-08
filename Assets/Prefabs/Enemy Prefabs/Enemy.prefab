@@ -94,6 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2945670060895092915}
   - component: {fileID: 2945670060895092914}
+  - component: {fileID: 7178890484471979585}
   m_Layer: 0
   m_Name: Enemy Eyes
   m_TagString: Untagged
@@ -168,6 +169,26 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &7178890484471979585
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2945670060895092916}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 172253976530fa0408c78a2f9842a9b3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2945670061033812789
 GameObject:
   m_ObjectHideFlags: 0
@@ -182,6 +203,7 @@ GameObject:
   - component: {fileID: 2945670061033812786}
   - component: {fileID: 2945670061033812785}
   - component: {fileID: 2945670061033812784}
+  - component: {fileID: 473552287913410738}
   m_Layer: 8
   m_Name: Enemy
   m_TagString: Enemy
@@ -285,6 +307,7 @@ MonoBehaviour:
   EnemyData: {fileID: 11400000, guid: d05126ff53fcb994b91ba4424d03b09d, type: 2}
   Gorp: {fileID: 0}
   Globbington: {fileID: 0}
+  Dead: 0
 --- !u!114 &2945670061033812786
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -298,6 +321,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Exclamation: {fileID: 846445744447188928}
+  EnemyAnimator: {fileID: 473552287913410738}
+  EnemyEyesAnimator: {fileID: 7178890484471979585}
   LM:
     serializedVersion: 2
     m_Bits: 1728
@@ -341,3 +366,23 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!95 &473552287913410738
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2945670061033812789}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 96788d4f447c1914ca756ebb5462ba81, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
