@@ -25,23 +25,33 @@ public class ReactiveType : MonoBehaviour
     [Tooltip("Not recquired")]
     public Sprite DeactiveSprite;
 
+    [Tooltip("Not recquired")]
+    public AudioClip ActivateSound;
+    [Tooltip("Not recquired")]
+    public AudioClip DeactivateSound;
+
     [Header("Debug")]
     public SpriteRenderer MySpriteRenderer;
-    public bool _activated;
+    public AudioSource MyAudioSource;
+    private GameManager gameManagerInstance;
+    private bool _activated;
     private Coroutine activateCoroutine;
-    
+    protected bool firstSound=false;
 
     /// <summary>
     /// Sets this objects activation state to default
     /// </summary>
     public virtual void Awake()
     {
+        gameManagerInstance = GameObject.FindObjectOfType<GameManager>();
         MySpriteRenderer = GetComponent<SpriteRenderer>();
+        try { MyAudioSource = GetComponent<AudioSource>(); } catch { }
 
         _activated = ActivatedByDefault;
 
         //activateCoroutine = StartCoroutine(SetState());
         SetActivationState(_activated);
+        firstSound = true;
     }
 
     /// <summary>
@@ -51,20 +61,16 @@ public class ReactiveType : MonoBehaviour
     /// <param name="activated"></param>
     public void SetActivationState(bool activated)
     {
-        //if(activated != _activated) 
-        //{
-            _activated = activated;
+        _activated = activated;
 
-            //cancels activation coroutine if its already happening
-            if (activateCoroutine != null)
-            {
-                StopCoroutine(activateCoroutine);
-                activateCoroutine = null;
-            }
+        //cancels activation coroutine if its already happening
+        if (activateCoroutine != null)
+        {
+            StopCoroutine(activateCoroutine);
+            activateCoroutine = null;
+        }
 
-            activateCoroutine = StartCoroutine(SetState());
-        //}
-        
+        activateCoroutine = StartCoroutine(SetState());
     }
 
     /// <summary>
@@ -96,6 +102,11 @@ public class ReactiveType : MonoBehaviour
             OnActivate();
             if (ActiveSprite != null)
                 MySpriteRenderer.sprite = ActiveSprite;
+
+            if (ActivateSound != null && MyAudioSource != null && gameManagerInstance.SFX && firstSound)
+            {
+                MyAudioSource.clip = ActivateSound;
+            }
         }
 
         else
@@ -103,6 +114,12 @@ public class ReactiveType : MonoBehaviour
             OnDeactivate();
             if(DeactiveSprite != null)
                 MySpriteRenderer.sprite = DeactiveSprite;
+
+            if(DeactivateSound != null && MyAudioSource != null && gameManagerInstance.SFX && firstSound)
+            {
+                MyAudioSource.clip = DeactivateSound;
+            }
+
         }
 
         activateCoroutine = null;

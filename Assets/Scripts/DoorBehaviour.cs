@@ -135,7 +135,6 @@ public class DoorBehaviour : MonoBehaviour
         {
 
             DoorSource.Play();
-
         }
 
         Open = true;
