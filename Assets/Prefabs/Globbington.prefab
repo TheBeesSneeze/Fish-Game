@@ -474,8 +474,11 @@ MonoBehaviour:
   Scream: {fileID: 8300000, guid: 2559a8eb7d0cb6a4eb22dd33a7cd9894, type: 3}
   MyAudioSource: {fileID: 5989629464830974195}
   DashActive: 1
+<<<<<<< Updated upstream
   GameMasterInstance: {fileID: 0}
   GorpControllerInstance: {fileID: 0}
+=======
+>>>>>>> Stashed changes
   AttackLength: 0.1
   StrikeFrames: 15
   Sword: {fileID: 1137317766113117558}
