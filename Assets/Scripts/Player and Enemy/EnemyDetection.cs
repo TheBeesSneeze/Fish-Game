@@ -30,6 +30,8 @@ public class EnemyDetection : MonoBehaviour
     [Header("Unity")]
     [Tooltip("Exclaimation point, leave null for no icon.")]
     public GameObject Exclamation;
+    public Animator EnemyAnimator;
+    public Animator EnemyEyesAnimator;
 
     [Header("Settings")]
     public LayerMask LM;
@@ -178,6 +180,18 @@ public class EnemyDetection : MonoBehaviour
                     Vector2 positionDifference = Vector2.MoveTowards(transform.position, CurrentTarget.transform.position, enemyBehavior.Speed);
                     Vector2 movementVelocity = positionDifference - (Vector2)transform.position;
                     rb.velocity = movementVelocity;
+
+                    if (EnemyAnimator != null)
+                    {
+                        EnemyAnimator.SetFloat("X Movement", rb.velocity.x);
+                        EnemyAnimator.SetFloat("Y Movement", rb.velocity.y);
+                    }
+
+                   if (EnemyEyesAnimator != null)
+                    {
+                        EnemyEyesAnimator.SetFloat("X Movement", rb.velocity.x);
+                        EnemyEyesAnimator.SetFloat("Y Movement", rb.velocity.y);
+                    }
                 }
                 else
                 {

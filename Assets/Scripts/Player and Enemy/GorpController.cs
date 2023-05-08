@@ -44,9 +44,10 @@ public class GorpController : PlayerController
     private bool HoldingFlash;
     private Coroutine FlashCoroutine;
 
+    [Header("Audio")]
     public AudioClip WetSlap;
-    public AudioClip LightClick;
-    public AudioSource GorpSource;
+    public AudioClip ToggleSound;
+    public AudioClip FlashSound;
 
     /// <summary>
     /// does so much on start
@@ -133,11 +134,10 @@ public class GorpController : PlayerController
     /// </summary>
     private void Toggle_started(InputAction.CallbackContext obj)
     {
-        if(GorpSource != null && GameMasterInstance.SFX)
+        if(MyAudioSource != null && GameMasterInstance.SFX)
         {
-
-            GetComponent<AudioSource>().clip = LightClick;
-            GorpSource.Play();
+            MyAudioSource.clip = ToggleSound;
+            MyAudioSource.Play();
 
         }
 
@@ -196,7 +196,6 @@ public class GorpController : PlayerController
     /// <summary>
     /// Fish flashes if player is still holding button down
     /// </summary>
-    /// <returns></returns>
     private IEnumerator AttemptFlash() //theres an easy joke here
     {
         
@@ -234,6 +233,12 @@ public class GorpController : PlayerController
         {
             //InputDevice a = MyPlayerInput.devices[0];
             MyGamepad.SetMotorSpeeds(0.20f, 0.30f);
+
+            if(GameMasterInstance.SFX)
+            {
+                MyAudioSource.clip = FlashSound;
+                MyAudioSource.Play();
+            }
         }
 
         StartCoroutine(StopFlash(FlashLength));
@@ -345,12 +350,10 @@ public class GorpController : PlayerController
     public void GorpSlap()
     {
 
-        if (GorpSource != null && GameMasterInstance.SFX)
+        if (MyAudioSource != null && GameMasterInstance.SFX)
         {
-
-            GetComponent<AudioSource>().clip = WetSlap;
-            GorpSource.Play();
-
+            MyAudioSource.clip = WetSlap;
+            MyAudioSource.Play();
         }
 
     }
