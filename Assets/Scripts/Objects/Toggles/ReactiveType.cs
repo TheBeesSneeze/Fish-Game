@@ -43,7 +43,7 @@ public class ReactiveType : MonoBehaviour
     /// </summary>
     public virtual void Awake()
     {
-        gameManagerInstance = GameObject.FindObjectOfType<GameManager>();
+        gameManagerInstance = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
         MySpriteRenderer = GetComponent<SpriteRenderer>();
         try { MyAudioSource = GetComponent<AudioSource>(); } catch { }
 

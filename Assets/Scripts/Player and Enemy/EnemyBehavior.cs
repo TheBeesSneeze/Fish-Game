@@ -35,6 +35,7 @@ public class EnemyBehavior : CharacterBehavior
     /// </summary>
     public override void Start()
     {
+        base.Start();
         SetAttributes();
         DefaultPosition = this.transform.position;
 

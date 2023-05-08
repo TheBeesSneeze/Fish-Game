@@ -42,11 +42,9 @@ public class PlayerController : CharacterBehavior
     public  bool ReadMove;
     public float DashForce;
     public AudioClip Scream;
-    public AudioSource MyAudioSource;
 
     [Tooltip("Debug")]
     public bool DashActive = true;
-    public GameManager GameMasterInstance;
 
     public GorpController GorpControllerInstance;
 
@@ -60,7 +58,6 @@ public class PlayerController : CharacterBehavior
 
         MyRB = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        GameMasterInstance   = GameObject.FindObjectOfType<GameManager>();
         healthDisplay = GameObject.FindObjectOfType<HealthDisplay>();
 
         MyPlayerInput.actions.Enable();
@@ -85,8 +82,8 @@ public class PlayerController : CharacterBehavior
 
         MyGamepad = MyPlayerInput.GetDevice<Gamepad>();
 
-        if(GameMasterInstance.CurrentRoom != null)
-            GameMasterInstance.CurrentRoom.EnterRoom();
+        if(GameManagerInstance.CurrentRoom != null)
+            GameManagerInstance.CurrentRoom.EnterRoom();
     }
 
     /// <summary>
@@ -164,7 +161,7 @@ public class PlayerController : CharacterBehavior
         {
             bool died = base.TakeDamage(damage);
             healthDisplay.UpdateHealth();
-            if (MyAudioSource != null && GameMasterInstance.SFX)
+            if (MyAudioSource != null && GameManagerInstance.SFX)
                 MyAudioSource.Play();
 
             if (!died)
@@ -297,7 +294,7 @@ public class PlayerController : CharacterBehavior
         IgnoreMove = false;
 
         //test
-        if (GameMasterInstance.Rumble && MyGamepad != null)
+        if (GameManagerInstance.Rumble && MyGamepad != null)
         {
             MyGamepad.SetMotorSpeeds(0f, 0f);
         }
@@ -411,7 +408,7 @@ public class PlayerController : CharacterBehavior
             MyRB.AddForce(Move.ReadValue<Vector2>() * DashForce, ForceMode2D.Impulse);
 
             //test
-            if (GameMasterInstance.Rumble && MyGamepad!= null)
+            if (GameManagerInstance.Rumble && MyGamepad!= null)
             {
                 MyGamepad.SetMotorSpeeds(0.3f, 0.3f);
             }
@@ -429,7 +426,7 @@ public class PlayerController : CharacterBehavior
     public void SwapInput(InputAction.CallbackContext obj)
     {
 
-        GameMasterInstance.SwapPlayers();
+        GameManagerInstance.SwapPlayers();
     }
 
     /// <summary>

@@ -1005,6 +1005,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9a93f36c75542f459d2606feb1ca299, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MyAudioSource: {fileID: 3761592909301609809}
   DefaultPosition: {x: 0, y: 0, z: 0}
   LayersOfLight: 1
   DespawnOnStart: 0
@@ -1080,7 +1081,7 @@ MonoBehaviour:
   ReadMove: 0
   DashForce: 50
   Scream: {fileID: 8300000, guid: 2559a8eb7d0cb6a4eb22dd33a7cd9894, type: 3}
-  MyAudioSource: {fileID: 3761592909301609809}
+  MyAudioSource: {fileID: 7848330971370274510}
   DashActive: 1
   GameMasterInstance: {fileID: 0}
   GorpControllerInstance: {fileID: 0}
@@ -1130,9 +1131,8 @@ MonoBehaviour:
     m_Flags: 0
   FishChargeLight: {fileID: 4851970326703520874}
   WetSlap: {fileID: 8300000, guid: 9121826cc516ce847a8e1a59aec34bc2, type: 3}
-  LightClick: {fileID: 8300000, guid: 426ef189db7444c48a9e2ca80c52848e, type: 3}
-  Flash: {fileID: 8300000, guid: 14adef5c28d32724c995d5d01cfe21cd, type: 3}
-  GorpSource: {fileID: 7848330971370274510}
+  ToggleSound: {fileID: 8300000, guid: 426ef189db7444c48a9e2ca80c52848e, type: 3}
+  FlashSound: {fileID: 8300000, guid: 14adef5c28d32724c995d5d01cfe21cd, type: 3}
 --- !u!114 &5052205749001080560
 MonoBehaviour:
   m_ObjectHideFlags: 0

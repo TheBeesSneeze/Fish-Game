@@ -99,7 +99,7 @@ public class GorpController : PlayerController
     public override void Respawn()
     {
         base.Respawn();
-        GameMasterInstance.CurrentRoom.RespawnAllObjects();
+        GameManagerInstance.CurrentRoom.RespawnAllObjects();
     }
 
     /// <summary>
@@ -124,7 +124,7 @@ public class GorpController : PlayerController
     private IEnumerator SetRumble(float min, float max, float seconds)
     {
         yield return new WaitForSeconds(seconds);
-        if (GameMasterInstance.Rumble && MyGamepad != null)
+        if (GameManagerInstance.Rumble && MyGamepad != null)
             MyGamepad.SetMotorSpeeds(min, max);
     }
 
@@ -134,8 +134,9 @@ public class GorpController : PlayerController
     /// </summary>
     private void Toggle_started(InputAction.CallbackContext obj)
     {
-        if(MyAudioSource != null && GameMasterInstance.SFX)
+        if(MyAudioSource != null && GameManagerInstance.SFX)
         {
+            MyAudioSource.pitch = 1;
             MyAudioSource.clip = ToggleSound;
             MyAudioSource.Play();
 
@@ -145,7 +146,7 @@ public class GorpController : PlayerController
 
         lightController.UpdateLightRadius(ToggleLightTime, false);
 
-        if (GameMasterInstance.Rumble && MyGamepad!=null)
+        if (GameManagerInstance.Rumble && MyGamepad!=null)
             MyGamepad.SetMotorSpeeds(0.20f, 0.25f);
     }
 
@@ -154,7 +155,7 @@ public class GorpController : PlayerController
     /// </summary>
     private void Toggle_canceled(InputAction.CallbackContext obj)
     {
-        if (GameMasterInstance.Rumble && MyGamepad!= null)
+        if (GameManagerInstance.Rumble && MyGamepad!= null)
             MyGamepad.SetMotorSpeeds(0f, 0f);
     }
 
@@ -229,16 +230,19 @@ public class GorpController : PlayerController
         FlashTrigger.SetActive(true);
         FlashTrigger.GetComponent<Collider2D>().enabled = true;
 
-        if (GameMasterInstance.Rumble && MyGamepad != null)
+        if (MyAudioSource != null && GameManagerInstance.SFX)
+        {
+            MyAudioSource.pitch = 1;
+            MyAudioSource.clip = FlashSound;
+            MyAudioSource.Play();
+        }
+
+        if (GameManagerInstance.Rumble && MyGamepad != null)
         {
             //InputDevice a = MyPlayerInput.devices[0];
             MyGamepad.SetMotorSpeeds(0.20f, 0.30f);
 
-            if(GameMasterInstance.SFX)
-            {
-                MyAudioSource.clip = FlashSound;
-                MyAudioSource.Play();
-            }
+            
         }
 
         StartCoroutine(StopFlash(FlashLength));
@@ -292,7 +296,7 @@ public class GorpController : PlayerController
             StopCoroutine(incrementCoroutine);
         incrementCoroutine = StartCoroutine(AdjustLight());
 
-        if (GameMasterInstance.Rumble)
+        if (GameManagerInstance.Rumble)
             MyGamepad.SetMotorSpeeds(0.1f, 0.15f);
     }
 
@@ -310,7 +314,7 @@ public class GorpController : PlayerController
 
         decrementCoroutine = StartCoroutine(AdjustLight());
 
-        if (GameMasterInstance.Rumble)
+        if (GameManagerInstance.Rumble)
             MyGamepad.SetMotorSpeeds(0.1f, 0.15f);
     }
 
@@ -325,7 +329,7 @@ public class GorpController : PlayerController
 
         currentlyIncrementing = false;
 
-        if (GameMasterInstance.Rumble)
+        if (GameManagerInstance.Rumble)
             MyGamepad.SetMotorSpeeds(0f, 0f);
     }
 
@@ -340,7 +344,7 @@ public class GorpController : PlayerController
 
         currentlyIncrementing = false;
 
-        if (GameMasterInstance.Rumble)
+        if (GameManagerInstance.Rumble)
             MyGamepad.SetMotorSpeeds(0f, 0f);
     }
 
@@ -350,8 +354,9 @@ public class GorpController : PlayerController
     public void GorpSlap()
     {
 
-        if (MyAudioSource != null && GameMasterInstance.SFX)
+        if (MyAudioSource != null && GameManagerInstance.SFX)
         {
+            MyAudioSource.pitch = 0.6f;
             MyAudioSource.clip = WetSlap;
             MyAudioSource.Play();
         }
