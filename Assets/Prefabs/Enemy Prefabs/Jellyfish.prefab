@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: -7934599408820788058}
   m_Layer: 13
   m_Name: Jellyfish
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -107,6 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MyAudioSource: {fileID: -7934599408820788058}
+  GameManagerInstance: {fileID: 0}
   DefaultPosition: {x: 0, y: 0, z: 0}
   LayersOfLight: 0
   DespawnOnStart: 0
@@ -123,6 +124,7 @@ MonoBehaviour:
   Gorp: {fileID: 0}
   Globbington: {fileID: 0}
   Dead: 0
+  DisableMovement: 0
   MinDistanceLight: 15
   MaxLightRadius: 10
   MaxIntensity: 2.5
@@ -131,6 +133,9 @@ MonoBehaviour:
   WeakenedTime: 6
   PassiveElectricityTrigger: {fileID: 6697862179214221131}
   ElectrifyingTrigger: {fileID: 6697862179025775584}
+  WasMute: 0
+  PassiveElectricitySound: {fileID: 8300000, guid: cc19190f4e17fb24f9701ca6eeba2a24, type: 3}
+  ElectrifyingSound: {fileID: 8300000, guid: d6af1f02fbee45b42b820a061969d222, type: 3}
   JellyState: 0
 --- !u!114 &6697862178388370597
 MonoBehaviour:
@@ -157,7 +162,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6697862178388370592}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4fe25aef64f3bbd45b5528352b0582da, type: 3}
   m_Name: 
@@ -170,7 +175,9 @@ MonoBehaviour:
   DeactivateSound: {fileID: 0}
   MySpriteRenderer: {fileID: 0}
   MyAudioSource: {fileID: 0}
-  LinkedObjects: []
+  LinkedObjects:
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!58 &6697862178388370599
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -243,17 +250,17 @@ AudioSource:
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
-  Mute: 0
+  Mute: 1
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 155
   DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
+  MinDistance: 4.5
+  MaxDistance: 10
   Pan2D: 0
   rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
+  BypassEffects: 1
+  BypassListenerEffects: 1
   BypassReverbZones: 0
   rolloffCustomCurve:
     serializedVersion: 2
@@ -299,7 +306,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 0.044444446
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -335,6 +342,7 @@ GameObject:
   - component: {fileID: 6697862178715771704}
   - component: {fileID: 6697862178715771706}
   - component: {fileID: 6697862178715771707}
+  - component: {fileID: 609824208}
   m_Layer: 3
   m_Name: Jelly Light
   m_TagString: Light
@@ -451,6 +459,20 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!114 &609824208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6697862178715771705}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1dca241deec6c1458ece1c0285c8554, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  JellyFish: {fileID: 6697862178388370596}
+  JellyAudio: {fileID: -7934599408820788058}
 --- !u!1 &6697862179025775584
 GameObject:
   m_ObjectHideFlags: 0

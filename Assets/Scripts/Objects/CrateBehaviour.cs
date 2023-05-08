@@ -46,9 +46,8 @@ public class CrateBehaviour : ObjectType
 
             if (MyAudioSource != null && GameManagerInstance.SFX)
             {
-
-                MyAudioSource.Play();
-
+                GameManagerInstance.AudioCEO.clip = BreakCrate;
+                GameManagerInstance.AudioCEO.Play();
             }
 
             try { surpriseOutside.GetComponent<CharacterBehavior>().Health++; } catch { }

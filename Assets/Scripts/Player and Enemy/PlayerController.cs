@@ -160,6 +160,7 @@ public class PlayerController : CharacterBehavior
             if (MyAudioSource != null && GameManagerInstance.SFX)
             {
                 MyAudioSource.clip = Scream;
+                MyAudioSource.volume = 1.0f;
                 MyAudioSource.Play();
             }
 
