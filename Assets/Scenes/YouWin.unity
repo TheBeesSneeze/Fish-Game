@@ -236,7 +236,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -255, y: -150}
+  m_AnchoredPosition: {x: -518, y: -230}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &126139235
@@ -368,8 +368,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 223.25, y: -300.34998}
-  m_SizeDelta: {x: 446.5, y: 600.7}
+  m_AnchoredPosition: {x: 327.27, y: -313.91}
+  m_SizeDelta: {x: 648.18, y: 623.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &194508250
 MonoBehaviour:
@@ -391,7 +391,20 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: "PRODUCTION BY\r\nToby Schamberger\r\nJay Embry\r\nSky Beal\r\n\r\nAUDIO\r\nAudacity
+    Sound Editing Software\r\nBackground Music: Plants Vs. Zombies (Original Video
+    Game Soundtrack) - Watery Graves (In-Game)\r\nTutorial Background Music: Plants
+    Vs. Zombies (Original Video Game Soundtrack) - Watery Graves (Slow Version)\r\nAmbience:
+    Sclolex on FreeSound\r\nGorp Flash: Sound Library on Youtube\r\nGorp Toggle:
+    InspectorJ on FreeSound\r\nGlobbington Swing: 32cheeseman32 on FreeSound\r\nPlayer
+    Damage: Toby\r\nEnemy Damage: florianreichelt on FreeSound\r\nLight Toggle: pbharri
+    on FreeSound\r\nDoor: Eelke on FreeSound\r\nGates: CosmicD on FreeSound\r\nCrate
+    Break: Bertsz on FreeSound\r\nLever Hit: Deathscyp on FreeSound\r\nButton Down:
+    7778 on FreeSound\r\nJellyfish Passive Sound: NachtmahrTV on FreeSound\r\nJellyfish
+    Zapping: jeremysykes on FreeSound\r\n\r\nART\r\nPiskel Pixel Art Software\r\n\r\nSPECIAL
+    THANKS \r\nOur playtesters!\r\nZach Abbott!\r\nVala!\r\nYou!\r\n\r\nExtra special
+    thanks to the Sewer Slickers for making this project so enjoyable to work on
+    :) -Sky\r\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -418,13 +431,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 14.4
+  m_fontSizeBase: 14.4
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
@@ -775,7 +788,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 82, y: -150}
+  m_AnchoredPosition: {x: -158.99998, y: -230}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &575648412
@@ -1026,8 +1039,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 418.4, y: -54.2}
-  m_SizeDelta: {x: 446.5, y: 600.7}
+  m_AnchoredPosition: {x: 314.32, y: -48.212}
+  m_SizeDelta: {x: 651.36, y: 625.51}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &840415485
 MonoBehaviour:
@@ -1042,7 +1055,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.9406268, b: 0.759434, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1102,7 +1115,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -453, y: 280}
+  m_AnchoredPosition: {x: -514, y: 314}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1136905160
@@ -1125,7 +1138,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Thakn you for playing our game! Stay Gorpelicious!
+  m_text: Thank you for playing our game! Stay Gorpelicious!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1152,8 +1165,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
-  m_fontSizeBase: 50
+  m_fontSize: 54.3
+  m_fontSizeBase: 54.3
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1188,7 +1201,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -961.6389, w: 0}
+  m_margin: {x: 0, y: 0, z: -1048.7205, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1386,10 +1399,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1280, y: 720}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -1627,8 +1640,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -19, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -56.646, y: 0}
+  m_SizeDelta: {x: -141.833, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1532155926
 MonoBehaviour:
@@ -1705,7 +1718,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -85.1, y: -195.9}
+  m_AnchoredPosition: {x: -335, y: -275.9}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2102168497
@@ -1839,7 +1852,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -86, y: -150}
+  m_AnchoredPosition: {x: -339, y: -230}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2124206778
