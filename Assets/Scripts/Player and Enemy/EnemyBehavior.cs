@@ -23,6 +23,7 @@ public class EnemyBehavior : CharacterBehavior
     [Header("Unity Jargain")]
     private EnemyDetection enemyDetection;
     private Collider2D enemyCollider;
+    public AudioClip EnemyDamage;
 
     [Header("You don't need to touch this:")]
     public GameObject Gorp;
@@ -106,6 +107,13 @@ public class EnemyBehavior : CharacterBehavior
                 TakeDamage(1, collision.gameObject.transform.position);
 
                 StartCoroutine(DisableMovementCoroutine());
+
+                if (MyAudioSource != null && GameManagerInstance.SFX)
+                {
+                    MyAudioSource.clip = EnemyDamage;
+                    MyAudioSource.Stop();
+                    MyAudioSource.Play();
+                }
             }
                 
         }
