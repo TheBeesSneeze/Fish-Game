@@ -133,9 +133,7 @@ public class DoorBehaviour : MonoBehaviour
     {
         if(DoorSource != null && gameMaster.SFX)
         {
-
             DoorSource.Play();
-
         }
 
         Open = true;

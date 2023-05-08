@@ -13,9 +13,6 @@ using UnityEngine;
 
 public class ButtonActivator : ActivatorType
 {
-    public AudioClip Button;
-    public AudioSource ButtonAudio;
-
     /// <summary>
     /// button go down
     /// </summary>
@@ -25,13 +22,6 @@ public class ButtonActivator : ActivatorType
         if (collider.gameObject.name == "Globbington")
         {
             DeactivationInput();
-
-            if(ButtonAudio != null)
-            {
-
-                ButtonAudio.Play();
-
-            }
         }
     }
 
@@ -43,15 +33,7 @@ public class ButtonActivator : ActivatorType
     {
         if (collider.gameObject.name == "Globbington")
         {
-            
             ActivationInput();
-
-            if (ButtonAudio != null)
-            {
-
-                ButtonAudio.Play();
-
-            }
         }
     }
 }

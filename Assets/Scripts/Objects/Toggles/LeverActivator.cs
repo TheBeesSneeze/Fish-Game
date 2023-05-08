@@ -13,17 +13,6 @@ using UnityEngine;
 
 public class LeverActivator : ActivatorType
 {
-
-    public AudioClip LeverSound;
-    public AudioSource LeverSource;
-    public GameManager GameMasterInstance;
-
-    public void Start()
-    {
-
-        GameMasterInstance = GameObject.FindObjectOfType<GameManager>();
-
-    }
     /// <summary>
     /// toggle lever
     /// </summary>
@@ -33,13 +22,6 @@ public class LeverActivator : ActivatorType
         if (collider.gameObject.tag.Equals("Attack") )
         {
             ToggleInput();
-
-            if (LeverSource != null && GameMasterInstance.SFX)
-            {
-
-                LeverSource.Play();
-
-            }
         }
     }
 }
