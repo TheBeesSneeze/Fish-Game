@@ -475,7 +475,6 @@ MonoBehaviour:
   DashForce: 40
   Scream: {fileID: 8300000, guid: 2559a8eb7d0cb6a4eb22dd33a7cd9894, type: 3}
   DashActive: 1
-  GorpControllerInstance: {fileID: 0}
   AttackLength: 0.1
   StrikeFrames: 15
   Sword: {fileID: 1137317766113117558}
@@ -489,6 +488,7 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
+  GlobSwing: {fileID: 8300000, guid: 5c083294dc3e15b4b99fc36d8c1ad6ca, type: 3}
 --- !u!114 &4302747830044685625
 MonoBehaviour:
   m_ObjectHideFlags: 0
