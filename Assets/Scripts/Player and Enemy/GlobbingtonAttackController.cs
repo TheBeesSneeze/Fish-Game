@@ -56,7 +56,7 @@ public class GlobbingtonAttackController : PlayerController
         {
             Sword.enabled = true;
 
-            if (MyAudioSource != null && GameMasterInstance.SFX)
+            if (MyAudioSource != null && GameManagerInstance.SFX)
             {
                 MyAudioSource.clip = GlobSwing;
                 MyAudioSource.Play();
