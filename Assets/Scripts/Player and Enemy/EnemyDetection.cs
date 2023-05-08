@@ -169,7 +169,7 @@ public class EnemyDetection : MonoBehaviour
             {
                 CurrentTarget = null;
             }
-            else
+            else if(!enemyBehavior.DisableMovement)
             {
                 float dist = Vector2.Distance(transform.position, CurrentTarget.transform.position);
                 bool closeEnough = dist <= unsightDistance;
@@ -200,6 +200,8 @@ public class EnemyDetection : MonoBehaviour
                 }
                 yield return new WaitForSeconds(0.1f);
             }
+            else
+                yield return new WaitForSeconds(0.1f);
         }
 
         rb.velocity = Vector2.zero;

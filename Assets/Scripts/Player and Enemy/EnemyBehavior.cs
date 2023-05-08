@@ -28,6 +28,7 @@ public class EnemyBehavior : CharacterBehavior
     public GameObject Gorp;
     public GameObject Globbington;
     public bool Dead;
+    public bool DisableMovement;
     private float lightDPS;
 
     /// <summary>
@@ -101,7 +102,12 @@ public class EnemyBehavior : CharacterBehavior
         {
             //if enemy needs to be stunned
             if( (EnemyData.ProtectedUntilFlash && Stunned) || ! EnemyData.ProtectedUntilFlash )
+            {
                 TakeDamage(1, collision.gameObject.transform.position);
+
+                StartCoroutine(DisableMovementCoroutine());
+            }
+                
         }
         else if (tag.Equals("Light"))
         {
@@ -143,6 +149,7 @@ public class EnemyBehavior : CharacterBehavior
         }
     }
 
+
     /// <summary>
     /// become stunned
     /// </summary>
@@ -175,6 +182,13 @@ public class EnemyBehavior : CharacterBehavior
         StunLength = EnemyData.StunDuration;
         lightDPS = EnemyData.LightDamagePerSec;
         KnockbackForce = EnemyData.KnockBackForce;
+    }
+
+    private IEnumerator DisableMovementCoroutine()
+    {
+        DisableMovement = true;
+        yield return new WaitForSeconds(0.1f);
+        DisableMovement = false;
     }
 
     /// <summary>

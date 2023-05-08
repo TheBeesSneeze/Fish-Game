@@ -353,14 +353,14 @@ public class GorpController : PlayerController
     /// </summary>
     public void GorpSlap()
     {
-
+        /*
         if (MyAudioSource != null && GameManagerInstance.SFX)
         {
             MyAudioSource.pitch = 0.6f;
             MyAudioSource.clip = WetSlap;
             MyAudioSource.Play();
         }
-
+        */
     }
 
     /// <summary>

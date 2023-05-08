@@ -46,8 +46,6 @@ public class PlayerController : CharacterBehavior
     [Tooltip("Debug")]
     public bool DashActive = true;
 
-    public GorpController GorpControllerInstance;
-
     /// <summary>
     /// Sets health and binds controls
     /// </summary>
@@ -67,8 +65,6 @@ public class PlayerController : CharacterBehavior
         Swap = MyPlayerInput.actions.FindAction("Swap");
         Debug = MyPlayerInput.actions.FindAction("Dev Mode");
         Pause = MyPlayerInput.actions.FindAction("Pause");
-
-        GorpControllerInstance = GameObject.FindObjectOfType<GorpController>();
 
         //I believe this is adding the functions to the buttons...
         Move.started += Move_started;
@@ -162,7 +158,10 @@ public class PlayerController : CharacterBehavior
             bool died = base.TakeDamage(damage);
             healthDisplay.UpdateHealth();
             if (MyAudioSource != null && GameManagerInstance.SFX)
+            {
+                MyAudioSource.clip = Scream;
                 MyAudioSource.Play();
+            }
 
             if (!died)
                 StartInvincibleFrames();
@@ -358,14 +357,13 @@ public class PlayerController : CharacterBehavior
         if (tag.Equals("Enemy"))
         {
             TakeDamage(1, collision.transform.position);
-            
         }
+
         if(tag.Equals("Player"))
         {
             KnockBack(this.gameObject, collision.transform.position,2);
-            
-            GorpControllerInstance.GorpSlap();
         }
+
         if(tag.Equals("Eye"))
         {
             KnockBack(this.gameObject,collision.transform.position); 

@@ -141,5 +141,7 @@ MonoBehaviour:
   Delay: 0
   ActiveSprite: {fileID: -1812579490, guid: 82bb7b22cf1844a40b736ed5cf915c1e, type: 3}
   DeactiveSprite: {fileID: 529068404, guid: 82bb7b22cf1844a40b736ed5cf915c1e, type: 3}
+  ActivateSound: {fileID: 8300000, guid: c52ffe42ecffe764f8ec3089382069cf, type: 3}
+  DeactivateSound: {fileID: 8300000, guid: 5b6b1ed13747477428b3d9c8abed1a89, type: 3}
   MySpriteRenderer: {fileID: 0}
-  _activated: 0
+  MyAudioSource: {fileID: 0}

@@ -36,7 +36,7 @@ public class DoorBehaviour : MonoBehaviour
     /// <summary>
     /// opens or closes door on start
     /// </summary>
-    private void Start()
+    private void Awake()
     {
         gameMaster = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
 
