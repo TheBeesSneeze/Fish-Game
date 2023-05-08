@@ -230,8 +230,10 @@ MonoBehaviour:
   Delay: 0.05
   ActiveSprite: {fileID: -403293944, guid: 622f3d102c49cd748aa6c0c50c3d1201, type: 3}
   DeactiveSprite: {fileID: 590617790, guid: 622f3d102c49cd748aa6c0c50c3d1201, type: 3}
+  ActivateSound: {fileID: 0}
+  DeactivateSound: {fileID: 0}
   MySpriteRenderer: {fileID: 0}
-  _activated: 0
+  MyAudioSource: {fileID: 0}
   LightTrigger: {fileID: 637147159022356795}
   Light: {fileID: 2264646124841096243}
 --- !u!95 &-4692021682175624567

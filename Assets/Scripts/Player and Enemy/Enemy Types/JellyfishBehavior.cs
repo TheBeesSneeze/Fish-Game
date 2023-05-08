@@ -36,6 +36,10 @@ public class JellyfishBehavior : EnemyBehavior
     private Animator animator;
     private ActivatorType activator;
 
+    [Header("Audio")]
+    public AudioClip PassiveElectricitySound;
+    public AudioClip ElectrifyingSound;
+
     [Header("Debug")]
     public JellyfishState JellyState = JellyfishState.Passive;
     public enum JellyfishState
@@ -59,6 +63,8 @@ public class JellyfishBehavior : EnemyBehavior
             StartCoroutine(AdjustLight());
 
         activator = GetComponent<ActivatorType>();
+
+        StartCoroutine(SetState(JellyState,0));
     }
 
     /// <summary>
@@ -90,12 +96,28 @@ public class JellyfishBehavior : EnemyBehavior
                 PassiveElectricityTrigger.SetActive(true);
                 ElectrifyingTrigger.SetActive(false);
                 activator.DeactivationInput();
+
+                if(GameManagerInstance.SFX)
+                {
+                    MyAudioSource.Stop();
+                    MyAudioSource.loop = true;
+                    MyAudioSource.clip = PassiveElectricitySound;
+                    MyAudioSource.Play();
+                }
                 break;
 
             case JellyfishState.Electrifying:
                 PassiveElectricityTrigger.SetActive(false);
                 ElectrifyingTrigger.SetActive(true);
                 activator.ActivationInput();
+
+                if (GameManagerInstance.SFX)
+                {
+                    MyAudioSource.Stop();
+                    MyAudioSource.loop = false;
+                    MyAudioSource.clip = ElectrifyingSound;
+                    MyAudioSource.Play();
+                }
 
                 StartCoroutine( StopElectrifying() );
                 break;
@@ -104,6 +126,12 @@ public class JellyfishBehavior : EnemyBehavior
                 PassiveElectricityTrigger.SetActive(false);
                 ElectrifyingTrigger.SetActive(false);
                 activator.ActivationInput();
+
+                if (GameManagerInstance.SFX)
+                {
+                    MyAudioSource.Stop();
+                    MyAudioSource.loop = false;
+                }
 
                 StartCoroutine( StopBeingWeak() );
                 break;
