@@ -21,7 +21,7 @@ public class EnemyBehavior : CharacterBehavior
     public EnemyType EnemyData;
 
     [Header("Unity Jargain")]
-    private EnemyDetection enemyDetection;
+    public EnemyDetection enemyDetection;
     private Collider2D enemyCollider;
     public AudioClip EnemyDamage;
 
@@ -106,13 +106,14 @@ public class EnemyBehavior : CharacterBehavior
             {
                 TakeDamage(1, collision.gameObject.transform.position);
 
-                StartCoroutine(DisableMovementCoroutine());
+                if(Health != 0)
+                    StartCoroutine(DisableMovementCoroutine());
 
                 if (MyAudioSource != null && GameManagerInstance.SFX)
                 {
-                    MyAudioSource.clip = EnemyDamage;
-                    MyAudioSource.Stop();
-                    MyAudioSource.Play();
+                    GameManagerInstance.AudioCEO.clip = EnemyDamage;
+                    GameManagerInstance.AudioCEO.Stop();
+                    GameManagerInstance.AudioCEO.Play();
                 }
             }
                 

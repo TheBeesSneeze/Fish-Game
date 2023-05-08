@@ -149,6 +149,9 @@ public class RoomBehaviour : MonoBehaviour
             {
                 o.gameObject.SetActive(true);
                 o.Respawn();
+                
+               if(tag.Equals("Enemy"))
+                    o.GetComponent<EnemyBehavior>().Respawn();
             }
         }
     }
