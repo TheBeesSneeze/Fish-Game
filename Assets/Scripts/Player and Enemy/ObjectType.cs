@@ -14,6 +14,9 @@ using UnityEngine.InputSystem;
 
 public class ObjectType : MonoBehaviour
 {
+    [Header("Unity")]
+    public AudioSource MyAudioSource;
+    
     [Header("Debug (don't touch in editor)")]
 
     public Vector3 DefaultPosition;
@@ -26,6 +29,8 @@ public class ObjectType : MonoBehaviour
     /// </summary>
     public virtual void Start()
     {
+        try { MyAudioSource = GetComponent<AudioSource>(); } catch { }
+
         DefaultPosition = this.transform.position;
         if(DespawnOnStart) 
         {
