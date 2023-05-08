@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
     private GameObject _camera;
     public RoomBehaviour CurrentRoom;
     public RoomBehaviour LastRoom;
+    public AudioSource AudioCEO;
 
     /// <summary>
     /// finds camera on start

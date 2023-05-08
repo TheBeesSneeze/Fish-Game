@@ -136,7 +136,7 @@ public class GorpController : PlayerController
     {
         if(MyAudioSource != null && GameManagerInstance.SFX)
         {
-            MyAudioSource.pitch = 1;
+            MyAudioSource.volume = 1;
             MyAudioSource.clip = ToggleSound;
             MyAudioSource.Play();
 
@@ -232,7 +232,7 @@ public class GorpController : PlayerController
 
         if (MyAudioSource != null && GameManagerInstance.SFX)
         {
-            MyAudioSource.pitch = 1;
+            MyAudioSource.volume = 0.7f;
             MyAudioSource.clip = FlashSound;
             MyAudioSource.Play();
         }

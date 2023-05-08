@@ -35,6 +35,7 @@ public class JellyfishBehavior : EnemyBehavior
     private LightController lightController;
     private Animator animator;
     private ActivatorType activator;
+    public bool WasMute;
 
     [Header("Audio")]
     public AudioClip PassiveElectricitySound;
@@ -115,6 +116,7 @@ public class JellyfishBehavior : EnemyBehavior
                 {
                     MyAudioSource.Stop();
                     MyAudioSource.loop = false;
+                    MyAudioSource.mute = false;
                     MyAudioSource.clip = ElectrifyingSound;
                     MyAudioSource.Play();
                 }
@@ -131,6 +133,7 @@ public class JellyfishBehavior : EnemyBehavior
                 {
                     MyAudioSource.Stop();
                     MyAudioSource.loop = false;
+                    MyAudioSource.mute = WasMute;
                 }
 
                 StartCoroutine( StopBeingWeak() );
