@@ -26,6 +26,8 @@ public class GlobbingtonAttackController : PlayerController
     [Header("Controls")]
     public InputAction Strike;
     private Quaternion swordRotation;
+
+    public AudioClip GlobSwing;
    
 
     /// <summary>
@@ -53,6 +55,13 @@ public class GlobbingtonAttackController : PlayerController
         if( !Sword.enabled ) 
         {
             Sword.enabled = true;
+
+            if (MyAudioSource != null && GameMasterInstance.SFX)
+            {
+                MyAudioSource.clip = GlobSwing;
+                MyAudioSource.Play();
+
+            }
 
             StartCoroutine(SwingSword());
 
