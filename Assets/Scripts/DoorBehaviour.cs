@@ -30,6 +30,9 @@ public class DoorBehaviour : MonoBehaviour
     //public Animation ClosedAnimation;
     //public Animation OpeningAnimation;
 
+    public AudioClip DoorSound;
+    public AudioSource DoorSource;
+
     /// <summary>
     /// opens or closes door on start
     /// </summary>
@@ -128,6 +131,13 @@ public class DoorBehaviour : MonoBehaviour
     /// </summary>
     public void OpenDoor()
     {
+        if(DoorSource != null && gameMaster.SFX)
+        {
+
+            DoorSource.Play();
+
+        }
+
         Open = true;
 
         MyCollider.isTrigger = true;

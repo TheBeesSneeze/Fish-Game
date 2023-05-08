@@ -22,12 +22,16 @@ public class CrateBehaviour : ObjectType
     public AudioClip BreakCrate;
     public AudioSource CrateSource;
 
+    public GameManager GameMasterInstance;
+
     /// <summary>
     /// wow do the start stuff from objecttype
     /// </summary>
     public override void Start()
     {
         base.Start();
+
+        GameMasterInstance = GameObject.FindObjectOfType<GameManager>();
     }
     /// <summary>
     /// if sword swing hits it BOOM dead
@@ -45,7 +49,7 @@ public class CrateBehaviour : ObjectType
                 Debug.Log(surpriseOutside.name);
             }
 
-            if (CrateSource != null)
+            if (CrateSource != null && GameMasterInstance.SFX)
             {
 
                 CrateSource.Play();

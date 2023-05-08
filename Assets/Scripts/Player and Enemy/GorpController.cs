@@ -133,7 +133,7 @@ public class GorpController : PlayerController
     /// </summary>
     private void Toggle_started(InputAction.CallbackContext obj)
     {
-        if(GorpSource != null)
+        if(GorpSource != null && GameMasterInstance.SFX)
         {
 
             GetComponent<AudioSource>().clip = LightClick;
