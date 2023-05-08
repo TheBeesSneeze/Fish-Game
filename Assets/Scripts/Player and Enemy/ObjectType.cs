@@ -16,6 +16,7 @@ public class ObjectType : MonoBehaviour
 {
     [Header("Unity")]
     public AudioSource MyAudioSource;
+    public GameManager GameManagerInstance;
     
     [Header("Debug (don't touch in editor)")]
 
@@ -29,7 +30,10 @@ public class ObjectType : MonoBehaviour
     /// </summary>
     public virtual void Start()
     {
-        try { MyAudioSource = GetComponent<AudioSource>(); } catch { }
+        if(MyAudioSource == null)
+            try { MyAudioSource = GetComponent<AudioSource>(); } catch { }
+
+        GameManagerInstance = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
 
         DefaultPosition = this.transform.position;
         if(DespawnOnStart) 

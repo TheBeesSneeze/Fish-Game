@@ -56,7 +56,7 @@ public class GlobbingtonAttackController : PlayerController
         {
             Sword.enabled = true;
 
-            if (MyAudioSource != null && GameMasterInstance.SFX)
+            if (MyAudioSource != null && GameManagerInstance.SFX)
             {
                 MyAudioSource.clip = GlobSwing;
                 MyAudioSource.Play();
@@ -65,7 +65,7 @@ public class GlobbingtonAttackController : PlayerController
 
             StartCoroutine(SwingSword());
 
-            if (GameMasterInstance.Rumble)
+            if (GameManagerInstance.Rumble)
             {
                 //InputDevice a = MyPlayerInput.devices[0];
                 MyGamepad.SetMotorSpeeds(0.15f, 0.25f);
@@ -106,7 +106,7 @@ public class GlobbingtonAttackController : PlayerController
     /// </summary>
     private void StopAttack()
     {
-        if (GameMasterInstance.Rumble)
+        if (GameManagerInstance.Rumble)
             MyGamepad.SetMotorSpeeds(0, 0);
 
         Sword.enabled = false;

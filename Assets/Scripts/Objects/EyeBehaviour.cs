@@ -81,6 +81,12 @@ public class EyeBehaviour : ObjectType
                     if(temp == null)
                         CurrentTarget.GetComponent<PlayerController>().LayersOfLight--;
 
+                    else if(temp != CurrentTarget )
+                    {
+                        temp.GetComponent<PlayerController>().LayersOfLight++;
+                        CurrentTarget.GetComponent<PlayerController>().LayersOfLight--;
+                    }
+
                     CurrentTarget = temp;
                 }
                 

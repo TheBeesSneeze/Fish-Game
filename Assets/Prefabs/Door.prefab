@@ -302,7 +302,7 @@ MonoBehaviour:
   MyCollider: {fileID: 5564036600995312022}
   DoorLight: {fileID: 483719621}
   DoorAnimator: {fileID: 6830106694395074860}
-  DoorSound: {fileID: 8300000, guid: 77d8831213e732c4abb593ecfa42d822, type: 3}
+  DoorSound: {fileID: 8300000, guid: 240ef4485d2413943bc4e7d9493bc80f, type: 3}
   DoorSource: {fileID: 7506705441510491462}
 --- !u!95 &6830106694395074860
 Animator:
@@ -360,7 +360,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 77d8831213e732c4abb593ecfa42d822, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 240ef4485d2413943bc4e7d9493bc80f, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

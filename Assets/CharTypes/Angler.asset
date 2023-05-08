@@ -14,12 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Health: 3
   Speed: 0
-  Weight: 10
   TakeKnockback: 0
+  KnockBackForce: 20
   ImmuneToElectricity: 0
   StunDuration: 0
-  KnockBackForce: 5
+  DashForce: 0
   RequiredToKill: 0
+  ProtectedUntilFlash: 0
   StunnedByFlash: 0
   HurtByFlash: 0
   LightDamagePerSec: 0
