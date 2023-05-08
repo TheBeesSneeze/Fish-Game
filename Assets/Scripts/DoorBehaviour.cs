@@ -30,11 +30,16 @@ public class DoorBehaviour : MonoBehaviour
     //public Animation ClosedAnimation;
     //public Animation OpeningAnimation;
 
+    public AudioClip DoorSound;
+    public AudioSource DoorSource;
+
     /// <summary>
     /// opens or closes door on start
     /// </summary>
     private void Start()
     {
+        gameMaster = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
+
         if (Open)
             OpenDoor();
         else
@@ -43,8 +48,6 @@ public class DoorBehaviour : MonoBehaviour
         bool previouslyOpen = Open;
         CloseDoor();
         Open = previouslyOpen;
-
-        gameMaster = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
     }
 
     /// <summary>
@@ -128,6 +131,13 @@ public class DoorBehaviour : MonoBehaviour
     /// </summary>
     public void OpenDoor()
     {
+        if(DoorSource != null && gameMaster.SFX)
+        {
+
+            DoorSource.Play();
+
+        }
+
         Open = true;
 
         MyCollider.isTrigger = true;

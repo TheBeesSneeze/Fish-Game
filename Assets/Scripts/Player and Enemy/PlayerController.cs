@@ -164,7 +164,7 @@ public class PlayerController : CharacterBehavior
         {
             bool died = base.TakeDamage(damage);
             healthDisplay.UpdateHealth();
-            if (MyAudioSource != null)
+            if (MyAudioSource != null && GameMasterInstance.SFX)
                 MyAudioSource.Play();
 
             if (!died)

@@ -16,7 +16,14 @@ public class LeverActivator : ActivatorType
 
     public AudioClip LeverSound;
     public AudioSource LeverSource;
+    public GameManager GameMasterInstance;
 
+    public void Start()
+    {
+
+        GameMasterInstance = GameObject.FindObjectOfType<GameManager>();
+
+    }
     /// <summary>
     /// toggle lever
     /// </summary>
@@ -27,7 +34,7 @@ public class LeverActivator : ActivatorType
         {
             ToggleInput();
 
-            if (LeverSource != null)
+            if (LeverSource != null && GameMasterInstance.SFX)
             {
 
                 LeverSource.Play();
