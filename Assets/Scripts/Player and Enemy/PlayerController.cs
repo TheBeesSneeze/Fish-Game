@@ -38,6 +38,7 @@ public class PlayerController : CharacterBehavior
     public InputAction Swap;
     public InputAction Debug;
     public InputAction Pause;
+    public InputAction OpenDoorCheat;
 
     public  bool ReadMove;
     public float DashForce;
@@ -65,6 +66,7 @@ public class PlayerController : CharacterBehavior
         Swap = MyPlayerInput.actions.FindAction("Swap");
         Debug = MyPlayerInput.actions.FindAction("Dev Mode");
         Pause = MyPlayerInput.actions.FindAction("Pause");
+        OpenDoorCheat = MyPlayerInput.actions.FindAction("OpenDoors");
 
         //I believe this is adding the functions to the buttons...
         Move.started += Move_started;
@@ -75,6 +77,7 @@ public class PlayerController : CharacterBehavior
         Swap.started += SwapInput;
 
         Debug.started += DevMode;
+        OpenDoorCheat.started += OpenDoors;
 
         MyGamepad = MyPlayerInput.GetDevice<Gamepad>();
 
@@ -450,6 +453,22 @@ public class PlayerController : CharacterBehavior
             camera.transform.parent = this.gameObject.transform;
             camera.transform.localPosition = new Vector3(0, 0, camera.transform.position.z);
         }
+    }
+
+    public void OpenDoors(InputAction.CallbackContext obj)
+    {
+        DoorBehaviour[] Doors = GameObject.FindObjectsOfType<DoorBehaviour>();
+        foreach(DoorBehaviour door in Doors) 
+        {
+            door.OpenDoor();
+        }
+
+        RoomBehaviour[] Rooms = GameObject.FindObjectsOfType<RoomBehaviour>();
+        foreach (RoomBehaviour room in Rooms)
+        {
+            room.PreviouslyCleared = true;
+        }
+
     }
 
     /// <summary>

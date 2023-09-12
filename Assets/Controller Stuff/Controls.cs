@@ -116,6 +116,15 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""OpenDoors"",
+                    ""type"": ""Button"",
+                    ""id"": ""a2f05ae7-da4c-4db4-8238-d0b4ce5a674e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -415,6 +424,17 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""action"": ""Dev Mode"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""04b12128-3b5c-4993-900a-37f06c2ae0b6"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""OpenDoors"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -480,6 +500,15 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""name"": ""Dev Mode"",
                     ""type"": ""Button"",
                     ""id"": ""708d230f-65c8-470e-b758-e4d45546ad30"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""OpenDoors"",
+                    ""type"": ""Button"",
+                    ""id"": ""47bbb653-8f53-459e-8256-519e3ee75297"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -717,6 +746,17 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""action"": ""Dev Mode"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d3228b05-b220-4131-aee1-4a2a99528bcd"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""OpenDoors"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -880,6 +920,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         m_FishControls_DecreaseLight = m_FishControls.FindAction("Decrease Light", throwIfNotFound: true);
         m_FishControls_Select = m_FishControls.FindAction("Select", throwIfNotFound: true);
         m_FishControls_DevMode = m_FishControls.FindAction("Dev Mode", throwIfNotFound: true);
+        m_FishControls_OpenDoors = m_FishControls.FindAction("OpenDoors", throwIfNotFound: true);
         // OctopusControls
         m_OctopusControls = asset.FindActionMap("OctopusControls", throwIfNotFound: true);
         m_OctopusControls_Move = m_OctopusControls.FindAction("Move", throwIfNotFound: true);
@@ -889,6 +930,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         m_OctopusControls_Pause = m_OctopusControls.FindAction("Pause", throwIfNotFound: true);
         m_OctopusControls_Select = m_OctopusControls.FindAction("Select", throwIfNotFound: true);
         m_OctopusControls_DevMode = m_OctopusControls.FindAction("Dev Mode", throwIfNotFound: true);
+        m_OctopusControls_OpenDoors = m_OctopusControls.FindAction("OpenDoors", throwIfNotFound: true);
         // MenuControls
         m_MenuControls = asset.FindActionMap("MenuControls", throwIfNotFound: true);
         m_MenuControls_Move = m_MenuControls.FindAction("Move", throwIfNotFound: true);
@@ -963,6 +1005,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private readonly InputAction m_FishControls_DecreaseLight;
     private readonly InputAction m_FishControls_Select;
     private readonly InputAction m_FishControls_DevMode;
+    private readonly InputAction m_FishControls_OpenDoors;
     public struct FishControlsActions
     {
         private @Controls m_Wrapper;
@@ -977,6 +1020,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         public InputAction @DecreaseLight => m_Wrapper.m_FishControls_DecreaseLight;
         public InputAction @Select => m_Wrapper.m_FishControls_Select;
         public InputAction @DevMode => m_Wrapper.m_FishControls_DevMode;
+        public InputAction @OpenDoors => m_Wrapper.m_FishControls_OpenDoors;
         public InputActionMap Get() { return m_Wrapper.m_FishControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1016,6 +1060,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @DevMode.started -= m_Wrapper.m_FishControlsActionsCallbackInterface.OnDevMode;
                 @DevMode.performed -= m_Wrapper.m_FishControlsActionsCallbackInterface.OnDevMode;
                 @DevMode.canceled -= m_Wrapper.m_FishControlsActionsCallbackInterface.OnDevMode;
+                @OpenDoors.started -= m_Wrapper.m_FishControlsActionsCallbackInterface.OnOpenDoors;
+                @OpenDoors.performed -= m_Wrapper.m_FishControlsActionsCallbackInterface.OnOpenDoors;
+                @OpenDoors.canceled -= m_Wrapper.m_FishControlsActionsCallbackInterface.OnOpenDoors;
             }
             m_Wrapper.m_FishControlsActionsCallbackInterface = instance;
             if (instance != null)
@@ -1050,6 +1097,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @DevMode.started += instance.OnDevMode;
                 @DevMode.performed += instance.OnDevMode;
                 @DevMode.canceled += instance.OnDevMode;
+                @OpenDoors.started += instance.OnOpenDoors;
+                @OpenDoors.performed += instance.OnOpenDoors;
+                @OpenDoors.canceled += instance.OnOpenDoors;
             }
         }
     }
@@ -1065,6 +1115,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private readonly InputAction m_OctopusControls_Pause;
     private readonly InputAction m_OctopusControls_Select;
     private readonly InputAction m_OctopusControls_DevMode;
+    private readonly InputAction m_OctopusControls_OpenDoors;
     public struct OctopusControlsActions
     {
         private @Controls m_Wrapper;
@@ -1076,6 +1127,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         public InputAction @Pause => m_Wrapper.m_OctopusControls_Pause;
         public InputAction @Select => m_Wrapper.m_OctopusControls_Select;
         public InputAction @DevMode => m_Wrapper.m_OctopusControls_DevMode;
+        public InputAction @OpenDoors => m_Wrapper.m_OctopusControls_OpenDoors;
         public InputActionMap Get() { return m_Wrapper.m_OctopusControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1106,6 +1158,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @DevMode.started -= m_Wrapper.m_OctopusControlsActionsCallbackInterface.OnDevMode;
                 @DevMode.performed -= m_Wrapper.m_OctopusControlsActionsCallbackInterface.OnDevMode;
                 @DevMode.canceled -= m_Wrapper.m_OctopusControlsActionsCallbackInterface.OnDevMode;
+                @OpenDoors.started -= m_Wrapper.m_OctopusControlsActionsCallbackInterface.OnOpenDoors;
+                @OpenDoors.performed -= m_Wrapper.m_OctopusControlsActionsCallbackInterface.OnOpenDoors;
+                @OpenDoors.canceled -= m_Wrapper.m_OctopusControlsActionsCallbackInterface.OnOpenDoors;
             }
             m_Wrapper.m_OctopusControlsActionsCallbackInterface = instance;
             if (instance != null)
@@ -1131,6 +1186,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @DevMode.started += instance.OnDevMode;
                 @DevMode.performed += instance.OnDevMode;
                 @DevMode.canceled += instance.OnDevMode;
+                @OpenDoors.started += instance.OnOpenDoors;
+                @OpenDoors.performed += instance.OnOpenDoors;
+                @OpenDoors.canceled += instance.OnOpenDoors;
             }
         }
     }
@@ -1196,6 +1254,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         void OnDecreaseLight(InputAction.CallbackContext context);
         void OnSelect(InputAction.CallbackContext context);
         void OnDevMode(InputAction.CallbackContext context);
+        void OnOpenDoors(InputAction.CallbackContext context);
     }
     public interface IOctopusControlsActions
     {
@@ -1206,6 +1265,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         void OnPause(InputAction.CallbackContext context);
         void OnSelect(InputAction.CallbackContext context);
         void OnDevMode(InputAction.CallbackContext context);
+        void OnOpenDoors(InputAction.CallbackContext context);
     }
     public interface IMenuControlsActions
     {

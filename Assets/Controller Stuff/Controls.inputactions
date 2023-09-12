@@ -94,6 +94,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "OpenDoors",
+                    "type": "Button",
+                    "id": "a2f05ae7-da4c-4db4-8238-d0b4ce5a674e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -393,6 +402,17 @@
                     "action": "Dev Mode",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "04b12128-3b5c-4993-900a-37f06c2ae0b6",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "OpenDoors",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -458,6 +478,15 @@
                     "name": "Dev Mode",
                     "type": "Button",
                     "id": "708d230f-65c8-470e-b758-e4d45546ad30",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "OpenDoors",
+                    "type": "Button",
+                    "id": "47bbb653-8f53-459e-8256-519e3ee75297",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -693,6 +722,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Dev Mode",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d3228b05-b220-4131-aee1-4a2a99528bcd",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "OpenDoors",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
